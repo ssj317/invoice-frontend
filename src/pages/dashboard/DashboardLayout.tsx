@@ -1,5 +1,3 @@
-
-
 import { useState, useEffect } from 'react';
 import { Settings, LogOut, ExternalLink as LinkIcon, X, Mail, Phone, MessageCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -16,6 +14,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     const [showAccountManagerModal, setShowAccountManagerModal] = useState(false);
     const [userName, setUserName] = useState('User');
     const [userEmail, setUserEmail] = useState('user@example.com');
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
         // Load user data from localStorage
@@ -25,6 +24,16 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             setUserName(parsed.fullName || 'User');
             setUserEmail(parsed.email || 'user@example.com');
         }
+
+        // Check if mobile on mount and resize
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768); // md breakpoint
+        };
+        
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        
+        return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
     const handleLogout = () => {
@@ -36,7 +45,11 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 
     // Handler for Elite8 logo navigation
     const handleLogoClick = () => {
-        navigate('/Dashboard'); // Change this to wherever you want to navigate
+        navigate('/Dashboard');
+    };
+
+    const toggleSidebar = () => {
+        setSidebarExpanded(!sidebarExpanded);
     };
 
     return (
@@ -46,7 +59,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                 <div className="flex items-center justify-between px-3 sm:px-6 py-3">
                     <div className="flex items-center gap-2 sm:gap-3">
                         <button
-                            onClick={() => setSidebarExpanded(!sidebarExpanded)}
+                            onClick={toggleSidebar}
                             className="p-1 hover:bg-purple-700 rounded"
                         >
                             <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -99,16 +112,6 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
                             </svg>
                         </button>
-
-                        {/* <button className="hidden md:block p-2 hover:bg-purple-700 rounded">
-                            <span className="text-lg font-bold">AI</span>
-                        </button> */}
-
-                        {/* <button className="hidden md:block p-2 hover:bg-purple-700 rounded">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                            </svg>
-                        </button> */}
 
                         <button className="p-1.5 sm:p-2 hover:bg-purple-700 rounded relative">
                             <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -216,21 +219,25 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 
             {/* Main Content Area with Sidebar - Add top padding for fixed navbar */}
             <div className="flex flex-1 overflow-hidden pt-[52px] sm:pt-[60px]">
-                {/* Sidebar - Fixed position, always visible in collapsed state */}
-                <div className={`fixed top-[52px] sm:top-[60px] left-0 bottom-0 z-30 transition-all duration-300 ${sidebarExpanded ? 'w-64' : 'w-20'}`}>
+                {/* Sidebar - Hidden on mobile unless expanded */}
+                <div className={`fixed top-[52px] sm:top-[60px] left-0 bottom-0 z-30 transition-all duration-300 ${
+                    isMobile && !sidebarExpanded ? '-translate-x-full' : 'translate-x-0'
+                } ${sidebarExpanded ? 'w-64' : 'w-20'}`}>
                     <Sidebar isExpanded={sidebarExpanded} setIsExpanded={setSidebarExpanded} />
                 </div>
 
-                {/* Overlay when sidebar is expanded - only shows when expanded */}
+                {/* Overlay when sidebar is expanded on mobile or always when expanded on desktop */}
                 {sidebarExpanded && (
                     <div
-                        className="fixed inset-0 bg-black bg-opacity-30 z-20 top-[52px] sm:top-[60px]"
+                        className="fixed inset-0 bg-black z-20 top-[52px] sm:top-[60px] md:bg-opacity-30 bg-opacity-50"
                         onClick={() => setSidebarExpanded(false)}
                     ></div>
                 )}
 
-                {/* Main Content - Starts after collapsed sidebar, gets overlapped when expanded */}
-                <div className={`flex-1 overflow-auto transition-all duration-300 ${sidebarExpanded ? 'ml-20' : 'ml-20'}`}>
+                {/* Main Content - Full width on mobile, starts after collapsed sidebar on desktop */}
+                <div className={`flex-1 overflow-auto transition-all duration-300 ${
+                    isMobile ? 'ml-0' : 'ml-20'
+                }`}>
                     {children}
                 </div>
             </div>
@@ -255,18 +262,18 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                         </button>
 
                         {/* Header */}
-                        <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
+                        <div className="flex items-start p-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
                             <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span className="text-white text-2xl sm:text-3xl font-bold">L</span>
                             </div>
                             <div>
-                                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-1">Hi, I am Lokesh Kumar</h2>
-                                <p className="text-base sm:text-lg text-gray-600">Your Account Manager</p>
+                                <h2 className="text-lg sm:text-2xl font-bold text-gray-900 mb-1">Hi, I am Lokesh Kumar</h2>
+                                <p className="text-sm sm:text-lg text-gray-600">Your Account Manager</p>
                             </div>
                         </div>
 
                         {/* Content */}
-                        <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8 text-sm sm:text-base text-gray-700">
+                        <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8 text-xs sm:text-base text-gray-700">
                             <p>
                                 I've worked with 160+ amazing clients (just like you!) to ensure they get the most from Elite8.
                             </p>

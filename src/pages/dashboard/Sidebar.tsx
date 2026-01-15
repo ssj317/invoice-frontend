@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronDown, ChevronUp, Diamond, DollarSign, ShoppingCart, BookOpen, Monitor, Package, BarChart3, FileText, Settings, Building2, Plus, Users, Rocket, Link2, MessageSquare, UserCircle } from 'lucide-react';
 
 const Sidebar = ({ isExpanded: externalExpanded = false, setIsExpanded: setExternalExpanded }: { isExpanded?: boolean; setIsExpanded?: (value: boolean) => void }) => {
@@ -6,8 +6,21 @@ const Sidebar = ({ isExpanded: externalExpanded = false, setIsExpanded: setExter
   const [profileOpen, setProfileOpen] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [hoverExpanded, setHoverExpanded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  const isExpanded = externalExpanded || hoverExpanded;
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // On mobile, always use externalExpanded; on desktop, use hoverExpanded OR externalExpanded
+  const isExpanded = isMobile ? externalExpanded : (externalExpanded || hoverExpanded);
 
   const menuItems = [
     {
@@ -312,18 +325,28 @@ const Sidebar = ({ isExpanded: externalExpanded = false, setIsExpanded: setExter
     setExpandedMenu(expandedMenu === id ? null : id);
   };
 
+  const handleMouseEnter = () => {
+    if (!isMobile) {
+      setHoverExpanded(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (!isMobile) {
+      setHoverExpanded(false);
+      if (!externalExpanded) {
+        setExpandedMenu(null);
+        setProfileOpen(false);
+      }
+    }
+  };
+
   return (
     <div
-      className={`fixed left-0 top-[68px] h-[calc(100vh-68px)] bg-white border-r border-gray-200 flex flex-col transition-all duration-300 z-50 ${isExpanded ? 'w-64' : 'w-20'
+      className={`fixed left-0 md:top-[10px] h-[calc(100vh-68px)] bg-white border-r border-gray-200 flex flex-col transition-all duration-300 z-50 ${isExpanded ? 'w-64' : 'w-20'
         }`}
-      onMouseEnter={() => setHoverExpanded(true)}
-      onMouseLeave={() => {
-        setHoverExpanded(false);
-        if (!externalExpanded) {
-          setExpandedMenu(null);
-          setProfileOpen(false);
-        }
-      }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {/* Header */}
       <div className="p-4 border-b border-gray-200 relative">
@@ -346,39 +369,10 @@ const Sidebar = ({ isExpanded: externalExpanded = false, setIsExpanded: setExter
             <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform flex-shrink-0 ${profileOpen ? 'rotate-180' : ''}`} />
           )}
         </button>
-
-        {/* Profile Dropdown */}
-        {/* {
-          profileOpen && isExpanded && (
-            <div className="absolute top-full left-4 right-4 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
-              <div className="py-2">
-                <button className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 transition-colors">
-                  Profile Settings
-                </button>
-                <button className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 transition-colors">
-                  Account Preferences
-                </button>
-                <button className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 transition-colors">
-                  Subscription Plan
-                </button>
-                <button className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 transition-colors">
-                  Billing & Payments
-                </button>
-                <div className="border-t border-gray-200 my-1"></div>
-                <button className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 transition-colors">
-                  Help & Support
-                </button>
-                <button className="w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50 transition-colors">
-                  Sign Out
-                </button>
-              </div>
-            </div>
-          )
-        } */}
-      </div >
+      </div>
 
       {/* Menu Items */}
-      < div className="flex-1 overflow-y-auto" >
+      <div className="flex-1 overflow-y-auto">
         <nav className="px-3 py-2">
           {menuItems.map((item) => (
             <div key={item.id}>
@@ -459,18 +453,16 @@ const Sidebar = ({ isExpanded: externalExpanded = false, setIsExpanded: setExter
         </nav>
 
         {/* Invite Team Members Button */}
-        {
-          isExpanded && (
-            <div className="px-4 pb-4 pt-2">
-              <button className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-white border-2 border-purple-200 text-purple-600 rounded-lg hover:bg-purple-50 transition-colors">
-                <Users className="w-4 h-4" />
-                <span className="font-medium text-sm">Invite Team Members</span>
-              </button>
-            </div>
-          )
-        }
-      </div >
-    </div >
+        {isExpanded && (
+          <div className="px-4 pb-4 pt-2">
+            <button className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-white border-2 border-purple-200 text-purple-600 rounded-lg hover:bg-purple-50 transition-colors">
+              <Users className="w-4 h-4" />
+              <span className="font-medium text-sm">Invite Team Members</span>
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 

@@ -27,7 +27,7 @@ const Dashboard = () => {
   return (
     <DashboardLayout>
       {/* Main Content */}
-      <div className="p-3 sm:p-4 md:p-6 lg:p-8 max-w-[1600px] mx-auto w-full min-h-screen">
+      <div className="p-3 mt-4 sm:mt-2 sm:p-4 md:p-6 lg:p-8 max-w-[1600px] mx-auto w-full min-h-screen">
         {/* Welcome Section */}
         <div className="mb-4 sm:mb-6 md:mb-8">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">

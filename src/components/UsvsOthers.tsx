@@ -10,7 +10,7 @@ type FeatureName =
   | 'Export to PDF'
   | 'Email Invoices'
   | 'Reports & Analytics'
-  | 'Multi-user Access'
+  // | 'Multi-user Access'
   | 'Priority Support';
 
 interface Provider {
@@ -35,7 +35,7 @@ const UsvsOthers = () => {
     { name: 'Export to PDF', category: 'core' },
     { name: 'Email Invoices', category: 'core' },
     { name: 'Reports & Analytics', category: 'advanced' },
-    { name: 'Multi-user Access', category: 'team' },
+    // { name: 'Multi-user Access', category: 'team' },
     { name: 'Priority Support', category: 'support' },
   ];
 
@@ -56,7 +56,7 @@ const UsvsOthers = () => {
         'Export to PDF': true,
         'Email Invoices': true,
         'Reports & Analytics': true,
-        'Multi-user Access': true,
+        // 'Multi-user Access': true,
         'Priority Support': true,
       }
     },
@@ -75,29 +75,29 @@ const UsvsOthers = () => {
         'Export to PDF': true,
         'Email Invoices': true,
         'Reports & Analytics': false,
-        'Multi-user Access': false,
+        // 'Multi-user Access': false,
         'Priority Support': false,
       }
     },
-    {
-      name: 'Others',
-      price: '$29',
-      priceMonthly: 29,
-      priceYearly: 290,
-      tagline: 'Pro Plan',
-      features: {
-        'Invoice Creation': true,
-        'Number of Invoices': 'Unlimited',
-        'Template Variety': '15 Templates',
-        'Multiple Currencies': true,
-        'Client Management': 'Unlimited',
-        'Export to PDF': true,
-        'Email Invoices': true,
-        'Reports & Analytics': true,
-        'Multi-user Access': false,
-        'Priority Support': false,
-      }
-    },
+    // {
+    //   name: 'Others',
+    //   price: '$29',
+    //   priceMonthly: 29,
+    //   priceYearly: 290,
+    //   tagline: 'Pro Plan',
+    //   features: {
+    //     'Invoice Creation': true,
+    //     'Number of Invoices': 'Unlimited',
+    //     'Template Variety': '15 Templates',
+    //     'Multiple Currencies': true,
+    //     'Client Management': 'Unlimited',
+    //     'Export to PDF': true,
+    //     'Email Invoices': true,
+    //     'Reports & Analytics': true,
+    //     'Multi-user Access': false,
+    //     'Priority Support': false,
+    //   }
+    // },
     {
       name: 'Others',
       price: '$49',
@@ -113,7 +113,7 @@ const UsvsOthers = () => {
         'Export to PDF': true,
         'Email Invoices': true,
         'Reports & Analytics': true,
-        'Multi-user Access': true,
+        // 'Multi-user Access': true,
         'Priority Support': true,
       }
     }
@@ -182,7 +182,7 @@ const UsvsOthers = () => {
         </div>
 
         {/* Comparison Table */}
-        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100">
+        <div className="bg-white rounded-2xl md:mx-8 shadow-2xl overflow-hidden border border-gray-100">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
