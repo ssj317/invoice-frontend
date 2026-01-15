@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ChevronDown, Search, HelpCircle, FileText, DollarSign, Users, Settings, Zap, Clock } from 'lucide-react';
 
 const FAQs = () => {
-  const [openIndex, setOpenIndex] = useState(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('getting-started');
 
@@ -164,7 +164,7 @@ const FAQs = () => {
     }
   ];
 
-  const toggleFAQ = (index) => {
+  const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 

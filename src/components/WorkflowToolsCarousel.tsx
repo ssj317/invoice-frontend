@@ -3,8 +3,8 @@ import { ChevronRight, ArrowRight } from 'lucide-react';
 
 const HorizontalScrollWorkflow = () => {
 	const [scrollProgress, setScrollProgress] = useState(0);
-	const containerRef = useRef(null);
-	const sectionRef = useRef(null);
+	const containerRef = useRef<HTMLDivElement>(null);
+	const sectionRef = useRef<HTMLDivElement>(null);
 	const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
 	const tools = [
@@ -185,7 +185,7 @@ const HorizontalScrollWorkflow = () => {
 			}
 		};
 
-		const handleMouseMove = (e) => {
+		const handleMouseMove = (e: MouseEvent) => {
 			setMousePosition({
 				x: (e.clientX / window.innerWidth) * 100,
 				y: (e.clientY / window.innerHeight) * 100,
@@ -215,7 +215,7 @@ const HorizontalScrollWorkflow = () => {
 	const maxTranslate = (tools.length - 1) * getCardWidth();
 	const translateX = -(scrollProgress * maxTranslate);
 
-	const handleNavigation = (route) => {
+	const handleNavigation = (route: string) => {
 		window.location.href = route;
 	};
 

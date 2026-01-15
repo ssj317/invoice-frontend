@@ -1,28 +1,45 @@
 import React, { useState } from 'react';
-import { Check, X, Zap, Crown, Users } from 'lucide-react';
+import { Check, X, Zap, Crown } from 'lucide-react';
+
+type FeatureName =
+  | 'Invoice Creation'
+  | 'Number of Invoices'
+  | 'Template Variety'
+  | 'Multiple Currencies'
+  | 'Client Management'
+  | 'Export to PDF'
+  | 'Email Invoices'
+  | 'Reports & Analytics'
+  | 'Multi-user Access'
+  | 'Priority Support';
+
+interface Provider {
+  name: string;
+  highlight?: boolean;
+  price: string;
+  priceMonthly: number;
+  priceYearly: number;
+  tagline: string;
+  features: Record<FeatureName, string | boolean>;
+}
 
 const UsvsOthers = () => {
-  const [billingCycle, setBillingCycle] = useState('monthly');
+  const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
 
-  const features = [
+  const features: { name: FeatureName; category: string }[] = [
     { name: 'Invoice Creation', category: 'core' },
     { name: 'Number of Invoices', category: 'core' },
     { name: 'Template Variety', category: 'core' },
-  
     { name: 'Multiple Currencies', category: 'advanced' },
-
-   
     { name: 'Client Management', category: 'advanced' },
-    // { name: 'Tax Calculations', category: 'advanced' },
     { name: 'Export to PDF', category: 'core' },
     { name: 'Email Invoices', category: 'core' },
-   
     { name: 'Reports & Analytics', category: 'advanced' },
     { name: 'Multi-user Access', category: 'team' },
     { name: 'Priority Support', category: 'support' },
   ];
 
-  const providers = [
+  const providers: Provider[] = [
     {
       name: 'Us',
       highlight: true,
@@ -34,13 +51,10 @@ const UsvsOthers = () => {
         'Invoice Creation': true,
         'Number of Invoices': 'Unlimited',
         'Template Variety': '20+ Templates',
-       
         'Multiple Currencies': true,
         'Client Management': true,
-        // 'Tax Calculations': true,
         'Export to PDF': true,
         'Email Invoices': true,
-      
         'Reports & Analytics': true,
         'Multi-user Access': true,
         'Priority Support': true,
@@ -56,13 +70,10 @@ const UsvsOthers = () => {
         'Invoice Creation': true,
         'Number of Invoices': '50/month',
         'Template Variety': '10 Templates',
-        
         'Multiple Currencies': true,
         'Client Management': '25 clients',
-        // 'Tax Calculations': true,
         'Export to PDF': true,
         'Email Invoices': true,
-       
         'Reports & Analytics': false,
         'Multi-user Access': false,
         'Priority Support': false,
@@ -78,13 +89,10 @@ const UsvsOthers = () => {
         'Invoice Creation': true,
         'Number of Invoices': 'Unlimited',
         'Template Variety': '15 Templates',
-    
         'Multiple Currencies': true,
-      'Client Management': 'Unlimited',
-        // 'Tax Calculations': true,
+        'Client Management': 'Unlimited',
         'Export to PDF': true,
         'Email Invoices': true,
-       
         'Reports & Analytics': true,
         'Multi-user Access': false,
         'Priority Support': false,
@@ -100,13 +108,10 @@ const UsvsOthers = () => {
         'Invoice Creation': true,
         'Number of Invoices': 'Unlimited',
         'Template Variety': '20 Templates',
-        
         'Multiple Currencies': true,
-	    'Client Management': 'Unlimited',
-        // 'Tax Calculations': true,
+        'Client Management': 'Unlimited',
         'Export to PDF': true,
         'Email Invoices': true,
-       
         'Reports & Analytics': true,
         'Multi-user Access': true,
         'Priority Support': true,
@@ -114,7 +119,7 @@ const UsvsOthers = () => {
     }
   ];
 
-  const renderFeatureValue = (value) => {
+  const renderFeatureValue = (value: string | boolean) => {
     if (value === true) {
       return <Check className="w-5 h-5 text-green-500 mx-auto" />;
     } else if (value === false) {
@@ -124,7 +129,7 @@ const UsvsOthers = () => {
     }
   };
 
-  const calculateSavings = (provider) => {
+  const calculateSavings = (provider: Provider) => {
     if (provider.highlight) return null;
     const price = billingCycle === 'monthly' ? provider.priceMonthly * 12 : provider.priceYearly;
     return price;
