@@ -7,7 +7,6 @@ const FAQs = () => {
   const [selectedCategory, setSelectedCategory] = useState('getting-started');
 
   const categories = [
-    // { id: 'all', name: 'All Questions', icon: HelpCircle },
     { id: 'getting-started', name: 'Getting Started', icon: Zap },
     { id: 'creating', name: 'Creating Invoices', icon: FileText },
     { id: 'payment', name: 'Payments & Pricing', icon: DollarSign },
