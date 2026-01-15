@@ -263,7 +263,7 @@ const HorizontalScrollWorkflow = () => {
 								}}
 							>
 								<div
-									className={`relative h-[300px] sm:h-[400px] md:h-[440px] lg:h-[440px] rounded-xl md:rounded-2xl overflow-hidden border border-gray-200 hover:border-gray-300 transition-all duration-500 group-hover:scale-105 group-hover:shadow-2xl ${
+									className={`relative h-[400px] sm:h-[400px] md:h-[440px] lg:h-[440px] rounded-xl md:rounded-2xl overflow-hidden border border-gray-200 hover:border-gray-300 transition-all duration-500 group-hover:scale-105 group-hover:shadow-2xl ${
 										tool.featured ? 'ring-2 ring-purple-300' : ''
 									}`}
 								>
