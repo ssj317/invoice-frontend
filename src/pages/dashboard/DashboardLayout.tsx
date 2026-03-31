@@ -18,9 +18,9 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 
     useEffect(() => {
         // Load user data from localStorage
-        const signupData = localStorage.getItem('signupData');
-        if (signupData) {
-            const parsed = JSON.parse(signupData);
+        const userData = localStorage.getItem('user');
+        if (userData) {
+            const parsed = JSON.parse(userData);
             setUserName(parsed.fullName || 'User');
             setUserEmail(parsed.email || 'user@example.com');
         }
@@ -38,9 +38,11 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 
     const handleLogout = () => {
         localStorage.removeItem('isAuthenticated');
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
         localStorage.removeItem('signupData');
         localStorage.removeItem('businessData');
-        navigate('/');
+        navigate('/login');
     };
 
     // Handler for Elite8 logo navigation

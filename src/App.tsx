@@ -12,6 +12,7 @@ import { Login, Signup, ForgotPassword } from './pages/auth';
 // Dashboard Pages
 import Sidebar from './pages/dashboard/Sidebar';
 import Dashboard from './pages/dashboard/Dashboard';
+import InvoiceList from './pages/dashboard/InvoiceList';
 
 // Invoice App
 import InvoiceApp from './pages/invoice/InvoiceApp';
@@ -35,11 +36,14 @@ const App = () => {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/templete" element={<WorkflowToolsCarousel />} />
 
-        {/* Dashboard Routes */}
-        <Route path="/sidebar" element={<Sidebar />} />
-        <Route path="/Dashboard" element={<Dashboard />} />
-        <Route path="/user-settings" element={<UserSettings />} />
-        <Route path="/business-details" element={<BusinessDetails />} />
+        {/* Dashboard Routes - Protected */}
+        <Route path="/sidebar" element={<ProtectedRoute><Sidebar /></ProtectedRoute>} />
+        <Route path="/Dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+        <Route path="/user-settings" element={<ProtectedRoute><UserSettings /></ProtectedRoute>} />
+        <Route path="/business-details" element={<ProtectedRoute><BusinessDetails /></ProtectedRoute>} />
+        <Route path="/invoices" element={<ProtectedRoute><InvoiceList type="all" /></ProtectedRoute>} />
+        <Route path="/quotations" element={<ProtectedRoute><InvoiceList type="quotation" /></ProtectedRoute>} />
+        
         {/* Protected Invoice Routes */}
         <Route
           path="/invoice/:templateType"

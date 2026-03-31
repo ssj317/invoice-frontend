@@ -205,6 +205,7 @@ export interface InvoiceData {
   // Status
   status: 'draft' | 'completed' | null;
   currentStep: number;
+  savedInvoiceId: string | null;
 }
 
 const initialState: InvoiceData = {
@@ -347,6 +348,7 @@ const initialState: InvoiceData = {
   },
   status: null,
   currentStep: 1,
+  savedInvoiceId: null,
 };
 
 const invoiceSlice = createSlice({

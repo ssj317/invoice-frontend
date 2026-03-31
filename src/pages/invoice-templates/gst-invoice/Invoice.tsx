@@ -1,8 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Pencil, Plus } from 'lucide-react';
-import { useAppDispatch } from '../../../store';
-import { saveAsDraft, completeInvoice, updateInvoiceData } from '../../../store/invoiceSlice';
+import { useInvoiceSave } from '../../../hooks/useInvoiceSave';
 import DetailsForm from './DetailsForm';
 import BilledBySection from './BilledBySection';
 import BilledToSection from './BilledToSection';
@@ -14,34 +13,32 @@ import AdvancedOptionsUI from '../../invoice/AdvancedOptions';
 import ItemHeader from '../../invoice/InvoiceConfiguration';
 
 const Invoice = () => {
-	const dispatch = useAppDispatch();
 	const [title, setTitle] = useState('GST Invoice');
 	const [subtitle, setSubtitle] = useState('');
 	const [isEditingTitle, setIsEditingTitle] = useState(false);
 	const [isEditingSubtitle, setIsEditingSubtitle] = useState(false);
 	const [showSubtitle, setShowSubtitle] = useState(false);
 
-	const handleSaveAsDraft = () => {
-		// Update title and subtitle in Redux
-		dispatch(updateInvoiceData({
-			title,
-			subtitle,
-		}));
-		dispatch(saveAsDraft());
+	const { saving, error, saveAsDraft, saveAndContinue } = useInvoiceSave({
+		templateType: 'gst-invoice',
+		title,
+		subtitle,
+	});
 
-		// Show success message
-		alert('Invoice saved as draft successfully!');
+	const handleSaveAsDraft = async () => {
+		const result = await saveAsDraft();
+		if (result?.success) {
+			alert(`${result.message}`);
+		} else if (result?.error) {
+			alert(`Error: ${result.error}`);
+		}
 	};
 
-	const handleSaveAndContinue = () => {
-		// Update title and subtitle in Redux
-		dispatch(updateInvoiceData({
-			title,
-			subtitle,
-		}));
-		dispatch(completeInvoice());
-
-		// The completeInvoice action will set currentStep to 2, which will show the preview page
+	const handleSaveAndContinue = async () => {
+		const result = await saveAndContinue();
+		if (result?.error) {
+			alert(`Error: ${result.error}`);
+		}
 	};
 
 	return (
@@ -166,15 +163,17 @@ const Invoice = () => {
 			<div className='flex justify-center gap-4 pb-8'>
 				<button
 					onClick={handleSaveAsDraft}
-					className='bg-gray-600 text-white px-8 py-3 rounded-lg hover:bg-gray-700 transition-all duration-200 font-medium shadow-sm hover:shadow-md'
+					disabled={saving}
+					className='bg-gray-600 text-white px-8 py-3 rounded-lg hover:bg-gray-700 transition-all duration-200 font-medium shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed'
 				>
-					Save as Draft
+					{saving ? 'Saving...' : 'Save as Draft'}
 				</button>
 				<button
 					onClick={handleSaveAndContinue}
-					className='bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition-all duration-200 font-medium shadow-sm hover:shadow-md'
+					disabled={saving}
+					className='bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition-all duration-200 font-medium shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed'
 				>
-					Save & Continue
+					{saving ? 'Saving...' : 'Save & Continue'}
 				</button>
 			</div>
 		</div>

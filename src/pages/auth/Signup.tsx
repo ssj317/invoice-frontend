@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, User, Building } from 'lucide-react';
+import { useAppDispatch, useAppSelector } from '@/store';
+import { loginStart, loginSuccess, loginFailure } from '@/store/authSlice';
+import { authService } from '@/services/authService';
 
 const Signup = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const dispatch = useAppDispatch();
+    const { loading, error } = useAppSelector((state) => state.auth);
+    
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
@@ -21,6 +28,9 @@ const Signup = () => {
         companyName: ''
     });
     const [acceptTerms, setAcceptTerms] = useState(false);
+
+    // Get the page user was trying to access
+    const from = (location.state as any)?.from?.pathname || '/Dashboard';
 
     const validateForm = () => {
         let isValid = true;
@@ -76,15 +86,31 @@ const Signup = () => {
         });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         if (validateForm()) {
-            // Store signup data in localStorage temporarily
-            localStorage.setItem('signupData', JSON.stringify(formData));
-
-            // Navigate to business details page
-            navigate('/business-details');
+            try {
+                dispatch(loginStart());
+                const response = await authService.signup({
+                    fullName: formData.fullName,
+                    email: formData.email,
+                    password: formData.password,
+                    companyName: formData.companyName || undefined
+                });
+                
+                if (response.success) {
+                    dispatch(loginSuccess({
+                        user: response.data.user,
+                        token: response.data.token
+                    }));
+                    // Redirect to the page they were trying to access
+                    navigate(from, { replace: true });
+                }
+            } catch (err: any) {
+                const errorMessage = err.response?.data?.message || 'Signup failed. Please try again.';
+                dispatch(loginFailure(errorMessage));
+            }
         }
     };
 
@@ -99,7 +125,23 @@ const Signup = () => {
 
                 {/* Signup Card */}
                 <div className="bg-white rounded-xl shadow-lg border border-purple-100 p-8">
+                    {/* Redirect Notice */}
+                    {from !== '/Dashboard' && (
+                        <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                            <p className="text-sm text-blue-800">
+                                Create an account to continue to your requested page
+                            </p>
+                        </div>
+                    )}
+                    
                     <form onSubmit={handleSubmit} className="space-y-5">
+                        {/* Error Message */}
+                        {error && (
+                            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+                                {error}
+                            </div>
+                        )}
+
                         {/* Full Name Field */}
                         <div>
                             <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
@@ -270,9 +312,10 @@ const Signup = () => {
                         {/* Submit Button */}
                         <button
                             type="submit"
-                            className="w-full bg-purple-600 text-white py-3 px-4 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all duration-200 font-medium shadow-sm hover:shadow-md"
+                            disabled={loading}
+                            className="w-full bg-purple-600 text-white py-3 px-4 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all duration-200 font-medium shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            Sign Up
+                            {loading ? 'Signing Up...' : 'Sign Up'}
                         </button>
                     </form>
 
@@ -281,6 +324,7 @@ const Signup = () => {
                         Already have an account?{' '}
                         <Link
                             to="/login"
+                            state={{ from: location.state?.from }}
                             className="font-medium text-purple-600 hover:text-purple-700 transition-colors"
                         >
                             Sign in

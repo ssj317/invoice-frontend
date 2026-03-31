@@ -1,14 +1,92 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useAppSelector } from '../../../store';
-import { Download, Share2, Mail, Printer, FolderArchive } from 'lucide-react';
+import { Download, Share2, Mail, Printer, FolderArchive, X, Send } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
+import { invoiceService } from '../../../services/invoiceService';
 
 const InvoicePreview = () => {
 	const invoiceData = useAppSelector((state) => state.invoice);
 	const invoiceRef = useRef<HTMLDivElement>(null);
+
+	// Email modal state
+	const [showEmailModal, setShowEmailModal] = useState(false);
+	const [emailTo, setEmailTo] = useState('');
+	const [emailSubject, setEmailSubject] = useState('');
+	const [emailMessage, setEmailMessage] = useState('');
+	const [emailSending, setEmailSending] = useState(false);
+	const [emailError, setEmailError] = useState('');
+	const [emailSuccess, setEmailSuccess] = useState('');
+
+	const openEmailModal = () => {
+		const selectedClient = invoiceData.clients?.find(c => c.name === invoiceData.selectedClient);
+		setEmailTo(selectedClient?.email || '');
+		setEmailSubject(`${invoiceData.title} ${invoiceData.invoiceNo}`);
+		setEmailMessage(`Please find your ${invoiceData.title} ${invoiceData.invoiceNo} attached.\n\nThank you for your business.`);
+		setEmailError('');
+		setEmailSuccess('');
+		setShowEmailModal(true);
+	};
+
+	const generatePdfBase64 = async (): Promise<{ base64: string; fileName: string } | null> => {
+		if (!invoiceRef.current) return null;
+		try {
+			const canvas = await html2canvas(invoiceRef.current, {
+				scale: 1.5, useCORS: true, logging: false,
+				backgroundColor: '#ffffff',
+				windowHeight: invoiceRef.current.scrollHeight,
+			});
+			const imgData = canvas.toDataURL('image/png');
+			const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+			const pageWidth = 210, pageHeight = 297;
+			const imgWidth = pageWidth;
+			const imgHeight = (canvas.height * imgWidth) / canvas.width;
+			let heightLeft = imgHeight, position = 0;
+			pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+			heightLeft -= pageHeight;
+			while (heightLeft > 0) {
+				position = heightLeft - imgHeight;
+				pdf.addPage();
+				pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+				heightLeft -= pageHeight;
+			}
+			const base64 = pdf.output('datauristring').split(',')[1];
+			return { base64, fileName: `${invoiceData.title || 'Invoice'}-${invoiceData.invoiceNo}.pdf` };
+		} catch (err) {
+			console.error('PDF generation error:', err);
+			return null;
+		}
+	};
+
+	const handleSendEmail = async () => {
+		if (!emailTo) { setEmailError('Recipient email is required'); return; }
+		if (!invoiceData.savedInvoiceId) {
+			setEmailError('Please save the invoice first before sending via email.');
+			return;
+		}
+		try {
+			setEmailSending(true);
+			setEmailError('');
+			const pdf = await generatePdfBase64();
+			const res = await invoiceService.sendInvoiceEmail(invoiceData.savedInvoiceId, {
+				to: emailTo,
+				subject: emailSubject,
+				message: emailMessage,
+				pdfBase64: pdf?.base64,
+				fileName: pdf?.fileName,
+			});
+			if (res.success) {
+				setEmailSuccess(`Email sent successfully to ${emailTo}`);
+				setTimeout(() => setShowEmailModal(false), 2000);
+			}
+		} catch (err: any) {
+			setEmailError(err.response?.data?.message || 'Failed to send email. Check your email configuration.');
+		} finally {
+			setEmailSending(false);
+		}
+	};
 
 	const calculateSubtotal = () => {
 		return invoiceData.items.reduce((sum, item) => sum + parseFloat(String(item.amount) || '0'), 0);
@@ -255,6 +333,7 @@ const InvoicePreview = () => {
 	const selectedClientData = invoiceData.clients.find((c) => c.name === invoiceData.selectedClient);
 
 	return (
+		<>
 		<div className="min-h-screen bg-gray-50 py-8">
 			<div className="max-w-6xl mx-auto px-4">
 				{/* Action Buttons */}
@@ -269,7 +348,7 @@ const InvoicePreview = () => {
 								<Printer size={18} className="text-gray-600" />
 								<span className="text-gray-700">Print</span>
 							</button>
-							<button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-all">
+							<button onClick={openEmailModal} className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-all">
 								<Mail size={18} className="text-gray-600" />
 								<span className="text-gray-700">Email</span>
 							</button>
@@ -914,6 +993,87 @@ const InvoicePreview = () => {
 				</div>
 			</div>
 		</div>
+
+		{/* Email Modal */}
+		{showEmailModal && (
+			<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+				<div className="bg-white rounded-xl shadow-2xl w-full max-w-md">
+					<div className="flex items-center justify-between p-5 border-b">
+						<div className="flex items-center gap-2">
+							<Mail size={18} className="text-purple-600" />
+							<h2 className="text-lg font-semibold text-gray-900">Send via Email</h2>
+						</div>
+						<button onClick={() => setShowEmailModal(false)} className="text-gray-400 hover:text-gray-600">
+							<X size={20} />
+						</button>
+					</div>
+					<div className="p-5 space-y-4">
+						{emailSuccess ? (
+							<div className="flex flex-col items-center py-6 text-center">
+								<div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-3">
+									<Send size={22} className="text-green-600" />
+								</div>
+								<p className="text-green-700 font-medium">{emailSuccess}</p>
+							</div>
+						) : (
+							<>
+								{!invoiceData.savedInvoiceId && (
+									<div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm text-yellow-800">
+										⚠️ This invoice hasn't been saved yet. Please click "Save & Continue" first, then use Email.
+									</div>
+								)}
+								<div>
+									<label className="block text-sm font-medium text-gray-700 mb-1">To *</label>
+									<input
+										type="email"
+										value={emailTo}
+										onChange={(e) => setEmailTo(e.target.value)}
+										placeholder="client@example.com"
+										className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+									/>
+								</div>
+								<div>
+									<label className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+									<input
+										type="text"
+										value={emailSubject}
+										onChange={(e) => setEmailSubject(e.target.value)}
+										className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+									/>
+								</div>
+								<div>
+									<label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
+									<textarea
+										value={emailMessage}
+										onChange={(e) => setEmailMessage(e.target.value)}
+										rows={4}
+										className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none"
+									/>
+								</div>
+								{emailError && <p className="text-sm text-red-600">{emailError}</p>}
+								<div className="flex gap-3 pt-1">
+									<button
+										onClick={() => setShowEmailModal(false)}
+										className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg text-sm hover:bg-gray-50"
+									>
+										Cancel
+									</button>
+									<button
+										onClick={handleSendEmail}
+										disabled={emailSending || !invoiceData.savedInvoiceId}
+										className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg text-sm hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed"
+									>
+										<Send size={16} />
+										{emailSending ? 'Generating & Sending...' : 'Send Email'}
+									</button>
+								</div>
+							</>
+						)}
+					</div>
+				</div>
+			</div>
+		)}
+		</>
 	);
 };
 
