@@ -115,6 +115,11 @@ export const authService = {
     return response.data;
   },
 
+    updateProfile: async (data: { fullName?: string; companyName?: string; phone?: string; country?: string }) => {
+    const response = await api.put('/auth/profile', data);
+    return response.data;
+  },
+
   getCurrentUser: async () => {
     const response = await api.get('/auth/me');
     return response.data;
