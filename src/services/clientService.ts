@@ -4,6 +4,7 @@ export interface ClientData {
   _id?: string;
   businessName: string;
   businessAlias?: string;
+  companyName?: string;
   industry?: string;
   country?: string;
   city?: string;
