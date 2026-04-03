@@ -206,6 +206,9 @@ export interface InvoiceData {
   status: 'draft' | 'completed' | null;
   currentStep: number;
   savedInvoiceId: string | null;
+  agreementData?: any;
+proposalData?: any;
+taxInvoiceData?: any;
 }
 
 const initialState: InvoiceData = {
