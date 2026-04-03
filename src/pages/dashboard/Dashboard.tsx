@@ -406,10 +406,12 @@ import { useAuth } from '@/hooks/useAuth';
 import { invoiceService } from '@/services/invoiceService';
 import { subscriptionService } from '@/services/subscriptionService';
 import DashboardLayout from './DashboardLayout';
+import { useDocumentAccess } from '@/hooks/useDocumentAccess';
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const { user, isAuthenticated } = useAuth();
+  const hasDocumentAccess = useDocumentAccess();
   
   // State for dashboard data
   const [loading, setLoading] = useState(true);
@@ -775,27 +777,28 @@ const Dashboard = () => {
           <h2 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-3 sm:mb-4">Create Documents</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
             {[
-              { label: 'Invoice', icon: <FileText className="w-6 h-6" />, route: '/invoice/invoice-generator', color: 'text-purple-600 bg-purple-50 border-purple-200 hover:bg-purple-100' },
-              { label: 'Purchase Order', icon: <ShoppingCart className="w-6 h-6" />, route: '/invoice/purchase-order', color: 'text-blue-600 bg-blue-50 border-blue-200 hover:bg-blue-100' },
-              { label: 'Quotation', icon: <FileCheck className="w-6 h-6" />, route: '/invoice/quotation', color: 'text-green-600 bg-green-50 border-green-200 hover:bg-green-100' },
-              { label: 'GST Invoice', icon: <Receipt className="w-6 h-6" />, route: '/invoice/gst-invoice', color: 'text-orange-600 bg-orange-50 border-orange-200 hover:bg-orange-100' },
-              { label: 'Delivery Challan', icon: <Truck className="w-6 h-6" />, route: '/invoice/delivery-challan', color: 'text-red-600 bg-red-50 border-red-200 hover:bg-red-100' },
-              { label: 'Proforma Invoice', icon: <ClipboardList className="w-6 h-6" />, route: '/invoice/proforma-invoice', color: 'text-indigo-600 bg-indigo-50 border-indigo-200 hover:bg-indigo-100' },
-              
-              { label: 'Service Proposal', icon: <Receipt className="w-6 h-6" />, route: '/proposal/service-proposal', color: 'text-orange-600 bg-orange-50 border-orange-200 hover:bg-orange-100' },  
-              { label: 'Service Agreement', icon: <FileCheck className="w-6 h-6" />, route: '/proposal/service-agreement', color: 'text-red-600 bg-red-50 border-red-200 hover:bg-red-100' },
-              { label: 'Tax Invoice', icon: <ClipboardList className="w-6 h-6" />, route: '/proposal/tax-invoice', color: 'text-indigo-600 bg-indigo-50 border-indigo-200 hover:bg-indigo-100' },
-              { label: 'Clients', icon: <Users className="w-6 h-6" />, route: '/clients', color: 'text-teal-600 bg-teal-50 border-teal-200 hover:bg-teal-100' },
-            ].map((item) => (
-              <button
-                key={item.route}
-                onClick={() => navigate(item.route)}
-                className={`flex flex-col items-center justify-center gap-2 p-4 sm:p-5 rounded-xl border transition-all hover:shadow-md ${item.color}`}
-              >
-                {item.icon}
-                <span className="text-xs sm:text-sm font-medium text-center leading-tight">{item.label}</span>
-              </button>
-            ))}
+              { label: 'Invoice', icon: <FileText className="w-6 h-6" />, route: '/invoice/invoice-generator', color: 'text-purple-600 bg-purple-50 border-purple-200 hover:bg-purple-100', restricted: false },
+              { label: 'Purchase Order', icon: <ShoppingCart className="w-6 h-6" />, route: '/invoice/purchase-order', color: 'text-blue-600 bg-blue-50 border-blue-200 hover:bg-blue-100', restricted: false },
+              { label: 'Quotation', icon: <FileCheck className="w-6 h-6" />, route: '/invoice/quotation', color: 'text-green-600 bg-green-50 border-green-200 hover:bg-green-100', restricted: false },
+              { label: 'GST Invoice', icon: <Receipt className="w-6 h-6" />, route: '/invoice/gst-invoice', color: 'text-orange-600 bg-orange-50 border-orange-200 hover:bg-orange-100', restricted: false },
+              { label: 'Delivery Challan', icon: <Truck className="w-6 h-6" />, route: '/invoice/delivery-challan', color: 'text-red-600 bg-red-50 border-red-200 hover:bg-red-100', restricted: false },
+              { label: 'Proforma Invoice', icon: <ClipboardList className="w-6 h-6" />, route: '/invoice/proforma-invoice', color: 'text-indigo-600 bg-indigo-50 border-indigo-200 hover:bg-indigo-100', restricted: false },
+              { label: 'Service Proposal', icon: <Receipt className="w-6 h-6" />, route: '/proposal/service-proposal', color: 'text-orange-600 bg-orange-50 border-orange-200 hover:bg-orange-100', restricted: true },
+              { label: 'Service Agreement', icon: <FileCheck className="w-6 h-6" />, route: '/proposal/service-agreement', color: 'text-red-600 bg-red-50 border-red-200 hover:bg-red-100', restricted: true },
+              { label: 'Tax Invoice', icon: <ClipboardList className="w-6 h-6" />, route: '/proposal/tax-invoice', color: 'text-indigo-600 bg-indigo-50 border-indigo-200 hover:bg-indigo-100', restricted: true },
+              { label: 'Clients', icon: <Users className="w-6 h-6" />, route: '/clients', color: 'text-teal-600 bg-teal-50 border-teal-200 hover:bg-teal-100', restricted: false },
+            ]
+              .filter((item) => !item.restricted || hasDocumentAccess)
+              .map((item) => (
+                <button
+                  key={item.route}
+                  onClick={() => navigate(item.route)}
+                  className={`flex flex-col items-center justify-center gap-2 p-4 sm:p-5 rounded-xl border transition-all hover:shadow-md ${item.color}`}
+                >
+                  {item.icon}
+                  <span className="text-xs sm:text-sm font-medium text-center leading-tight">{item.label}</span>
+                </button>
+              ))}
           </div>
         </div>
       </div>

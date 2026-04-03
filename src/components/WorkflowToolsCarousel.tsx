@@ -1,13 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronRight, ArrowRight } from 'lucide-react';
+import { useDocumentAccess } from '@/hooks/useDocumentAccess';
 
 const HorizontalScrollWorkflow = () => {
 	const [scrollProgress, setScrollProgress] = useState(0);
 	const containerRef = useRef<HTMLDivElement>(null);
 	const sectionRef = useRef<HTMLDivElement>(null);
 	const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+	const hasDocumentAccess = useDocumentAccess();
 
-	const tools = [
+	const RESTRICTED_ROUTES = ['/proposal/service-proposal', '/proposal/service-agreement', '/proposal/tax-invoice'];
+
+	const allTools = [
 		{
 			title: 'Invoice Generator',
 			description: 'Create professional invoices with customizable templates for your business.',
@@ -234,6 +238,10 @@ const HorizontalScrollWorkflow = () => {
 			),
 		},
 	];
+
+	const tools = hasDocumentAccess
+		? allTools
+		: allTools.filter((t) => !RESTRICTED_ROUTES.includes(t.route));
 
 	useEffect(() => {
 		const handleScroll = () => {
