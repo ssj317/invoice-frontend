@@ -248,6 +248,24 @@ const RefrensHomepage = () => {
                                     </>
                                 )}
                             </div>
+
+                                {/* About Us Link */}
+							<button
+								onClick={() => window.open('https://elite8digital.in/#/about', '_blank')}
+								className="text-black-700 hover:text-purple-600 font-medium transition-colors text-sm md:text-base"
+							>
+								About Us
+							</button>
+
+							{/* Contact Link */}
+							<button
+								onClick={() => window.open('https://elite8digital.in/#/contact', '_blank')}
+								className="text-black-700 hover:text-purple-600 font-medium transition-colors text-sm md:text-base"
+							>
+								Contact
+							</button>
+
+
                         </div>
 
                         {/* Desktop Auth Buttons */}

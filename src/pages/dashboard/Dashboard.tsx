@@ -590,7 +590,7 @@ const Dashboard = () => {
               className="w-full flex items-center justify-center gap-2 text-purple-600 hover:underline text-xs sm:text-sm"
             >
               <span>View All Documents</span>
-              <span>â†’</span>
+              {/* <span>â†’</span> */}
             </button>
           </div>
 
@@ -662,7 +662,7 @@ const Dashboard = () => {
               className="w-full flex items-center justify-center gap-2 text-purple-600 hover:underline text-xs sm:text-sm"
             >
               <span>View All Quotations</span>
-              <span>â†’</span>
+              {/* <span>â†’</span> */}
             </button>
           </div>
 
@@ -781,6 +781,10 @@ const Dashboard = () => {
               { label: 'GST Invoice', icon: <Receipt className="w-6 h-6" />, route: '/invoice/gst-invoice', color: 'text-orange-600 bg-orange-50 border-orange-200 hover:bg-orange-100' },
               { label: 'Delivery Challan', icon: <Truck className="w-6 h-6" />, route: '/invoice/delivery-challan', color: 'text-red-600 bg-red-50 border-red-200 hover:bg-red-100' },
               { label: 'Proforma Invoice', icon: <ClipboardList className="w-6 h-6" />, route: '/invoice/proforma-invoice', color: 'text-indigo-600 bg-indigo-50 border-indigo-200 hover:bg-indigo-100' },
+              
+              { label: 'Service Proposal', icon: <Receipt className="w-6 h-6" />, route: '/proposal/service-proposal', color: 'text-orange-600 bg-orange-50 border-orange-200 hover:bg-orange-100' },  
+              { label: 'Service Agreement', icon: <FileCheck className="w-6 h-6" />, route: '/proposal/service-agreement', color: 'text-red-600 bg-red-50 border-red-200 hover:bg-red-100' },
+              { label: 'Tax Invoice', icon: <ClipboardList className="w-6 h-6" />, route: '/proposal/tax-invoice', color: 'text-indigo-600 bg-indigo-50 border-indigo-200 hover:bg-indigo-100' },
               { label: 'Clients', icon: <Users className="w-6 h-6" />, route: '/clients', color: 'text-teal-600 bg-teal-50 border-teal-200 hover:bg-teal-100' },
             ].map((item) => (
               <button

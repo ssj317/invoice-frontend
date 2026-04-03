@@ -161,6 +161,78 @@ const HorizontalScrollWorkflow = () => {
 				</div>
 			),
 		},
+		{
+			title: 'Service Proposal',
+			description: 'Create professional service proposals with project scope and pricing details.',
+			buttonText: 'Create Proposal',
+			route: '/proposal/service-proposal',
+			featured: true,
+			icon: (
+				<div className="w-32 sm:w-36 md:w-40 h-38 sm:h-42 md:h-48 mb-2 bg-white rounded-xl shadow-lg p-4 md:p-6">
+					<div className="text-xs sm:text-sm font-semibold text-gray-700 mb-3 md:mb-4">Service Proposal</div>
+					<div className="space-y-2 md:space-y-3">
+						<div className="h-1.5 md:h-2 w-20 md:w-24 bg-cyan-500 rounded"></div>
+						<div className="h-1 md:h-1.5 w-16 md:w-20 bg-gray-300 rounded"></div>
+						<div className="h-1 md:h-1.5 w-18 md:w-22 bg-gray-300 rounded"></div>
+						<div className="flex gap-1 mt-2">
+							<div className="h-1 md:h-1.5 w-2 md:w-3 bg-green-500 rounded-full"></div>
+							<div className="h-1 md:h-1.5 w-12 md:w-16 bg-gray-200 rounded"></div>
+						</div>
+						<div className="text-lg md:text-xl font-bold text-cyan-600 mt-2">📄</div>
+					</div>
+				</div>
+			),
+		},
+		{
+			title: 'Service Agreement',
+			description: 'Generate service agreements with terms, conditions, and legal clauses.',
+			buttonText: 'Create Agreement',
+			route: '/proposal/service-agreement',
+			icon: (
+				<div className="w-32 sm:w-36 md:w-40 h-38 sm:h-42 md:h-48 mb-2 bg-white rounded-xl shadow-lg p-4 md:p-6">
+					<div className="text-xs sm:text-sm font-semibold text-gray-700 mb-3 md:mb-4">Service Agreement</div>
+					<div className="space-y-2 md:space-y-3">
+						<div className="h-1.5 md:h-2 w-20 md:w-24 bg-slate-700 rounded"></div>
+						<div className="h-1 md:h-1.5 w-16 md:w-20 bg-gray-300 rounded"></div>
+						<div className="h-1 md:h-1.5 w-18 md:w-22 bg-gray-300 rounded"></div>
+						<div className="flex gap-1 mt-2">
+							<div className="text-xs">1.</div>
+							<div className="h-1 md:h-1.5 w-14 md:w-18 bg-gray-200 rounded"></div>
+						</div>
+						<div className="flex gap-1">
+							<div className="text-xs">2.</div>
+							<div className="h-1 md:h-1.5 w-14 md:w-18 bg-gray-200 rounded"></div>
+						</div>
+						<div className="text-lg md:text-xl font-bold text-slate-700 mt-2">📋</div>
+					</div>
+				</div>
+			),
+		},
+		{
+			title: 'Tax Invoice',
+			description: 'Create professional tax invoices with company header and detailed billing.',
+			buttonText: 'Create Tax Invoice',
+			route: '/proposal/tax-invoice',
+			featured: true,
+			icon: (
+				<div className="w-32 sm:w-36 md:w-40 h-38 sm:h-42 md:h-48 mb-2 bg-white rounded-xl shadow-lg p-4 md:p-6">
+					<div className="text-xs sm:text-sm font-semibold text-gray-700 mb-3 md:mb-4">Tax Invoice</div>
+					<div className="space-y-2 md:space-y-3">
+						<div className="flex gap-1">
+							<div className="h-1.5 md:h-2 w-12 md:w-16 bg-cyan-400 rounded"></div>
+							<div className="h-1.5 md:h-2 w-8 md:w-12 bg-blue-900 rounded"></div>
+						</div>
+						<div className="h-1 md:h-1.5 w-20 md:w-24 bg-gray-300 rounded"></div>
+						<div className="h-1 md:h-1.5 w-16 md:w-20 bg-gray-300 rounded"></div>
+						<div className="border border-gray-400 rounded p-1 mt-2">
+							<div className="h-1 md:h-1.5 w-12 md:w-16 bg-gray-400 rounded mb-1"></div>
+							<div className="h-1 md:h-1.5 w-10 md:w-14 bg-gray-300 rounded"></div>
+						</div>
+						<div className="text-lg md:text-xl font-bold text-cyan-600 mt-2">💰</div>
+					</div>
+				</div>
+			),
+		},
 	];
 
 	useEffect(() => {

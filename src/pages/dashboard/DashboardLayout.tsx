@@ -72,15 +72,16 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                             onClick={handleLogoClick}
                             className='flex gap-2 hover:opacity-80 transition-opacity'
                         > 
-                            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded flex items-center justify-center">
+                            {/* <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded flex items-center justify-center">
                                 <span className="text-purple-600 font-bold text-sm sm:text-lg">E</span>
                             </div>
-                            <span className="text-base sm:text-xl pt-1 font-semibold">Elite8</span>
+                            <span className="text-base sm:text-xl pt-1 font-semibold">Elite8</span> */}
+                            <img src="/elite8digital-nav.png" alt="Elite8 Logo" className="w-16 h-12 sm:w-16" /> 
                         </button>
                     </div>
 
                     <div className="flex items-center gap-1 sm:gap-4">
-                        <button
+                        {/* <button
                             onClick={() => setShowAccountManagerModal(true)}
                             className="hidden sm:flex items-center gap-2 bg-purple-700 rounded-full px-3 py-1.5 hover:bg-purple-800 transition-colors cursor-pointer"
                         >
@@ -91,19 +92,19 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                                 <div className="font-medium">Meet Lokesh Kumar</div>
                                 <div className="text-purple-200 text-xxs">Your Account Manager</div>
                             </div>
-                        </button>
+                        </button> */}
 
                         {/* Mobile version - just icon */}
-                        <button
+                        {/* <button
                             onClick={() => setShowAccountManagerModal(true)}
                             className="sm:hidden p-1.5 bg-purple-700 rounded-full hover:bg-purple-800 transition-colors"
                         >
                             <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
                                 <span className="text-purple-600 font-semibold text-xs">L</span>
                             </div>
-                        </button>
+                        </button> */}
 
-                        <button className="hidden md:block p-2 hover:bg-purple-700 rounded">
+                        {/* <button className="hidden md:block p-2 hover:bg-purple-700 rounded">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
                             </svg>
@@ -113,7 +114,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
                             </svg>
-                        </button>
+                        </button> */}
 
                         <button className="p-1.5 sm:p-2 hover:bg-purple-700 rounded relative">
                             <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

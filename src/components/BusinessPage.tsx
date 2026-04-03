@@ -12,32 +12,34 @@ interface Feature {
 }
 
 const BusinessPage = () => {
-    const [activeTab, setActiveTab] = useState<FeatureKey>('Accounting');
+    const [activeTab, setActiveTab] = useState<FeatureKey>('Invoicing');
 
     const features: Record<FeatureKey, Feature> = {
-        Accounting: {
-            title: 'Accounting',
-            description: 'Automatically update your books when you make a sale or record a purchase, generate financial reports, automate bank reconciliation, access audit trails, create E-invoices & E-way Bills, generate GSTR-1 & GSTR-2B Reports, and automate GSTR-2B reconciliation.',
-            icon: <BarChart3 className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56" />,
-            color: '#8B5CF6'
-        },
+        
         Invoicing: {
             title: 'Invoicing',
             description: 'Create professional invoices in seconds, customize templates to match your brand, send automated payment reminders, track invoice status in real-time, accept online payments, and manage recurring invoices effortlessly.',
             icon: <FileText className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56" />,
             color: '#06B6D4'
         },
-        Compliance: {
-            title: 'Compliance',
-            description: 'Stay compliant with tax regulations, automate GST filing, generate tax reports, maintain digital records, track compliance deadlines, and get alerts for upcoming submissions to avoid penalties.',
-            icon: <Shield className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56" />,
-            color: '#10B981'
+        Accounting: {
+            title: 'Accounting',
+            description: 'Automatically update your books when you make a sale or record a purchase, generate financial reports, automate bank reconciliation, access audit trails, create E-invoices & E-way Bills, generate GSTR-1 & GSTR-2B Reports, and automate GSTR-2B reconciliation.',
+            icon: <BarChart3 className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56" />,
+            color: '#8B5CF6'
         },
+        
         Payments: {
             title: 'Payments',
             description: 'Accept payments through multiple channels, process credit cards and digital wallets, automate payment tracking, send payment links, reconcile payments automatically, and reduce payment collection time.',
             icon: <CreditCard className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56" />,
             color: '#F59E0B'
+        },
+        Compliance: {
+            title: 'Compliance',
+            description: 'Stay compliant with tax regulations, automate GST filing, generate tax reports, maintain digital records, track compliance deadlines, and get alerts for upcoming submissions to avoid penalties.',
+            icon: <Shield className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56" />,
+            color: '#10B981'
         },
         Inventory: {
             title: 'Inventory',
@@ -68,15 +70,19 @@ const BusinessPage = () => {
     const currentFeature = features[activeTab];
 
     const handleTryForFree = () => {
-        window.location.href = '/signup';
+        if (activeTab === 'Invoicing') {
+            window.location.href = '/templete';
+        }
     };
 
     const handleExplore = () => {
         if (activeTab === 'Invoicing') {
             window.location.href = '/invoice/invoice-generator';
-        } else {
-            alert(`${activeTab} feature coming soon!`);
         }
+    };
+
+    const handleComingSoon = () => {
+        alert(`${activeTab} feature is coming soon! Stay tuned for updates.`);
     };
 
     return (
@@ -114,27 +120,52 @@ const BusinessPage = () => {
                             <p className="text-sm sm:text-base lg:text-lg text-black leading-relaxed">
                                 {currentFeature.description}
                             </p>
-                            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-3 lg:pt-4">
-                                <button
-                                    onClick={handleTryForFree}
-                                    className="w-full sm:w-auto px-4 sm:px-5 lg:px-6 py-2 sm:py-2 bg-purple-600 hover:bg-black text-white font-semibold rounded-xl transition-colors duration-300 shadow-lg text-sm sm:text-base"
-                                >
-                                    Try for Free
-                                </button>
-                                <button
-                                    onClick={handleExplore}
-                                    className="w-full sm:w-auto px-4 sm:px-5 lg:px-6 py-2 sm:py-2 bg-white hover:bg-blue-300 text-blue-900 font-semibold rounded-xl border-2 border-blue-200 transition-colors duration-300 text-sm sm:text-base"
-                                >
-                                    Explore {currentFeature.title}
-                                </button>
-                            </div>
+                            
+                            {/* Conditional Buttons */}
+                            {activeTab === 'Invoicing' ? (
+                                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-3 lg:pt-4">
+                                    <button
+                                        onClick={handleTryForFree}
+                                        className="w-full sm:w-auto px-4 sm:px-5 lg:px-6 py-2 sm:py-2 bg-purple-600 hover:bg-black text-white font-semibold rounded-xl transition-colors duration-300 shadow-lg text-sm sm:text-base"
+                                    >
+                                        Try for Free
+                                    </button>
+                                    <button
+                                        onClick={handleExplore}
+                                        className="w-full sm:w-auto px-4 sm:px-5 lg:px-6 py-2 sm:py-2 bg-white hover:bg-blue-300 text-blue-900 font-semibold rounded-xl border-2 border-blue-200 transition-colors duration-300 text-sm sm:text-base"
+                                    >
+                                        Explore {currentFeature.title}
+                                    </button>
+                                </div>
+                            ) : (
+                                <div className="pt-2 sm:pt-3 lg:pt-4">
+                                    <button
+                                        onClick={handleComingSoon}
+                                        className="w-full sm:w-auto px-4 sm:px-5 lg:px-6 py-2 sm:py-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg text-sm sm:text-base flex items-center justify-center gap-2"
+                                    >
+                                        <svg 
+                                            className="w-5 h-5" 
+                                            fill="none" 
+                                            stroke="currentColor" 
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path 
+                                                strokeLinecap="round" 
+                                                strokeLinejoin="round" 
+                                                strokeWidth={2} 
+                                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" 
+                                            />
+                                        </svg>
+                                        Coming Soon - Stay Tuned!
+                                    </button>
+                                </div>
+                            )}
                         </div>
 
                         {/* Right Icon */}
                         <div className="flex justify-center items-center mt-6 md:mt-0">
                             <div
                                 className="transition-all text-blue-500 duration-500 transform hover:scale-105"
-                                // style={{ color: currentFeature.color }}
                             >
                                 {currentFeature.icon}
                             </div>

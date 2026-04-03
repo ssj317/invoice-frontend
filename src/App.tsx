@@ -82,6 +82,7 @@ import InvoiceApp from './pages/invoice/InvoiceApp';
 import UserSettings from './pages/dashboard/UserSettings';
 import ClientsPage from './pages/dashboard/ClientsPage';
 import BusinessDetails from './pages/auth/BusinessDetails';
+import { ProposalApp } from './pages/proposal';
 
 /**
  * Main App Component
@@ -114,10 +115,27 @@ const App = () => {
           element={
             <ProtectedRoute>
               <InvoiceApp />
+
             </ProtectedRoute>
           }
         />
+
+          <Route
+          path="/proposal/:templateType"
+          element={
+            <ProtectedRoute>
+              <ProposalApp />
+
+            </ProtectedRoute>
+          }
+        />
+
       </Routes>
+
+          
+
+
+
     </>
   );
 };
