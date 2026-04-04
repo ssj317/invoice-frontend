@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../store';
-import { Download } from 'lucide-react';
+import { Download, ArrowLeft, Home } from 'lucide-react';
 
 // Import proposal templates
 import { Proposal as ServiceProposal, ProposalPreview as ServiceProposalPreview } from '../proposal-templates/service-proposal';
@@ -10,10 +10,23 @@ import { TaxInvoice, TaxInvoicePreview } from '../proposal-templates/tax-invoice
 
 const ProposalApp = () => {
     const { templateType } = useParams<{ templateType: string }>();
+    const navigate = useNavigate();
     const currentStep = useAppSelector((state) => state.invoice.currentStep);
     const [activeStep, setActiveStep] = useState(currentStep || 1);
     const [isDownloading, setIsDownloading] = useState(false);
     const previewRef = useRef<HTMLDivElement>(null);
+
+    const handleBack = () => {
+        if (activeStep === 2) {
+            setActiveStep(1);
+        } else {
+            navigate(-1);
+        }
+    };
+
+    const handleGoToDashboard = () => {
+        navigate('/dashboard');
+    };
 
     // Listen for save and preview event from child components
     React.useEffect(() => {
@@ -155,6 +168,27 @@ const ProposalApp = () => {
 
     return (
         <div>
+            {/* Navigation Buttons */}
+            <div className="bg-gray-50 border-b border-gray-200 px-6 mt-3 py-3">
+                <div className="max-w-7xl mx-auto flex items-center justify-between">
+                    <button
+                        onClick={handleBack}
+                        className="flex items-center gap-2 px-3 md:px-4 py-2 text-sm md:text-base text-gray-700 hover:text-purple-600 hover:bg-white rounded-lg transition-colors border border-gray-300 hover:border-purple-300"
+                    >
+                        <ArrowLeft className="w-4 h-4" />
+                        <span>Back</span>
+                    </button>
+
+                    <button
+                        onClick={handleGoToDashboard}
+                        className="flex items-center gap-2 px-3 md:px-4 py-2 text-sm md:text-base text-white bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors shadow-sm"
+                    >
+                        <Home className="w-4 h-4" />
+                        <span>Go to Dashboard</span>
+                    </button>
+                </div>
+            </div>
+
             {/* Header */}
             <div className="bg-white border-b border-gray-200 px-6 py-4">
                 <div className="max-w-7xl mx-auto flex items-center justify-between">

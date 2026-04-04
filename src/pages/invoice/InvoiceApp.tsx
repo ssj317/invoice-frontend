@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { ChevronRight } from 'lucide-react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { ChevronRight, ArrowLeft, Home } from 'lucide-react';
 import { useAppSelector, useAppDispatch } from '../../store';
 import { setCurrentStep } from '../../store/invoiceSlice';
 
@@ -31,6 +31,7 @@ interface TemplateConfig {
 
 const InvoiceApp = () => {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const currentStep = useAppSelector((state) => state.invoice.currentStep);
     const { templateType } = useParams<{ templateType: string }>();
 
@@ -38,6 +39,18 @@ const InvoiceApp = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
+
+    const handleBack = () => {
+        if (currentStep === 2) {
+            dispatch(setCurrentStep(1));
+        } else {
+            navigate(-1);
+        }
+    };
+
+    const handleGoToDashboard = () => {
+        navigate('/dashboard');
+    };
 
     // Map template types to their components and labels
     const templateConfig: Record<string, TemplateConfig> = {
@@ -90,6 +103,25 @@ const InvoiceApp = () => {
     return (
         <div className='min-h-screen bg-white py-2'>
             <div className="max-w-7xl mx-auto px-4">
+                {/* Navigation Buttons */}
+                <div className="flex items-center mt-3 justify-between mb-4">
+                    <button
+                        onClick={handleBack}
+                        className="flex items-center gap-2 px-3 md:px-4 py-2 text-sm md:text-base text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors border border-gray-300 hover:border-purple-300"
+                    >
+                        <ArrowLeft className="w-4 h-4" />
+                        <span>Back</span>
+                    </button>
+
+                    <button
+                        onClick={handleGoToDashboard}
+                        className="flex items-center gap-2 px-3 md:px-4 py-2 text-sm md:text-base text-white bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors shadow-sm"
+                    >
+                        <Home className="w-4 h-4" />
+                        <span>Go to Dashboard</span>
+                    </button>
+                </div>
+
                 {/* Header Section */}
                 <div className="bg-white rounded-xl shadow-sm border border-purple-100 p-4 pb-8 mb-4 ">
                     <h1 className="text-2xl font-bold text-gray-700 mb-4 text-center">

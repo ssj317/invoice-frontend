@@ -96,7 +96,7 @@ const Footer = () => {
 								</a>
 								<a
 									href="https://www.instagram.com/elite8digital?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-									className="group w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gradient-to-br hover:from-purple-600 hover:via-pink-500 hover:to-orange-500 transition-all duration-300 transform hover:scale-110"
+									className="group w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gradient-to-br hover:from-purple-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-110"
 									aria-label="Instagram"
 								>
 									<svg

@@ -9,7 +9,7 @@
 // const Dashboard = () => {
 //   const navigate = useNavigate();
 //   const { user, isAuthenticated } = useAuth();
-  
+
 //   // State for dashboard data
 //   const [loading, setLoading] = useState(true);
 //   const [lastInvoice, setLastInvoice] = useState<any>(null);
@@ -17,7 +17,7 @@
 //   const [subscription, setSubscription] = useState<any>(null);
 //   const [trialInfo, setTrialInfo] = useState<any>(null);
 //   const [stats, setStats] = useState<any>(null);
-  
+
 //   const displayUser = user || {
 //     fullName: 'User',
 //     companyName: 'Your Company',
@@ -31,7 +31,7 @@
 //     const fetchDashboardData = async () => {
 //       try {
 //         setLoading(true);
-        
+
 //         const [invoiceResponse, quotationResponse, subResponse, statsResponse] = await Promise.allSettled([
 //           invoiceService.getInvoices({ page: 1, limit: 1, sortBy: 'createdAt', order: 'desc' }),
 //           invoiceService.getInvoices({ page: 1, limit: 1, templateType: 'quotation', sortBy: 'createdAt', order: 'desc' }),
@@ -410,7 +410,7 @@ import DashboardLayout from './DashboardLayout';
 const Dashboard = () => {
   const navigate = useNavigate();
   const { user, isAuthenticated } = useAuth();
-  
+
   // State for dashboard data
   const [loading, setLoading] = useState(true);
   const [lastInvoice, setLastInvoice] = useState<any>(null);
@@ -418,7 +418,7 @@ const Dashboard = () => {
   const [subscription, setSubscription] = useState<any>(null);
   const [trialInfo, setTrialInfo] = useState<any>(null);
   const [stats, setStats] = useState<any>(null);
-  
+
   const displayUser = user || {
     fullName: 'User',
     companyName: 'Your Company',
@@ -432,7 +432,7 @@ const Dashboard = () => {
     const fetchDashboardData = async () => {
       try {
         setLoading(true);
-        
+
         const [invoiceResponse, quotationResponse, subResponse, statsResponse] = await Promise.allSettled([
           invoiceService.getInvoices({ page: 1, limit: 1, sortBy: 'createdAt', order: 'desc' }),
           invoiceService.getInvoices({ page: 1, limit: 1, templateType: 'quotation', sortBy: 'createdAt', order: 'desc' }),
@@ -495,17 +495,29 @@ const Dashboard = () => {
               </div>
             </div>
 
-            {/* Subscription Info */}
-            {subscription && (
-              <div className="w-full sm:w-auto flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 bg-purple-50 border border-purple-200 rounded flex-shrink-0">
-                <span className="text-xs sm:text-sm font-medium text-purple-700">
-                  {subscription.plan.charAt(0).toUpperCase() + subscription.plan.slice(1)} Plan
-                </span>
-                <span className="text-xs text-purple-600">
-                  ({subscription.invoicesCreated}/{subscription.invoiceLimit === Infinity ? 'âˆž' : subscription.invoiceLimit} invoices)
-                </span>
-              </div>
-            )}
+            {/* Right Side - Subscription Info and Clients Button */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
+              {/* Subscription Info */}
+              {subscription && (
+                <div className="flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 bg-purple-50 border border-purple-200 rounded flex-shrink-0">
+                  <span className="text-xs sm:text-sm font-medium text-purple-700">
+                    {subscription.plan.charAt(0).toUpperCase() + subscription.plan.slice(1)} Plan
+                  </span>
+                  <span className="text-xs text-purple-600">
+                    ({subscription.invoicesCreated}/{subscription.invoiceLimit === Infinity ? '∞' : subscription.invoiceLimit} invoices)
+                  </span>
+                </div>
+              )}
+
+              {/* Clients Button */}
+              <button
+                onClick={() => navigate('/clients')}
+                className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all shadow-sm hover:shadow-md flex-shrink-0"
+              >
+                <Users className="w-4 h-4" />
+                <span className="text-xs sm:text-sm font-medium">Clients</span>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -559,12 +571,11 @@ const Dashboard = () => {
 
                 <div>
                   <p className="text-[10px] sm:text-xs text-gray-500 mb-0.5">Status</p>
-                  <span className={`inline-block px-2 py-1 text-[10px] sm:text-xs rounded-full ${
-                    lastInvoice.status === 'completed' ? 'bg-green-100 text-green-800' :
+                  <span className={`inline-block px-2 py-1 text-[10px] sm:text-xs rounded-full ${lastInvoice.status === 'completed' ? 'bg-green-100 text-green-800' :
                     lastInvoice.status === 'paid' ? 'bg-blue-100 text-blue-800' :
-                    lastInvoice.status === 'sent' ? 'bg-yellow-100 text-yellow-800' :
-                    'bg-gray-100 text-gray-800'
-                  }`}>
+                      lastInvoice.status === 'sent' ? 'bg-yellow-100 text-yellow-800' :
+                        'bg-gray-100 text-gray-800'
+                    }`}>
                     {lastInvoice.status?.charAt(0).toUpperCase() + lastInvoice.status?.slice(1)}
                   </span>
                 </div>
@@ -577,7 +588,7 @@ const Dashboard = () => {
               </div>
             )}
 
-            <button 
+            <button
               onClick={() => navigate('/invoice/invoice-generator')}
               className="w-full flex items-center justify-center gap-1.5 px-3 py-2 sm:py-2.5 text-purple-600 border border-purple-600 rounded hover:bg-purple-50 transition-colors text-xs sm:text-sm font-medium mb-2 whitespace-nowrap"
             >
@@ -585,7 +596,7 @@ const Dashboard = () => {
               <span>Create New Invoice</span>
             </button>
 
-            <button 
+            <button
               onClick={() => navigate('/invoices')}
               className="w-full flex items-center justify-center gap-2 text-purple-600 hover:underline text-xs sm:text-sm"
             >
@@ -632,11 +643,10 @@ const Dashboard = () => {
 
                 <div>
                   <p className="text-[10px] sm:text-xs text-gray-500 mb-0.5">Status</p>
-                  <span className={`inline-block px-2 py-1 text-[10px] sm:text-xs rounded-full ${
-                    lastQuotation.status === 'completed' ? 'bg-green-100 text-green-800' :
+                  <span className={`inline-block px-2 py-1 text-[10px] sm:text-xs rounded-full ${lastQuotation.status === 'completed' ? 'bg-green-100 text-green-800' :
                     lastQuotation.status === 'sent' ? 'bg-yellow-100 text-yellow-800' :
-                    'bg-gray-100 text-gray-800'
-                  }`}>
+                      'bg-gray-100 text-gray-800'
+                    }`}>
                     {lastQuotation.status?.charAt(0).toUpperCase() + lastQuotation.status?.slice(1)}
                   </span>
                 </div>
@@ -649,7 +659,7 @@ const Dashboard = () => {
               </div>
             )}
 
-            <button 
+            <button
               onClick={() => navigate('/invoice/quotation')}
               className="w-full flex items-center justify-center gap-1.5 px-3 py-2 sm:py-2.5 text-purple-600 border border-purple-600 rounded hover:bg-purple-50 transition-colors text-xs sm:text-sm font-medium mb-2 whitespace-nowrap"
             >
@@ -657,7 +667,7 @@ const Dashboard = () => {
               <span>Create New Quotation</span>
             </button>
 
-            <button 
+            <button
               onClick={() => navigate('/quotations')}
               className="w-full flex items-center justify-center gap-2 text-purple-600 hover:underline text-xs sm:text-sm"
             >
@@ -781,11 +791,10 @@ const Dashboard = () => {
               { label: 'GST Invoice', icon: <Receipt className="w-6 h-6" />, route: '/invoice/gst-invoice', color: 'text-orange-600 bg-orange-50 border-orange-200 hover:bg-orange-100' },
               { label: 'Delivery Challan', icon: <Truck className="w-6 h-6" />, route: '/invoice/delivery-challan', color: 'text-red-600 bg-red-50 border-red-200 hover:bg-red-100' },
               { label: 'Proforma Invoice', icon: <ClipboardList className="w-6 h-6" />, route: '/invoice/proforma-invoice', color: 'text-indigo-600 bg-indigo-50 border-indigo-200 hover:bg-indigo-100' },
-              
-              { label: 'Service Proposal', icon: <Receipt className="w-6 h-6" />, route: '/proposal/service-proposal', color: 'text-orange-600 bg-orange-50 border-orange-200 hover:bg-orange-100' },  
+
+              { label: 'Service Proposal', icon: <Receipt className="w-6 h-6" />, route: '/proposal/service-proposal', color: 'text-orange-600 bg-orange-50 border-orange-200 hover:bg-orange-100' },
               { label: 'Service Agreement', icon: <FileCheck className="w-6 h-6" />, route: '/proposal/service-agreement', color: 'text-red-600 bg-red-50 border-red-200 hover:bg-red-100' },
               { label: 'Tax Invoice', icon: <ClipboardList className="w-6 h-6" />, route: '/proposal/tax-invoice', color: 'text-indigo-600 bg-indigo-50 border-indigo-200 hover:bg-indigo-100' },
-              { label: 'Clients', icon: <Users className="w-6 h-6" />, route: '/clients', color: 'text-teal-600 bg-teal-50 border-teal-200 hover:bg-teal-100' },
             ].map((item) => (
               <button
                 key={item.route}
