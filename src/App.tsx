@@ -83,6 +83,7 @@ import UserSettings from './pages/dashboard/UserSettings';
 import ClientsPage from './pages/dashboard/ClientsPage';
 import BusinessDetails from './pages/auth/BusinessDetails';
 import { ProposalApp } from './pages/proposal';
+import DocumentProtectedRoute from './components/DocumentProtectedRoute';
 
 /**
  * Main App Component
@@ -123,10 +124,9 @@ const App = () => {
           <Route
           path="/proposal/:templateType"
           element={
-            <ProtectedRoute>
+            <DocumentProtectedRoute>
               <ProposalApp />
-
-            </ProtectedRoute>
+            </DocumentProtectedRoute>
           }
         />
 

@@ -406,6 +406,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { invoiceService } from '@/services/invoiceService';
 import { subscriptionService } from '@/services/subscriptionService';
 import DashboardLayout from './DashboardLayout';
+import { useDocumentAccess } from '@/hooks/useDocumentAccess';
 
 const Dashboard = () => {
   const navigate = useNavigate();
