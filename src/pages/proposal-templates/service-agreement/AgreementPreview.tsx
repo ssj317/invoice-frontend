@@ -49,65 +49,51 @@ const AgreementPreview = () => {
         signatureDate: 'Date: 18th Sep.25'
     };
 
-    // Split content into pages
+    // Split content into pages - fill page 1 completely before moving to page 2
     const pages = useMemo(() => {
         const paymentTerms = data.paymentTerms || [];
         const revisions = data.revisionsContent || [];
         const support = data.supportContent || [];
         const ip = data.ipContent || [];
 
-        const result = [];
-        const maxPaymentTermsPage1 = 5;
-        const maxRevisionsPage1 = 6;
-        const maxSupportPerPage = 5;
-        const maxIpPerPage = 5;
+        // Estimate how many items can fit on page 1 after header and intro
+        // Header + Subject + Greeting + Intro + Scope + Timeline = ~350px
+        // Available space on page 1: ~900px
+        // Each payment term: ~25px, Each revision: ~25px
+        // Total capacity: ~36 items (payment + revisions combined)
 
-        // Page 1: Basic info + Scope + Timeline + Payment (first 5) + Revisions (first 6)
-        result.push({
+        const page1TotalCapacity = 12; // Conservative estimate for payment + revisions
+
+        // Calculate how to distribute payment and revisions on page 1
+        let page1PaymentCount = Math.min(paymentTerms.length, page1TotalCapacity);
+        let page1RevisionsCount = Math.min(revisions.length, page1TotalCapacity - page1PaymentCount);
+
+        // If we have room after payment terms, add more revisions
+        if (page1PaymentCount < paymentTerms.length) {
+            // All payment terms don't fit, so use remaining space for revisions
+            page1RevisionsCount = Math.max(0, page1TotalCapacity - page1PaymentCount);
+        } else {
+            // All payment terms fit, use remaining space for revisions
+            page1RevisionsCount = Math.min(revisions.length, page1TotalCapacity - page1PaymentCount);
+        }
+
+        const page1 = {
             type: 'page1',
-            paymentTerms: paymentTerms.slice(0, maxPaymentTermsPage1),
-            revisions: revisions.slice(0, maxRevisionsPage1)
-        });
+            paymentTerms: paymentTerms.slice(0, page1PaymentCount),
+            revisions: revisions.slice(0, page1RevisionsCount)
+        };
 
-        // Additional pages for remaining payment/revisions
-        const remainingPaymentTerms = paymentTerms.slice(maxPaymentTermsPage1);
-        const remainingRevisions = revisions.slice(maxRevisionsPage1);
+        // Page 2: Everything else
+        const page2 = {
+            type: 'page2',
+            paymentTerms: paymentTerms.slice(page1PaymentCount),
+            revisions: revisions.slice(page1RevisionsCount),
+            supportItems: support,
+            ipItems: ip,
+            showClosing: true
+        };
 
-        if (remainingPaymentTerms.length > 0 || remainingRevisions.length > 0) {
-            result.push({
-                type: 'continuation',
-                paymentTerms: remainingPaymentTerms,
-                revisions: remainingRevisions
-            });
-        }
-
-        // Support pages
-        for (let i = 0; i < support.length; i += maxSupportPerPage) {
-            const pageSupportItems = support.slice(i, i + maxSupportPerPage);
-            const isFirstSupportPage = i === 0;
-
-            result.push({
-                type: 'support',
-                supportItems: pageSupportItems,
-                showSupportHeader: isFirstSupportPage
-            });
-        }
-
-        // IP pages
-        for (let i = 0; i < ip.length; i += maxIpPerPage) {
-            const pageIpItems = ip.slice(i, i + maxIpPerPage);
-            const isFirstIpPage = i === 0;
-            const isLastIpPage = i + maxIpPerPage >= ip.length;
-
-            result.push({
-                type: 'ip',
-                ipItems: pageIpItems,
-                showIpHeader: isFirstIpPage,
-                showClosing: isLastIpPage
-            });
-        }
-
-        return result;
+        return [page1, page2];
     }, [data]);
 
     const Header = () => (
@@ -179,39 +165,110 @@ const AgreementPreview = () => {
                     <Header />
 
                     {page.type === 'page1' && (
-                        <div className="px-10 py-6 text-sm" style={{ paddingTop: '24px' }}>
-                            <div className="mb-6">
+                        <div className="px-10 py-4 text-sm" style={{ paddingTop: '16px' }}>
+                            <div className="mb-4">
                                 <p className="font-bold">Subject: {data.subject}</p>
                             </div>
-                            <p className="mb-3">{data.greeting}</p>
-                            <p className="mb-6">{data.intro}</p>
-                            <div className="mb-5">
-                                <p className="font-bold mb-2">{data.scopeTitle}</p>
+                            <p className="mb-2">{data.greeting}</p>
+                            <p className="mb-4">{data.intro}</p>
+                            <div className="mb-3">
+                                <p className="font-bold mb-1">{data.scopeTitle}</p>
                                 <p>{data.scopeContent}</p>
                             </div>
-                            <div className="mb-5">
-                                <p className="font-bold mb-2">{data.timelineTitle}</p>
+                            <div className="mb-3">
+                                <p className="font-bold mb-1">{data.timelineTitle}</p>
                                 <p>{data.timelineContent}</p>
                             </div>
-                            <div className="mb-5">
-                                <p className="font-bold mb-2">{data.paymentTitle}</p>
-                                <p className="mb-2">The total project cost is {data.paymentCost}/-. Payment will be made in the following installments:</p>
+                            <div className="mb-3">
+                                <p className="font-bold mb-1">{data.paymentTitle}</p>
+                                <p className="mb-1">The total project cost is {data.paymentCost}/-. Payment will be made in the following installments:</p>
                                 <ul className="ml-4 space-y-1">
                                     {page.paymentTerms.map((t: string, i: number) => (
                                         <li key={i} className="flex gap-2"><span>•</span><span>{t}</span></li>
                                     ))}
                                 </ul>
-                                <p className="mt-2">{data.paymentNote}</p>
+                                <p className="mt-1">{data.paymentNote}</p>
                             </div>
                             {page.revisions.length > 0 && (
-                                <div className="mb-5">
-                                    <p className="font-bold mb-2">{data.revisionsTitle}</p>
+                                <div className="mb-3">
+                                    <p className="font-bold mb-1">{data.revisionsTitle}</p>
                                     <ul className="ml-4 space-y-1">
                                         {page.revisions.map((t: string, i: number) => (
                                             <li key={i} className="flex gap-2"><span>•</span><span>{t}</span></li>
                                         ))}
                                     </ul>
                                 </div>
+                            )}
+                        </div>
+                    )}
+
+                    {page.type === 'page2' && (
+                        <div className="px-10 py-4 text-sm" style={{ paddingTop: '16px' }}>
+                            {page.paymentTerms && page.paymentTerms.length > 0 && (
+                                <div className="mb-3">
+                                    <p className="font-bold mb-1">{data.paymentTitle} (Continued)</p>
+                                    <ul className="ml-4 space-y-1">
+                                        {page.paymentTerms.map((t: string, i: number) => (
+                                            <li key={i} className="flex gap-2"><span>•</span><span>{t}</span></li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                            {page.revisions && page.revisions.length > 0 && (
+                                <div className="mb-3">
+                                    <p className="font-bold mb-1">{data.revisionsTitle} (Continued)</p>
+                                    <ul className="ml-4 space-y-1">
+                                        {page.revisions.map((t: string, i: number) => (
+                                            <li key={i} className="flex gap-2"><span>•</span><span>{t}</span></li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                            {page.supportItems && page.supportItems.length > 0 && (
+                                <div className="mb-3">
+                                    <p className="font-bold mb-1">{data.supportTitle}</p>
+                                    <ul className="ml-4 space-y-1">
+                                        {page.supportItems.map((t: string, i: number) => (
+                                            <li key={i} className="flex gap-2"><span>•</span><span>{t}</span></li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                            {page.ipItems && page.ipItems.length > 0 && (
+                                <div className="mb-3">
+                                    <p className="font-bold mb-1">{data.ipTitle}</p>
+                                    <ul className="ml-4 space-y-1">
+                                        {page.ipItems.map((t: string, i: number) => (
+                                            <li key={i} className="flex gap-2"><span>•</span><span>{t}</span></li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                            {page.showClosing && (
+                                <>
+                                    <div className="mb-3">
+                                        <p className="font-bold mb-1">{data.confidentialityTitle}</p>
+                                        <ul className="ml-4">
+                                            <li className="flex gap-2"><span>•</span><span>{data.confidentialityContent}</span></li>
+                                        </ul>
+                                    </div>
+                                    <div className="mb-3">
+                                        <p className="font-bold mb-1">{data.liabilityTitle}</p>
+                                        <ul className="ml-4">
+                                            <li className="flex gap-2"><span>•</span><span>{data.liabilityContent}</span></li>
+                                        </ul>
+                                    </div>
+                                    <div className="mb-4">
+                                        <p className="font-bold mb-1">{data.acceptanceTitle}</p>
+                                        <p>{data.acceptanceContent}</p>
+                                    </div>
+                                    <div className="mt-3">
+                                        <p className="font-bold mb-4">{data.signatureLabel}</p>
+                                        <p className="mb-1">{data.signatureName}</p>
+                                        <p className="mb-2">{data.signatureText}</p>
+                                        <p className="mt-2">{data.signatureDate}</p>
+                                    </div>
+                                </>
                             )}
                         </div>
                     )}

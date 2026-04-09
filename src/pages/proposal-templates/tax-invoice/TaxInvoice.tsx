@@ -42,7 +42,14 @@ const TaxInvoice = () => {
             }
         ],
 
-        // Summary
+        // Summary - Labels and Values
+        summaryLabels: {
+            totalProjectLabel: 'Total Amount of Project:',
+            gstLabel: '18% GST:',
+            totalAmountLabel: 'Total Amount:',
+            paymentPeriodLabel: 'Divided in period of:',
+            monthlyPaymentLabel: 'Per Month:'
+        },
         totalProjectAmount: '60,000',
         gstAmount: '10,800',
         totalAmount: '70,800',
@@ -59,6 +66,13 @@ const TaxInvoice = () => {
 
     const handleInputChange = (field: string, value: string) => {
         setFormData(prev => ({ ...prev, [field]: value }));
+    };
+
+    const handleLabelChange = (labelField: string, value: string) => {
+        setFormData(prev => ({
+            ...prev,
+            summaryLabels: { ...prev.summaryLabels, [labelField]: value }
+        }));
     };
 
     const handleNestedInputChange = (itemIndex: number, rateField: string, value: string) => {
@@ -273,17 +287,17 @@ const TaxInvoice = () => {
                         <table className="w-full border-2 border-gray-900">
                             <thead>
                                 <tr className="bg-gray-100">
-                                    <th className="border-2 border-gray-900 px-2 py-2 text-xs">Sr.</th>
-                                    <th className="border-2 border-gray-900 px-2 py-2 text-xs">Description</th>
-                                    <th className="border-2 border-gray-900 px-2 py-2 text-xs">Rate</th>
-                                    <th className="border-2 border-gray-900 px-2 py-2 text-xs">Amount (₹)</th>
+                                    <th className="border-2 border-gray-900 px-2 py-2 text-xs w-[8%]">Sr.</th>
+                                    <th className="border-2 border-gray-900 px-2 py-2 text-xs w-[37%]">Description</th>
+                                    <th className="border-2 border-gray-900 px-2 py-2 text-xs w-[35%]">Rate</th>
+                                    <th className="border-2 border-gray-900 px-2 py-2 text-xs w-[20%]">Amount (₹)</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {formData.items.map((item, index) => (
                                     <tr key={index}>
-                                        <td className="border-2 border-gray-900 p-2 text-center relative">
-                                            {item.sr}
+                                        <td className="border-2 border-gray-900 p-2 text-center align-middle relative">
+                                            <div className="text-sm font-semibold">{item.sr}</div>
                                             {formData.items.length > 1 && (
                                                 <button
                                                     type="button"
@@ -295,65 +309,81 @@ const TaxInvoice = () => {
                                                 </button>
                                             )}
                                         </td>
-                                        <td className="border-2 border-gray-900 p-2">
-                                            <input
-                                                type="text"
+                                        <td className="border-2 border-gray-900 p-3 align-middle">
+                                            <textarea
                                                 value={item.description}
                                                 onChange={(e) => {
                                                     const newItems = [...formData.items];
                                                     newItems[index].description = e.target.value;
                                                     setFormData(prev => ({ ...prev, items: newItems }));
                                                 }}
-                                                className="w-full px-2 py-1 border border-blue-300 rounded"
+                                                rows={4}
+                                                className="w-full px-2 py-2 border border-blue-300 rounded text-center"
                                             />
                                         </td>
-                                        <td className="border-2 border-gray-900 p-2">
-                                            <div className="space-y-1 text-xs">
-                                                <div className="flex gap-1">
-                                                    <span className="w-20">Lumpsum*</span>
-                                                    <input
-                                                        type="text"
-                                                        value={item.rate.lumpsum}
-                                                        onChange={(e) => handleNestedInputChange(index, 'lumpsum', e.target.value)}
-                                                        className="flex-1 px-1 py-0.5 border border-blue-300 rounded"
-                                                    />
-                                                </div>
-                                                <div className="flex gap-1">
-                                                    <span className="w-20">Total Rs</span>
-                                                    <input
-                                                        type="text"
-                                                        value={item.rate.totalRs}
-                                                        onChange={(e) => handleNestedInputChange(index, 'totalRs', e.target.value)}
-                                                        className="flex-1 px-1 py-0.5 border border-blue-300 rounded"
-                                                    />
-                                                </div>
-                                                <div className="flex gap-1">
-                                                    <span className="w-20">Add 18% GST Extra</span>
-                                                    <input
-                                                        type="text"
-                                                        value={item.rate.gst}
-                                                        onChange={(e) => handleNestedInputChange(index, 'gst', e.target.value)}
-                                                        className="flex-1 px-1 py-0.5 border border-blue-300 rounded"
-                                                    />
-                                                </div>
-                                                <div className="flex gap-1 font-bold">
-                                                    <span className="w-20">Total Amount</span>
-                                                    <input
-                                                        type="text"
-                                                        value={item.rate.totalAmount}
-                                                        onChange={(e) => handleNestedInputChange(index, 'totalAmount', e.target.value)}
-                                                        className="flex-1 px-1 py-0.5 border border-blue-300 rounded"
-                                                    />
-                                                </div>
-                                            </div>
+                                        <td className="border-2 border-gray-900 p-0">
+                                            <table className="w-full h-full">
+                                                <tbody>
+                                                    <tr className="border-b-2 border-gray-900">
+                                                        <td className="p-3 text-xs text-center bg-gray-50">Lumpsum*</td>
+                                                    </tr>
+                                                    <tr className="border-b-2 border-gray-900">
+                                                        <td className="p-3 text-xs text-center bg-gray-50">Total, Rs</td>
+                                                    </tr>
+                                                    <tr className="border-b-2 border-gray-900">
+                                                        <td className="p-3 text-xs text-center bg-gray-50">Add 18% GST Extra</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="p-3 text-xs text-center bg-gray-50 font-bold">Total Amount</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </td>
-                                        <td className="border-2 border-gray-900 p-2 text-right align-top">
-                                            <input
-                                                type="text"
-                                                value={item.rate.totalAmount}
-                                                onChange={(e) => handleNestedInputChange(index, 'totalAmount', e.target.value)}
-                                                className="w-full px-2 py-1 border border-blue-300 rounded text-right"
-                                            />
+                                        <td className="border-2 border-gray-900 p-0">
+                                            <table className="w-full h-full">
+                                                <tbody>
+                                                    <tr className="border-b-2 border-gray-900">
+                                                        <td className="p-2 text-center">
+                                                            <input
+                                                                type="text"
+                                                                value={item.rate.lumpsum}
+                                                                onChange={(e) => handleNestedInputChange(index, 'lumpsum', e.target.value)}
+                                                                className="w-full px-1 py-1 border border-blue-300 rounded text-center text-xs"
+                                                            />
+                                                        </td>
+                                                    </tr>
+                                                    <tr className="border-b-2 border-gray-900">
+                                                        <td className="p-2 text-center">
+                                                            <input
+                                                                type="text"
+                                                                value={item.rate.totalRs}
+                                                                onChange={(e) => handleNestedInputChange(index, 'totalRs', e.target.value)}
+                                                                className="w-full px-1 py-1 border border-blue-300 rounded text-center text-xs"
+                                                            />
+                                                        </td>
+                                                    </tr>
+                                                    <tr className="border-b-2 border-gray-900">
+                                                        <td className="p-2 text-center">
+                                                            <input
+                                                                type="text"
+                                                                value={item.rate.gst}
+                                                                onChange={(e) => handleNestedInputChange(index, 'gst', e.target.value)}
+                                                                className="w-full px-1 py-1 border border-blue-300 rounded text-center text-xs"
+                                                            />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="p-2 text-center">
+                                                            <input
+                                                                type="text"
+                                                                value={item.rate.totalAmount}
+                                                                onChange={(e) => handleNestedInputChange(index, 'totalAmount', e.target.value)}
+                                                                className="w-full px-1 py-1 border border-blue-300 rounded text-center text-xs font-bold"
+                                                            />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </td>
                                     </tr>
                                 ))}
@@ -365,48 +395,83 @@ const TaxInvoice = () => {
                     <div className="mb-6 space-y-2">
                         <h3 className="font-bold text-blue-700 mb-3">Payment Summary</h3>
                         <div className="flex gap-2">
-                            <span className="w-64">Total Amount of Project:</span>
+                            <input
+                                type="text"
+                                value={formData.summaryLabels.totalProjectLabel}
+                                onChange={(e) => handleLabelChange('totalProjectLabel', e.target.value)}
+                                className="w-64 px-2 py-1 border-2 border-green-300 rounded bg-green-50"
+                                placeholder="Label"
+                            />
                             <input
                                 type="text"
                                 value={formData.totalProjectAmount}
                                 onChange={(e) => handleInputChange('totalProjectAmount', e.target.value)}
                                 className="flex-1 px-2 py-1 border-2 border-blue-300 rounded"
+                                placeholder="Value"
                             />
                         </div>
                         <div className="flex gap-2">
-                            <span className="w-64">18% GST:</span>
+                            <input
+                                type="text"
+                                value={formData.summaryLabels.gstLabel}
+                                onChange={(e) => handleLabelChange('gstLabel', e.target.value)}
+                                className="w-64 px-2 py-1 border-2 border-green-300 rounded bg-green-50"
+                                placeholder="Label"
+                            />
                             <input
                                 type="text"
                                 value={formData.gstAmount}
                                 onChange={(e) => handleInputChange('gstAmount', e.target.value)}
                                 className="flex-1 px-2 py-1 border-2 border-blue-300 rounded"
+                                placeholder="Value"
                             />
                         </div>
                         <div className="flex gap-2">
-                            <span className="w-64">Total Amount:</span>
+                            <input
+                                type="text"
+                                value={formData.summaryLabels.totalAmountLabel}
+                                onChange={(e) => handleLabelChange('totalAmountLabel', e.target.value)}
+                                className="w-64 px-2 py-1 border-2 border-green-300 rounded bg-green-50"
+                                placeholder="Label"
+                            />
                             <input
                                 type="text"
                                 value={formData.totalAmount}
                                 onChange={(e) => handleInputChange('totalAmount', e.target.value)}
                                 className="flex-1 px-2 py-1 border-2 border-blue-300 rounded"
+                                placeholder="Value"
                             />
                         </div>
                         <div className="flex gap-2">
-                            <span className="w-64">Divided in period of:</span>
+                            <input
+                                type="text"
+                                value={formData.summaryLabels.paymentPeriodLabel}
+                                onChange={(e) => handleLabelChange('paymentPeriodLabel', e.target.value)}
+                                className="w-64 px-2 py-1 border-2 border-green-300 rounded bg-green-50"
+                                placeholder="Label"
+                            />
                             <input
                                 type="text"
                                 value={formData.paymentPeriod}
                                 onChange={(e) => handleInputChange('paymentPeriod', e.target.value)}
                                 className="flex-1 px-2 py-1 border-2 border-blue-300 rounded"
+                                placeholder="Value"
                             />
                         </div>
                         <div className="flex gap-2">
-                            <span className="w-64">Per Month:</span>
+                            <input
+                                type="text"
+                                value={formData.summaryLabels.monthlyPaymentLabel}
+                                onChange={(e) => handleLabelChange('monthlyPaymentLabel', e.target.value)}
+                                className="w-64 px-2 py-1 border-2 border-green-300 rounded bg-green-50"
+                                placeholder="Label"
+                            />
                             <input
                                 type="text"
                                 value={formData.monthlyPayment}
                                 onChange={(e) => handleInputChange('monthlyPayment', e.target.value)}
                                 className="flex-1 px-2 py-1 border-2 border-blue-300 rounded"
+                                placeholder="Value"
                             />
                         </div>
                     </div>

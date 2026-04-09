@@ -30,6 +30,13 @@ const TaxInvoicePreview = () => {
                 }
             }
         ],
+        summaryLabels: {
+            totalProjectLabel: 'Total Amount of Project:',
+            gstLabel: '18% GST:',
+            totalAmountLabel: 'Total Amount:',
+            paymentPeriodLabel: 'Divided in period of:',
+            monthlyPaymentLabel: 'Per Month:'
+        },
         totalProjectAmount: '60,000',
         gstAmount: '10,800',
         totalAmount: '70,800',
@@ -179,46 +186,56 @@ const TaxInvoicePreview = () => {
                         <table className="w-full border-2 border-black">
                             <thead>
                                 <tr className="border-b-2 border-black">
-                                    <th className="border-r-2 border-black p-2.5 text-[13px] font-bold text-center w-[8%]">Sr.</th>
-                                    <th className="border-r-2 border-black p-2.5 text-[13px] font-bold text-center w-[37%]">Description</th>
-                                    <th className="border-r-2 border-black p-2.5 text-[13px] font-bold text-center w-[35%]">Rate</th>
-                                    <th className="p-2.5 text-[13px] font-bold text-center w-[20%]">Amount (₹)</th>
+                                    <th className="border-r-2 border-black p-3 text-[13px] font-bold text-center w-[8%]">Sr.</th>
+                                    <th className="border-r-2 border-black p-3 text-[13px] font-bold text-center w-[37%]">Description</th>
+                                    <th className="border-r-2 border-black p-3 text-[13px] font-bold text-center w-[35%]">Rate</th>
+                                    <th className="p-3 text-[13px] font-bold text-center w-[20%]">Amount (₹)</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {page.items.map((item: any, index: number) => (
-                                    <tr key={index}>
-                                        <td className="border-r-2 border-black p-3 text-center align-top"><div className="text-[12px] font-semibold">{item.sr}</div></td>
-                                        <td className="border-r-2 border-black p-3 align-top"><div className="text-[12px]">{item.description}</div></td>
+                                    <tr key={index} className="border-b-2 border-black">
+                                        <td className="border-r-2 border-black p-4 text-center align-middle">
+                                            <div className="text-[13px] font-semibold">{item.sr}</div>
+                                        </td>
+                                        <td className="border-r-2 border-black p-4 text-center align-middle">
+                                            <div className="text-[13px]">{item.description}</div>
+                                        </td>
                                         <td className="border-r-2 border-black p-0">
                                             <table className="w-full h-full">
                                                 <tbody>
-                                                    <tr className="border-b border-black">
-                                                        <td className="p-2 text-[11px] text-right pr-3">Lumpsum*</td>
-                                                        <td className="p-2 text-[11px] font-semibold text-right pr-3 border-l border-black">{item.rate.lumpsum}</td>
+                                                    <tr className="border-b-2 border-black">
+                                                        <td className="p-3 text-[12px] text-center">Lumpsum*</td>
                                                     </tr>
-                                                    <tr className="border-b border-black">
-                                                        <td className="p-2 text-[11px] text-right pr-3">Total, Rs</td>
-                                                        <td className="p-2 text-[11px] font-semibold text-right pr-3 border-l border-black">{item.rate.totalRs}</td>
+                                                    <tr className="border-b-2 border-black">
+                                                        <td className="p-3 text-[12px] text-center">Total, Rs</td>
                                                     </tr>
-                                                    <tr className="border-b border-black">
-                                                        <td className="p-2 text-[11px] text-right pr-3">Add 18% GST Extra</td>
-                                                        <td className="p-2 text-[11px] font-semibold text-right pr-3 border-l border-black">{item.rate.gst}</td>
+                                                    <tr className="border-b-2 border-black">
+                                                        <td className="p-3 text-[12px] text-center">Add 18% GST Extra</td>
                                                     </tr>
                                                     <tr>
-                                                        <td className="p-2 text-[11px] font-bold text-right pr-3">Total Amount</td>
-                                                        <td className="p-2 text-[11px] font-bold text-right pr-3 border-l border-black">{item.rate.totalAmount}</td>
+                                                        <td className="p-3 text-[12px] text-center font-bold">Total Amount</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </td>
-                                        <td className="p-3 align-top">
-                                            <div className="space-y-[26px] text-right text-[12px]">
-                                                <div className="font-semibold">{item.rate.lumpsum}</div>
-                                                <div className="font-semibold">{item.rate.totalRs}</div>
-                                                <div className="font-semibold">{item.rate.gst}</div>
-                                                <div className="font-bold">{item.rate.totalAmount}</div>
-                                            </div>
+                                        <td className="p-0">
+                                            <table className="w-full h-full">
+                                                <tbody>
+                                                    <tr className="border-b-2 border-black">
+                                                        <td className="p-3 text-[12px] font-semibold text-center">{item.rate.lumpsum}</td>
+                                                    </tr>
+                                                    <tr className="border-b-2 border-black">
+                                                        <td className="p-3 text-[12px] font-semibold text-center">{item.rate.totalRs}</td>
+                                                    </tr>
+                                                    <tr className="border-b-2 border-black">
+                                                        <td className="p-3 text-[12px] font-semibold text-center">{item.rate.gst}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="p-3 text-[12px] font-bold text-center">{item.rate.totalAmount}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </td>
                                     </tr>
                                 ))}
@@ -229,11 +246,11 @@ const TaxInvoicePreview = () => {
                     {/* Summary Section - Only on last page */}
                     {page.showSummary && (
                         <div className="px-8 mb-5 text-[12px] leading-[1.7]">
-                            <div>Total Amount of Project: {formData.totalProjectAmount}</div>
-                            <div>18% GST: {formData.gstAmount}</div>
-                            <div className="font-bold">Total Amount: {formData.totalAmount}</div>
-                            <div>Divided in period of {formData.paymentPeriod}</div>
-                            <div>Per Month {formData.monthlyPayment}</div>
+                            {formData.summaryLabels?.totalProjectLabel && <div>{formData.summaryLabels.totalProjectLabel} {formData.totalProjectAmount}</div>}
+                            {formData.summaryLabels?.gstLabel && <div>{formData.summaryLabels.gstLabel} {formData.gstAmount}</div>}
+                            {formData.summaryLabels?.totalAmountLabel && <div className="font-bold">{formData.summaryLabels.totalAmountLabel} {formData.totalAmount}</div>}
+                            {formData.summaryLabels?.paymentPeriodLabel && <div>{formData.summaryLabels.paymentPeriodLabel} {formData.paymentPeriod}</div>}
+                            {formData.summaryLabels?.monthlyPaymentLabel && <div>{formData.summaryLabels.monthlyPaymentLabel} {formData.monthlyPayment}</div>}
                         </div>
                     )}
 

@@ -85,15 +85,22 @@ const Proposal = () => {
         window.dispatchEvent(event);
     };
 
-    const handleAddScopeItem = () => {
-        setFormData(prev => ({
-            ...prev,
-            projectScopeItems: [...prev.projectScopeItems, {
-                service: 'New Service',
-                description: 'Service description',
-                cost: 'Included'
-            }]
-        }));
+    const handleAddScopeItem = (insertAtIndex?: number) => {
+        const newItem = {
+            service: 'New Service',
+            description: 'Service description',
+            cost: 'Included'
+        };
+
+        setFormData(prev => {
+            const items = [...prev.projectScopeItems];
+            if (insertAtIndex !== undefined) {
+                items.splice(insertAtIndex, 0, newItem);
+            } else {
+                items.push(newItem);
+            }
+            return { ...prev, projectScopeItems: items };
+        });
     };
 
     const handleRemoveScopeItem = (index: number) => {
@@ -105,11 +112,18 @@ const Proposal = () => {
         }
     };
 
-    const handleAddWebsiteStructure = () => {
-        setFormData(prev => ({
-            ...prev,
-            websiteStructure: [...prev.websiteStructure, 'New Page - Description']
-        }));
+    const handleAddWebsiteStructure = (insertAtIndex?: number) => {
+        const newItem = 'New Page - Description';
+
+        setFormData(prev => {
+            const items = [...prev.websiteStructure];
+            if (insertAtIndex !== undefined) {
+                items.splice(insertAtIndex, 0, newItem);
+            } else {
+                items.push(newItem);
+            }
+            return { ...prev, websiteStructure: items };
+        });
     };
 
     const handleRemoveWebsiteStructure = (index: number) => {
@@ -121,11 +135,18 @@ const Proposal = () => {
         }
     };
 
-    const handleAddMaintenanceService = () => {
-        setFormData(prev => ({
-            ...prev,
-            maintenanceServices: [...prev.maintenanceServices, 'New Service - Description']
-        }));
+    const handleAddMaintenanceService = (insertAtIndex?: number) => {
+        const newItem = 'New Service - Description';
+
+        setFormData(prev => {
+            const items = [...prev.maintenanceServices];
+            if (insertAtIndex !== undefined) {
+                items.splice(insertAtIndex, 0, newItem);
+            } else {
+                items.push(newItem);
+            }
+            return { ...prev, maintenanceServices: items };
+        });
     };
 
     const handleRemoveMaintenanceService = (index: number) => {
@@ -209,10 +230,10 @@ const Proposal = () => {
                                 <span className="font-semibold">Project Scope Items:</span>
                                 <button
                                     type="button"
-                                    onClick={handleAddScopeItem}
+                                    onClick={() => handleAddScopeItem()}
                                     className="flex items-center gap-1 px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-sm"
                                 >
-                                    <Plus size={16} /> Add Item
+                                    <Plus size={16} /> Add Item at End
                                 </button>
                             </div>
                             <table className="w-full border-2 border-gray-900">
@@ -225,42 +246,70 @@ const Proposal = () => {
                                 </thead>
                                 <tbody>
                                     {formData.projectScopeItems.map((item, index) => (
-                                        <tr key={index}>
-                                            <td className="border-2 border-gray-900 p-2 relative">
-                                                <input
-                                                    type="text"
-                                                    value={item.service}
-                                                    onChange={(e) => handleTableInputChange(index, 'service', e.target.value)}
-                                                    className="w-full px-2 py-1 border border-blue-300 rounded focus:ring-2 focus:ring-blue-500 bg-blue-50"
-                                                />
-                                                {formData.projectScopeItems.length > 1 && (
+                                        <React.Fragment key={index}>
+                                            {/* Insert button before each item */}
+                                            <tr>
+                                                <td colSpan={3} className="p-0 border-0">
                                                     <button
                                                         type="button"
-                                                        onClick={() => handleRemoveScopeItem(index)}
-                                                        className="absolute top-1 right-1 p-1 bg-red-500 text-white rounded hover:bg-red-600"
-                                                        title="Remove Item"
+                                                        onClick={() => handleAddScopeItem(index)}
+                                                        className="w-full py-1 bg-blue-100 hover:bg-blue-200 text-blue-700 text-xs font-semibold transition-colors"
                                                     >
-                                                        <Trash2 size={12} />
+                                                        + Insert Item Here
                                                     </button>
-                                                )}
-                                            </td>
-                                            <td className="border-2 border-gray-900 p-2">
-                                                <textarea
-                                                    value={item.description}
-                                                    onChange={(e) => handleTableInputChange(index, 'description', e.target.value)}
-                                                    rows={2}
-                                                    className="w-full px-2 py-1 border border-blue-300 rounded focus:ring-2 focus:ring-blue-500 bg-blue-50"
-                                                />
-                                            </td>
-                                            <td className="border-2 border-gray-900 p-2">
-                                                <input
-                                                    type="text"
-                                                    value={item.cost}
-                                                    onChange={(e) => handleTableInputChange(index, 'cost', e.target.value)}
-                                                    className="w-full px-2 py-1 border border-blue-300 rounded focus:ring-2 focus:ring-blue-500 bg-blue-50"
-                                                />
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td className="border-2 border-gray-900 p-2 relative">
+                                                    <input
+                                                        type="text"
+                                                        value={item.service}
+                                                        onChange={(e) => handleTableInputChange(index, 'service', e.target.value)}
+                                                        className="w-full px-2 py-1 border border-blue-300 rounded focus:ring-2 focus:ring-blue-500 bg-blue-50"
+                                                    />
+                                                    {formData.projectScopeItems.length > 1 && (
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => handleRemoveScopeItem(index)}
+                                                            className="absolute top-1 right-1 p-1 bg-red-500 text-white rounded hover:bg-red-600"
+                                                            title="Remove Item"
+                                                        >
+                                                            <Trash2 size={12} />
+                                                        </button>
+                                                    )}
+                                                </td>
+                                                <td className="border-2 border-gray-900 p-2">
+                                                    <textarea
+                                                        value={item.description}
+                                                        onChange={(e) => handleTableInputChange(index, 'description', e.target.value)}
+                                                        rows={2}
+                                                        className="w-full px-2 py-1 border border-blue-300 rounded focus:ring-2 focus:ring-blue-500 bg-blue-50"
+                                                    />
+                                                </td>
+                                                <td className="border-2 border-gray-900 p-2">
+                                                    <input
+                                                        type="text"
+                                                        value={item.cost}
+                                                        onChange={(e) => handleTableInputChange(index, 'cost', e.target.value)}
+                                                        className="w-full px-2 py-1 border border-blue-300 rounded focus:ring-2 focus:ring-blue-500 bg-blue-50"
+                                                    />
+                                                </td>
+                                            </tr>
+                                            {/* Insert button after last item */}
+                                            {index === formData.projectScopeItems.length - 1 && (
+                                                <tr>
+                                                    <td colSpan={3} className="p-0 border-0">
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => handleAddScopeItem(index + 1)}
+                                                            className="w-full py-1 bg-blue-100 hover:bg-blue-200 text-blue-700 text-xs font-semibold transition-colors"
+                                                        >
+                                                            + Insert Item Here
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            )}
+                                        </React.Fragment>
                                     ))}
                                 </tbody>
                             </table>
@@ -277,29 +326,49 @@ const Proposal = () => {
                             <div className="flex justify-end mb-2">
                                 <button
                                     type="button"
-                                    onClick={handleAddWebsiteStructure}
+                                    onClick={() => handleAddWebsiteStructure()}
                                     className="flex items-center gap-1 px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-sm"
                                 >
-                                    <Plus size={16} /> Add Page
+                                    <Plus size={16} /> Add Page at End
                                 </button>
                             </div>
-                            <div className="space-y-2">
+                            <div className="space-y-1">
                                 {formData.websiteStructure.map((item, index) => (
-                                    <div key={index} className="flex gap-2 items-center">
-                                        <input
-                                            type="text"
-                                            value={item}
-                                            onChange={(e) => handleArrayInputChange('websiteStructure', index, e.target.value)}
-                                            className="flex-1 px-2 py-1 border border-blue-300 rounded focus:ring-2 focus:ring-blue-500 bg-blue-50"
-                                        />
-                                        {formData.websiteStructure.length > 1 && (
+                                    <div key={index}>
+                                        {/* Insert button before each item */}
+                                        <button
+                                            type="button"
+                                            onClick={() => handleAddWebsiteStructure(index)}
+                                            className="w-full py-1 bg-blue-100 hover:bg-blue-200 text-blue-700 text-xs font-semibold transition-colors rounded mb-1"
+                                        >
+                                            + Insert Page Here
+                                        </button>
+                                        <div className="flex gap-2 items-center">
+                                            <input
+                                                type="text"
+                                                value={item}
+                                                onChange={(e) => handleArrayInputChange('websiteStructure', index, e.target.value)}
+                                                className="flex-1 px-2 py-1 border border-blue-300 rounded focus:ring-2 focus:ring-blue-500 bg-blue-50"
+                                            />
+                                            {formData.websiteStructure.length > 1 && (
+                                                <button
+                                                    type="button"
+                                                    onClick={() => handleRemoveWebsiteStructure(index)}
+                                                    className="p-1 bg-red-500 text-white rounded hover:bg-red-600"
+                                                    title="Remove Page"
+                                                >
+                                                    <Trash2 size={16} />
+                                                </button>
+                                            )}
+                                        </div>
+                                        {/* Insert button after last item */}
+                                        {index === formData.websiteStructure.length - 1 && (
                                             <button
                                                 type="button"
-                                                onClick={() => handleRemoveWebsiteStructure(index)}
-                                                className="p-1 bg-red-500 text-white rounded hover:bg-red-600"
-                                                title="Remove Page"
+                                                onClick={() => handleAddWebsiteStructure(index + 1)}
+                                                className="w-full py-1 bg-blue-100 hover:bg-blue-200 text-blue-700 text-xs font-semibold transition-colors rounded mt-1"
                                             >
-                                                <Trash2 size={16} />
+                                                + Insert Page Here
                                             </button>
                                         )}
                                     </div>
@@ -335,31 +404,51 @@ const Proposal = () => {
                         <div className="flex justify-end mb-2">
                             <button
                                 type="button"
-                                onClick={handleAddMaintenanceService}
+                                onClick={() => handleAddMaintenanceService()}
                                 className="flex items-center gap-1 px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-sm"
                             >
-                                <Plus size={16} /> Add Service
+                                <Plus size={16} /> Add Service at End
                             </button>
                         </div>
 
-                        <div className="space-y-2">
+                        <div className="space-y-1">
                             {formData.maintenanceServices.map((service, index) => (
-                                <div key={index} className="flex items-start gap-2">
-                                    <span className="text-green-600 font-bold text-lg mt-1">✓</span>
-                                    <input
-                                        type="text"
-                                        value={service}
-                                        onChange={(e) => handleArrayInputChange('maintenanceServices', index, e.target.value)}
-                                        className="flex-1 px-2 py-1 border border-green-300 rounded focus:ring-2 focus:ring-green-500 bg-green-50"
-                                    />
-                                    {formData.maintenanceServices.length > 1 && (
+                                <div key={index}>
+                                    {/* Insert button before each item */}
+                                    <button
+                                        type="button"
+                                        onClick={() => handleAddMaintenanceService(index)}
+                                        className="w-full py-1 bg-green-100 hover:bg-green-200 text-green-700 text-xs font-semibold transition-colors rounded mb-1"
+                                    >
+                                        + Insert Service Here
+                                    </button>
+                                    <div className="flex items-start gap-2">
+                                        <span className="text-green-600 font-bold text-lg mt-1">✓</span>
+                                        <input
+                                            type="text"
+                                            value={service}
+                                            onChange={(e) => handleArrayInputChange('maintenanceServices', index, e.target.value)}
+                                            className="flex-1 px-2 py-1 border border-green-300 rounded focus:ring-2 focus:ring-green-500 bg-green-50"
+                                        />
+                                        {formData.maintenanceServices.length > 1 && (
+                                            <button
+                                                type="button"
+                                                onClick={() => handleRemoveMaintenanceService(index)}
+                                                className="p-1 bg-red-500 text-white rounded hover:bg-red-600"
+                                                title="Remove Service"
+                                            >
+                                                <Trash2 size={16} />
+                                            </button>
+                                        )}
+                                    </div>
+                                    {/* Insert button after last item */}
+                                    {index === formData.maintenanceServices.length - 1 && (
                                         <button
                                             type="button"
-                                            onClick={() => handleRemoveMaintenanceService(index)}
-                                            className="p-1 bg-red-500 text-white rounded hover:bg-red-600"
-                                            title="Remove Service"
+                                            onClick={() => handleAddMaintenanceService(index + 1)}
+                                            className="w-full py-1 bg-green-100 hover:bg-green-200 text-green-700 text-xs font-semibold transition-colors rounded mt-1"
                                         >
-                                            <Trash2 size={16} />
+                                            + Insert Service Here
                                         </button>
                                     )}
                                 </div>
