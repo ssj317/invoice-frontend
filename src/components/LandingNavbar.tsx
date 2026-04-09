@@ -70,7 +70,14 @@ const LandingNavbar = () => {
 
                     {/* Desktop Navigation Links */}
                     <div className="hidden lg:flex items-center gap-4 xl:gap-8">
-                        
+                        {/* Home Button */}
+                        <button
+                            onClick={() => window.location.href = '/'}
+                            className="text-black-700 hover:text-purple-600 font-medium transition-colors text-sm md:text-base"
+                        >
+                            Home
+                        </button>
+
                         {/* Products Dropdown */}
                         <div className="relative" ref={productsDropdownRef}>
                             <button
@@ -249,6 +256,17 @@ const LandingNavbar = () => {
                 {showMobileMenu && (
                     <div className="lg:hidden mt-4 pb-4 border-t border-gray-200 pt-4">
                         <div className="flex flex-col gap-4">
+                            {/* Home Button for Mobile */}
+                            <button
+                                onClick={() => {
+                                    setShowMobileMenu(false);
+                                    window.location.href = '/';
+                                }}
+                                className="text-left text-black-700 hover:text-purple-600 font-medium transition-colors"
+                            >
+                                Home
+                            </button>
+
                             <button
                                 onClick={() => {
                                     setShowProductsDropdown(!showProductsDropdown);

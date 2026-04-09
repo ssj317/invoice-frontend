@@ -101,22 +101,30 @@ const RefrensHomepage = () => {
     };
 
     return (
-        <div className="min-h-screen bg bg-gradient-to-b from-blue-100 via-white to-purple-200">
+        <div className="min-h-[75vh] bg bg-gradient-to-b from-blue-100 via-white to-purple-200">
             {/* Navigation Bar */}
             <nav className="bg-white/60 backdrop-blur-md shadow-sm sticky top-2 sm:top-4 lg:top-6 w-[95%] sm:w-[90%] lg:w-[80%] mx-auto rounded-xl z-[90]">
                 <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-2">
                     <div className="flex items-center justify-between">
                         {/* Logo */}
                         <div className="flex items-center py-1 sm:py-2 gap-2">
-                            <img 
-                                src="/elite8digital-nav-cropped.png" 
-                                alt="Elite8Digital Logo" 
+                            <img
+                                src="/elite8digital-nav-cropped.png"
+                                alt="Elite8Digital Logo"
                                 className="h-8 sm:h-10 lg:h-12 w-auto"
                             />
                         </div>
 
                         {/* Desktop Navigation Links */}
                         <div className="hidden lg:flex items-center gap-4 xl:gap-8">
+                            {/* Home Button */}
+                            <button
+                                onClick={() => window.location.href = '/'}
+                                className="text-black-700 hover:text-purple-600 font-medium transition-colors text-sm md:text-base"
+                            >
+                                Home
+                            </button>
+
                             {/* Products Dropdown */}
                             <div className="relative" ref={productsDropdownRef}>
                                 <button
@@ -249,21 +257,21 @@ const RefrensHomepage = () => {
                                 )}
                             </div>
 
-                                {/* About Us Link */}
-							<button
-								onClick={() => window.open('https://elite8digital.in/#/about', '_blank')}
-								className="text-black-700 hover:text-purple-600 font-medium transition-colors text-sm md:text-base"
-							>
-								About Us
-							</button>
+                            {/* About Us Link */}
+                            <button
+                                onClick={() => window.open('https://elite8digital.in/#/about', '_blank')}
+                                className="text-black-700 hover:text-purple-600 font-medium transition-colors text-sm md:text-base"
+                            >
+                                About Us
+                            </button>
 
-							{/* Contact Link */}
-							<button
-								onClick={() => window.open('https://elite8digital.in/#/contact', '_blank')}
-								className="text-black-700 hover:text-purple-600 font-medium transition-colors text-sm md:text-base"
-							>
-								Contact
-							</button>
+                            {/* Contact Link */}
+                            <button
+                                onClick={() => window.open('https://elite8digital.in/#/contact', '_blank')}
+                                className="text-black-700 hover:text-purple-600 font-medium transition-colors text-sm md:text-base"
+                            >
+                                Contact
+                            </button>
 
 
                         </div>
@@ -297,6 +305,17 @@ const RefrensHomepage = () => {
                     {showMobileMenu && (
                         <div className="lg:hidden mt-4 pb-4 border-t border-gray-200 pt-4">
                             <div className="flex flex-col gap-4">
+                                {/* Home Button for Mobile */}
+                                <button
+                                    onClick={() => {
+                                        setShowMobileMenu(false);
+                                        window.location.href = '/';
+                                    }}
+                                    className="text-left text-black-700 hover:text-purple-600 font-medium transition-colors"
+                                >
+                                    Home
+                                </button>
+
                                 <button
                                     onClick={() => {
                                         setShowProductsDropdown(!showProductsDropdown);
@@ -306,14 +325,14 @@ const RefrensHomepage = () => {
                                     Products
                                     <ChevronDown className={`w-4 h-4 transition-transform ${showProductsDropdown ? 'rotate-180' : ''}`} />
                                 </button>
-                                
+
                                 {showProductsDropdown && (
                                     <div className="pl-4 space-y-3 text-sm">
                                         <div>
                                             <h4 className="font-semibold mb-2">Solutions</h4>
                                             {productsData.solutions.map((item, idx) => (
-                                                <button 
-                                                    key={idx} 
+                                                <button
+                                                    key={idx}
                                                     onClick={() => {
                                                         alert(`${item} - Coming Soon!`);
                                                         setShowProductsDropdown(false);
@@ -328,8 +347,8 @@ const RefrensHomepage = () => {
                                         <div>
                                             <h4 className="font-semibold mb-2">Free Tools</h4>
                                             {productsData.freeTools.map((item, idx) => (
-                                                <button 
-                                                    key={idx} 
+                                                <button
+                                                    key={idx}
                                                     onClick={() => {
                                                         if (item.route) {
                                                             setShowProductsDropdown(false);
@@ -350,8 +369,8 @@ const RefrensHomepage = () => {
                                         <div>
                                             <h4 className="font-semibold mb-2">Categories</h4>
                                             {productsData.categories.map((item, idx) => (
-                                                <button 
-                                                    key={idx} 
+                                                <button
+                                                    key={idx}
                                                     onClick={() => {
                                                         alert(`${item} - Coming Soon!`);
                                                         setShowProductsDropdown(false);
@@ -366,7 +385,7 @@ const RefrensHomepage = () => {
                                     </div>
                                 )}
 
-                                <button 
+                                <button
                                     onClick={() => {
                                         setShowPricingDropdown(!showPricingDropdown);
                                     }}
@@ -436,6 +455,12 @@ const RefrensHomepage = () => {
 
                 {/* CTA Buttons */}
                 <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-12 sm:mb-16 lg:mb-20 px-4">
+                    {/* <button
+                        onClick={() => window.location.href = '/'}
+                        className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white font-semibold rounded-xl transition-colors shadow-lg text-sm sm:text-base"
+                    >
+                        Home
+                    </button> */}
                     <button
                         onClick={() => window.location.href = '/templete'}
                         className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-purple-500 hover:bg-black text-white font-semibold rounded-xl transition-colors shadow-lg text-sm sm:text-base"
@@ -447,7 +472,7 @@ const RefrensHomepage = () => {
                         className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white/50 hover:bg-black-200 text-black-900 font-semibold rounded-xl border-2 border-black-200 transition-colors text-sm sm:text-base"
                     >
                         Get a Demo
-                    </button>   
+                    </button>
                 </div>
             </div>
         </div>

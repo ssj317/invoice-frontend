@@ -300,7 +300,7 @@ const HorizontalScrollWorkflow = () => {
 	};
 
 	return (
-		<div ref={sectionRef} className="min-h-[300vh] bg-gradient-to-br from-blue-100 via-white to-purple-200 sm:min-h-[400vh] md:min-h-[500vh] lg:min-h-[600vh] relative">
+		<div ref={sectionRef} className="min-h-[75vh] bg-gradient-to-br from-blue-100 via-white to-purple-200 sm:min-h-[400vh] md:min-h-[500vh] lg:min-h-[600vh] relative">
 			{/* Animated Background */}
 			<div className="fixed inset-0 overflow-hidden pointer-events-none">
 				<div
@@ -343,9 +343,8 @@ const HorizontalScrollWorkflow = () => {
 								}}
 							>
 								<div
-									className={`relative h-[400px] sm:h-[400px] md:h-[440px] lg:h-[440px] rounded-xl md:rounded-2xl overflow-hidden border border-gray-200 hover:border-gray-300 transition-all duration-500 group-hover:scale-105 group-hover:shadow-2xl ${
-										tool.featured ? 'ring-2 ring-purple-300' : ''
-									}`}
+									className={`relative h-[400px] sm:h-[400px] md:h-[440px] lg:h-[440px] rounded-xl md:rounded-2xl overflow-hidden border border-gray-200 hover:border-gray-300 transition-all duration-500 group-hover:scale-105 group-hover:shadow-2xl ${tool.featured ? 'ring-2 ring-purple-300' : ''
+										}`}
 								>
 									{/* <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div> */}
 
