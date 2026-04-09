@@ -625,6 +625,7 @@ import { useAppDispatch, useAppSelector } from '@/store';
 import { loginStart, loginFailure } from '@/store/authSlice';
 import { authService } from '@/services/authService';
 import OtpStep from '@/components/OtpStep';
+import LandingNavbar from '@/components/LandingNavbar';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -661,74 +662,80 @@ const Login = () => {
 
     if (step === 'otp') {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-50 flex items-center justify-center p-4">
-                <div className="max-w-md w-full">
-                    <div className="text-center mb-8">
-                        <h1 className="text-4xl font-bold text-purple-600 mb-2">Invoice Pro</h1>
-                        <p className="text-gray-600">Verify your identity</p>
+            <>
+                <LandingNavbar />
+                <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-50 flex items-center justify-center p-4">
+                    <div className="max-w-md w-full">
+                        <div className="text-center mb-8">
+                            <h1 className="text-4xl font-bold text-purple-600 mb-2">Invoice Pro</h1>
+                            <p className="text-gray-600">Verify your identity</p>
+                        </div>
+                        <OtpStep email={otpEmail} onBack={() => setStep('email')} redirectTo={from} />
                     </div>
-                    <OtpStep email={otpEmail} onBack={() => setStep('email')} redirectTo={from} />
                 </div>
-            </div>
+            </>
         );
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-50 flex items-center justify-center p-4">
-            <div className="max-w-md w-full">
-                <div className="text-center mb-8">
-                    <h1 className="text-4xl font-bold text-purple-600 mb-2">Invoice Pro</h1>
-                    <p className="text-gray-600">Sign in to your account</p>
-                </div>
+        <>
+            <LandingNavbar />
+            <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-50 flex items-center justify-center p-4">
+                <div className="max-w-md w-full">
+                    <div className="text-center mb-8">
+                        <h1 className="text-4xl font-bold text-purple-600 mb-2">Invoice Pro</h1>
+                        <p className="text-gray-600">Sign in to your account</p>
+                    </div>
 
-                <div className="bg-white rounded-xl shadow-lg border border-purple-100 p-8">
-                    {from !== '/Dashboard' && (
-                        <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                            <p className="text-sm text-blue-800">Please login to continue to your requested page</p>
-                        </div>
-                    )}
-
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                        {error && (
-                            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">{error}</div>
+                    <div className="bg-white rounded-xl shadow-lg border border-purple-100 p-8">
+                        {from !== '/Dashboard' && (
+                            <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                                <p className="text-sm text-blue-800">Please login to continue to your requested page</p>
+                            </div>
                         )}
 
-                        <div>
-                            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                            <div className="relative">
-                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <Mail className="h-5 w-5 text-gray-400" />
+                        <form onSubmit={handleSubmit} className="space-y-6">
+                            {error && (
+                                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">{error}</div>
+                            )}
+
+                            <div>
+                                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                                <div className="relative">
+                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <Mail className="h-5 w-5 text-gray-400" />
+                                    </div>
+                                    <input
+                                        id="email"
+                                        type="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        className={`block w-full pl-10 pr-3 py-3 border ${emailError ? 'border-red-300' : 'border-gray-300'} rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all`}
+                                        placeholder="you@example.com"
+                                    />
                                 </div>
-                                <input
-                                    id="email"
-                                    type="email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    className={`block w-full pl-10 pr-3 py-3 border ${emailError ? 'border-red-300' : 'border-gray-300'} rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all`}
-                                    placeholder="you@example.com"
-                                />
+                                {emailError && <p className="mt-1 text-sm text-red-600">{emailError}</p>}
                             </div>
-                            {emailError && <p className="mt-1 text-sm text-red-600">{emailError}</p>}
-                        </div>
 
-                        <button
-                            type="submit"
-                            disabled={loading}
-                            className="w-full bg-purple-600 text-white py-3 px-4 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all font-medium shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
-                        >
-                            {loading ? 'Sending OTP...' : 'Continue with Email'}
-                        </button>
-                    </form>
+                            <button
+                                type="submit"
+                                disabled={loading}
+                                className="w-full bg-purple-600 text-white py-3 px-4 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all font-medium shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                {loading ? 'Sending OTP...' : 'Continue with Email'}
+                            </button>
+                        </form>
 
-                    <p className="mt-6 text-center text-sm text-gray-600">
-                        Don't have an account?{' '}
-                        <Link to="/signup" state={{ from: location.state?.from }} className="font-medium text-purple-600 hover:text-purple-700 transition-colors">
-                            Sign up for free
-                        </Link>
-                    </p>
+                        <p className="mt-6 text-center text-sm text-gray-600">
+                            Don't have an account?{' '}
+                            <Link to="/signup" state={{ from: location.state?.from }} className="font-medium text-purple-600 hover:text-purple-700 transition-colors">
+                                Sign up for free
+                            </Link>
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 
