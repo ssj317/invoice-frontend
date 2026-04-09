@@ -1,11 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
-import { ChevronDown, Menu, X } from 'lucide-react';
+import { ChevronDown, Menu, X, Sparkles, Bell } from 'lucide-react';
 
 const RefrensHomepage = () => {
     const [showProductsDropdown, setShowProductsDropdown] = useState(false);
     const [showCountryDropdown, setShowCountryDropdown] = useState(false);
     const [showPricingDropdown, setShowPricingDropdown] = useState(false);
     const [showMobileMenu, setShowMobileMenu] = useState(false);
+    const [showComingSoonModal, setShowComingSoonModal] = useState(false);
+    const [comingSoonFeature, setComingSoonFeature] = useState('');
     const [displayText, setDisplayText] = useState('');
     const [isDeleting, setIsDeleting] = useState(false);
     const [textIndex, setTextIndex] = useState(0);
@@ -69,6 +71,13 @@ const RefrensHomepage = () => {
         if (businessSection) {
             businessSection.scrollIntoView({ behavior: 'smooth' });
         }
+    };
+
+    const handleComingSoon = (featureName: string) => {
+        setComingSoonFeature(featureName);
+        setShowComingSoonModal(true);
+        setShowProductsDropdown(false);
+        setShowMobileMenu(false);
     };
 
     const productsData = {
@@ -146,10 +155,7 @@ const RefrensHomepage = () => {
                                                         {productsData.solutions.map((item, idx) => (
                                                             <li key={idx}>
                                                                 <button
-                                                                    onClick={() => {
-                                                                        alert(`${item} - Coming Soon!`);
-                                                                        setShowProductsDropdown(false);
-                                                                    }}
+                                                                    onClick={() => handleComingSoon(item)}
                                                                     className="text-left text-black-700 hover:text-red-600 transition-colors w-full text-md"
                                                                 >
                                                                     {item}
@@ -169,8 +175,7 @@ const RefrensHomepage = () => {
                                                                             setShowProductsDropdown(false);
                                                                             window.location.href = item.route;
                                                                         } else {
-                                                                            alert(`${item.name} - Coming Soon!`);
-                                                                            setShowProductsDropdown(false);
+                                                                            handleComingSoon(item.name);
                                                                         }
                                                                     }}
                                                                     className="text-left text-black-700 hover:text-red-600 transition-colors w-full text-md"
@@ -187,10 +192,7 @@ const RefrensHomepage = () => {
                                                         {productsData.categories.map((item, idx) => (
                                                             <li key={idx}>
                                                                 <button
-                                                                    onClick={() => {
-                                                                        alert(`${item} - Coming Soon!`);
-                                                                        setShowProductsDropdown(false);
-                                                                    }}
+                                                                    onClick={() => handleComingSoon(item)}
                                                                     className="text-left w-full text-black-700 hover:text-red-600 transition-colors text-md"
                                                                 >
                                                                     {item}
@@ -333,11 +335,7 @@ const RefrensHomepage = () => {
                                             {productsData.solutions.map((item, idx) => (
                                                 <button
                                                     key={idx}
-                                                    onClick={() => {
-                                                        alert(`${item} - Coming Soon!`);
-                                                        setShowProductsDropdown(false);
-                                                        setShowMobileMenu(false);
-                                                    }}
+                                                    onClick={() => handleComingSoon(item)}
                                                     className="block py-1 text-black-600 hover:text-red-600 text-left w-full"
                                                 >
                                                     {item}
@@ -355,9 +353,7 @@ const RefrensHomepage = () => {
                                                             setShowMobileMenu(false);
                                                             window.location.href = item.route;
                                                         } else {
-                                                            alert(`${item.name} - Coming Soon!`);
-                                                            setShowProductsDropdown(false);
-                                                            setShowMobileMenu(false);
+                                                            handleComingSoon(item.name);
                                                         }
                                                     }}
                                                     className="block py-1 text-black-600 hover:text-red-600 text-left w-full"
@@ -371,11 +367,7 @@ const RefrensHomepage = () => {
                                             {productsData.categories.map((item, idx) => (
                                                 <button
                                                     key={idx}
-                                                    onClick={() => {
-                                                        alert(`${item} - Coming Soon!`);
-                                                        setShowProductsDropdown(false);
-                                                        setShowMobileMenu(false);
-                                                    }}
+                                                    onClick={() => handleComingSoon(item)}
                                                     className="block py-1 text-black-600 hover:text-red-600 text-left w-full"
                                                 >
                                                     {item}
@@ -475,6 +467,74 @@ const RefrensHomepage = () => {
                     </button>
                 </div>
             </div>
+
+            {/* Coming Soon Modal */}
+            {showComingSoonModal && (
+                <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[200] flex items-center justify-center p-4 animate-fadeIn">
+                    <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 sm:p-8 relative animate-slideUp">
+                        {/* Close Button */}
+                        <button
+                            onClick={() => setShowComingSoonModal(false)}
+                            className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+                        >
+                            <X className="w-6 h-6" />
+                        </button>
+
+                        {/* Icon */}
+                        <div className="flex justify-center mb-4">
+                            <div className="relative">
+                                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center animate-pulse">
+                                    <Sparkles className="w-8 h-8 text-white" />
+                                </div>
+                                <div className="absolute -top-1 -right-1">
+                                    <Bell className="w-6 h-6 text-yellow-400 animate-bounce" />
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Title */}
+                        <h3 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-2">
+                            Coming Soon!
+                        </h3>
+
+                        {/* Feature Name */}
+                        <div className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-4 mb-4">
+                            <p className="text-center text-purple-700 font-semibold text-lg">
+                                {comingSoonFeature}
+                            </p>
+                        </div>
+
+                        {/* Description */}
+                        <p className="text-center text-gray-600 mb-6">
+                            We're working hard to bring you this amazing feature. Stay tuned for updates!
+                        </p>
+
+                        {/* Notify Me Section */}
+                        <div className="bg-gray-50 rounded-xl p-4 mb-6">
+                            <p className="text-sm text-gray-700 text-center mb-3">
+                                Want to be notified when this feature launches?
+                            </p>
+                            <button
+                                onClick={() => {
+                                    setShowComingSoonModal(false);
+                                    window.location.href = '/signup';
+                                }}
+                                className="w-full bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white font-semibold py-3 px-6 rounded-xl transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                            >
+                                Notify Me
+                            </button>
+                        </div>
+
+                        {/* Close Button */}
+                        <button
+                            onClick={() => setShowComingSoonModal(false)}
+                            className="w-full text-gray-500 hover:text-gray-700 font-medium py-2 transition-colors"
+                        >
+                            Maybe Later
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
