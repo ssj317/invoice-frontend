@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAppDispatch } from '../../../store';
 import { updateInvoiceData } from '../../../store/invoiceSlice';
+import { Plus, Trash2 } from 'lucide-react';
 
 const Agreement = () => {
     const dispatch = useAppDispatch();
@@ -69,6 +70,70 @@ const Agreement = () => {
         window.dispatchEvent(event);
     };
 
+    const handleAddPaymentTerm = () => {
+        setFormData(prev => ({
+            ...prev,
+            paymentTerms: [...prev.paymentTerms, 'New payment term']
+        }));
+    };
+
+    const handleRemovePaymentTerm = (index: number) => {
+        if (formData.paymentTerms.length > 1) {
+            setFormData(prev => ({
+                ...prev,
+                paymentTerms: prev.paymentTerms.filter((_, i) => i !== index)
+            }));
+        }
+    };
+
+    const handleAddRevisionContent = () => {
+        setFormData(prev => ({
+            ...prev,
+            revisionsContent: [...prev.revisionsContent, 'New revision policy']
+        }));
+    };
+
+    const handleRemoveRevisionContent = (index: number) => {
+        if (formData.revisionsContent.length > 1) {
+            setFormData(prev => ({
+                ...prev,
+                revisionsContent: prev.revisionsContent.filter((_, i) => i !== index)
+            }));
+        }
+    };
+
+    const handleAddSupportContent = () => {
+        setFormData(prev => ({
+            ...prev,
+            supportContent: [...prev.supportContent, 'New support policy']
+        }));
+    };
+
+    const handleRemoveSupportContent = (index: number) => {
+        if (formData.supportContent.length > 1) {
+            setFormData(prev => ({
+                ...prev,
+                supportContent: prev.supportContent.filter((_, i) => i !== index)
+            }));
+        }
+    };
+
+    const handleAddIpContent = () => {
+        setFormData(prev => ({
+            ...prev,
+            ipContent: [...prev.ipContent, 'New IP policy']
+        }));
+    };
+
+    const handleRemoveIpContent = (index: number) => {
+        if (formData.ipContent.length > 1) {
+            setFormData(prev => ({
+                ...prev,
+                ipContent: prev.ipContent.filter((_, i) => i !== index)
+            }));
+        }
+    };
+
     return (
         <div className="bg-gray-50 min-h-screen py-8">
             <div className="max-w-[210mm] mx-auto bg-white shadow-lg">
@@ -84,19 +149,111 @@ const Agreement = () => {
                         <textarea value={formData.timelineContent} onChange={(e) => handleInputChange('timelineContent', e.target.value)} rows={3} className="w-full px-2 py-1 border border-orange-300 rounded focus:ring-2 focus:ring-orange-500 bg-orange-50" />
                         <input type="text" value={formData.paymentTitle} onChange={(e) => handleInputChange('paymentTitle', e.target.value)} className="w-full px-2 py-1 border-2 border-orange-300 rounded focus:ring-2 focus:ring-orange-500 bg-orange-50 font-bold" />
                         <div className="flex gap-2"><span>Cost:</span><input type="text" value={formData.paymentCost} onChange={(e) => handleInputChange('paymentCost', e.target.value)} className="w-32 px-2 py-1 border-2 border-orange-300 rounded bg-orange-50" /></div>
-                        {formData.paymentTerms.map((term, i) => <textarea key={i} value={term} onChange={(e) => handleArrayInputChange('paymentTerms', i, e.target.value)} rows={2} className="w-full px-2 py-1 border border-orange-300 rounded bg-orange-50" />)}
+                        <div className="flex justify-end mb-2">
+                            <button
+                                type="button"
+                                onClick={handleAddPaymentTerm}
+                                className="flex items-center gap-1 px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-sm"
+                            >
+                                <Plus size={16} /> Add Term
+                            </button>
+                        </div>
+                        {formData.paymentTerms.map((term, i) => (
+                            <div key={i} className="flex gap-2 items-start">
+                                <textarea value={term} onChange={(e) => handleArrayInputChange('paymentTerms', i, e.target.value)} rows={2} className="flex-1 px-2 py-1 border border-orange-300 rounded bg-orange-50" />
+                                {formData.paymentTerms.length > 1 && (
+                                    <button
+                                        type="button"
+                                        onClick={() => handleRemovePaymentTerm(i)}
+                                        className="p-1 bg-red-500 text-white rounded hover:bg-red-600"
+                                        title="Remove Term"
+                                    >
+                                        <Trash2 size={16} />
+                                    </button>
+                                )}
+                            </div>
+                        ))}
                         <input type="text" value={formData.paymentNote} onChange={(e) => handleInputChange('paymentNote', e.target.value)} className="w-full px-2 py-1 border border-orange-300 rounded bg-orange-50" />
                         <input type="text" value={formData.revisionsTitle} onChange={(e) => handleInputChange('revisionsTitle', e.target.value)} className="w-full px-2 py-1 border-2 border-orange-300 rounded bg-orange-50 font-bold" />
-                        {formData.revisionsContent.map((item, i) => <textarea key={i} value={item} onChange={(e) => handleArrayInputChange('revisionsContent', i, e.target.value)} rows={2} className="w-full px-2 py-1 border border-orange-300 rounded bg-orange-50" />)}
+                        <div className="flex justify-end mb-2">
+                            <button
+                                type="button"
+                                onClick={handleAddRevisionContent}
+                                className="flex items-center gap-1 px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-sm"
+                            >
+                                <Plus size={16} /> Add Policy
+                            </button>
+                        </div>
+                        {formData.revisionsContent.map((item, i) => (
+                            <div key={i} className="flex gap-2 items-start">
+                                <textarea value={item} onChange={(e) => handleArrayInputChange('revisionsContent', i, e.target.value)} rows={2} className="flex-1 px-2 py-1 border border-orange-300 rounded bg-orange-50" />
+                                {formData.revisionsContent.length > 1 && (
+                                    <button
+                                        type="button"
+                                        onClick={() => handleRemoveRevisionContent(i)}
+                                        className="p-1 bg-red-500 text-white rounded hover:bg-red-600"
+                                        title="Remove Policy"
+                                    >
+                                        <Trash2 size={16} />
+                                    </button>
+                                )}
+                            </div>
+                        ))}
                     </div>
                 </div>
                 <div className="p-10 border-4 border-purple-500 mt-8">
                     <h2 className="text-2xl font-bold text-purple-600 mb-6 text-center">📄 PAGE 2 - EDIT MODE</h2>
                     <div className="space-y-4 text-[13px]">
                         <input type="text" value={formData.supportTitle} onChange={(e) => handleInputChange('supportTitle', e.target.value)} className="w-full px-2 py-1 border-2 border-purple-300 rounded bg-purple-50 font-bold" />
-                        {formData.supportContent.map((item, i) => <textarea key={i} value={item} onChange={(e) => handleArrayInputChange('supportContent', i, e.target.value)} rows={2} className="w-full px-2 py-1 border border-purple-300 rounded bg-purple-50" />)}
+                        <div className="flex justify-end mb-2">
+                            <button
+                                type="button"
+                                onClick={handleAddSupportContent}
+                                className="flex items-center gap-1 px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-sm"
+                            >
+                                <Plus size={16} /> Add Policy
+                            </button>
+                        </div>
+                        {formData.supportContent.map((item, i) => (
+                            <div key={i} className="flex gap-2 items-start">
+                                <textarea value={item} onChange={(e) => handleArrayInputChange('supportContent', i, e.target.value)} rows={2} className="flex-1 px-2 py-1 border border-purple-300 rounded bg-purple-50" />
+                                {formData.supportContent.length > 1 && (
+                                    <button
+                                        type="button"
+                                        onClick={() => handleRemoveSupportContent(i)}
+                                        className="p-1 bg-red-500 text-white rounded hover:bg-red-600"
+                                        title="Remove Policy"
+                                    >
+                                        <Trash2 size={16} />
+                                    </button>
+                                )}
+                            </div>
+                        ))}
                         <input type="text" value={formData.ipTitle} onChange={(e) => handleInputChange('ipTitle', e.target.value)} className="w-full px-2 py-1 border-2 border-purple-300 rounded bg-purple-50 font-bold" />
-                        {formData.ipContent.map((item, i) => <textarea key={i} value={item} onChange={(e) => handleArrayInputChange('ipContent', i, e.target.value)} rows={2} className="w-full px-2 py-1 border border-purple-300 rounded bg-purple-50" />)}
+                        <div className="flex justify-end mb-2">
+                            <button
+                                type="button"
+                                onClick={handleAddIpContent}
+                                className="flex items-center gap-1 px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-sm"
+                            >
+                                <Plus size={16} /> Add Policy
+                            </button>
+                        </div>
+                        {formData.ipContent.map((item, i) => (
+                            <div key={i} className="flex gap-2 items-start">
+                                <textarea value={item} onChange={(e) => handleArrayInputChange('ipContent', i, e.target.value)} rows={2} className="flex-1 px-2 py-1 border border-purple-300 rounded bg-purple-50" />
+                                {formData.ipContent.length > 1 && (
+                                    <button
+                                        type="button"
+                                        onClick={() => handleRemoveIpContent(i)}
+                                        className="p-1 bg-red-500 text-white rounded hover:bg-red-600"
+                                        title="Remove Policy"
+                                    >
+                                        <Trash2 size={16} />
+                                    </button>
+                                )}
+                            </div>
+                        ))}
                         <input type="text" value={formData.confidentialityTitle} onChange={(e) => handleInputChange('confidentialityTitle', e.target.value)} className="w-full px-2 py-1 border-2 border-purple-300 rounded bg-purple-50 font-bold" />
                         <textarea value={formData.confidentialityContent} onChange={(e) => handleInputChange('confidentialityContent', e.target.value)} rows={2} className="w-full px-2 py-1 border border-purple-300 rounded bg-purple-50" />
                         <input type="text" value={formData.liabilityTitle} onChange={(e) => handleInputChange('liabilityTitle', e.target.value)} className="w-full px-2 py-1 border-2 border-purple-300 rounded bg-purple-50 font-bold" />

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAppDispatch } from '../../../store';
 import { updateInvoiceData } from '../../../store/invoiceSlice';
+import { Plus, Trash2 } from 'lucide-react';
 
 const TaxInvoice = () => {
     const dispatch = useAppDispatch();
@@ -67,6 +68,34 @@ const TaxInvoice = () => {
                 i === itemIndex ? { ...item, rate: { ...item.rate, [rateField]: value } } : item
             )
         }));
+    };
+
+    const handleAddItem = () => {
+        setFormData(prev => ({
+            ...prev,
+            items: [...prev.items, {
+                sr: String(prev.items.length + 1),
+                description: 'New Service',
+                rate: {
+                    lumpsum: '0/-',
+                    totalRs: '0=00',
+                    gst: '0=00',
+                    totalAmount: '0=00'
+                }
+            }]
+        }));
+    };
+
+    const handleRemoveItem = (index: number) => {
+        if (formData.items.length > 1) {
+            setFormData(prev => ({
+                ...prev,
+                items: prev.items.filter((_, i) => i !== index).map((item, i) => ({
+                    ...item,
+                    sr: String(i + 1)
+                }))
+            }));
+        }
     };
 
     const handleSaveAndContinue = () => {
@@ -231,7 +260,16 @@ const TaxInvoice = () => {
 
                     {/* Items Table */}
                     <div className="mb-6">
-                        <h3 className="font-bold text-blue-700 mb-3">Items</h3>
+                        <div className="flex justify-between items-center mb-3">
+                            <h3 className="font-bold text-blue-700">Items</h3>
+                            <button
+                                type="button"
+                                onClick={handleAddItem}
+                                className="flex items-center gap-1 px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-sm"
+                            >
+                                <Plus size={16} /> Add Item
+                            </button>
+                        </div>
                         <table className="w-full border-2 border-gray-900">
                             <thead>
                                 <tr className="bg-gray-100">
@@ -244,7 +282,19 @@ const TaxInvoice = () => {
                             <tbody>
                                 {formData.items.map((item, index) => (
                                     <tr key={index}>
-                                        <td className="border-2 border-gray-900 p-2 text-center">{item.sr}</td>
+                                        <td className="border-2 border-gray-900 p-2 text-center relative">
+                                            {item.sr}
+                                            {formData.items.length > 1 && (
+                                                <button
+                                                    type="button"
+                                                    onClick={() => handleRemoveItem(index)}
+                                                    className="absolute top-1 right-1 p-1 bg-red-500 text-white rounded hover:bg-red-600"
+                                                    title="Remove Item"
+                                                >
+                                                    <Trash2 size={12} />
+                                                </button>
+                                            )}
+                                        </td>
                                         <td className="border-2 border-gray-900 p-2">
                                             <input
                                                 type="text"

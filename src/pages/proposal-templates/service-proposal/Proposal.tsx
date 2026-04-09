@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAppDispatch } from '../../../store';
 import { updateInvoiceData } from '../../../store/invoiceSlice';
+import { Plus, Trash2 } from 'lucide-react';
 
 const Proposal = () => {
     const dispatch = useAppDispatch();
@@ -84,13 +85,65 @@ const Proposal = () => {
         window.dispatchEvent(event);
     };
 
+    const handleAddScopeItem = () => {
+        setFormData(prev => ({
+            ...prev,
+            projectScopeItems: [...prev.projectScopeItems, {
+                service: 'New Service',
+                description: 'Service description',
+                cost: 'Included'
+            }]
+        }));
+    };
+
+    const handleRemoveScopeItem = (index: number) => {
+        if (formData.projectScopeItems.length > 1) {
+            setFormData(prev => ({
+                ...prev,
+                projectScopeItems: prev.projectScopeItems.filter((_, i) => i !== index)
+            }));
+        }
+    };
+
+    const handleAddWebsiteStructure = () => {
+        setFormData(prev => ({
+            ...prev,
+            websiteStructure: [...prev.websiteStructure, 'New Page - Description']
+        }));
+    };
+
+    const handleRemoveWebsiteStructure = (index: number) => {
+        if (formData.websiteStructure.length > 1) {
+            setFormData(prev => ({
+                ...prev,
+                websiteStructure: prev.websiteStructure.filter((_, i) => i !== index)
+            }));
+        }
+    };
+
+    const handleAddMaintenanceService = () => {
+        setFormData(prev => ({
+            ...prev,
+            maintenanceServices: [...prev.maintenanceServices, 'New Service - Description']
+        }));
+    };
+
+    const handleRemoveMaintenanceService = (index: number) => {
+        if (formData.maintenanceServices.length > 1) {
+            setFormData(prev => ({
+                ...prev,
+                maintenanceServices: prev.maintenanceServices.filter((_, i) => i !== index)
+            }));
+        }
+    };
+
     return (
         <div className="bg-gray-50 min-h-screen py-8">
             <div className="max-w-[210mm] mx-auto bg-white shadow-lg">
                 {/* Page 1 - Project Scope */}
                 <div className="p-10 border-4 border-blue-500">
                     <h2 className="text-2xl font-bold text-blue-600 mb-6 text-center">📄 PAGE 1: PROJECT SCOPE - EDIT MODE</h2>
-                    
+
                     <div className="space-y-4 text-[13px]">
                         <div className="flex gap-2 items-start">
                             <span className="text-gray-800 whitespace-nowrap">Date:</span>
@@ -152,6 +205,16 @@ const Proposal = () => {
 
                         {/* Project Scope Table */}
                         <div className="mt-4">
+                            <div className="flex justify-between items-center mb-2">
+                                <span className="font-semibold">Project Scope Items:</span>
+                                <button
+                                    type="button"
+                                    onClick={handleAddScopeItem}
+                                    className="flex items-center gap-1 px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-sm"
+                                >
+                                    <Plus size={16} /> Add Item
+                                </button>
+                            </div>
                             <table className="w-full border-2 border-gray-900">
                                 <thead>
                                     <tr className="bg-gray-100">
@@ -163,13 +226,23 @@ const Proposal = () => {
                                 <tbody>
                                     {formData.projectScopeItems.map((item, index) => (
                                         <tr key={index}>
-                                            <td className="border-2 border-gray-900 p-2">
+                                            <td className="border-2 border-gray-900 p-2 relative">
                                                 <input
                                                     type="text"
                                                     value={item.service}
                                                     onChange={(e) => handleTableInputChange(index, 'service', e.target.value)}
                                                     className="w-full px-2 py-1 border border-blue-300 rounded focus:ring-2 focus:ring-blue-500 bg-blue-50"
                                                 />
+                                                {formData.projectScopeItems.length > 1 && (
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => handleRemoveScopeItem(index)}
+                                                        className="absolute top-1 right-1 p-1 bg-red-500 text-white rounded hover:bg-red-600"
+                                                        title="Remove Item"
+                                                    >
+                                                        <Trash2 size={12} />
+                                                    </button>
+                                                )}
                                             </td>
                                             <td className="border-2 border-gray-900 p-2">
                                                 <textarea
@@ -201,15 +274,35 @@ const Proposal = () => {
                                 onChange={(e) => handleInputChange('websiteStructureTitle', e.target.value)}
                                 className="w-full px-2 py-1 border-2 border-blue-300 rounded focus:ring-2 focus:ring-blue-500 bg-blue-50 font-bold mb-3"
                             />
+                            <div className="flex justify-end mb-2">
+                                <button
+                                    type="button"
+                                    onClick={handleAddWebsiteStructure}
+                                    className="flex items-center gap-1 px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-sm"
+                                >
+                                    <Plus size={16} /> Add Page
+                                </button>
+                            </div>
                             <div className="space-y-2">
                                 {formData.websiteStructure.map((item, index) => (
-                                    <input
-                                        key={index}
-                                        type="text"
-                                        value={item}
-                                        onChange={(e) => handleArrayInputChange('websiteStructure', index, e.target.value)}
-                                        className="w-full px-2 py-1 border border-blue-300 rounded focus:ring-2 focus:ring-blue-500 bg-blue-50"
-                                    />
+                                    <div key={index} className="flex gap-2 items-center">
+                                        <input
+                                            type="text"
+                                            value={item}
+                                            onChange={(e) => handleArrayInputChange('websiteStructure', index, e.target.value)}
+                                            className="flex-1 px-2 py-1 border border-blue-300 rounded focus:ring-2 focus:ring-blue-500 bg-blue-50"
+                                        />
+                                        {formData.websiteStructure.length > 1 && (
+                                            <button
+                                                type="button"
+                                                onClick={() => handleRemoveWebsiteStructure(index)}
+                                                className="p-1 bg-red-500 text-white rounded hover:bg-red-600"
+                                                title="Remove Page"
+                                            >
+                                                <Trash2 size={16} />
+                                            </button>
+                                        )}
+                                    </div>
                                 ))}
                             </div>
                         </div>
@@ -219,7 +312,7 @@ const Proposal = () => {
                 {/* Page 2 - Maintenance Package */}
                 <div className="p-10 border-4 border-green-500 mt-8">
                     <h2 className="text-2xl font-bold text-green-600 mb-6 text-center">📄 PAGE 2: MAINTENANCE PACKAGE - EDIT MODE</h2>
-                    
+
                     <div className="space-y-4 text-[13px]">
                         <div>
                             <input
@@ -239,6 +332,16 @@ const Proposal = () => {
                             />
                         </div>
 
+                        <div className="flex justify-end mb-2">
+                            <button
+                                type="button"
+                                onClick={handleAddMaintenanceService}
+                                className="flex items-center gap-1 px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-sm"
+                            >
+                                <Plus size={16} /> Add Service
+                            </button>
+                        </div>
+
                         <div className="space-y-2">
                             {formData.maintenanceServices.map((service, index) => (
                                 <div key={index} className="flex items-start gap-2">
@@ -249,6 +352,16 @@ const Proposal = () => {
                                         onChange={(e) => handleArrayInputChange('maintenanceServices', index, e.target.value)}
                                         className="flex-1 px-2 py-1 border border-green-300 rounded focus:ring-2 focus:ring-green-500 bg-green-50"
                                     />
+                                    {formData.maintenanceServices.length > 1 && (
+                                        <button
+                                            type="button"
+                                            onClick={() => handleRemoveMaintenanceService(index)}
+                                            className="p-1 bg-red-500 text-white rounded hover:bg-red-600"
+                                            title="Remove Service"
+                                        >
+                                            <Trash2 size={16} />
+                                        </button>
+                                    )}
                                 </div>
                             ))}
                         </div>

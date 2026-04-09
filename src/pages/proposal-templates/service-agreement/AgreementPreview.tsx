@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useAppSelector } from '../../../store';
 
 const AgreementPreview = () => {
@@ -48,6 +48,67 @@ const AgreementPreview = () => {
         signatureText: '[Signature]',
         signatureDate: 'Date: 18th Sep.25'
     };
+
+    // Split content into pages
+    const pages = useMemo(() => {
+        const paymentTerms = data.paymentTerms || [];
+        const revisions = data.revisionsContent || [];
+        const support = data.supportContent || [];
+        const ip = data.ipContent || [];
+
+        const result = [];
+        const maxPaymentTermsPage1 = 5;
+        const maxRevisionsPage1 = 6;
+        const maxSupportPerPage = 5;
+        const maxIpPerPage = 5;
+
+        // Page 1: Basic info + Scope + Timeline + Payment (first 5) + Revisions (first 6)
+        result.push({
+            type: 'page1',
+            paymentTerms: paymentTerms.slice(0, maxPaymentTermsPage1),
+            revisions: revisions.slice(0, maxRevisionsPage1)
+        });
+
+        // Additional pages for remaining payment/revisions
+        const remainingPaymentTerms = paymentTerms.slice(maxPaymentTermsPage1);
+        const remainingRevisions = revisions.slice(maxRevisionsPage1);
+
+        if (remainingPaymentTerms.length > 0 || remainingRevisions.length > 0) {
+            result.push({
+                type: 'continuation',
+                paymentTerms: remainingPaymentTerms,
+                revisions: remainingRevisions
+            });
+        }
+
+        // Support pages
+        for (let i = 0; i < support.length; i += maxSupportPerPage) {
+            const pageSupportItems = support.slice(i, i + maxSupportPerPage);
+            const isFirstSupportPage = i === 0;
+
+            result.push({
+                type: 'support',
+                supportItems: pageSupportItems,
+                showSupportHeader: isFirstSupportPage
+            });
+        }
+
+        // IP pages
+        for (let i = 0; i < ip.length; i += maxIpPerPage) {
+            const pageIpItems = ip.slice(i, i + maxIpPerPage);
+            const isFirstIpPage = i === 0;
+            const isLastIpPage = i + maxIpPerPage >= ip.length;
+
+            result.push({
+                type: 'ip',
+                ipItems: pageIpItems,
+                showIpHeader: isFirstIpPage,
+                showClosing: isLastIpPage
+            });
+        }
+
+        return result;
+    }, [data]);
 
     const Header = () => (
         <div>
@@ -112,88 +173,129 @@ const AgreementPreview = () => {
                     }
                 }
             `}</style>
-            <div className="page-container" style={{ width: '210mm', height: '297mm', position: 'relative', margin: '0 auto', backgroundColor: 'white', lineHeight: 'normal', fontSize: '14px' }}>
-                <Header />
-                <div className="px-10 py-6 text-sm" style={{ maxHeight: 'calc(297mm - 280px)', overflow: 'hidden', paddingTop: '24px' }}>
-                    <div className="mb-6">
-                        <p className="font-bold">Subject: {data.subject}</p>
-                    </div>
-                    <p className="mb-3">{data.greeting}</p>
-                    <p className="mb-6">{data.intro}</p>
-                    <div className="mb-5">
-                        <p className="font-bold mb-2">{data.scopeTitle}</p>
-                        <p>{data.scopeContent}</p>
-                    </div>
-                    <div className="mb-5">
-                        <p className="font-bold mb-2">{data.timelineTitle}</p>
-                        <p>{data.timelineContent}</p>
-                    </div>
-                    <div className="mb-5">
-                        <p className="font-bold mb-2">{data.paymentTitle}</p>
-                        <p className="mb-2">The total project cost is {data.paymentCost}/-. Payment will be made in the following installments:</p>
-                        <ul className="ml-4 space-y-1">
-                            {data.paymentTerms.map((t: string, i: number) => (
-                                <li key={i} className="flex gap-2"><span>•</span><span>{t}</span></li>
-                            ))}
-                        </ul>
-                        <p className="mt-2">{data.paymentNote}</p>
-                    </div>
-                    <div className="mb-5">
-                        <p className="font-bold mb-2">{data.revisionsTitle}</p>
-                        <ul className="ml-4 space-y-1">
-                            {data.revisionsContent.map((t: string, i: number) => (
-                                <li key={i} className="flex gap-2"><span>•</span><span>{t}</span></li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>
-                <Footer />
-            </div>
 
-            <div className="page-container" style={{ width: '210mm', height: '297mm', position: 'relative', margin: '0 auto', backgroundColor: 'white', lineHeight: 'normal', fontSize: '14px' }}>
-                <Header />
-                <div className="px-10 py-6 text-sm" style={{ maxHeight: 'calc(297mm - 280px)', overflow: 'hidden', paddingTop: '24px' }}>
-                    <div className="mb-5">
-                        <p className="font-bold mb-2">{data.supportTitle}</p>
-                        <ul className="ml-4 space-y-1">
-                            {data.supportContent.map((t: string, i: number) => (
-                                <li key={i} className="flex gap-2"><span>•</span><span>{t}</span></li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div className="mb-5">
-                        <p className="font-bold mb-2">{data.ipTitle}</p>
-                        <ul className="ml-4 space-y-1">
-                            {data.ipContent.map((t: string, i: number) => (
-                                <li key={i} className="flex gap-2"><span>•</span><span>{t}</span></li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div className="mb-5">
-                        <p className="font-bold mb-2">{data.confidentialityTitle}</p>
-                        <ul className="ml-4">
-                            <li className="flex gap-2"><span>•</span><span>{data.confidentialityContent}</span></li>
-                        </ul>
-                    </div>
-                    <div className="mb-6">
-                        <p className="font-bold mb-2">{data.liabilityTitle}</p>
-                        <ul className="ml-4">
-                            <li className="flex gap-2"><span>•</span><span>{data.liabilityContent}</span></li>
-                        </ul>
-                    </div>
-                    <div className="mb-8">
-                        <p className="font-bold mb-2">{data.acceptanceTitle}</p>
-                        <p>{data.acceptanceContent}</p>
-                    </div>
-                    <div className="mt-4">
-                        <p className="font-bold mb-6">{data.signatureLabel}</p>
-                        <p className="mb-2">{data.signatureName}</p>
-                        <p className="mb-4">{data.signatureText}</p>
-                        <p className="mt-4">{data.signatureDate}</p>
-                    </div>
+            {pages.map((page, pageIndex) => (
+                <div key={pageIndex} className="page-container" style={{ width: '210mm', height: '297mm', position: 'relative', margin: '0 auto', backgroundColor: 'white', lineHeight: 'normal', fontSize: '14px', overflow: 'hidden', marginBottom: pageIndex < pages.length - 1 ? '20px' : '0' }}>
+                    <Header />
+
+                    {page.type === 'page1' && (
+                        <div className="px-10 py-6 text-sm" style={{ paddingTop: '24px' }}>
+                            <div className="mb-6">
+                                <p className="font-bold">Subject: {data.subject}</p>
+                            </div>
+                            <p className="mb-3">{data.greeting}</p>
+                            <p className="mb-6">{data.intro}</p>
+                            <div className="mb-5">
+                                <p className="font-bold mb-2">{data.scopeTitle}</p>
+                                <p>{data.scopeContent}</p>
+                            </div>
+                            <div className="mb-5">
+                                <p className="font-bold mb-2">{data.timelineTitle}</p>
+                                <p>{data.timelineContent}</p>
+                            </div>
+                            <div className="mb-5">
+                                <p className="font-bold mb-2">{data.paymentTitle}</p>
+                                <p className="mb-2">The total project cost is {data.paymentCost}/-. Payment will be made in the following installments:</p>
+                                <ul className="ml-4 space-y-1">
+                                    {page.paymentTerms.map((t: string, i: number) => (
+                                        <li key={i} className="flex gap-2"><span>•</span><span>{t}</span></li>
+                                    ))}
+                                </ul>
+                                <p className="mt-2">{data.paymentNote}</p>
+                            </div>
+                            {page.revisions.length > 0 && (
+                                <div className="mb-5">
+                                    <p className="font-bold mb-2">{data.revisionsTitle}</p>
+                                    <ul className="ml-4 space-y-1">
+                                        {page.revisions.map((t: string, i: number) => (
+                                            <li key={i} className="flex gap-2"><span>•</span><span>{t}</span></li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                        </div>
+                    )}
+
+                    {page.type === 'continuation' && (
+                        <div className="px-10 py-6 text-sm" style={{ paddingTop: '40px' }}>
+                            {page.paymentTerms.length > 0 && (
+                                <div className="mb-5">
+                                    <p className="font-bold mb-2">{data.paymentTitle} (Continued)</p>
+                                    <ul className="ml-4 space-y-1">
+                                        {page.paymentTerms.map((t: string, i: number) => (
+                                            <li key={i} className="flex gap-2"><span>•</span><span>{t}</span></li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                            {page.revisions.length > 0 && (
+                                <div className="mb-5">
+                                    <p className="font-bold mb-2">{data.revisionsTitle} (Continued)</p>
+                                    <ul className="ml-4 space-y-1">
+                                        {page.revisions.map((t: string, i: number) => (
+                                            <li key={i} className="flex gap-2"><span>•</span><span>{t}</span></li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                        </div>
+                    )}
+
+                    {page.type === 'support' && (
+                        <div className="px-10 py-6 text-sm" style={{ paddingTop: '40px' }}>
+                            {page.showSupportHeader && (
+                                <p className="font-bold mb-2">{data.supportTitle}</p>
+                            )}
+                            <ul className="ml-4 space-y-1">
+                                {page.supportItems.map((t: string, i: number) => (
+                                    <li key={i} className="flex gap-2"><span>•</span><span>{t}</span></li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+
+                    {page.type === 'ip' && (
+                        <div className="px-10 py-6 text-sm" style={{ paddingTop: '40px' }}>
+                            {page.showIpHeader && (
+                                <p className="font-bold mb-2">{data.ipTitle}</p>
+                            )}
+                            <ul className="ml-4 space-y-1 mb-5">
+                                {page.ipItems.map((t: string, i: number) => (
+                                    <li key={i} className="flex gap-2"><span>•</span><span>{t}</span></li>
+                                ))}
+                            </ul>
+                            {page.showClosing && (
+                                <>
+                                    <div className="mb-5">
+                                        <p className="font-bold mb-2">{data.confidentialityTitle}</p>
+                                        <ul className="ml-4">
+                                            <li className="flex gap-2"><span>•</span><span>{data.confidentialityContent}</span></li>
+                                        </ul>
+                                    </div>
+                                    <div className="mb-6">
+                                        <p className="font-bold mb-2">{data.liabilityTitle}</p>
+                                        <ul className="ml-4">
+                                            <li className="flex gap-2"><span>•</span><span>{data.liabilityContent}</span></li>
+                                        </ul>
+                                    </div>
+                                    <div className="mb-8">
+                                        <p className="font-bold mb-2">{data.acceptanceTitle}</p>
+                                        <p>{data.acceptanceContent}</p>
+                                    </div>
+                                    <div className="mt-4">
+                                        <p className="font-bold mb-6">{data.signatureLabel}</p>
+                                        <p className="mb-2">{data.signatureName}</p>
+                                        <p className="mb-4">{data.signatureText}</p>
+                                        <p className="mt-4">{data.signatureDate}</p>
+                                    </div>
+                                </>
+                            )}
+                        </div>
+                    )}
+
+                    <Footer />
                 </div>
-                <Footer />
-            </div>
+            ))}
         </div>
     );
 };

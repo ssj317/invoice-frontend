@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useAppSelector } from '../../../store';
 
 const ProposalPreview = () => {
@@ -41,6 +41,55 @@ const ProposalPreview = () => {
         closingMessage: 'Please let us know if you have any queries or would like to proceed. We\'re excited to build something impactful and lasting for your business.',
         signature: 'Warm regards,\nElite8 Digital\n+91 62608 9497\ncontact@elite8digital.in\nwww.elite8digital.in'
     };
+
+    // Split content into pages
+    const pages = useMemo(() => {
+        const scopeItems = proposalData.projectScopeItems || [];
+        const structureItems = proposalData.websiteStructure || [];
+        const maintenanceItems = proposalData.maintenanceServices || [];
+
+        const result = [];
+        const maxScopePerPage = 4;
+        const maxStructurePerPage = 8;
+        const maxMaintenancePerPage = 8;
+
+        // Page 1: Basic info + first batch of scope items + first batch of structure
+        result.push({
+            type: 'page1',
+            scopeItems: scopeItems.slice(0, maxScopePerPage),
+            structureItems: structureItems.slice(0, maxStructurePerPage)
+        });
+
+        // Additional pages for remaining scope/structure items
+        let scopeIndex = maxScopePerPage;
+        let structureIndex = maxStructurePerPage;
+
+        while (scopeIndex < scopeItems.length || structureIndex < structureItems.length) {
+            result.push({
+                type: 'continuation',
+                scopeItems: scopeItems.slice(scopeIndex, scopeIndex + maxScopePerPage),
+                structureItems: structureItems.slice(structureIndex, structureIndex + maxStructurePerPage)
+            });
+            scopeIndex += maxScopePerPage;
+            structureIndex += maxStructurePerPage;
+        }
+
+        // Maintenance pages
+        for (let i = 0; i < maintenanceItems.length; i += maxMaintenancePerPage) {
+            const pageMaintenanceItems = maintenanceItems.slice(i, i + maxMaintenancePerPage);
+            const isFirstMaintenancePage = i === 0;
+            const isLastMaintenancePage = i + maxMaintenancePerPage >= maintenanceItems.length;
+
+            result.push({
+                type: 'maintenance',
+                maintenanceItems: pageMaintenanceItems,
+                showMaintenanceHeader: isFirstMaintenancePage,
+                showClosing: isLastMaintenancePage
+            });
+        }
+
+        return result;
+    }, [proposalData]);
 
     const Header = () => (
         <div>
@@ -105,76 +154,133 @@ const ProposalPreview = () => {
                     }
                 }
             `}</style>
-            <div className="page-container" style={{ width: '210mm', height: '297mm', position: 'relative', margin: '0 auto', backgroundColor: 'white', lineHeight: 'normal', fontSize: '14px' }}>
-                <Header />
-                <div className="px-10 py-6 text-sm" style={{ maxHeight: 'calc(297mm - 280px)', overflow: 'hidden', paddingTop: '24px' }}>
-                    <div className="mb-4">
-                        <p>Date: {proposalData.date}</p>
-                        <p>Client Name: {proposalData.clientName}</p>
-                        <p className="mt-2">Subject: {proposalData.subject}</p>
-                    </div>
-                    <p className="mb-3">{proposalData.greeting}</p>
-                    <p className="mb-6">{proposalData.intro}</p>
-                    <div className="flex items-center justify-center text-center gap-2 mb-4">
-                        <h3 className="text-lg font-bold underline">{proposalData.projectScopeTitle}</h3>
-                    </div>
-                    <table className="w-full border-2 border-gray-900 mb-6">
-                        <thead>
-                            <tr className="bg-gray-100">
-                                <th className="border-2 border-gray-900 px-4 py-3 text-center font-bold">Service</th>
-                                <th className="border-2 border-gray-900 px-4 py-3 text-center font-bold">Description</th>
-                                <th className="border-2 border-gray-900 px-4 py-3 text-center font-bold">Cost (INR)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {proposalData.projectScopeItems.map((item: any, i: number) => (
-                                <tr key={i}>
-                                    <td className="border-2 border-gray-900 px-4 py-4 text-center">{item.service}</td>
-                                    <td className="border-2 border-gray-900 px-4 py-4 text-center">{item.description}</td>
-                                    <td className="border-2 border-gray-900 px-4 py-4 text-center">{item.cost}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                    <h3 className="font-bold mb-3">{proposalData.websiteStructureTitle}</h3>
-                    <div className="space-y-1">
-                        {proposalData.websiteStructure.map((item: string, i: number) => <p key={i}>{item}</p>)}
-                    </div>
-                </div>
-                <Footer />
-            </div>
 
-            <div className="page-container" style={{ width: '210mm', height: '297mm', position: 'relative', margin: '0 auto', backgroundColor: 'white', lineHeight: 'normal', fontSize: '14px' }}>
-                <Header />
-                <div className="px-10 py-8 text-sm" style={{ maxHeight: 'calc(297mm - 280px)', overflow: 'hidden', paddingTop: '32px' }}>
-                    <h2 className="text-xl font-bold mb-2">{proposalData.maintenanceTitle}</h2>
-                    <p className="font-bold mb-3">{proposalData.maintenanceSubtitle}</p>
-                    <div className="space-y-2 mb-6">
-                        {proposalData.maintenanceServices.map((s: string, i: number) => (
-                            <div key={i} className="flex gap-2">
-                                <span className="text-green-600 font-bold text-lg">✓</span>
-                                <span>{s}</span>
+            {pages.map((page, pageIndex) => (
+                <div key={pageIndex} className="page-container" style={{ width: '210mm', height: '297mm', position: 'relative', margin: '0 auto', backgroundColor: 'white', lineHeight: 'normal', fontSize: '14px', overflow: 'hidden', marginBottom: pageIndex < pages.length - 1 ? '20px' : '0' }}>
+                    <Header />
+
+                    {page.type === 'page1' && (
+                        <div className="px-10 py-6 text-sm" style={{ paddingTop: '24px' }}>
+                            <div className="mb-4">
+                                <p>Date: {proposalData.date}</p>
+                                <p>Client Name: {proposalData.clientName}</p>
+                                <p className="mt-2">Subject: {proposalData.subject}</p>
                             </div>
-                        ))}
-                    </div>
-                    <p className="font-bold mb-8">{proposalData.maintenanceLimitation}</p>
-                    <div className="my-8">
-                        <p className="text-lg font-bold mb-1">Total Development Cost (One-Time): {proposalData.developmentCost}</p>
-                        <p className="font-bold">{proposalData.gstNote}</p>
-                    </div>
-                    <div className="my-8">
-                        <p className="font-bold mb-2">• {proposalData.domainHostingTitle}</p>
-                        <p className="ml-4">{proposalData.domainHostingContent}</p>
-                    </div>
-                    <div className="mt-12 mb-8">
-                        <p>{proposalData.closingMessage}</p>
-                    </div>
-                    <div className="mt-8">
-                        <p className="whitespace-pre-line">{proposalData.signature}</p>
-                    </div>
+                            <p className="mb-3">{proposalData.greeting}</p>
+                            <p className="mb-6">{proposalData.intro}</p>
+                            <div className="flex items-center justify-center text-center gap-2 mb-4">
+                                <h3 className="text-lg font-bold underline">{proposalData.projectScopeTitle}</h3>
+                            </div>
+                            {page.scopeItems.length > 0 && (
+                                <table className="w-full border-2 border-gray-900 mb-6">
+                                    <thead>
+                                        <tr className="bg-gray-100">
+                                            <th className="border-2 border-gray-900 px-4 py-3 text-center font-bold">Service</th>
+                                            <th className="border-2 border-gray-900 px-4 py-3 text-center font-bold">Description</th>
+                                            <th className="border-2 border-gray-900 px-4 py-3 text-center font-bold">Cost (INR)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {page.scopeItems.map((item: { service: string; description: string; cost: string }, i: number) => (
+                                            <tr key={i}>
+                                                <td className="border-2 border-gray-900 px-4 py-4 text-center">{item.service}</td>
+                                                <td className="border-2 border-gray-900 px-4 py-4 text-center">{item.description}</td>
+                                                <td className="border-2 border-gray-900 px-4 py-4 text-center">{item.cost}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            )}
+                            {page.structureItems.length > 0 && (
+                                <>
+                                    <h3 className="font-bold mb-3">{proposalData.websiteStructureTitle}</h3>
+                                    <div className="space-y-1">
+                                        {page.structureItems.map((item: string, i: number) => <p key={i}>{item}</p>)}
+                                    </div>
+                                </>
+                            )}
+                        </div>
+                    )}
+
+                    {page.type === 'continuation' && (
+                        <div className="px-10 py-6 text-sm" style={{ paddingTop: '40px' }}>
+                            {page.scopeItems.length > 0 && (
+                                <>
+                                    <div className="flex items-center justify-center text-center gap-2 mb-4">
+                                        <h3 className="text-lg font-bold underline">{proposalData.projectScopeTitle} (Continued)</h3>
+                                    </div>
+                                    <table className="w-full border-2 border-gray-900 mb-6">
+                                        <thead>
+                                            <tr className="bg-gray-100">
+                                                <th className="border-2 border-gray-900 px-4 py-3 text-center font-bold">Service</th>
+                                                <th className="border-2 border-gray-900 px-4 py-3 text-center font-bold">Description</th>
+                                                <th className="border-2 border-gray-900 px-4 py-3 text-center font-bold">Cost (INR)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {page.scopeItems.map((item: { service: string; description: string; cost: string }, i: number) => (
+                                                <tr key={i}>
+                                                    <td className="border-2 border-gray-900 px-4 py-4 text-center">{item.service}</td>
+                                                    <td className="border-2 border-gray-900 px-4 py-4 text-center">{item.description}</td>
+                                                    <td className="border-2 border-gray-900 px-4 py-4 text-center">{item.cost}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </>
+                            )}
+                            {page.structureItems.length > 0 && (
+                                <>
+                                    <h3 className="font-bold mb-3">{proposalData.websiteStructureTitle} (Continued)</h3>
+                                    <div className="space-y-1">
+                                        {page.structureItems.map((item: string, i: number) => <p key={i}>{item}</p>)}
+                                    </div>
+                                </>
+                            )}
+                        </div>
+                    )}
+
+                    {page.type === 'maintenance' && (
+                        <div className="px-10 py-8 text-sm" style={{ paddingTop: '32px' }}>
+                            {page.showMaintenanceHeader && (
+                                <>
+                                    <h2 className="text-xl font-bold mb-2">{proposalData.maintenanceTitle}</h2>
+                                    <p className="font-bold mb-3">{proposalData.maintenanceSubtitle}</p>
+                                </>
+                            )}
+                            <div className="space-y-2 mb-6">
+                                {page.maintenanceItems.map((s: string, i: number) => (
+                                    <div key={i} className="flex gap-2">
+                                        <span className="text-green-600 font-bold text-lg">✓</span>
+                                        <span>{s}</span>
+                                    </div>
+                                ))}
+                            </div>
+                            {page.showClosing && (
+                                <>
+                                    <p className="font-bold mb-8">{proposalData.maintenanceLimitation}</p>
+                                    <div className="my-8">
+                                        <p className="text-lg font-bold mb-1">Total Development Cost (One-Time): {proposalData.developmentCost}</p>
+                                        <p className="font-bold">{proposalData.gstNote}</p>
+                                    </div>
+                                    <div className="my-8">
+                                        <p className="font-bold mb-2">• {proposalData.domainHostingTitle}</p>
+                                        <p className="ml-4">{proposalData.domainHostingContent}</p>
+                                    </div>
+                                    <div className="mt-12 mb-8">
+                                        <p>{proposalData.closingMessage}</p>
+                                    </div>
+                                    <div className="mt-8">
+                                        <p className="whitespace-pre-line">{proposalData.signature}</p>
+                                    </div>
+                                </>
+                            )}
+                        </div>
+                    )}
+
+                    <Footer />
                 </div>
-                <Footer />
-            </div>
+            ))}
         </div>
     );
 };
