@@ -411,6 +411,7 @@ import { useDocumentAccess } from '@/hooks/useDocumentAccess';
 const Dashboard = () => {
   const navigate = useNavigate();
   const { user, isAuthenticated } = useAuth();
+  const hasDocumentAccess = useDocumentAccess();
 
   // State for dashboard data
   const [loading, setLoading] = useState(true);
@@ -796,7 +797,7 @@ const Dashboard = () => {
               { label: 'Service Proposal', icon: <Receipt className="w-6 h-6" />, route: '/proposal/service-proposal', color: 'text-orange-600 bg-orange-50 border-orange-200 hover:bg-orange-100' },
               { label: 'Service Agreement', icon: <FileCheck className="w-6 h-6" />, route: '/proposal/service-agreement', color: 'text-red-600 bg-red-50 border-red-200 hover:bg-red-100' },
               { label: 'Tax Invoice', icon: <ClipboardList className="w-6 h-6" />, route: '/proposal/tax-invoice', color: 'text-indigo-600 bg-indigo-50 border-indigo-200 hover:bg-indigo-100' },
-            ].map((item) => (
+            ].filter((_, index) => hasDocumentAccess || index < 6).map((item) => (
               <button
                 key={item.route}
                 onClick={() => navigate(item.route)}

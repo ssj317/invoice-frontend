@@ -1,6 +1,6 @@
 import { useAuth } from './useAuth';
 
-const ALLOWED_EMAILS = ['jenasaisubham@gmail.com'];
+const ALLOWED_EMAILS = ['lokesh916635@gmail.com'];
 const ALLOWED_DOMAIN = 'elite8digital.in';
 
 export const useDocumentAccess = (): boolean => {
