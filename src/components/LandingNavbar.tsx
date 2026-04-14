@@ -215,7 +215,7 @@ const LandingNavbar = () => {
 
                             {/* About Us Link */}
                             <button
-                                onClick={() => window.open('https://elite8digital.in/#/about', '_blank')}
+                                onClick={() => window.open('https://elite8digital.in/about', '_blank')}
                                 className="text-black-700 hover:text-purple-600 font-medium transition-colors text-sm md:text-base"
                             >
                                 About Us
@@ -223,7 +223,7 @@ const LandingNavbar = () => {
 
                             {/* Contact Link */}
                             <button
-                                onClick={() => window.open('https://elite8digital.in/#/contact', '_blank')}
+                                onClick={() => window.open('https://elite8digital.in/contact', '_blank')}
                                 className="text-black-700 hover:text-purple-600 font-medium transition-colors text-sm md:text-base"
                             >
                                 Contact

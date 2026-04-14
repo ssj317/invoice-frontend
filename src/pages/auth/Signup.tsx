@@ -377,20 +377,39 @@ const Signup = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        console.log('Form submitted');
+        console.log('Validation result:', validate());
         if (!validate()) return;
         try {
             dispatch(loginStart());
+            console.log('Sending signup request with data:', {
+                fullName: formData.fullName,
+                email: formData.email,
+                companyName: formData.companyName || undefined
+            });
             const response = await authService.signup({
                 fullName: formData.fullName,
                 email: formData.email,
                 companyName: formData.companyName || undefined
             });
+            console.log('Full response received:', response);
+            console.log('response.success:', response.success);
+            console.log('response.requiresOtp:', response.requiresOtp);
+            console.log('response.email:', response.email);
+            
             if (response.success && response.requiresOtp) {
+                console.log('Condition met! Setting OTP email and changing step');
                 setOtpEmail(response.email);
                 setStep('otp');
                 dispatch(loginFailure(''));
+            } else {
+                console.log('Condition NOT met!');
+                console.log('success is:', response.success);
+                console.log('requiresOtp is:', response.requiresOtp);
             }
         } catch (err: any) {
+            console.error('Signup error caught:', err);
+            console.error('Error response:', err.response);
             const msg = err.response?.data?.message || 'Signup failed. Please try again.';
             dispatch(loginFailure(msg));
         }
@@ -416,7 +435,57 @@ const Signup = () => {
     return (
         <>
             <LandingNavbar />
-            <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-50 flex items-center justify-center p-4">
+            <div className="min-h-screen flex">
+            {/* Left Side - Image/Illustration */}
+            <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
+                {/* Background Image */}
+                <img 
+                    src="/bg1.png" 
+                    alt="Invoice Pro" 
+                    className="absolute inset-0 w-full h-full object-cover"
+                />
+                {/* Dark Overlay */}
+                {/* <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-purple-800/70 to-indigo-900/80"></div>
+                 */}
+                {/* Content */}
+                <div className="relative z-10 flex flex-col justify-center items-center text-white p-12">
+                    <div className="max-w-md">
+                        <h1 className="text-5xl font-bold mb-6">Welcome to Invoice Pro</h1>
+                        <p className="text-xl mb-8 text-purple-100">
+                            Streamline your invoicing process and manage your business finances with ease.
+                        </p>
+                        <div className="space-y-4">
+                            <div className="flex items-center space-x-3">
+                                <div className="bg-white bg-opacity-20 rounded-full p-2">
+                                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                    </svg>
+                                </div>
+                                <span className="text-lg">Create professional invoices in minutes</span>
+                            </div>
+                            <div className="flex items-center space-x-3">
+                                <div className="bg-white bg-opacity-20 rounded-full p-2">
+                                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                    </svg>
+                                </div>
+                                <span className="text-lg">Track payments and manage clients</span>
+                            </div>
+                            <div className="flex items-center space-x-3">
+                                <div className="bg-white bg-opacity-20 rounded-full p-2">
+                                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                    </svg>
+                                </div>
+                                <span className="text-lg">Get paid faster with automated reminders</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Right Side - Form */}
+            <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-gradient-to-br from-purple-50 via-white to-purple-50">
                 <div className="max-w-md w-full">
                     <div className="text-center mb-8">
                         <h1 className="text-4xl font-bold text-purple-600 mb-2">Invoice Pro</h1>
@@ -516,6 +585,7 @@ const Signup = () => {
                     </div>
                 </div>
             </div>
+        </div>
         </>
     );
 };

@@ -680,14 +680,64 @@ const Login = () => {
     return (
         <>
             <LandingNavbar />
-            <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-50 flex items-center justify-center p-4">
-                <div className="max-w-md w-full">
-                    <div className="text-center mb-8">
-                        <h1 className="text-4xl font-bold text-purple-600 mb-2">Invoice Pro</h1>
-                        <p className="text-gray-600">Sign in to your account</p>
+            <div className="min-h-screen flex">
+                {/* Left Side - Image/Illustration */}
+                <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
+                    {/* Background Image */}
+                    <img 
+                        src="/bg1.png" 
+                        alt="Invoice Pro" 
+                        className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    {/* Dark Overlay */}
+                    {/* <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-purple-800/70 to-indigo-900/80"></div>
+                     */}
+                    {/* Content */}
+                    <div className="relative z-10 flex flex-col justify-center items-center text-white p-12">
+                        <div className="max-w-md">
+                            <h1 className="text-5xl font-bold mb-6">Welcome Back!</h1>
+                            <p className="text-xl mb-8 text-purple-100">
+                                Sign in to access your invoices and manage your business finances efficiently.
+                            </p>
+                            <div className="space-y-4">
+                                <div className="flex items-center space-x-3">
+                                    <div className="bg-white bg-opacity-20 rounded-full p-2">
+                                        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <span className="text-lg">Secure OTP-based authentication</span>
+                                </div>
+                                <div className="flex items-center space-x-3">
+                                    <div className="bg-white bg-opacity-20 rounded-full p-2">
+                                        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <span className="text-lg">Access from anywhere, anytime</span>
+                                </div>
+                                <div className="flex items-center space-x-3">
+                                    <div className="bg-white bg-opacity-20 rounded-full p-2">
+                                        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <span className="text-lg">Your data is safe and encrypted</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
 
-                    <div className="bg-white rounded-xl shadow-lg border border-purple-100 p-8">
+                {/* Right Side - Form */}
+                <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-gradient-to-br from-purple-50 via-white to-purple-50">
+                    <div className="max-w-md w-full">
+                        <div className="text-center mb-8">
+                            <h1 className="text-4xl font-bold text-purple-600 mb-2">Invoice Pro</h1>
+                            <p className="text-gray-600">Sign in to your account</p>
+                        </div>
+
+                        <div className="bg-white rounded-xl shadow-lg border border-purple-100 p-8">
                         {from !== '/Dashboard' && (
                             <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
                                 <p className="text-sm text-blue-800">Please login to continue to your requested page</p>
@@ -735,6 +785,7 @@ const Login = () => {
                     </div>
                 </div>
             </div>
+        </div>
         </>
     );
 };
