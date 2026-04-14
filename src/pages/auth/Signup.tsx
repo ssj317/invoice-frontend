@@ -435,12 +435,12 @@ const Signup = () => {
     return (
         <>
             <LandingNavbar />
-            <div className="min-h-screen flex">
+            <div className="min-h-[90vh] px-16 bg-white flex">
             {/* Left Side - Image/Illustration */}
-            <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
+            <div className="hidden lg:flex lg:w-1/2 mt-6 h-[87vh] relative overflow-hidden">
                 {/* Background Image */}
                 <img 
-                    src="/bg1.png" 
+                    src="/bg3.png" 
                     alt="Invoice Pro" 
                     className="absolute inset-0 w-full h-full object-cover"
                 />
@@ -448,7 +448,7 @@ const Signup = () => {
                 {/* <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-purple-800/70 to-indigo-900/80"></div>
                  */}
                 {/* Content */}
-                <div className="relative z-10 flex flex-col justify-center items-center text-white p-12">
+                <div className="relative z-10 flex flex-col justify-center items-center text-white pt-56 px-12">
                     <div className="max-w-md">
                         <h1 className="text-5xl font-bold mb-6">Welcome to Invoice Pro</h1>
                         <p className="text-xl mb-8 text-purple-100">
@@ -485,10 +485,10 @@ const Signup = () => {
             </div>
 
             {/* Right Side - Form */}
-            <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-gradient-to-br from-purple-50 via-white to-purple-50">
+            <div className="w-full lg:w-1/2 flex items-center justify-center p-6 bg-gradient-to-br from-purple-50 via-white to-purple-50">
                 <div className="max-w-md w-full">
-                    <div className="text-center mb-8">
-                        <h1 className="text-4xl font-bold text-purple-600 mb-2">Invoice Pro</h1>
+                    <div className="text-center mb-6">
+                        <h1 className="text-4xl font-bold text-purple-600 mb-1">Invoice Pro</h1>
                         <p className="text-gray-600">Create your account</p>
                     </div>
 
