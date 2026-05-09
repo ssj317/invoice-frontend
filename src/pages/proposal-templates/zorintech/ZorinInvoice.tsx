@@ -1,0 +1,546 @@
+import React, { useState } from 'react';
+import { useAppDispatch } from '../../../store';
+import { updateInvoiceData } from '../../../store/invoiceSlice';
+import { Plus, Trash2 } from 'lucide-react';
+
+const TaxInvoice = () => {
+    const dispatch = useAppDispatch();
+
+    // Form state based on the image
+    const [formData, setFormData] = useState({
+        // Company Details (Fixed Header)
+        companyName: 'XORIN TECH',
+        companyTagline: 'FROM IMAGINATION TO INNOVATION - WE BUILD IT',
+        companyCIN: 'U62099MP2025PTC076466',
+        companyGST: '23AAICE8606R1Z3',
+        companyPhone: '+91 6260894977',
+        companyAddress: 'F.NO.B-G11, WESTERN PLAZA, H S DARGA, SHAIKPET, SHAIKPET',
+        companyEmail: 'contact@elite8digital.in',
+        companyWebsite: 'www.elite8digital.in',
+
+        // Client Details (To Section)
+        clientName: 'Vyahnavi Food Products',
+        clientAddress: 'Konijarla Mandalam,\nGundarathi Madugu Village,\nNear Ayyappa Swamy Temple,\nKhammam - 507165',
+        clientGST: 'GST: 36AADCV8622FTZ3',
+
+        // Invoice Details
+        date: '1 March 2026',
+        ourRef: 'elite-8/2025',
+        project: 'WEBSITE DESIGNING & DEVELOPMENT',
+
+        // Items Table
+        items: [
+            {
+                sr: '1',
+                description: 'Website Designing & Development',
+                rate: {
+                    lumpsum: '10,000/-',
+                    totalRs: '10,000=00',
+                    gst: '1,800=00',
+                    totalAmount: '11,800=00'
+                }
+            }
+        ],
+
+        // Summary - Labels and Values
+        summaryLabels: {
+            totalProjectLabel: 'Total Amount of Project:',
+            gstLabel: '18% GST:',
+            totalAmountLabel: 'Total Amount:',
+            paymentPeriodLabel: 'Divided in period of:',
+            monthlyPaymentLabel: 'Per Month:'
+        },
+        totalProjectAmount: '60,000',
+        gstAmount: '10,800',
+        totalAmount: '70,800',
+        paymentPeriod: '6 months',
+        monthlyPayment: '10,000 + 1,800 : 11,800',
+
+        // Bank Details
+        bankName: 'SBI',
+        accountName: 'ELITE8 DIGITAL PRIVATE LIMITED',
+        accountNumber: '44213821305',
+        ifsc: 'SBIN0030288',
+        upiId: 'Elite8digital@sbi'
+    });
+
+    const handleInputChange = (field: string, value: string) => {
+        setFormData(prev => ({ ...prev, [field]: value }));
+    };
+
+    const handleLabelChange = (labelField: string, value: string) => {
+        setFormData(prev => ({
+            ...prev,
+            summaryLabels: { ...prev.summaryLabels, [labelField]: value }
+        }));
+    };
+
+    const handleNestedInputChange = (itemIndex: number, rateField: string, value: string) => {
+        setFormData(prev => ({
+            ...prev,
+            items: prev.items.map((item, i) =>
+                i === itemIndex ? { ...item, rate: { ...item.rate, [rateField]: value } } : item
+            )
+        }));
+    };
+
+    const handleAddItem = () => {
+        setFormData(prev => ({
+            ...prev,
+            items: [...prev.items, {
+                sr: String(prev.items.length + 1),
+                description: 'New Service',
+                rate: {
+                    lumpsum: '0/-',
+                    totalRs: '0=00',
+                    gst: '0=00',
+                    totalAmount: '0=00'
+                }
+            }]
+        }));
+    };
+
+    const handleRemoveItem = (index: number) => {
+        if (formData.items.length > 1) {
+            setFormData(prev => ({
+                ...prev,
+                items: prev.items.filter((_, i) => i !== index).map((item, i) => ({
+                    ...item,
+                    sr: String(i + 1)
+                }))
+            }));
+        }
+    };
+
+    const handleSaveAndContinue = () => {
+        dispatch(updateInvoiceData({ taxInvoiceData: formData }));
+        const event = new Event('switchToPreview');
+        window.dispatchEvent(event);
+    };
+
+    return (
+        <div className="bg-gray-50 min-h-screen py-8">
+            <div className="max-w-[210mm] mx-auto bg-white shadow-lg">
+                {/* Edit Mode Container */}
+                <div className="p-10 border-4 border-blue-500">
+                    <h2 className="text-2xl font-bold text-blue-600 mb-6 text-center">📄 TAX INVOICE - EDIT MODE</h2>
+
+                    {/* Company Header Section */}
+                    <div className="space-y-3 mb-6 p-4 bg-blue-50 rounded-lg">
+                        <h3 className="font-bold text-lg text-blue-700 mb-3">Company Details (Header)</h3>
+
+                        <div className="grid grid-cols-2 gap-3">
+                            <div>
+                                <label className="text-xs font-semibold text-gray-600">Company Name</label>
+                                <input
+                                    type="text"
+                                    value={formData.companyName}
+                                    onChange={(e) => handleInputChange('companyName', e.target.value)}
+                                    className="w-full px-2 py-1 border-2 border-blue-300 rounded focus:ring-2 focus:ring-blue-500"
+                                />
+                            </div>
+                            <div>
+                                <label className="text-xs font-semibold text-gray-600">Tagline</label>
+                                <input
+                                    type="text"
+                                    value={formData.companyTagline}
+                                    onChange={(e) => handleInputChange('companyTagline', e.target.value)}
+                                    className="w-full px-2 py-1 border-2 border-blue-300 rounded focus:ring-2 focus:ring-blue-500"
+                                />
+                            </div>
+                            <div>
+                                <label className="text-xs font-semibold text-gray-600">CIN</label>
+                                <input
+                                    type="text"
+                                    value={formData.companyCIN}
+                                    onChange={(e) => handleInputChange('companyCIN', e.target.value)}
+                                    className="w-full px-2 py-1 border-2 border-blue-300 rounded focus:ring-2 focus:ring-blue-500"
+                                />
+                            </div>
+                            <div>
+                                <label className="text-xs font-semibold text-gray-600">GST</label>
+                                <input
+                                    type="text"
+                                    value={formData.companyGST}
+                                    onChange={(e) => handleInputChange('companyGST', e.target.value)}
+                                    className="w-full px-2 py-1 border-2 border-blue-300 rounded focus:ring-2 focus:ring-blue-500"
+                                />
+                            </div>
+                            <div>
+                                <label className="text-xs font-semibold text-gray-600">Phone</label>
+                                <input
+                                    type="text"
+                                    value={formData.companyPhone}
+                                    onChange={(e) => handleInputChange('companyPhone', e.target.value)}
+                                    className="w-full px-2 py-1 border-2 border-blue-300 rounded focus:ring-2 focus:ring-blue-500"
+                                />
+                            </div>
+                            <div>
+                                <label className="text-xs font-semibold text-gray-600">Email</label>
+                                <input
+                                    type="text"
+                                    value={formData.companyEmail}
+                                    onChange={(e) => handleInputChange('companyEmail', e.target.value)}
+                                    className="w-full px-2 py-1 border-2 border-blue-300 rounded focus:ring-2 focus:ring-blue-500"
+                                />
+                            </div>
+                            <div className="col-span-2">
+                                <label className="text-xs font-semibold text-gray-600">Address</label>
+                                <input
+                                    type="text"
+                                    value={formData.companyAddress}
+                                    onChange={(e) => handleInputChange('companyAddress', e.target.value)}
+                                    className="w-full px-2 py-1 border-2 border-blue-300 rounded focus:ring-2 focus:ring-blue-500"
+                                />
+                            </div>
+                            <div>
+                                <label className="text-xs font-semibold text-gray-600">Website</label>
+                                <input
+                                    type="text"
+                                    value={formData.companyWebsite}
+                                    onChange={(e) => handleInputChange('companyWebsite', e.target.value)}
+                                    className="w-full px-2 py-1 border-2 border-blue-300 rounded focus:ring-2 focus:ring-blue-500"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Client and Invoice Details */}
+                    <div className="grid grid-cols-2 gap-6 mb-6">
+                        {/* To Section */}
+                        <div className="space-y-3">
+                            <h3 className="font-bold text-blue-700">To (Client Details)</h3>
+                            <div>
+                                <label className="text-xs font-semibold text-gray-600">Client Name</label>
+                                <input
+                                    type="text"
+                                    value={formData.clientName}
+                                    onChange={(e) => handleInputChange('clientName', e.target.value)}
+                                    className="w-full px-2 py-1 border-2 border-blue-300 rounded focus:ring-2 focus:ring-blue-500"
+                                />
+                            </div>
+                            <div>
+                                <label className="text-xs font-semibold text-gray-600">Address</label>
+                                <textarea
+                                    value={formData.clientAddress}
+                                    onChange={(e) => handleInputChange('clientAddress', e.target.value)}
+                                    rows={4}
+                                    className="w-full px-2 py-1 border-2 border-blue-300 rounded focus:ring-2 focus:ring-blue-500"
+                                />
+                            </div>
+                            <div>
+                                <label className="text-xs font-semibold text-gray-600">GST</label>
+                                <input
+                                    type="text"
+                                    value={formData.clientGST}
+                                    onChange={(e) => handleInputChange('clientGST', e.target.value)}
+                                    className="w-full px-2 py-1 border-2 border-blue-300 rounded focus:ring-2 focus:ring-blue-500"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Invoice Details */}
+                        <div className="space-y-3">
+                            <h3 className="font-bold text-blue-700">Invoice Details</h3>
+                            <div>
+                                <label className="text-xs font-semibold text-gray-600">Date</label>
+                                <input
+                                    type="text"
+                                    value={formData.date}
+                                    onChange={(e) => handleInputChange('date', e.target.value)}
+                                    className="w-full px-2 py-1 border-2 border-blue-300 rounded focus:ring-2 focus:ring-blue-500"
+                                />
+                            </div>
+                            <div>
+                                <label className="text-xs font-semibold text-gray-600">OUR REF</label>
+                                <input
+                                    type="text"
+                                    value={formData.ourRef}
+                                    onChange={(e) => handleInputChange('ourRef', e.target.value)}
+                                    className="w-full px-2 py-1 border-2 border-blue-300 rounded focus:ring-2 focus:ring-blue-500"
+                                />
+                            </div>
+                            <div>
+                                <label className="text-xs font-semibold text-gray-600">Project</label>
+                                <input
+                                    type="text"
+                                    value={formData.project}
+                                    onChange={(e) => handleInputChange('project', e.target.value)}
+                                    className="w-full px-2 py-1 border-2 border-blue-300 rounded focus:ring-2 focus:ring-blue-500"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Items Table */}
+                    <div className="mb-6">
+                        <div className="flex justify-between items-center mb-3">
+                            <h3 className="font-bold text-blue-700">Items</h3>
+                            <button
+                                type="button"
+                                onClick={handleAddItem}
+                                className="flex items-center gap-1 px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-sm"
+                            >
+                                <Plus size={16} /> Add Item
+                            </button>
+                        </div>
+                        <table className="w-full border-2 border-gray-900">
+                            <thead>
+                                <tr className="bg-gray-100">
+                                    <th className="border-2 border-gray-900 px-2 py-2 text-xs w-[8%]">Sr.</th>
+                                    <th className="border-2 border-gray-900 px-2 py-2 text-xs w-[37%]">Description</th>
+                                    <th className="border-2 border-gray-900 px-2 py-2 text-xs w-[35%]">Rate</th>
+                                    <th className="border-2 border-gray-900 px-2 py-2 text-xs w-[20%]">Amount (₹)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {formData.items.map((item, index) => (
+                                    <tr key={index}>
+                                        <td className="border-2 border-gray-900 p-2 text-center align-middle relative">
+                                            <div className="text-sm font-semibold">{item.sr}</div>
+                                            {formData.items.length > 1 && (
+                                                <button
+                                                    type="button"
+                                                    onClick={() => handleRemoveItem(index)}
+                                                    className="absolute top-1 right-1 p-1 bg-red-500 text-white rounded hover:bg-red-600"
+                                                    title="Remove Item"
+                                                >
+                                                    <Trash2 size={12} />
+                                                </button>
+                                            )}
+                                        </td>
+                                        <td className="border-2 border-gray-900 p-3 align-middle">
+                                            <textarea
+                                                value={item.description}
+                                                onChange={(e) => {
+                                                    const newItems = [...formData.items];
+                                                    newItems[index].description = e.target.value;
+                                                    setFormData(prev => ({ ...prev, items: newItems }));
+                                                }}
+                                                rows={4}
+                                                className="w-full px-2 py-2 border border-blue-300 rounded text-center"
+                                            />
+                                        </td>
+                                        <td className="border-2 border-gray-900 p-0">
+                                            <table className="w-full h-full">
+                                                <tbody>
+                                                    <tr className="border-b-2 border-gray-900">
+                                                        <td className="p-3 text-xs text-center bg-gray-50">Lumpsum*</td>
+                                                    </tr>
+                                                    <tr className="border-b-2 border-gray-900">
+                                                        <td className="p-3 text-xs text-center bg-gray-50">Total, Rs</td>
+                                                    </tr>
+                                                    <tr className="border-b-2 border-gray-900">
+                                                        <td className="p-3 text-xs text-center bg-gray-50">Add 18% GST Extra</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="p-3 text-xs text-center bg-gray-50 font-bold">Total Amount</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                        <td className="border-2 border-gray-900 p-0">
+                                            <table className="w-full h-full">
+                                                <tbody>
+                                                    <tr className="border-b-2 border-gray-900">
+                                                        <td className="p-2 text-center">
+                                                            <input
+                                                                type="text"
+                                                                value={item.rate.lumpsum}
+                                                                onChange={(e) => handleNestedInputChange(index, 'lumpsum', e.target.value)}
+                                                                className="w-full px-1 py-1 border border-blue-300 rounded text-center text-xs"
+                                                            />
+                                                        </td>
+                                                    </tr>
+                                                    <tr className="border-b-2 border-gray-900">
+                                                        <td className="p-2 text-center">
+                                                            <input
+                                                                type="text"
+                                                                value={item.rate.totalRs}
+                                                                onChange={(e) => handleNestedInputChange(index, 'totalRs', e.target.value)}
+                                                                className="w-full px-1 py-1 border border-blue-300 rounded text-center text-xs"
+                                                            />
+                                                        </td>
+                                                    </tr>
+                                                    <tr className="border-b-2 border-gray-900">
+                                                        <td className="p-2 text-center">
+                                                            <input
+                                                                type="text"
+                                                                value={item.rate.gst}
+                                                                onChange={(e) => handleNestedInputChange(index, 'gst', e.target.value)}
+                                                                className="w-full px-1 py-1 border border-blue-300 rounded text-center text-xs"
+                                                            />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="p-2 text-center">
+                                                            <input
+                                                                type="text"
+                                                                value={item.rate.totalAmount}
+                                                                onChange={(e) => handleNestedInputChange(index, 'totalAmount', e.target.value)}
+                                                                className="w-full px-1 py-1 border border-blue-300 rounded text-center text-xs font-bold"
+                                                            />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {/* Summary Section */}
+                    <div className="mb-6 space-y-2">
+                        <h3 className="font-bold text-blue-700 mb-3">Payment Summary</h3>
+                        <div className="flex gap-2">
+                            <input
+                                type="text"
+                                value={formData.summaryLabels.totalProjectLabel}
+                                onChange={(e) => handleLabelChange('totalProjectLabel', e.target.value)}
+                                className="w-64 px-2 py-1 border-2 border-green-300 rounded bg-green-50"
+                                placeholder="Label"
+                            />
+                            <input
+                                type="text"
+                                value={formData.totalProjectAmount}
+                                onChange={(e) => handleInputChange('totalProjectAmount', e.target.value)}
+                                className="flex-1 px-2 py-1 border-2 border-blue-300 rounded"
+                                placeholder="Value"
+                            />
+                        </div>
+                        <div className="flex gap-2">
+                            <input
+                                type="text"
+                                value={formData.summaryLabels.gstLabel}
+                                onChange={(e) => handleLabelChange('gstLabel', e.target.value)}
+                                className="w-64 px-2 py-1 border-2 border-green-300 rounded bg-green-50"
+                                placeholder="Label"
+                            />
+                            <input
+                                type="text"
+                                value={formData.gstAmount}
+                                onChange={(e) => handleInputChange('gstAmount', e.target.value)}
+                                className="flex-1 px-2 py-1 border-2 border-blue-300 rounded"
+                                placeholder="Value"
+                            />
+                        </div>
+                        <div className="flex gap-2">
+                            <input
+                                type="text"
+                                value={formData.summaryLabels.totalAmountLabel}
+                                onChange={(e) => handleLabelChange('totalAmountLabel', e.target.value)}
+                                className="w-64 px-2 py-1 border-2 border-green-300 rounded bg-green-50"
+                                placeholder="Label"
+                            />
+                            <input
+                                type="text"
+                                value={formData.totalAmount}
+                                onChange={(e) => handleInputChange('totalAmount', e.target.value)}
+                                className="flex-1 px-2 py-1 border-2 border-blue-300 rounded"
+                                placeholder="Value"
+                            />
+                        </div>
+                        <div className="flex gap-2">
+                            <input
+                                type="text"
+                                value={formData.summaryLabels.paymentPeriodLabel}
+                                onChange={(e) => handleLabelChange('paymentPeriodLabel', e.target.value)}
+                                className="w-64 px-2 py-1 border-2 border-green-300 rounded bg-green-50"
+                                placeholder="Label"
+                            />
+                            <input
+                                type="text"
+                                value={formData.paymentPeriod}
+                                onChange={(e) => handleInputChange('paymentPeriod', e.target.value)}
+                                className="flex-1 px-2 py-1 border-2 border-blue-300 rounded"
+                                placeholder="Value"
+                            />
+                        </div>
+                        <div className="flex gap-2">
+                            <input
+                                type="text"
+                                value={formData.summaryLabels.monthlyPaymentLabel}
+                                onChange={(e) => handleLabelChange('monthlyPaymentLabel', e.target.value)}
+                                className="w-64 px-2 py-1 border-2 border-green-300 rounded bg-green-50"
+                                placeholder="Label"
+                            />
+                            <input
+                                type="text"
+                                value={formData.monthlyPayment}
+                                onChange={(e) => handleInputChange('monthlyPayment', e.target.value)}
+                                className="flex-1 px-2 py-1 border-2 border-blue-300 rounded"
+                                placeholder="Value"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Bank Details */}
+                    <div className="space-y-2">
+                        <h3 className="font-bold text-blue-700 mb-3">Bank Details</h3>
+                        <div className="grid grid-cols-2 gap-3">
+                            <div className="flex gap-2">
+                                <span className="w-32">BANK NAME:</span>
+                                <input
+                                    type="text"
+                                    value={formData.bankName}
+                                    onChange={(e) => handleInputChange('bankName', e.target.value)}
+                                    className="flex-1 px-2 py-1 border-2 border-blue-300 rounded"
+                                />
+                            </div>
+                            <div className="flex gap-2">
+                                <span className="w-32">IFSC:</span>
+                                <input
+                                    type="text"
+                                    value={formData.ifsc}
+                                    onChange={(e) => handleInputChange('ifsc', e.target.value)}
+                                    className="flex-1 px-2 py-1 border-2 border-blue-300 rounded"
+                                />
+                            </div>
+                            <div className="col-span-2 flex gap-2">
+                                <span className="w-32">ACCOUNT NAME:</span>
+                                <input
+                                    type="text"
+                                    value={formData.accountName}
+                                    onChange={(e) => handleInputChange('accountName', e.target.value)}
+                                    className="flex-1 px-2 py-1 border-2 border-blue-300 rounded"
+                                />
+                            </div>
+                            <div className="flex gap-2">
+                                <span className="w-32">ACCOUNT NO:</span>
+                                <input
+                                    type="text"
+                                    value={formData.accountNumber}
+                                    onChange={(e) => handleInputChange('accountNumber', e.target.value)}
+                                    className="flex-1 px-2 py-1 border-2 border-blue-300 rounded"
+                                />
+                            </div>
+                            <div className="flex gap-2">
+                                <span className="w-32">UPI ID:</span>
+                                <input
+                                    type="text"
+                                    value={formData.upiId}
+                                    onChange={(e) => handleInputChange('upiId', e.target.value)}
+                                    className="flex-1 px-2 py-1 border-2 border-blue-300 rounded"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Action Button */}
+                <div className="p-6 bg-gray-100">
+                    <button
+                        onClick={handleSaveAndContinue}
+                        className="w-full px-6 py-4 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-bold text-lg"
+                    >
+                        💾 Save & Switch to Preview
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default TaxInvoice;

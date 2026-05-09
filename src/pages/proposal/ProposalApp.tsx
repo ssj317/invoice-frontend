@@ -15,6 +15,10 @@ import {
 	AgreementPreview as ServiceAgreementPreview,
 } from '../proposal-templates/service-agreement';
 import { TaxInvoice, TaxInvoicePreview } from '../proposal-templates/tax-invoice';
+import { 
+	TaxInvoice as ZorinInvoice, 
+	TaxInvoicePreview as ZorinInvoicePreview 
+} from '../proposal-templates/zorintech';
 
 const ProposalApp = () => {
 	const { templateType } = useParams<{ templateType: string }>();
@@ -65,6 +69,8 @@ const ProposalApp = () => {
 				return invoiceState.agreementData;
 			case 'tax-invoice':
 				return invoiceState.taxInvoiceData;
+			case 'zorintech':
+				return invoiceState.taxInvoiceData;
 			default:
 				return null;
 		}
@@ -99,7 +105,7 @@ const ProposalApp = () => {
 		const element = previewRef.current;
 		if (!element) return null;
 		try {
-			if (templateType === 'tax-invoice') {
+			if (templateType === 'tax-invoice' || templateType === 'zorintech') {
 				const html2canvas = (await import('html2canvas')).default;
 				const jsPDF = (await import('jspdf')).default;
 				const pageContainer = element.querySelector('.page-container') as HTMLElement;
@@ -152,7 +158,7 @@ const ProposalApp = () => {
 			const element = previewRef.current;
 			if (!element) return;
 
-			if (templateType === 'tax-invoice') {
+			if (templateType === 'tax-invoice' || templateType === 'zorintech') {
 				const html2canvas = (await import('html2canvas')).default;
 				const jsPDF = (await import('jspdf')).default;
 				const pageContainer = element.querySelector('.page-container') as HTMLElement;
@@ -169,7 +175,8 @@ const ProposalApp = () => {
 				});
 				const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
 				pdf.addImage(canvas.toDataURL('image/jpeg', 0.98), 'JPEG', 0, 0, 210, 297);
-				pdf.save('Tax-Invoice.pdf');
+				const fileName = templateType === 'zorintech' ? 'Zorintech-Invoice.pdf' : 'Tax-Invoice.pdf';
+				pdf.save(fileName);
 			} else {
 				const html2pdf = (await import('html2pdf.js')).default;
 				const pages = element.querySelectorAll('.page-container');
@@ -260,6 +267,12 @@ const ProposalApp = () => {
 							<TaxInvoicePreview />
 						</div>
 					);
+				case 'zorintech':
+					return (
+						<div ref={previewRef}>
+							<ZorinInvoicePreview />
+						</div>
+					);
 				default:
 					return <div>Template not found</div>;
 			}
@@ -271,6 +284,8 @@ const ProposalApp = () => {
 					return <ServiceAgreement />;
 				case 'tax-invoice':
 					return <TaxInvoice />;
+				case 'zorintech':
+					return <ZorinInvoice />;
 				default:
 					return <div>Template not found</div>;
 			}
@@ -282,7 +297,9 @@ const ProposalApp = () => {
 			? 'Service Proposal'
 			: templateType === 'service-agreement'
 				? 'Service Agreement'
-				: 'Tax Invoice';
+				: templateType === 'zorintech'
+					? 'Zorintech Invoice'
+					: 'Tax Invoice';
 
 	return (
 		<div>
