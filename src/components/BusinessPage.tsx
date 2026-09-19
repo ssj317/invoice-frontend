@@ -86,7 +86,7 @@ const BusinessPage = () => {
     };
 
     return (
-        <div className="min-h-[75vh] my-6 sm:my-8 lg:my-12 bg-gradient-to-br from-blue-200 via-white to-purple-200">
+        <div className="min-h-[75vh] my-6 sm:my-8 lg:my-12 bg-[#F8F4E1]">
             {/* Header */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 mt-4 sm:mt-6 lg:mt-8">
                 <h1 className="text-xl sm:text-2xl md:text-3xl py-4 sm:py-6 lg:py-8 font-bold text-gray-900 text-center mb-4 sm:mb-6 lg:mb-8">
@@ -126,7 +126,7 @@ const BusinessPage = () => {
                                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-3 lg:pt-4">
                                     <button
                                         onClick={handleTryForFree}
-                                        className="w-full sm:w-auto px-4 sm:px-5 lg:px-6 py-2 sm:py-2 bg-purple-600 hover:bg-black text-white font-semibold rounded-xl transition-colors duration-300 shadow-lg text-sm sm:text-base"
+                                        className="w-full sm:w-auto px-4 sm:px-5 lg:px-6 py-2 sm:py-2 bg-[#178C92] hover:bg-black text-white font-semibold rounded-xl transition-colors duration-300 shadow-lg text-sm sm:text-base"
                                     >
                                         Try for Free
                                     </button>
@@ -141,7 +141,7 @@ const BusinessPage = () => {
                                 <div className="pt-2 sm:pt-3 lg:pt-4">
                                     <button
                                         onClick={handleComingSoon}
-                                        className="w-full sm:w-auto px-4 sm:px-5 lg:px-6 py-2 sm:py-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg text-sm sm:text-base flex items-center justify-center gap-2"
+                                        className="w-full sm:w-auto px-4 sm:px-5 lg:px-6 py-2 sm:py-2 bg-[#178C92] hover:bg-[#0f6368] text-white font-semibold rounded-xl transition-all duration-300 shadow-lg text-sm sm:text-base flex items-center justify-center gap-2"
                                     >
                                         <svg
                                             className="w-5 h-5"
@@ -178,3 +178,5 @@ const BusinessPage = () => {
 };
 
 export default BusinessPage;
+
+

@@ -102,7 +102,7 @@
 //                                         onClick={() => handleTabChange(tab.id)}
 //                                         className={`w-full text-left px-4 py-3 rounded-lg transition-colors text-sm ${
 //                                             activeTab === tab.id
-//                                                 ? 'text-purple-600 bg-purple-50 font-medium'
+//                                                 ? 'text-[#178C92] bg-[#EAF4F1] font-medium'
 //                                                 : 'text-gray-700 hover:bg-gray-50'
 //                                         }`}
 //                                     >
@@ -122,7 +122,7 @@
 //                                     onClick={() => setActiveTab(tab.id)}
 //                                     className={`w-full text-left px-4 py-3 rounded-lg transition-colors text-sm ${
 //                                         activeTab === tab.id
-//                                             ? 'text-purple-600 bg-purple-50 font-medium'
+//                                             ? 'text-[#178C92] bg-[#EAF4F1] font-medium'
 //                                             : 'text-gray-700 hover:bg-gray-50'
 //                                     }`}
 //                                 >
@@ -167,7 +167,7 @@
 //                                             type="text"
 //                                             value={personalData.name}
 //                                             onChange={(e) => setPersonalData({ ...personalData, name: e.target.value })}
-//                                             className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+//                                             className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92]"
 //                                         />
 //                                     </div>
 //                                     <div>
@@ -176,7 +176,7 @@
 //                                             type="email"
 //                                             value={personalData.email}
 //                                             onChange={(e) => setPersonalData({ ...personalData, email: e.target.value })}
-//                                             className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+//                                             className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92]"
 //                                         />
 //                                     </div>
 //                                     <div>
@@ -223,7 +223,7 @@
 //                                 <div className="flex justify-end">
 //                                     <button
 //                                         onClick={handleSaveChanges}
-//                                         className="w-full sm:w-auto px-4 sm:px-6 py-2 sm:py-2.5 text-sm sm:text-base bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium"
+//                                         className="w-full sm:w-auto px-4 sm:px-6 py-2 sm:py-2.5 text-sm sm:text-base bg-[#178C92] text-white rounded-lg hover:bg-[#007078] transition-colors font-medium"
 //                                     >
 //                                         Save Changes
 //                                     </button>
@@ -266,7 +266,7 @@
 //                                                 onChange={(e) => setNotifications({ ...notifications, general: e.target.checked })}
 //                                                 className="sr-only peer"
 //                                             />
-//                                             <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+//                                             <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#178C92]300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#178C92]"></div>
 //                                             <span className="ml-3 text-xs sm:text-sm font-medium text-gray-600 whitespace-nowrap">Enable All</span>
 //                                         </label>
 //                                     </div>
@@ -287,7 +287,7 @@
 //                                                 onChange={(e) => setNotifications({ ...notifications, accounting: e.target.checked })}
 //                                                 className="sr-only peer"
 //                                             />
-//                                             <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+//                                             <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#178C92]300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#178C92]"></div>
 //                                             <span className="ml-3 text-xs sm:text-sm font-medium text-gray-600 whitespace-nowrap">Enable All</span>
 //                                         </label>
 //                                     </div>
@@ -308,7 +308,7 @@
 //                                                 onChange={(e) => setNotifications({ ...notifications, leads: e.target.checked })}
 //                                                 className="sr-only peer"
 //                                             />
-//                                             <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+//                                             <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#178C92]300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#178C92]"></div>
 //                                             <span className="ml-3 text-xs sm:text-sm font-medium text-gray-600 whitespace-nowrap">Enable All</span>
 //                                         </label>
 //                                     </div>
@@ -329,7 +329,7 @@
 //                                                 onChange={(e) => setNotifications({ ...notifications, projects: e.target.checked })}
 //                                                 className="sr-only peer"
 //                                             />
-//                                             <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+//                                             <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#178C92]300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#178C92]"></div>
 //                                             <span className="ml-3 text-xs sm:text-sm font-medium text-gray-600 whitespace-nowrap">Enable All</span>
 //                                         </label>
 //                                     </div>
@@ -350,7 +350,7 @@
 //                                                 onChange={(e) => setNotifications({ ...notifications, payments: e.target.checked })}
 //                                                 className="sr-only peer"
 //                                             />
-//                                             <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+//                                             <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#178C92]300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#178C92]"></div>
 //                                             <span className="ml-3 text-xs sm:text-sm font-medium text-gray-600 whitespace-nowrap">Enable All</span>
 //                                         </label>
 //                                     </div>
@@ -535,7 +535,7 @@ const UserSettings = () => {
                             <div className="mt-2 bg-white rounded-lg border border-gray-200 p-2 shadow-lg">
                                 {tabs.map((tab) => (
                                     <button key={tab.id} onClick={() => handleTabChange(tab.id)}
-                                        className={`w-full text-left px-4 py-3 rounded-lg transition-colors text-sm ${activeTab === tab.id ? 'text-purple-600 bg-purple-50 font-medium' : 'text-gray-700 hover:bg-gray-50'}`}>
+                                        className={`w-full text-left px-4 py-3 rounded-lg transition-colors text-sm ${activeTab === tab.id ? 'text-[#178C92] bg-[#EAF4F1] font-medium' : 'text-gray-700 hover:bg-gray-50'}`}>
                                         {tab.label}
                                     </button>
                                 ))}
@@ -548,7 +548,7 @@ const UserSettings = () => {
                         <div className="bg-white rounded-lg border border-gray-200 p-2 sticky top-20">
                             {tabs.map((tab) => (
                                 <button key={tab.id} onClick={() => setActiveTab(tab.id)}
-                                    className={`w-full text-left px-4 py-3 rounded-lg transition-colors text-sm ${activeTab === tab.id ? 'text-purple-600 bg-purple-50 font-medium' : 'text-gray-700 hover:bg-gray-50'}`}>
+                                    className={`w-full text-left px-4 py-3 rounded-lg transition-colors text-sm ${activeTab === tab.id ? 'text-[#178C92] bg-[#EAF4F1] font-medium' : 'text-gray-700 hover:bg-gray-50'}`}>
                                     {tab.label}
                                 </button>
                             ))}
@@ -594,7 +594,7 @@ const UserSettings = () => {
                                                 <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">Full Name</label>
                                                 <input type="text" value={personalData.fullName}
                                                     onChange={(e) => setPersonalData({ ...personalData, fullName: e.target.value })}
-                                                    className="w-full px-3 sm:px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" />
+                                                    className="w-full px-3 sm:px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92]" />
                                             </div>
                                             <div>
                                                 <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">Email</label>
@@ -605,21 +605,21 @@ const UserSettings = () => {
                                                 <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">Company Name</label>
                                                 <input type="text" value={personalData.companyName}
                                                     onChange={(e) => setPersonalData({ ...personalData, companyName: e.target.value })}
-                                                    className="w-full px-3 sm:px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                                    className="w-full px-3 sm:px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92]"
                                                     placeholder="Your company" />
                                             </div>
                                             <div>
                                                 <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">Phone</label>
                                                 <input type="text" value={personalData.phone}
                                                     onChange={(e) => setPersonalData({ ...personalData, phone: e.target.value })}
-                                                    className="w-full px-3 sm:px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                                    className="w-full px-3 sm:px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92]"
                                                     placeholder="+91 9876543210" />
                                             </div>
                                             <div>
                                                 <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">Country</label>
                                                 <input type="text" value={personalData.country}
                                                     onChange={(e) => setPersonalData({ ...personalData, country: e.target.value })}
-                                                    className="w-full px-3 sm:px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                                    className="w-full px-3 sm:px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92]"
                                                     placeholder="India" />
                                             </div>
                                         </div>
@@ -630,7 +630,7 @@ const UserSettings = () => {
 
                                         <div className="flex justify-end">
                                             <button onClick={handleSaveChanges} disabled={saving}
-                                                className="flex items-center gap-2 w-full sm:w-auto px-4 sm:px-6 py-2 sm:py-2.5 text-sm bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium disabled:opacity-50">
+                                                className="flex items-center gap-2 w-full sm:w-auto px-4 sm:px-6 py-2 sm:py-2.5 text-sm bg-[#178C92] text-white rounded-lg hover:bg-[#007078] transition-colors font-medium disabled:opacity-50">
                                                 {saving ? <Loader className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                                                 {saving ? 'Saving...' : 'Save Changes'}
                                             </button>
@@ -661,7 +661,7 @@ const UserSettings = () => {
                                                 <input type="checkbox" checked={notifications[key as keyof typeof notifications]}
                                                     onChange={(e) => setNotifications({ ...notifications, [key]: e.target.checked })}
                                                     className="sr-only peer" />
-                                                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                                                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#178C92]300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#178C92]"></div>
                                                 <span className="ml-3 text-xs sm:text-sm font-medium text-gray-600 whitespace-nowrap">Enable All</span>
                                             </label>
                                         </div>

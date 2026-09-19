@@ -97,7 +97,7 @@ const ShippingDetails: React.FC<ShippingDetailsProps> = ({ onClose }) => {
   return (
     <div className="w-full max-w-[800px] mx-auto bg-white rounded-lg border border-gray-200 p-4 sm:p-6 mt-4">
       <div className="flex items-center gap-2 mb-4 sm:mb-6">
-        {/* <div className="w-6 h-6 bg-purple-600 rounded flex items-center justify-center">
+        {/* <div className="w-6 h-6 bg-[#178C92] rounded flex items-center justify-center">
           <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
           </svg>
@@ -117,7 +117,7 @@ const ShippingDetails: React.FC<ShippingDetailsProps> = ({ onClose }) => {
             <select
               value={shippedFrom.warehouse}
               onChange={(e) => setShippedFrom({ ...shippedFrom, warehouse: e.target.value })}
-              className="w-full px-4 py-3 text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-4 py-3 text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
             >
               <option value="">Select Warehouse</option>
               <option value="warehouse1">Warehouse 1</option>
@@ -133,7 +133,7 @@ const ShippingDetails: React.FC<ShippingDetailsProps> = ({ onClose }) => {
               id="same-business-address"
               checked={shippedFrom.sameAsBusinessAddress}
               onChange={(e) => setShippedFrom({ ...shippedFrom, sameAsBusinessAddress: e.target.checked })}
-              className="w-4 h-4 text-purple-600 rounded border-gray-300 focus:ring-purple-500"
+              className="w-4 h-4 text-[#178C92] rounded border-gray-300 focus:ring-[#178C92]"
             />
             <label htmlFor="same-business-address" className="text-sm text-gray-700">
               Same as your business address
@@ -146,7 +146,7 @@ const ShippingDetails: React.FC<ShippingDetailsProps> = ({ onClose }) => {
             placeholder="Business / Freelancer Name"
             value={shippedFrom.businessName}
             onChange={(e) => setShippedFrom({ ...shippedFrom, businessName: e.target.value })}
-            className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
           />
 
           {/* Country Dropdown */}
@@ -154,7 +154,7 @@ const ShippingDetails: React.FC<ShippingDetailsProps> = ({ onClose }) => {
             <select
               value={shippedFrom.country}
               onChange={(e) => setShippedFrom({ ...shippedFrom, country: e.target.value })}
-              className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
             >
               <option value="">Select Country</option>
               <option value="us">United States</option>
@@ -171,7 +171,7 @@ const ShippingDetails: React.FC<ShippingDetailsProps> = ({ onClose }) => {
             placeholder="Address (optional)"
             value={shippedFrom.address}
             onChange={(e) => setShippedFrom({ ...shippedFrom, address: e.target.value })}
-            className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
           />
 
           {/* City and Postal Code */}
@@ -181,14 +181,14 @@ const ShippingDetails: React.FC<ShippingDetailsProps> = ({ onClose }) => {
               placeholder="City (optional)"
               value={shippedFrom.city}
               onChange={(e) => setShippedFrom({ ...shippedFrom, city: e.target.value })}
-              className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
             />
             <input
               type="text"
               placeholder="Postal Code / ZIP Code"
               value={shippedFrom.postalCode}
               onChange={(e) => setShippedFrom({ ...shippedFrom, postalCode: e.target.value })}
-              className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
             />
           </div>
 
@@ -198,11 +198,11 @@ const ShippingDetails: React.FC<ShippingDetailsProps> = ({ onClose }) => {
             placeholder="State (optional)"
             value={shippedFrom.state}
             onChange={(e) => setShippedFrom({ ...shippedFrom, state: e.target.value })}
-            className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
           />
 
           {/* Add More Fields Button */}
-          <button className="flex items-center gap-2 text-purple-600 hover:text-purple-700 font-medium transition-colors">
+          <button className="flex items-center gap-2 text-[#178C92] hover:text-[#007078] font-medium transition-colors">
             <Plus className="w-5 h-5" />
             Add More Fields
           </button>
@@ -219,7 +219,7 @@ const ShippingDetails: React.FC<ShippingDetailsProps> = ({ onClose }) => {
             <select
               value={shippedTo.shippingAddress}
               onChange={(e) => setShippedTo({ ...shippedTo, shippingAddress: e.target.value })}
-              className="w-full px-4 py-3 text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-4 py-3 text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
             >
               <option value="">Select a Shipping Address</option>
               <option value="address1">Address 1</option>
@@ -235,7 +235,7 @@ const ShippingDetails: React.FC<ShippingDetailsProps> = ({ onClose }) => {
               id="same-client-address"
               checked={shippedTo.sameAsClientAddress}
               onChange={(e) => setShippedTo({ ...shippedTo, sameAsClientAddress: e.target.checked })}
-              className="w-4 h-4 text-purple-600 rounded border-gray-300 focus:ring-purple-500"
+              className="w-4 h-4 text-[#178C92] rounded border-gray-300 focus:ring-[#178C92]"
             />
             <label htmlFor="same-client-address" className="text-sm text-gray-700">
               Same as client's address
@@ -248,7 +248,7 @@ const ShippingDetails: React.FC<ShippingDetailsProps> = ({ onClose }) => {
             placeholder="Client's business name"
             value={shippedTo.clientBusinessName}
             onChange={(e) => setShippedTo({ ...shippedTo, clientBusinessName: e.target.value })}
-            className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 bg-white border border-purple-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 bg-white border border-[#178C92] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
           />
 
           {/* Country Dropdown */}
@@ -256,7 +256,7 @@ const ShippingDetails: React.FC<ShippingDetailsProps> = ({ onClose }) => {
             <select
               value={shippedTo.country}
               onChange={(e) => setShippedTo({ ...shippedTo, country: e.target.value })}
-              className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
             >
               <option value="">Select Country</option>
               <option value="us">United States</option>
@@ -273,7 +273,7 @@ const ShippingDetails: React.FC<ShippingDetailsProps> = ({ onClose }) => {
             placeholder="Address (optional)"
             value={shippedTo.address}
             onChange={(e) => setShippedTo({ ...shippedTo, address: e.target.value })}
-            className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
           />
 
           {/* City and Postal Code */}
@@ -283,14 +283,14 @@ const ShippingDetails: React.FC<ShippingDetailsProps> = ({ onClose }) => {
               placeholder="City (optional)"
               value={shippedTo.city}
               onChange={(e) => setShippedTo({ ...shippedTo, city: e.target.value })}
-              className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
             />
             <input
               type="text"
               placeholder="Postal Code / ZIP Code"
               value={shippedTo.postalCode}
               onChange={(e) => setShippedTo({ ...shippedTo, postalCode: e.target.value })}
-              className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
             />
           </div>
 
@@ -300,7 +300,7 @@ const ShippingDetails: React.FC<ShippingDetailsProps> = ({ onClose }) => {
             placeholder="State (optional)"
             value={shippedTo.state}
             onChange={(e) => setShippedTo({ ...shippedTo, state: e.target.value })}
-            className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
           />
 
           {/* Save to Client Details Checkbox */}
@@ -310,7 +310,7 @@ const ShippingDetails: React.FC<ShippingDetailsProps> = ({ onClose }) => {
               id="save-client-details"
               checked={shippedTo.saveToClientDetails}
               onChange={(e) => setShippedTo({ ...shippedTo, saveToClientDetails: e.target.checked })}
-              className="w-4 h-4 text-purple-600 rounded border-gray-300 focus:ring-purple-500"
+              className="w-4 h-4 text-[#178C92] rounded border-gray-300 focus:ring-[#178C92]"
             />
             <label htmlFor="save-client-details" className="text-sm text-gray-700">
               Save to client details
@@ -318,7 +318,7 @@ const ShippingDetails: React.FC<ShippingDetailsProps> = ({ onClose }) => {
           </div>
 
           {/* Add More Fields Button */}
-          <button className="flex items-center gap-2 text-purple-600 hover:text-purple-700 font-medium transition-colors">
+          <button className="flex items-center gap-2 text-[#178C92] hover:text-[#007078] font-medium transition-colors">
             <Plus className="w-5 h-5" />
             Add More Fields
           </button>

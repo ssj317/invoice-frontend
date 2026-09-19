@@ -180,7 +180,7 @@ export default function BilledBySection({
 			{/* Add New Business Button */}
 			<button
 				onClick={() => setShowBusinessEditModal(true)}
-				className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium"
+				className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-[#178C92] text-white rounded-lg hover:bg-[#007078] transition-colors font-medium"
 			>
 				<Plus size={16} />
 				Add New Business
@@ -193,7 +193,7 @@ export default function BilledBySection({
 						<h3 className="text-base font-semibold text-gray-900">Business details</h3>
 						<button
 							onClick={handleEditBusiness}
-							className="flex items-center gap-2 text-purple-600 hover:text-purple-700 transition-colors"
+							className="flex items-center gap-2 text-[#178C92] hover:text-[#007078] transition-colors"
 						>
 							<Edit2 size={12} />
 							<span className="font-medium text-sm">Edit</span>
@@ -242,7 +242,7 @@ export default function BilledBySection({
 					id="shipping-details"
 					checked={addShippingDetails}
 					onChange={(e) => setAddShippingDetails(e.target.checked)}
-					className="w-4 h-4 text-purple-600 rounded border-gray-300 focus:ring-purple-500"
+					className="w-4 h-4 text-[#178C92] rounded border-gray-300 focus:ring-[#178C92]"
 				/>
 				<label htmlFor="shipping-details" className="text-gray-900 font-medium text-sm">
 					Add Shipping Details
@@ -293,7 +293,7 @@ export default function BilledBySection({
 												onChange={(e) =>
 													setBusinessForm({ ...businessForm, vendorName: e.target.value })
 												}
-												className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 transition-colors"
+												className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] transition-colors"
 											/>
 										</div>
 
@@ -308,7 +308,7 @@ export default function BilledBySection({
 														onChange={(e) =>
 															setBusinessForm({ ...businessForm, country: e.target.value })
 														}
-														className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 transition-colors appearance-none bg-white"
+														className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] transition-colors appearance-none bg-white"
 													>
 														<option>India</option>
 														<option>USA</option>
@@ -330,7 +330,7 @@ export default function BilledBySection({
 													onChange={(e) =>
 														setBusinessForm({ ...businessForm, city: e.target.value })
 													}
-													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 transition-colors"
+													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] transition-colors"
 												/>
 											</div>
 										</div>
@@ -363,7 +363,7 @@ export default function BilledBySection({
 													onChange={(e) =>
 														setBusinessForm({ ...businessForm, gstin: e.target.value })
 													}
-													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 transition-colors"
+													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] transition-colors"
 												/>
 											</div>
 
@@ -378,7 +378,7 @@ export default function BilledBySection({
 													onChange={(e) =>
 														setBusinessForm({ ...businessForm, pan: e.target.value })
 													}
-													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 transition-colors"
+													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] transition-colors"
 												/>
 											</div>
 										</div>
@@ -413,7 +413,7 @@ export default function BilledBySection({
 																addressCountry: e.target.value,
 															})
 														}
-														className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 transition-colors appearance-none bg-white"
+														className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] transition-colors appearance-none bg-white"
 													>
 														<option>India</option>
 														<option>USA</option>
@@ -436,7 +436,7 @@ export default function BilledBySection({
 														onChange={(e) =>
 															setBusinessForm({ ...businessForm, state: e.target.value })
 														}
-														className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 transition-colors appearance-none bg-white"
+														className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] transition-colors appearance-none bg-white"
 													>
 														<option value="">Select State / Province</option>
 														<option>Maharashtra</option>
@@ -460,7 +460,7 @@ export default function BilledBySection({
 													onChange={(e) =>
 														setBusinessForm({ ...businessForm, addressCity: e.target.value })
 													}
-													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 transition-colors"
+													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] transition-colors"
 												/>
 											</div>
 
@@ -475,7 +475,7 @@ export default function BilledBySection({
 													onChange={(e) =>
 														setBusinessForm({ ...businessForm, postalCode: e.target.value })
 													}
-													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 transition-colors"
+													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] transition-colors"
 												/>
 											</div>
 										</div>
@@ -489,7 +489,7 @@ export default function BilledBySection({
 												onChange={(e) =>
 													setBusinessForm({ ...businessForm, streetAddress: e.target.value })
 												}
-												className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 transition-colors"
+												className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] transition-colors"
 											/>
 										</div>
 									</div>
@@ -519,7 +519,7 @@ export default function BilledBySection({
 												onChange={(e) =>
 													setBusinessForm({ ...businessForm, updatePrevious: e.target.checked })
 												}
-												className="w-5 h-5 text-purple-600 rounded border-gray-300 focus:ring-purple-500"
+												className="w-5 h-5 text-[#178C92] rounded border-gray-300 focus:ring-[#178C92]"
 											/>
 											<label htmlFor="update-previous" className="text-gray-900">
 												Update changes for Previous and Future documents.
@@ -534,7 +534,7 @@ export default function BilledBySection({
 												onChange={(e) =>
 													setBusinessForm({ ...businessForm, updateFuture: e.target.checked })
 												}
-												className="w-5 h-5 text-purple-600 rounded border-gray-300 focus:ring-purple-500"
+												className="w-5 h-5 text-[#178C92] rounded border-gray-300 focus:ring-[#178C92]"
 											/>
 											<label htmlFor="update-future" className="text-gray-900">
 												Only update for Future documents
@@ -548,7 +548,7 @@ export default function BilledBySection({
 						<div className="sticky bottom-0 bg-white border-t border-gray-200 px-6 py-4">
 							<button
 								onClick={handleSaveBusinessDetails}
-								className="px-8 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium"
+								className="px-8 py-3 bg-[#178C92] text-white rounded-lg hover:bg-[#007078] transition-colors font-medium"
 							>
 								Save
 							</button>

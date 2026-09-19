@@ -88,7 +88,7 @@ export default function ClientsPage() {
           </div>
           <button
             onClick={openCreate}
-            className="flex items-center gap-2 px-4 py-2.5 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm font-medium"
+            className="flex items-center gap-2 px-4 py-2.5 bg-[#178C92] text-white rounded-lg hover:bg-[#007078] transition-colors text-sm font-medium"
           >
             <Plus className="w-4 h-4" />
             Add Client
@@ -103,7 +103,7 @@ export default function ClientsPage() {
             placeholder="Search by name, email or phone..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full pl-9 pr-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
           />
           {search && (
             <button onClick={() => setSearch('')} className="absolute right-3 top-1/2 -translate-y-1/2">
@@ -144,8 +144,8 @@ export default function ClientsPage() {
                     <tr key={client._id} className="hover:bg-gray-50 transition-colors">
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
-                            <span className="text-purple-600 font-semibold text-xs">
+                          <div className="w-8 h-8 rounded-full bg-[#EAF4F1] flex items-center justify-center flex-shrink-0">
+                            <span className="text-[#178C92] font-semibold text-xs">
                               {client.businessName.charAt(0).toUpperCase()}
                             </span>
                           </div>
@@ -169,7 +169,7 @@ export default function ClientsPage() {
                       </td>
                       <td className="px-4 py-3 text-right">
                         <div className="flex items-center justify-end gap-2">
-                          <button onClick={() => openEdit(client)} className="p-1.5 text-gray-400 hover:text-purple-600 hover:bg-purple-50 rounded transition-colors">
+                          <button onClick={() => openEdit(client)} className="p-1.5 text-gray-400 hover:text-[#178C92] hover:bg-[#EAF4F1] rounded transition-colors">
                             <Pencil className="w-4 h-4" />
                           </button>
                           <button onClick={() => handleDelete(client._id!)} className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors">
@@ -204,21 +204,21 @@ export default function ClientsPage() {
                 <div className="sm:col-span-2">
                   <label className="block text-sm font-medium text-gray-700 mb-1">Business Name <span className="text-red-500">*</span></label>
                   <input name="businessName" value={form.businessName} onChange={handleChange}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#178C92]"
                     placeholder="e.g. Acme Corp" />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Alias / Display Name</label>
                   <input name="businessAlias" value={form.businessAlias || ''} onChange={handleChange}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#178C92]"
                     placeholder="Short name" />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Client Type</label>
                   <select name="clientType" value={form.clientType || 'individual'} onChange={handleChange}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#178C92]">
                     <option value="individual">Individual</option>
                     <option value="company">Company</option>
                   </select>
@@ -227,7 +227,7 @@ export default function ClientsPage() {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
                   <input name="email" type="email" value={form.email || ''} onChange={handleChange}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#178C92]"
                     placeholder="client@example.com" />
                 </div>
 
@@ -235,9 +235,9 @@ export default function ClientsPage() {
                   <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
                   <div className="flex gap-2">
                     <input name="phoneCode" value={form.phoneCode || '+91'} onChange={handleChange}
-                      className="w-16 border border-gray-300 rounded-lg px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500" />
+                      className="w-16 border border-gray-300 rounded-lg px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#178C92]" />
                     <input name="phone" value={form.phone || ''} onChange={handleChange}
-                      className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#178C92]"
                       placeholder="9876543210" />
                   </div>
                 </div>
@@ -245,35 +245,35 @@ export default function ClientsPage() {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">GSTIN</label>
                   <input name="gstin" value={form.gstin || ''} onChange={handleChange}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#178C92]"
                     placeholder="22AAAAA0000A1Z5" />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">PAN</label>
                   <input name="pan" value={form.pan || ''} onChange={handleChange}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#178C92]"
                     placeholder="AAAAA0000A" />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">City</label>
                   <input name="city" value={form.city || ''} onChange={handleChange}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#178C92]"
                     placeholder="Mumbai" />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">State</label>
                   <input name="state" value={form.state || ''} onChange={handleChange}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#178C92]"
                     placeholder="Maharashtra" />
                 </div>
 
                 <div className="sm:col-span-2">
                   <label className="block text-sm font-medium text-gray-700 mb-1">Street Address</label>
                   <input name="streetAddress" value={form.streetAddress || ''} onChange={handleChange}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#178C92]"
                     placeholder="123 Main Street" />
                 </div>
               </div>
@@ -284,7 +284,7 @@ export default function ClientsPage() {
                   Cancel
                 </button>
                 <button type="submit" disabled={saving}
-                  className="flex-1 px-4 py-2.5 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm font-medium disabled:opacity-50">
+                  className="flex-1 px-4 py-2.5 bg-[#178C92] text-white rounded-lg hover:bg-[#007078] transition-colors text-sm font-medium disabled:opacity-50">
                   {saving ? 'Saving...' : editing ? 'Update Client' : 'Add Client'}
                 </button>
               </div>

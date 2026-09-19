@@ -7,6 +7,7 @@ const Sidebar = ({ isExpanded: externalExpanded = false, setIsExpanded: setExter
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [hoverExpanded, setHoverExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [sidebarUserName, setSidebarUserName] = useState('User');
 
   useEffect(() => {
     const checkMobile = () => {
@@ -15,6 +16,15 @@ const Sidebar = ({ isExpanded: externalExpanded = false, setIsExpanded: setExter
     
     checkMobile();
     window.addEventListener('resize', checkMobile);
+
+    // Load user name from localStorage
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      try {
+        const parsed = JSON.parse(userData);
+        setSidebarUserName(parsed.fullName || parsed.name || 'User');
+      } catch {}
+    }
     
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
@@ -27,7 +37,7 @@ const Sidebar = ({ isExpanded: externalExpanded = false, setIsExpanded: setExter
       id: 'dashboard',
       label: 'Dashboard',
       icon: <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4M12 8h.01" /></svg>,
-      color: 'text-purple-600',
+      color: 'text-[#178C92]',
       isNew: false,
       hasSubmenu: false
     },
@@ -360,8 +370,7 @@ const Sidebar = ({ isExpanded: externalExpanded = false, setIsExpanded: setExter
             </div>
             {isExpanded && (
               <div className="text-left min-w-0 overflow-hidden">
-                <h2 className="font-semibold text-sm text-gray-900 truncate">Lokesh yadav</h2>
-                <p className="text-xs text-gray-500">Premium Trial</p>
+                <h2 className="font-semibold text-sm text-gray-900 truncate">{sidebarUserName}</h2>
               </div>
             )}
           </div>
@@ -381,7 +390,7 @@ const Sidebar = ({ isExpanded: externalExpanded = false, setIsExpanded: setExter
                 onMouseEnter={() => setHoveredItem(item.id)}
                 onMouseLeave={() => setHoveredItem(null)}
                 className={`w-full flex items-center ${isExpanded ? 'justify-between' : 'justify-center'} px-3 py-2.5 rounded-lg transition-all duration-200 ${item.id === 'dashboard'
-                  ? 'bg-purple-50 text-purple-600'
+                  ? 'bg-[#e6f7f8] text-[#178C92]'
                   : hoveredItem === item.id
                     ? 'bg-gray-50'
                     : ''
@@ -389,17 +398,17 @@ const Sidebar = ({ isExpanded: externalExpanded = false, setIsExpanded: setExter
                 title={!isExpanded ? item.label : ''}
               >
                 <div className="flex items-center gap-3 min-w-0">
-                  <span className={`flex-shrink-0 ${item.id === 'dashboard' ? 'text-purple-600' : item.color}`}>
+                  <span className={`flex-shrink-0 ${item.id === 'dashboard' ? 'text-[#178C92]' : item.color}`}>
                     {item.icon}
                   </span>
                   {isExpanded && (
                     <>
-                      <span className={`font-medium text-sm truncate ${item.id === 'dashboard' ? 'text-purple-600' : 'text-gray-700'
+                      <span className={`font-medium text-sm truncate ${item.id === 'dashboard' ? 'text-[#178C92]' : 'text-gray-700'
                         }`}>
                         {item.label}
                       </span>
                       {item.isNew && (
-                        <span className="text-xs font-semibold text-purple-500 flex-shrink-0">New</span>
+                        <span className="text-xs font-semibold text-[#178C92] flex-shrink-0">New</span>
                       )}
                     </>
                   )}
@@ -438,10 +447,10 @@ const Sidebar = ({ isExpanded: externalExpanded = false, setIsExpanded: setExter
                       <span className="text-sm truncate">{subItem.label}</span>
                       <div className="flex items-center gap-2 flex-shrink-0">
                         {subItem.isNew && (
-                          <span className="text-xs font-semibold text-purple-500">New</span>
+                          <span className="text-xs font-semibold text-[#178C92]">New</span>
                         )}
                         {hoveredItem === `${item.id}-${index}` && (
-                          <Plus className="w-4 h-4 text-purple-500" />
+                          <Plus className="w-4 h-4 text-[#178C92]" />
                         )}
                       </div>
                     </button>
@@ -455,7 +464,7 @@ const Sidebar = ({ isExpanded: externalExpanded = false, setIsExpanded: setExter
         {/* Invite Team Members Button */}
         {isExpanded && (
           <div className="px-4 pb-4 pt-2">
-            <button className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-white border-2 border-purple-200 text-purple-600 rounded-lg hover:bg-purple-50 transition-colors">
+            <button className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-white border-2 border-[#178C92] text-[#178C92] rounded-lg hover:bg-[#e6f7f8] transition-colors">
               <Users className="w-4 h-4" />
               <span className="font-medium text-sm">Invite Team Members</span>
             </button>

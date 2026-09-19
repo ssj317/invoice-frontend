@@ -197,7 +197,7 @@ export default function BilledToSection({
 				>
 					{selectedClient ? (
 						<>
-							<div className="w-8 h-8 bg-purple-600 rounded flex items-center justify-center text-white font-semibold">
+							<div className="w-8 h-8 bg-[#178C92] rounded flex items-center justify-center text-white font-semibold">
 								{selectedClient.charAt(0).toUpperCase()}
 							</div>
 							<span className="flex-1 text-left text-gray-900 font-medium text-sm">{selectedClient}</span>
@@ -220,7 +220,7 @@ export default function BilledToSection({
 								className="w-full text-left px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0"
 							>
 								<div className="flex items-center gap-3">
-									<div className="w-8 h-8 bg-purple-600 rounded flex items-center justify-center text-white font-semibold text-sm">
+									<div className="w-8 h-8 bg-[#178C92] rounded flex items-center justify-center text-white font-semibold text-sm">
 										{client.name.charAt(0).toUpperCase()}
 									</div>
 									<div>
@@ -237,7 +237,7 @@ export default function BilledToSection({
 			{/* Add New Client Button */}
 			<button
 				onClick={() => setShowAddClientModal(true)}
-				className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium"
+				className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-[#178C92] text-white rounded-lg hover:bg-[#007078] transition-colors font-medium"
 			>
 				<Plus size={16} />
 				Add New Client
@@ -250,7 +250,7 @@ export default function BilledToSection({
 						<h3 className="text-base font-semibold text-gray-900">Client details</h3>
 						<button
 							onClick={handleEditClient}
-							className="flex items-center gap-2 text-purple-600 hover:text-purple-700 transition-colors"
+							className="flex items-center gap-2 text-[#178C92] hover:text-[#007078] transition-colors"
 						>
 							<Edit2 size={12} />
 							<span className="font-medium text-sm">Edit</span>
@@ -346,7 +346,7 @@ export default function BilledToSection({
 								{expandClientBasicInfo && (
 									<div className="space-y-4">
 										{/* Upload Logo */}
-										<div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-purple-400 transition-colors">
+										<div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-[#178C92] transition-colors">
 											<input
 												type="file"
 												id="client-logo-upload"
@@ -386,7 +386,7 @@ export default function BilledToSection({
 													onChange={(e) =>
 														setClientForm({ ...clientForm, businessName: e.target.value })
 													}
-													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 transition-colors"
+													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] transition-colors"
 												/>
 											</div>
 
@@ -400,7 +400,7 @@ export default function BilledToSection({
 														onChange={(e) =>
 															setClientForm({ ...clientForm, industry: e.target.value })
 														}
-														className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 transition-colors appearance-none bg-white text-gray-500"
+														className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] transition-colors appearance-none bg-white text-gray-500"
 													>
 														<option value="">-Select an Industry-</option>
 														<option>Technology</option>
@@ -427,7 +427,7 @@ export default function BilledToSection({
 														onChange={(e) =>
 															setClientForm({ ...clientForm, country: e.target.value })
 														}
-														className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 transition-colors appearance-none bg-white"
+														className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] transition-colors appearance-none bg-white"
 													>
 														<option>India</option>
 														<option>USA</option>
@@ -451,7 +451,7 @@ export default function BilledToSection({
 													onChange={(e) =>
 														setClientForm({ ...clientForm, city: e.target.value })
 													}
-													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 transition-colors"
+													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] transition-colors"
 												/>
 											</div>
 										</div>
@@ -486,7 +486,7 @@ export default function BilledToSection({
 													onChange={(e) =>
 														setClientForm({ ...clientForm, gstin: e.target.value })
 													}
-													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 transition-colors"
+													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] transition-colors"
 												/>
 											</div>
 
@@ -501,12 +501,12 @@ export default function BilledToSection({
 													onChange={(e) =>
 														setClientForm({ ...clientForm, pan: e.target.value })
 													}
-													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 transition-colors"
+													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] transition-colors"
 												/>
 											</div>
 										</div>
 
-										<button className="flex items-center gap-2 text-purple-600 hover:text-purple-700 transition-colors">
+										<button className="flex items-center gap-2 text-[#178C92] hover:text-[#007078] transition-colors">
 											<span className="font-medium">Check GST Type</span>
 											<span>🎓</span>
 										</button>
@@ -529,7 +529,7 @@ export default function BilledToSection({
 														onChange={(e) =>
 															setClientForm({ ...clientForm, clientType: e.target.value })
 														}
-														className="w-5 h-5 text-purple-600"
+														className="w-5 h-5 text-[#178C92]"
 													/>
 													<span className="text-gray-900">Individual</span>
 												</label>
@@ -542,7 +542,7 @@ export default function BilledToSection({
 														onChange={(e) =>
 															setClientForm({ ...clientForm, clientType: e.target.value })
 														}
-														className="w-5 h-5 text-purple-600"
+														className="w-5 h-5 text-[#178C92]"
 													/>
 													<span className="text-gray-900">Company</span>
 												</label>
@@ -563,7 +563,7 @@ export default function BilledToSection({
 													onChange={(e) =>
 														setClientForm({ ...clientForm, taxTreatment: e.target.value })
 													}
-													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 transition-colors appearance-none bg-white text-gray-500"
+													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] transition-colors appearance-none bg-white text-gray-500"
 												>
 													<option value="">Select Tax Treatment</option>
 													<option>GST Registered</option>
@@ -608,7 +608,7 @@ export default function BilledToSection({
 																addressCountry: e.target.value,
 															})
 														}
-														className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 transition-colors appearance-none bg-white"
+														className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] transition-colors appearance-none bg-white"
 													>
 														<option>India</option>
 														<option>USA</option>
@@ -631,7 +631,7 @@ export default function BilledToSection({
 														onChange={(e) =>
 															setClientForm({ ...clientForm, state: e.target.value })
 														}
-														className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 transition-colors appearance-none bg-white text-gray-500"
+														className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] transition-colors appearance-none bg-white text-gray-500"
 													>
 														<option value="">Select State / Province</option>
 														<option>Maharashtra</option>
@@ -657,7 +657,7 @@ export default function BilledToSection({
 													onChange={(e) =>
 														setClientForm({ ...clientForm, addressCity: e.target.value })
 													}
-													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 transition-colors"
+													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] transition-colors"
 												/>
 											</div>
 
@@ -672,7 +672,7 @@ export default function BilledToSection({
 													onChange={(e) =>
 														setClientForm({ ...clientForm, postalCode: e.target.value })
 													}
-													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 transition-colors"
+													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] transition-colors"
 												/>
 											</div>
 										</div>
@@ -688,7 +688,7 @@ export default function BilledToSection({
 												onChange={(e) =>
 													setClientForm({ ...clientForm, streetAddress: e.target.value })
 												}
-												className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 transition-colors"
+												className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] transition-colors"
 											/>
 										</div>
 									</div>
@@ -726,7 +726,7 @@ export default function BilledToSection({
 													onChange={(e) =>
 														setClientForm({ ...clientForm, businessAlias: e.target.value })
 													}
-													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 transition-colors"
+													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] transition-colors"
 												/>
 											</div>
 
@@ -756,7 +756,7 @@ export default function BilledToSection({
 													onChange={(e) =>
 														setClientForm({ ...clientForm, email: e.target.value })
 													}
-													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 transition-colors"
+													className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] transition-colors"
 												/>
 												<div className="flex items-center gap-2 mt-2">
 													<input
@@ -769,7 +769,7 @@ export default function BilledToSection({
 																showEmailInInvoice: e.target.checked,
 															})
 														}
-														className="w-4 h-4 text-purple-600 rounded border-gray-300"
+														className="w-4 h-4 text-[#178C92] rounded border-gray-300"
 													/>
 													<label htmlFor="show-email" className="text-gray-700 text-sm">
 														Show Email in Invoice
@@ -796,7 +796,7 @@ export default function BilledToSection({
 														onChange={(e) =>
 															setClientForm({ ...clientForm, phone: e.target.value })
 														}
-														className="flex-1 px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 transition-colors"
+														className="flex-1 px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] transition-colors"
 													/>
 												</div>
 												<div className="flex items-center gap-2 mt-2">
@@ -810,7 +810,7 @@ export default function BilledToSection({
 																showPhoneInInvoice: e.target.checked,
 															})
 														}
-														className="w-4 h-4 text-purple-600 rounded border-gray-300"
+														className="w-4 h-4 text-[#178C92] rounded border-gray-300"
 													/>
 													<label htmlFor="show-phone" className="text-gray-700 text-sm">
 														Show Phone in Invoice
@@ -834,11 +834,11 @@ export default function BilledToSection({
 												onChange={(e) =>
 													setClientForm({ ...clientForm, defaultDueDays: e.target.value })
 												}
-												className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 transition-colors"
+												className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] transition-colors"
 											/>
 										</div>
 
-										<button className="flex items-center gap-2 text-purple-600 hover:text-purple-700 transition-colors">
+										<button className="flex items-center gap-2 text-[#178C92] hover:text-[#007078] transition-colors">
 											<Plus size={20} />
 											<span className="font-medium">Add Custom Fields</span>
 										</button>
@@ -865,7 +865,7 @@ export default function BilledToSection({
 						<div className="sticky bottom-0 bg-white border-t border-gray-200 px-6 py-4">
 							<button
 								onClick={handleSaveClient}
-								className="px-8 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium"
+								className="px-8 py-3 bg-[#178C92] text-white rounded-lg hover:bg-[#007078] transition-colors font-medium"
 							>
 								Save
 							</button>

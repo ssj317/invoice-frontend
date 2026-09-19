@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { updateInvoiceData } from '../../store/invoiceSlice';
 import { clientService, ClientData } from '../../services/clientService';
+import { businessService } from '../../services/businessService';
 
 interface BillingDetailsSectionProps {
 	BilledBySection: React.ComponentType<any>;
@@ -40,16 +41,34 @@ function dbClientToLocal(c: ClientData, index: number) {
 	};
 }
 
+const emptyBusinessForm = {
+	vendorName: '',
+	country: 'India',
+	city: '',
+	gstin: '',
+	pan: '',
+	addressCountry: 'India',
+	state: '',
+	addressCity: '',
+	postalCode: '',
+	streetAddress: '',
+	updatePrevious: false,
+	updateFuture: true,
+};
+
 export default function BillingDetails({ BilledBySection, BilledToSection }: BillingDetailsSectionProps) {
 	const dispatch = useAppDispatch();
 	const invoiceData = useAppSelector((state) => state.invoice);
 
 	const [selectedClient, setSelectedClient] = useState(invoiceData.selectedClient);
 	const [selectedBusiness, setSelectedBusiness] = useState(invoiceData.businessDetails.vendorName);
-	const [businessForm, setBusinessForm] = useState(invoiceData.businessDetails);
+	const [businessForm, setBusinessForm] = useState<any>(emptyBusinessForm);
+	const [businesses, setBusinesses] = useState<any[]>([]);
+	// Always start empty — only filled from DB
+	const [clients, setClients] = useState<any[]>([]);
 
 	const [clientForm, setClientForm] = useState({
-		logo: null,
+		logo: null as string | null,
 		businessName: '',
 		industry: '',
 		country: 'India',
@@ -73,38 +92,105 @@ export default function BillingDetails({ BilledBySection, BilledToSection }: Bil
 		defaultDueDays: '',
 	});
 
-	const [businesses, setBusinesses] = useState([{ id: 1, name: invoiceData.businessDetails.vendorName, company: 'Lokesh Business' }]);
-	const [clients, setClients] = useState(invoiceData.clients);
+	// Track whether the business profile has loaded from DB so we
+	// don't immediately fire a save with empty data on mount.
+	const businessProfileLoaded = useRef(false);
+	const businessSaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-	// Load clients from DB on mount
+	// ── On mount: load both clients and business profile from DB ──────────────
 	useEffect(() => {
+		// Load clients (scoped to current user via auth header)
 		clientService.getClients()
 			.then((dbClients) => {
-				if (dbClients.length > 0) {
-					setClients(dbClients.map(dbClientToLocal));
-				}
+				const mapped = dbClients.map(dbClientToLocal);
+				setClients(mapped);
 			})
 			.catch(() => {
-				// fall back to redux state if API fails
+				setClients([]); // ensure no dummy data on error
+			});
+
+		// Load business profile
+		businessService.getProfile()
+			.then((profile) => {
+				if (profile && profile.vendorName) {
+					const form = {
+						vendorName: profile.vendorName || '',
+						country: profile.country || 'India',
+						city: profile.city || '',
+						gstin: profile.gstin || '',
+						pan: profile.pan || '',
+						addressCountry: profile.addressCountry || 'India',
+						state: profile.state || '',
+						addressCity: profile.addressCity || '',
+						postalCode: profile.postalCode || '',
+						streetAddress: profile.streetAddress || '',
+						updatePrevious: false,
+						updateFuture: true,
+					};
+					setBusinessForm(form);
+					setSelectedBusiness(profile.vendorName);
+					setBusinesses([{ id: 1, name: profile.vendorName, company: '' }]);
+				}
+				businessProfileLoaded.current = true;
+			})
+			.catch(() => {
+				businessProfileLoaded.current = true;
 			});
 	}, []);
 
-	// Save to Redux whenever data changes
+	// ── Sync clients + selectedClient to Redux ────────────────────────────────
 	useEffect(() => {
-		dispatch(updateInvoiceData({
-			businessDetails: businessForm,
-			selectedClient,
-			clients,
-		}));
-	}, [businessForm, selectedClient, clients, dispatch]);
+		dispatch(updateInvoiceData({ clients, selectedClient }));
+	}, [clients, selectedClient, dispatch]);
 
-	// Wrap setClients so new/edited clients are persisted to DB
+	// ── Sync businessForm to Redux ────────────────────────────────────────────
+	useEffect(() => {
+		dispatch(updateInvoiceData({ businessDetails: businessForm }));
+	}, [businessForm, dispatch]);
+
+	// ── Auto-save businessForm to DB (debounced 800ms) ────────────────────────
+	useEffect(() => {
+		if (!businessProfileLoaded.current) return; // skip until initial load done
+		if (!businessForm.vendorName) return;        // don't save blank vendor name
+
+		if (businessSaveTimer.current) clearTimeout(businessSaveTimer.current);
+		businessSaveTimer.current = setTimeout(() => {
+			businessService.saveProfile({
+				vendorName: businessForm.vendorName,
+				country: businessForm.country,
+				city: businessForm.city,
+				gstin: businessForm.gstin,
+				pan: businessForm.pan,
+				addressCountry: businessForm.addressCountry,
+				state: businessForm.state,
+				addressCity: businessForm.addressCity,
+				postalCode: businessForm.postalCode,
+				streetAddress: businessForm.streetAddress,
+			}).catch((err) => console.error('Failed to save business profile:', err));
+		}, 800);
+
+		return () => {
+			if (businessSaveTimer.current) clearTimeout(businessSaveTimer.current);
+		};
+	}, [businessForm]);
+
+	// ── When business name changes keep businesses list in sync ───────────────
+	useEffect(() => {
+		if (businessForm.vendorName) {
+			setBusinesses([{ id: 1, name: businessForm.vendorName, company: '' }]);
+		}
+	}, [businessForm.vendorName]);
+
+	// ── Wrap setClients: persist new/edited client to DB ─────────────────────
 	const handleSetClients = async (updatedClients: any[]) => {
-		// Find the client that was added or changed by comparing with current list
 		const prevIds = new Set(clients.map((c: any) => c._id).filter(Boolean));
 		const newClient = updatedClients.find((c: any) => !c._id);
-		const editedClient = updatedClients.find((c: any) => c._id && !prevIds.has(c._id) === false &&
-			JSON.stringify(c) !== JSON.stringify(clients.find((p: any) => p._id === c._id)));
+		const editedClient = updatedClients.find(
+			(c: any) =>
+				c._id &&
+				prevIds.has(c._id) &&
+				JSON.stringify(c) !== JSON.stringify(clients.find((p: any) => p._id === c._id))
+		);
 
 		if (newClient) {
 			try {
@@ -132,7 +218,7 @@ export default function BillingDetails({ BilledBySection, BilledToSection }: Bil
 					logo: newClient.logo,
 					uniqueKey: newClient.uniqueKey,
 				});
-				// Replace the temp client with the saved one (now has _id)
+				// Replace the temp client with the DB-saved one (now has _id)
 				const withId = updatedClients.map((c: any) =>
 					!c._id && c.name === newClient.name ? { ...c, _id: saved._id } : c
 				);

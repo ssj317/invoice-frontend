@@ -136,7 +136,7 @@ const Profile = () => {
                     {!isEditing ? (
                         <button
                             onClick={() => setIsEditing(true)}
-                            className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+                            className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 bg-[#178C92] text-white rounded-lg hover:bg-[#007078] transition-colors"
                         >
                             <Edit2 className="w-4 h-4" />
                             Edit Profile
@@ -178,7 +178,7 @@ const Profile = () => {
                 {/* Personal Information */}
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
                     <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                        <User className="w-5 h-5 text-purple-600" />
+                        <User className="w-5 h-5 text-[#178C92]" />
                         Personal Information
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -192,7 +192,7 @@ const Profile = () => {
                                     value={profileData.fullName}
                                     onChange={handleChange}
                                     disabled={!isEditing}
-                                    className={`w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg ${isEditing ? 'bg-white focus:ring-2 focus:ring-purple-500' : 'bg-gray-50'
+                                    className={`w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg ${isEditing ? 'bg-white focus:ring-2 focus:ring-[#178C92]' : 'bg-gray-50'
                                         }`}
                                 />
                             </div>
@@ -208,7 +208,7 @@ const Profile = () => {
                                     value={profileData.email}
                                     onChange={handleChange}
                                     disabled={!isEditing}
-                                    className={`w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg ${isEditing ? 'bg-white focus:ring-2 focus:ring-purple-500' : 'bg-gray-50'
+                                    className={`w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg ${isEditing ? 'bg-white focus:ring-2 focus:ring-[#178C92]' : 'bg-gray-50'
                                         }`}
                                 />
                             </div>
@@ -224,7 +224,7 @@ const Profile = () => {
                                     value={profileData.companyName}
                                     onChange={handleChange}
                                     disabled={!isEditing}
-                                    className={`w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg ${isEditing ? 'bg-white focus:ring-2 focus:ring-purple-500' : 'bg-gray-50'
+                                    className={`w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg ${isEditing ? 'bg-white focus:ring-2 focus:ring-[#178C92]' : 'bg-gray-50'
                                         }`}
                                 />
                             </div>
@@ -235,7 +235,7 @@ const Profile = () => {
                 {/* Business Information */}
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
                     <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                        <Briefcase className="w-5 h-5 text-purple-600" />
+                        <Briefcase className="w-5 h-5 text-[#178C92]" />
                         Business Information
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -249,7 +249,7 @@ const Profile = () => {
                                     value={profileData.businessName}
                                     onChange={handleChange}
                                     disabled={!isEditing}
-                                    className={`w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg ${isEditing ? 'bg-white focus:ring-2 focus:ring-purple-500' : 'bg-gray-50'
+                                    className={`w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg ${isEditing ? 'bg-white focus:ring-2 focus:ring-[#178C92]' : 'bg-gray-50'
                                         }`}
                                 />
                             </div>
@@ -265,7 +265,7 @@ const Profile = () => {
                                     value={profileData.brandName}
                                     onChange={handleChange}
                                     disabled={!isEditing}
-                                    className={`w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg ${isEditing ? 'bg-white focus:ring-2 focus:ring-purple-500' : 'bg-gray-50'
+                                    className={`w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg ${isEditing ? 'bg-white focus:ring-2 focus:ring-[#178C92]' : 'bg-gray-50'
                                         }`}
                                 />
                             </div>
@@ -281,7 +281,7 @@ const Profile = () => {
                                     value={profileData.teamSize}
                                     onChange={handleChange}
                                     disabled={!isEditing}
-                                    className={`w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg ${isEditing ? 'bg-white focus:ring-2 focus:ring-purple-500' : 'bg-gray-50'
+                                    className={`w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg ${isEditing ? 'bg-white focus:ring-2 focus:ring-[#178C92]' : 'bg-gray-50'
                                         }`}
                                 />
                             </div>
@@ -297,7 +297,7 @@ const Profile = () => {
                                     value={profileData.website}
                                     onChange={handleChange}
                                     disabled={!isEditing}
-                                    className={`w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg ${isEditing ? 'bg-white focus:ring-2 focus:ring-purple-500' : 'bg-gray-50'
+                                    className={`w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg ${isEditing ? 'bg-white focus:ring-2 focus:ring-[#178C92]' : 'bg-gray-50'
                                         }`}
                                 />
                             </div>
@@ -327,7 +327,7 @@ const Profile = () => {
                                     value={profileData.useFor}
                                     onChange={handleChange}
                                     disabled={!isEditing}
-                                    className={`w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg ${isEditing ? 'bg-white focus:ring-2 focus:ring-purple-500' : 'bg-gray-50'
+                                    className={`w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg ${isEditing ? 'bg-white focus:ring-2 focus:ring-[#178C92]' : 'bg-gray-50'
                                         }`}
                                 />
                             </div>
@@ -338,7 +338,7 @@ const Profile = () => {
                 {/* Location & Currency */}
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                     <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                        <Globe className="w-5 h-5 text-purple-600" />
+                        <Globe className="w-5 h-5 text-[#178C92]" />
                         Location & Currency
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -352,7 +352,7 @@ const Profile = () => {
                                     value={profileData.country}
                                     onChange={handleChange}
                                     disabled={!isEditing}
-                                    className={`w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg ${isEditing ? 'bg-white focus:ring-2 focus:ring-purple-500' : 'bg-gray-50'
+                                    className={`w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg ${isEditing ? 'bg-white focus:ring-2 focus:ring-[#178C92]' : 'bg-gray-50'
                                         }`}
                                 />
                             </div>
@@ -368,7 +368,7 @@ const Profile = () => {
                                     value={profileData.currency}
                                     onChange={handleChange}
                                     disabled={!isEditing}
-                                    className={`w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg ${isEditing ? 'bg-white focus:ring-2 focus:ring-purple-500' : 'bg-gray-50'
+                                    className={`w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg ${isEditing ? 'bg-white focus:ring-2 focus:ring-[#178C92]' : 'bg-gray-50'
                                         }`}
                                 />
                             </div>

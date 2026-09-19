@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { updateInvoiceData } from '../../store/invoiceSlice';
@@ -62,7 +62,7 @@ export default function AdvancedOptions() {
                   setShowUnitDropdown(false);
                   setShowTaxDropdown(false);
                 }}
-                className="w-full sm:w-96 px-3 sm:px-4 py-2 sm:py-1 border-2 text-sm border-black/10 rounded-lg bg-white text-left flex items-center justify-between hover:border-purple-400 transition-all focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200"
+                className="w-full sm:w-96 px-3 sm:px-4 py-2 sm:py-1 border-2 text-sm border-black/10 rounded-lg bg-white text-left flex items-center justify-between hover:border-[#178C92] transition-all focus:outline-none focus:border-[#178C92] focus:ring-2 focus:ring-[#EAF4F1]"
               >
                 <span className="text-gray-700">{hsnColumnView}</span>
                 {showHsnDropdown ? (
@@ -81,8 +81,8 @@ export default function AdvancedOptions() {
                         setShowHsnDropdown(false);
                       }}
                       className={`w-full px-4 py-3 text-left transition-colors ${option === hsnColumnView
-                        ? 'bg-purple-100 text-purple-700 font-medium'
-                        : 'hover:bg-purple-50 text-gray-800'
+                        ? 'bg-[#EAF4F1] text-[#007078] font-medium'
+                        : 'hover:bg-[#EAF4F1] text-gray-800'
                         }`}
                     >
                       {option}
@@ -105,7 +105,7 @@ export default function AdvancedOptions() {
                   setShowHsnDropdown(false);
                   setShowTaxDropdown(false);
                 }}
-                className="w-full sm:w-96 px-3 sm:px-4 py-2 sm:py-1 border-2 text-sm border-black/10 rounded-lg bg-white text-left flex items-center justify-between hover:border-purple-400 transition-all focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200"
+                className="w-full sm:w-96 px-3 sm:px-4 py-2 sm:py-1 border-2 text-sm border-black/10 rounded-lg bg-white text-left flex items-center justify-between hover:border-[#178C92] transition-all focus:outline-none focus:border-[#178C92] focus:ring-2 focus:ring-[#EAF4F1]"
               >
                 <span className="text-gray-700">{displayUnit}</span>
                 {showUnitDropdown ? (
@@ -124,8 +124,8 @@ export default function AdvancedOptions() {
                         setShowUnitDropdown(false);
                       }}
                       className={`w-full px-4 py-3 text-left transition-colors ${option === displayUnit
-                        ? 'bg-purple-100 text-purple-700 font-medium'
-                        : 'hover:bg-purple-50 text-gray-800'
+                        ? 'bg-[#EAF4F1] text-[#007078] font-medium'
+                        : 'hover:bg-[#EAF4F1] text-gray-800'
                         }`}
                     >
                       {option}
@@ -148,7 +148,7 @@ export default function AdvancedOptions() {
                   setShowHsnDropdown(false);
                   setShowUnitDropdown(false);
                 }}
-                className="w-full sm:w-96 px-3 sm:px-4 py-2 sm:py-1 border-2 text-sm border-black/10 rounded-lg bg-white text-left flex items-center justify-between hover:border-purple-400 transition-all focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200"
+                className="w-full sm:w-96 px-3 sm:px-4 py-2 sm:py-1 border-2 text-sm border-black/10 rounded-lg bg-white text-left flex items-center justify-between hover:border-[#178C92] transition-all focus:outline-none focus:border-[#178C92] focus:ring-2 focus:ring-[#EAF4F1]"
               >
                 <span className="text-gray-700">{taxSummary}</span>
                 {showTaxDropdown ? (
@@ -158,7 +158,7 @@ export default function AdvancedOptions() {
                 )}
               </button>
               {showTaxDropdown && (
-                <div className="absolute z-10 w-full sm:w-96 mt-2 bg-white border-2 border-purple-200 rounded-lg shadow-lg overflow-hidden">
+                <div className="absolute z-10 w-full sm:w-96 mt-2 bg-white border-2 border-[#d0eae8] rounded-lg shadow-lg overflow-hidden">
                   {taxOptions.map((option) => (
                     <button
                       key={option}
@@ -167,8 +167,8 @@ export default function AdvancedOptions() {
                         setShowTaxDropdown(false);
                       }}
                       className={`w-full px-4 py-3 text-left transition-colors ${option === taxSummary
-                        ? 'bg-purple-100 text-purple-700 font-medium'
-                        : 'hover:bg-purple-50 text-gray-800'
+                        ? 'bg-[#EAF4F1] text-[#007078] font-medium'
+                        : 'hover:bg-[#EAF4F1] text-gray-800'
                         }`}
                     >
                       {option}
@@ -187,12 +187,12 @@ export default function AdvancedOptions() {
           {/* Checkboxes */}
           <div className="space-y-0 pt-4">
             {/* Hide place/country of supply */}
-            <label className="flex items-center gap-3 text-sm cursor-pointer group p-1 rounded-lg hover:bg-purple-50 transition-colors">
+            <label className="flex items-center gap-3 text-sm cursor-pointer group p-1 rounded-lg hover:bg-[#EAF4F1] transition-colors">
               <input
                 type="checkbox"
                 checked={hidePlaceCountry}
                 onChange={(e) => setHidePlaceCountry(e.target.checked)}
-                className="w-4 h-4 text-purple-600 border-gray-300 text-xs rounded focus:ring-2 focus:ring-purple-500 cursor-pointer"
+                className="w-4 h-4 text-[#178C92] border-gray-300 text-xs rounded focus:ring-2 focus:ring-[#178C92] cursor-pointer"
               />
               <span className="text-gray-700 group-hover:text-gray-900 transition-colors">
                 Hide place/country of supply
@@ -200,12 +200,12 @@ export default function AdvancedOptions() {
             </label>
 
             {/* Show HSN summary in invoice */}
-            <label className="flex items-center gap-3 text-sm cursor-pointer group p-1 rounded-lg hover:bg-purple-50 transition-colors">
+            <label className="flex items-center gap-3 text-sm cursor-pointer group p-1 rounded-lg hover:bg-[#EAF4F1] transition-colors">
               <input
                 type="checkbox"
                 checked={showHsnSummary}
                 onChange={(e) => setShowHsnSummary(e.target.checked)}
-                className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-2 focus:ring-purple-500 cursor-pointer"
+                className="w-4 h-4 text-[#178C92] border-gray-300 rounded focus:ring-2 focus:ring-[#178C92] cursor-pointer"
               />
               <span className="text-gray-700 group-hover:text-gray-900 transition-colors">
                 Show HSN summary in invoice
@@ -213,12 +213,12 @@ export default function AdvancedOptions() {
             </label>
 
             {/* Add original images in line items */}
-            <label className="flex items-center gap-3 text-sm cursor-pointer group p-1 rounded-lg hover:bg-purple-50 transition-colors">
+            <label className="flex items-center gap-3 text-sm cursor-pointer group p-1 rounded-lg hover:bg-[#EAF4F1] transition-colors">
               <input
                 type="checkbox"
                 checked={addOriginalImages}
                 onChange={(e) => setAddOriginalImages(e.target.checked)}
-                className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-2 focus:ring-purple-500 cursor-pointer"
+                className="w-4 h-4 text-[#178C92] border-gray-300 rounded focus:ring-2 focus:ring-[#178C92] cursor-pointer"
               />
               <span className="text-gray-700 group-hover:text-gray-900 transition-colors">
                 Add original images in line items
@@ -226,12 +226,12 @@ export default function AdvancedOptions() {
             </label>
 
             {/* Show thumbnails in separate column */}
-            <label className="flex items-center gap-3 text-sm cursor-pointer group p-1 rounded-lg hover:bg-purple-50 transition-colors">
+            <label className="flex items-center gap-3 text-sm cursor-pointer group p-1 rounded-lg hover:bg-[#EAF4F1] transition-colors">
               <input
                 type="checkbox"
                 checked={showThumbnails}
                 onChange={(e) => setShowThumbnails(e.target.checked)}
-                className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-2 focus:ring-purple-500 cursor-pointer"
+                className="w-4 h-4 text-[#178C92] border-gray-300 rounded focus:ring-2 focus:ring-[#178C92] cursor-pointer"
               />
               <span className="text-gray-700 group-hover:text-gray-900 transition-colors">
                 Show thumbnails in separate column
@@ -239,12 +239,12 @@ export default function AdvancedOptions() {
             </label>
 
             {/* Show description in full width */}
-            <label className="flex items-center gap-3 text-sm cursor-pointer group p-1 rounded-lg hover:bg-purple-50 transition-colors">
+            <label className="flex items-center gap-3 text-sm cursor-pointer group p-1 rounded-lg hover:bg-[#EAF4F1] transition-colors">
               <input
                 type="checkbox"
                 checked={showDescriptionFull}
                 onChange={(e) => setShowDescriptionFull(e.target.checked)}
-                className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-2 focus:ring-purple-500 cursor-pointer"
+                className="w-4 h-4 text-[#178C92] border-gray-300 rounded focus:ring-2 focus:ring-[#178C92] cursor-pointer"
               />
               <span className="text-gray-700 group-hover:text-gray-900 transition-colors">
                 Show description in full width
@@ -252,12 +252,12 @@ export default function AdvancedOptions() {
             </label>
 
             {/* Hide subtotal for group items */}
-            <label className="flex items-center gap-3 text-sm cursor-pointer group p-1 rounded-lg hover:bg-purple-50 transition-colors">
+            <label className="flex items-center gap-3 text-sm cursor-pointer group p-1 rounded-lg hover:bg-[#EAF4F1] transition-colors">
               <input
                 type="checkbox"
                 checked={hideSubtotalGroup}
                 onChange={(e) => setHideSubtotalGroup(e.target.checked)}
-                className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-2 focus:ring-purple-500 cursor-pointer"
+                className="w-4 h-4 text-[#178C92] border-gray-300 rounded focus:ring-2 focus:ring-[#178C92] cursor-pointer"
               />
               <span className="text-gray-700 group-hover:text-gray-900 transition-colors">
                 Hide subtotal for group items
@@ -265,12 +265,12 @@ export default function AdvancedOptions() {
             </label>
 
             {/* Show SKU in Invoice */}
-            <label className="flex items-center gap-3 text-sm cursor-pointer group p-1 rounded-lg hover:bg-purple-50 transition-colors">
+            <label className="flex items-center gap-3 text-sm cursor-pointer group p-1 rounded-lg hover:bg-[#EAF4F1] transition-colors">
               <input
                 type="checkbox"
                 checked={showSku}
                 onChange={(e) => setShowSku(e.target.checked)}
-                className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-2 focus:ring-purple-500 cursor-pointer"
+                className="w-4 h-4 text-[#178C92] border-gray-300 rounded focus:ring-2 focus:ring-[#178C92] cursor-pointer"
               />
               <span className="text-gray-700 group-hover:text-gray-900 transition-colors">
                 Show SKU in Invoice

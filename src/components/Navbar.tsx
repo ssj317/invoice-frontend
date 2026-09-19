@@ -12,7 +12,7 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <Link to="/" className="text-2xl font-bold text-purple-600">
+            <Link to="/" className="text-2xl font-bold text-[#178C92]">
               Invoice Pro
             </Link>
           </div>
@@ -23,13 +23,13 @@ const Navbar: React.FC = () => {
               <>
                 <Link
                   to="/dashboard"
-                  className="text-gray-700 hover:text-purple-600 transition-colors"
+                  className="text-gray-700 hover:text-[#178C92] transition-colors"
                 >
                   Dashboard
                 </Link>
                 <Link
                   to="/invoices"
-                  className="text-gray-700 hover:text-purple-600 transition-colors"
+                  className="text-gray-700 hover:text-[#178C92] transition-colors"
                 >
                   Invoices
                 </Link>
@@ -49,13 +49,13 @@ const Navbar: React.FC = () => {
               <>
                 <Link
                   to="/login"
-                  className="text-gray-700 hover:text-purple-600 transition-colors"
+                  className="text-gray-700 hover:text-[#178C92] transition-colors"
                 >
                   Login
                 </Link>
                 <Link
                   to="/signup"
-                  className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors"
+                  className="bg-[#178C92] text-white px-4 py-2 rounded-lg hover:bg-[#0f6368] transition-colors"
                 >
                   Sign Up
                 </Link>
@@ -69,3 +69,4 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
+

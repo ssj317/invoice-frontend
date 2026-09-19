@@ -1,4 +1,4 @@
-// import React, { useRef, useState } from 'react';
+﻿// import React, { useRef, useState } from 'react';
 // import { useAppSelector } from '../../../store';
 // import { Download, Share2, Mail, Printer, FolderArchive, X, Send } from 'lucide-react';
 // import html2canvas from 'html2canvas';
@@ -342,10 +342,10 @@
 
 // 	return (
 // 		<>
-// 		<div className="min-h-screen bg-gray-50 py-8">
+// 		<div className="min-h-screen bg-[#F8F4E1] py-8">
 // 			<div className="max-w-6xl mx-auto px-4">
 // 				{/* Action Buttons */}
-// 				<div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6 print:hidden">
+// 				<div className="bg-[#FFFDF5] rounded-lg shadow-sm border border-[#EAF4F1] p-6 mb-6 print:hidden">
 // 					<div className="flex items-center justify-between">
 // 						<h2 className="text-2xl font-bold text-gray-900">Invoice Preview</h2>
 // 						<div className="flex gap-3">
@@ -366,7 +366,7 @@
 // 							</button>
 // 							<button
 // 								onClick={handleDownloadPDF}
-// 								className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all shadow-sm hover:shadow-md"
+// 								className="flex items-center gap-2 px-4 py-2 bg-[#178C92] text-white rounded-lg hover:bg-[#007078] transition-all shadow-sm hover:shadow-md"
 // 							>
 // 								<Download size={18} />
 // 								<span>Download PDF</span>
@@ -389,7 +389,7 @@
 // 					{/* Header Section */}
 // 					<div className="flex justify-between items-start mb-8">
 // 						<div>
-// 							<h1 className="text-4xl font-bold text-purple-600 mb-3">{invoiceData.title}</h1>
+// 							<h1 className="text-4xl font-bold text-[#178C92] mb-3">{invoiceData.title}</h1>
 // 							{invoiceData.subtitle && <p className="text-lg text-gray-600">{invoiceData.subtitle}</p>}
 // 						</div>
 // 						{invoiceData.logo && (
@@ -442,8 +442,8 @@
 // 					<div className="grid grid-cols-2 gap-8 mb-8">
 // 						{/* Billed By */}
 // 						<div>
-// 							<h3 className="text-lg font-bold text-purple-600 mb-3">Billed By</h3>
-// 							<div className="bg-purple-50 p-5 rounded-lg">
+// 							<h3 className="text-lg font-bold text-[#164A41] mb-3">Billed By</h3>
+// 							<div className="bg-[#FFFDF5] p-5 rounded-lg border border-[#EAF4F1]">
 // 								<p className="font-bold text-gray-900 text-lg mb-2">
 // 									{invoiceData.businessDetails.vendorName}
 // 								</p>
@@ -481,9 +481,9 @@
 
 // 						{/* Billed To */}
 // 						<div>
-// 							<h3 className="text-lg font-bold text-purple-600 mb-3">Billed To</h3>
+// 							<h3 className="text-lg font-bold text-[#164A41] mb-3">Billed To</h3>
 // 							{selectedClientData ? (
-// 								<div className="bg-purple-50 p-5 rounded-lg">
+// 								<div className="bg-[#FFFDF5] p-5 rounded-lg border border-[#EAF4F1]">
 // 									<p className="font-bold text-gray-900 text-lg mb-2">{selectedClientData.name}</p>
 // 									{selectedClientData.company && (
 // 										<p className="text-gray-700 text-sm mb-1">{selectedClientData.company},</p>
@@ -530,8 +530,8 @@
 // 							{/* Shipped From */}
 // 							{invoiceData.shippingDetails.shippedFrom.businessName && (
 // 								<div>
-// 									<h3 className="text-lg font-bold text-purple-600 mb-3">Shipped From</h3>
-// 									<div className="bg-purple-50 p-5 rounded-lg">
+// 									<h3 className="text-lg font-bold text-[#164A41] mb-3">Shipped From</h3>
+// 									<div className="bg-[#FFFDF5] p-5 rounded-lg border border-[#EAF4F1]">
 // 										<p className="font-bold text-gray-900 text-lg mb-2">
 // 											{invoiceData.shippingDetails.shippedFrom.businessName}
 // 										</p>
@@ -564,8 +564,8 @@
 // 							{/* Shipped To */}
 // 							{invoiceData.shippingDetails.shippedTo.clientBusinessName && (
 // 								<div>
-// 									<h3 className="text-lg font-bold text-purple-600 mb-3">Shipped To</h3>
-// 									<div className="bg-purple-50 p-5 rounded-lg">
+// 									<h3 className="text-lg font-bold text-[#164A41] mb-3">Shipped To</h3>
+// 									<div className="bg-[#FFFDF5] p-5 rounded-lg border border-[#EAF4F1]">
 // 										<p className="font-bold text-gray-900 text-lg mb-2">
 // 											{invoiceData.shippingDetails.shippedTo.clientBusinessName}
 // 										</p>
@@ -605,8 +605,8 @@
 // 						invoiceData.transportDetails.vehicleType
 // 					) && (
 // 							<div className="mb-8">
-// 								<h3 className="text-lg font-bold text-purple-600 mb-3">Transport Details</h3>
-// 								<div className="bg-purple-50 p-5 rounded-lg">
+// 								<h3 className="text-lg font-bold text-[#164A41] mb-3">Transport Details</h3>
+// 								<div className="bg-[#FFFDF5] p-5 rounded-lg border border-[#EAF4F1]">
 // 									<div className="grid grid-cols-2 gap-x-8 gap-y-2">
 // 										{invoiceData.transportDetails.transportMode && (
 // 											<div className="flex">
@@ -675,7 +675,7 @@
 // 					<div className="mb-8">
 // 						<table className="w-full border-collapse">
 // 							<thead>
-// 								<tr className="bg-purple-600 text-white">
+// 								<tr className="bg-[#178C92] text-white">
 // 									{invoiceData.columnConfiguration
 // 										.filter((col) => col.visible)
 // 										.map((column) => {
@@ -925,7 +925,7 @@
 // 					{/* Terms and Conditions */}
 // 					{invoiceData.terms.length > 0 && (
 // 						<div className="mb-8">
-// 							<h3 className="text-lg font-bold text-purple-600 mb-3">Terms and Conditions</h3>
+// 							<h3 className="text-lg font-bold text-[#164A41] mb-3">Terms and Conditions</h3>
 // 							<ol className="list-decimal list-inside space-y-2">
 // 								{invoiceData.terms.map((term) => (
 // 									<li key={term.id} className="text-sm text-gray-700">
@@ -939,7 +939,7 @@
 // 					{/* Additional Information */}
 // 					{invoiceData.additionalInfo.length > 0 && (
 // 						<div className="mb-4">
-// 							<h3 className="text-lg font-bold text-purple-600 mb-3">Additional Information</h3>
+// 							<h3 className="text-lg font-bold text-[#164A41] mb-3">Additional Information</h3>
 // 							<div className="grid grid-cols-2 gap-4">
 // 								{invoiceData.additionalInfo.map((info) => (
 // 									<div key={info.id} className="flex gap-4">
@@ -954,7 +954,7 @@
 // 					{/* Notes */}
 // 					{invoiceData.notes && invoiceData.notes.trim() !== '' && (
 // 						<div className="mb-4">
-// 							<h3 className="text-lg font-bold text-purple-600 mb-3">Notes</h3>
+// 							<h3 className="text-lg font-bold text-[#164A41] mb-3">Notes</h3>
 // 							<div
 // 								className="text-sm text-gray-700 prose prose-sm max-w-none bg-white p-0 rounded-lg"
 // 								dangerouslySetInnerHTML={{ __html: invoiceData.notes }}
@@ -965,7 +965,7 @@
 // 					{/* Attachments */}
 // 					{invoiceData.attachments.length > 0 && (
 // 						<div className="mb-8">
-// 							<h3 className="text-lg font-bold text-purple-600 mb-3">Attachments</h3>
+// 							<h3 className="text-lg font-bold text-[#164A41] mb-3">Attachments</h3>
 // 							<ol className="list-decimal list-inside space-y-2">
 // 								{invoiceData.attachments.map((attachment) => (
 // 									<li key={attachment.id} className="text-sm">
@@ -975,12 +975,12 @@
 // 												download={attachment.name}
 // 												target="_blank"
 // 												rel="noopener noreferrer"
-// 												className="text-purple-600 underline hover:text-purple-800 cursor-pointer transition-colors"
+// 												className="text-[#178C92] underline hover:text-[#007078] cursor-pointer transition-colors"
 // 											>
 // 												{attachment.name}
 // 											</a>
 // 										) : (
-// 											<span className="text-purple-600">{attachment.name}</span>
+// 											<span className="text-[#178C92]">{attachment.name}</span>
 // 										)}
 // 										<span className="text-gray-500 text-xs ml-2">
 // 											({formatFileSize(attachment.size)})
@@ -1008,7 +1008,7 @@
 // 				<div className="bg-white rounded-xl shadow-2xl w-full max-w-md">
 // 					<div className="flex items-center justify-between p-5 border-b">
 // 						<div className="flex items-center gap-2">
-// 							<Mail size={18} className="text-purple-600" />
+// 							<Mail size={18} className="text-[#178C92]" />
 // 							<h2 className="text-lg font-semibold text-gray-900">Send via Email</h2>
 // 						</div>
 // 						<button onClick={() => setShowEmailModal(false)} className="text-gray-400 hover:text-gray-600">
@@ -1037,7 +1037,7 @@
 // 										value={emailTo}
 // 										onChange={(e) => setEmailTo(e.target.value)}
 // 										placeholder="client@example.com"
-// 										className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+// 										className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#178C92]"
 // 									/>
 // 								</div>
 // 								<div>
@@ -1046,7 +1046,7 @@
 // 										type="text"
 // 										value={emailSubject}
 // 										onChange={(e) => setEmailSubject(e.target.value)}
-// 										className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+// 										className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#178C92]"
 // 									/>
 // 								</div>
 // 								<div>
@@ -1055,7 +1055,7 @@
 // 										value={emailMessage}
 // 										onChange={(e) => setEmailMessage(e.target.value)}
 // 										rows={4}
-// 										className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none"
+// 										className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#178C92] resize-none"
 // 									/>
 // 								</div>
 // 								{emailError && <p className="text-sm text-red-600">{emailError}</p>}
@@ -1069,7 +1069,7 @@
 // 									<button
 // 										onClick={handleSendEmail}
 // 										disabled={emailSending || !invoiceData.savedInvoiceId}
-// 										className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg text-sm hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed"
+// 										className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-[#178C92] text-white rounded-lg text-sm hover:bg-[#007078] disabled:opacity-50 disabled:cursor-not-allowed"
 // 									>
 // 										<Send size={16} />
 // 										{emailSending ? 'Generating & Sending...' : 'Send Email'}
@@ -1431,10 +1431,10 @@ const InvoicePreview = () => {
 
 	return (
 		<>
-		<div className="min-h-screen bg-gray-50 py-8">
+		<div className="min-h-screen bg-[#F8F4E1] py-8">
 			<div className="max-w-6xl mx-auto px-4">
 				{/* Action Buttons */}
-				<div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6 print:hidden">
+				<div className="bg-[#FFFDF5] rounded-lg shadow-sm border border-[#EAF4F1] p-6 mb-6 print:hidden">
 					<div className="flex items-center justify-between">
 						<h2 className="text-2xl font-bold text-gray-900">Invoice Preview</h2>
 						<div className="flex gap-3">
@@ -1445,17 +1445,43 @@ const InvoicePreview = () => {
 								<Printer size={18} className="text-gray-600" />
 								<span className="text-gray-700">Print</span>
 							</button>
-							<button onClick={openEmailModal} className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-all">
+							{/* Email — opens Gmail compose. TODO: swap back to openEmailModal() when backend email is production-ready */}
+							<button
+								onClick={() => {
+									const client = invoiceData.clients?.find((c: any) => c.name === invoiceData.selectedClient);
+									const to = client?.email || '';
+									const subject = encodeURIComponent(`${invoiceData.title} ${invoiceData.invoiceNo}`);
+									const body = encodeURIComponent(`Hi,\n\nPlease find your ${invoiceData.title} ${invoiceData.invoiceNo} attached.\n\nThank you for your business.`);
+									window.open(`https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(to)}&su=${subject}&body=${body}`, '_blank');
+								}}
+								className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-all"
+							>
 								<Mail size={18} className="text-gray-600" />
 								<span className="text-gray-700">Email</span>
 							</button>
-							<button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-all">
+							{/* Share — Web Share API with clipboard fallback */}
+							<button
+								onClick={async () => {
+									const shareData = {
+										title: `${invoiceData.title} ${invoiceData.invoiceNo}`,
+										text: `${invoiceData.title} ${invoiceData.invoiceNo} — ${invoiceData.businessDetails?.vendorName || ''}`,
+										url: window.location.href,
+									};
+									if (navigator.share) {
+										try { await navigator.share(shareData); } catch { /* user cancelled */ }
+									} else {
+										await navigator.clipboard.writeText(window.location.href);
+										alert('Link copied to clipboard!');
+									}
+								}}
+								className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-all"
+							>
 								<Share2 size={18} className="text-gray-600" />
 								<span className="text-gray-700">Share</span>
 							</button>
 							<button
 								onClick={handleDownloadPDF}
-								className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all shadow-sm hover:shadow-md"
+								className="flex items-center gap-2 px-4 py-2 bg-[#178C92] text-white rounded-lg hover:bg-[#007078] transition-all shadow-sm hover:shadow-md"
 							>
 								<Download size={18} />
 								<span>Download PDF</span>
@@ -1478,7 +1504,7 @@ const InvoicePreview = () => {
 					{/* Header Section */}
 					<div className="flex justify-between items-start mb-8">
 						<div>
-							<h1 className="text-4xl font-bold text-purple-600 mb-3">{invoiceData.title}</h1>
+							<h1 className="text-4xl font-bold text-[#178C92] mb-3">{invoiceData.title}</h1>
 							{invoiceData.subtitle && <p className="text-lg text-gray-600">{invoiceData.subtitle}</p>}
 						</div>
 						{invoiceData.logo && (
@@ -1531,8 +1557,8 @@ const InvoicePreview = () => {
 					<div className="grid grid-cols-2 gap-8 mb-8">
 						{/* Billed By */}
 						<div>
-							<h3 className="text-lg font-bold text-purple-600 mb-3">Billed By</h3>
-							<div className="bg-purple-50 p-5 rounded-lg">
+							<h3 className="text-lg font-bold text-[#164A41] mb-3">Billed By</h3>
+							<div className="bg-[#FFFDF5] p-5 rounded-lg border border-[#EAF4F1]">
 								<p className="font-bold text-gray-900 text-lg mb-2">
 									{invoiceData.businessDetails.vendorName}
 								</p>
@@ -1570,9 +1596,9 @@ const InvoicePreview = () => {
 
 						{/* Billed To */}
 						<div>
-							<h3 className="text-lg font-bold text-purple-600 mb-3">Billed To</h3>
+							<h3 className="text-lg font-bold text-[#164A41] mb-3">Billed To</h3>
 							{selectedClientData ? (
-								<div className="bg-purple-50 p-5 rounded-lg">
+								<div className="bg-[#FFFDF5] p-5 rounded-lg border border-[#EAF4F1]">
 									<p className="font-bold text-gray-900 text-lg mb-2">{selectedClientData.name}</p>
 									{selectedClientData.company && (
 										<p className="text-gray-700 text-sm mb-1">{selectedClientData.company},</p>
@@ -1619,8 +1645,8 @@ const InvoicePreview = () => {
 							{/* Shipped From */}
 							{invoiceData.shippingDetails.shippedFrom.businessName && (
 								<div>
-									<h3 className="text-lg font-bold text-purple-600 mb-3">Shipped From</h3>
-									<div className="bg-purple-50 p-5 rounded-lg">
+									<h3 className="text-lg font-bold text-[#164A41] mb-3">Shipped From</h3>
+									<div className="bg-[#FFFDF5] p-5 rounded-lg border border-[#EAF4F1]">
 										<p className="font-bold text-gray-900 text-lg mb-2">
 											{invoiceData.shippingDetails.shippedFrom.businessName}
 										</p>
@@ -1653,8 +1679,8 @@ const InvoicePreview = () => {
 							{/* Shipped To */}
 							{invoiceData.shippingDetails.shippedTo.clientBusinessName && (
 								<div>
-									<h3 className="text-lg font-bold text-purple-600 mb-3">Shipped To</h3>
-									<div className="bg-purple-50 p-5 rounded-lg">
+									<h3 className="text-lg font-bold text-[#164A41] mb-3">Shipped To</h3>
+									<div className="bg-[#FFFDF5] p-5 rounded-lg border border-[#EAF4F1]">
 										<p className="font-bold text-gray-900 text-lg mb-2">
 											{invoiceData.shippingDetails.shippedTo.clientBusinessName}
 										</p>
@@ -1694,8 +1720,8 @@ const InvoicePreview = () => {
 						invoiceData.transportDetails.vehicleType
 					) && (
 							<div className="mb-8">
-								<h3 className="text-lg font-bold text-purple-600 mb-3">Transport Details</h3>
-								<div className="bg-purple-50 p-5 rounded-lg">
+								<h3 className="text-lg font-bold text-[#164A41] mb-3">Transport Details</h3>
+								<div className="bg-[#FFFDF5] p-5 rounded-lg border border-[#EAF4F1]">
 									<div className="grid grid-cols-2 gap-x-8 gap-y-2">
 										{invoiceData.transportDetails.transportMode && (
 											<div className="flex">
@@ -1764,7 +1790,7 @@ const InvoicePreview = () => {
 					<div className="mb-8">
 						<table className="w-full border-collapse">
 							<thead>
-								<tr className="bg-purple-600 text-white">
+								<tr className="bg-[#178C92] text-white">
 									{invoiceData.columnConfiguration
 										.filter((col) => col.visible)
 										.map((column) => {
@@ -2014,7 +2040,7 @@ const InvoicePreview = () => {
 					{/* Terms and Conditions */}
 					{invoiceData.terms.length > 0 && (
 						<div className="mb-8">
-							<h3 className="text-lg font-bold text-purple-600 mb-3">Terms and Conditions</h3>
+							<h3 className="text-lg font-bold text-[#164A41] mb-3">Terms and Conditions</h3>
 							<ol className="list-decimal list-inside space-y-2">
 								{invoiceData.terms.map((term) => (
 									<li key={term.id} className="text-sm text-gray-700">
@@ -2028,7 +2054,7 @@ const InvoicePreview = () => {
 					{/* Additional Information */}
 					{invoiceData.additionalInfo.length > 0 && (
 						<div className="mb-4">
-							<h3 className="text-lg font-bold text-purple-600 mb-3">Additional Information</h3>
+							<h3 className="text-lg font-bold text-[#164A41] mb-3">Additional Information</h3>
 							<div className="grid grid-cols-2 gap-4">
 								{invoiceData.additionalInfo.map((info) => (
 									<div key={info.id} className="flex gap-4">
@@ -2043,7 +2069,7 @@ const InvoicePreview = () => {
 					{/* Notes */}
 					{invoiceData.notes && invoiceData.notes.trim() !== '' && (
 						<div className="mb-4">
-							<h3 className="text-lg font-bold text-purple-600 mb-3">Notes</h3>
+							<h3 className="text-lg font-bold text-[#164A41] mb-3">Notes</h3>
 							<div
 								className="text-sm text-gray-700 prose prose-sm max-w-none bg-white p-0 rounded-lg"
 								dangerouslySetInnerHTML={{ __html: invoiceData.notes }}
@@ -2054,7 +2080,7 @@ const InvoicePreview = () => {
 					{/* Attachments */}
 					{invoiceData.attachments.length > 0 && (
 						<div className="mb-8">
-							<h3 className="text-lg font-bold text-purple-600 mb-3">Attachments</h3>
+							<h3 className="text-lg font-bold text-[#164A41] mb-3">Attachments</h3>
 							<ol className="list-decimal list-inside space-y-2">
 								{invoiceData.attachments.map((attachment) => (
 									<li key={attachment.id} className="text-sm">
@@ -2064,12 +2090,12 @@ const InvoicePreview = () => {
 												download={attachment.name}
 												target="_blank"
 												rel="noopener noreferrer"
-												className="text-purple-600 underline hover:text-purple-800 cursor-pointer transition-colors"
+												className="text-[#178C92] underline hover:text-[#007078] cursor-pointer transition-colors"
 											>
 												{attachment.name}
 											</a>
 										) : (
-											<span className="text-purple-600">{attachment.name}</span>
+											<span className="text-[#178C92]">{attachment.name}</span>
 										)}
 										<span className="text-gray-500 text-xs ml-2">
 											({formatFileSize(attachment.size)})
@@ -2097,7 +2123,7 @@ const InvoicePreview = () => {
 				<div className="bg-white rounded-xl shadow-2xl w-full max-w-md">
 					<div className="flex items-center justify-between p-5 border-b">
 						<div className="flex items-center gap-2">
-							<Mail size={18} className="text-purple-600" />
+							<Mail size={18} className="text-[#178C92]" />
 							<h2 className="text-lg font-semibold text-gray-900">Send via Email</h2>
 						</div>
 						<button onClick={() => setShowEmailModal(false)} className="text-gray-400 hover:text-gray-600">
@@ -2126,7 +2152,7 @@ const InvoicePreview = () => {
 										value={emailTo}
 										onChange={(e) => setEmailTo(e.target.value)}
 										placeholder="client@example.com"
-										className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+										className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#178C92]"
 									/>
 								</div>
 								<div>
@@ -2135,7 +2161,7 @@ const InvoicePreview = () => {
 										type="text"
 										value={emailSubject}
 										onChange={(e) => setEmailSubject(e.target.value)}
-										className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+										className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#178C92]"
 									/>
 								</div>
 								<div>
@@ -2144,7 +2170,7 @@ const InvoicePreview = () => {
 										value={emailMessage}
 										onChange={(e) => setEmailMessage(e.target.value)}
 										rows={4}
-										className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none"
+										className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#178C92] resize-none"
 									/>
 								</div>
 								{emailError && <p className="text-sm text-red-600">{emailError}</p>}
@@ -2158,7 +2184,7 @@ const InvoicePreview = () => {
 									<button
 										onClick={handleSendEmail}
 										disabled={emailSending || !invoiceData.savedInvoiceId}
-										className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg text-sm hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed"
+										className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-[#178C92] text-white rounded-lg text-sm hover:bg-[#007078] disabled:opacity-50 disabled:cursor-not-allowed"
 									>
 										<Send size={16} />
 										{emailSending ? 'Generating & Sending...' : 'Send Email'}

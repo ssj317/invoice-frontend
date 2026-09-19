@@ -4,19 +4,19 @@ import { useMemo } from 'react';
 const TaxInvoicePreview = () => {
     const invoiceData = useAppSelector((state) => state.invoice);
     const formData = invoiceData.taxInvoiceData || {
-        companyName: 'ELITE8 DIGITAL',
+        companyName: 'SUZLON',
         companyTagline: 'FROM IMAGINATION TO INNOVATION - WE BUILD IT',
         companyCIN: 'U62099MP2025PTC076466',
         companyGST: '23AAICE8606R1Z3',
         companyPhone: '+91 6260894977',
         companyAddress: '2/5, MIG Sant Kabir Nagar\nUjjain M.P - 456010',
-        companyEmail: 'contact@elite8digital.in',
-        companyWebsite: 'www.elite8digital.in',
+        companyEmail: 'contact@suzlon.com',
+        companyWebsite: 'www.suzlon.com',
         clientName: 'Vyshnavi Food Products',
         clientAddress: 'Konijarla Mandalam,\nGundarathi Madugu Village,\nNear Ayyappa Swamy Temple,\nKhammam - 507165',
         clientGST: 'GST: 36AAGCS6022FTZJ',
         date: '1 March 2026',
-        ourRef: 'elite-8/2025',
+        ourRef: 'suzlon/2025',
         project: 'WEBSITE DESIGNING & DEVELOPMENT',
         items: [
             {
@@ -43,10 +43,10 @@ const TaxInvoicePreview = () => {
         paymentPeriod: '6 months',
         monthlyPayment: '10,000 + 1,800 : 11,800',
         bankName: 'SBI',
-        accountName: 'ELITE8 DIGITAL PRIVATE LIMITED',
+        accountName: 'SUZLON PRIVATE LIMITED',
         accountNumber: '44213821305',
         ifsc: 'SBIN0030288',
-        upiId: 'Elite8digital@sbi'
+        upiId: 'Suzlon@sbi'
     };
 
     // Split items into pages if there are many items
@@ -93,7 +93,7 @@ const TaxInvoicePreview = () => {
                 <div className="flex justify-between items-start pb-4 border-b-4 border-gray-900">
                     <div className="flex items-center gap-6">
                         <div style={{ width: '120px', height: '100px' }}>
-                            <img src="/elite8digital-nav.png" alt="Elite8 Digital" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                            <img src="/suzlon-nav.png" alt="Suzlon" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                         </div>
                         <div>
                             <h1 className="text-3xl font-bold text-center text-gray-900">{formData.companyName}</h1>

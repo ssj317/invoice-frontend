@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { ChevronDown, Menu, X, Sparkles, Bell } from 'lucide-react';
+import suzlonnav from "../assets/suzlon-nav.png"
 
 const LandingNavbar = () => {
     const [showProductsDropdown, setShowProductsDropdown] = useState(false);
@@ -65,316 +66,1035 @@ const LandingNavbar = () => {
 
     return (
         <>
-            <nav className="bg-white/60 backdrop-blur-md shadow-sm sticky top-2 sm:top-4 lg:top-6 w-[95%] sm:w-[90%] lg:w-[80%] mx-auto rounded-xl z-[90]">
-                <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-2">
-                    <div className="flex items-center justify-between">
-                        {/* Logo */}
-                        <div className="flex items-center py-1 sm:py-2 gap-2">
-                            <img
-                                src="/elite8digital-nav-cropped.png"
-                                alt="Elite8Digital Logo"
-                                className="h-8 sm:h-10 lg:h-12 w-auto cursor-pointer"
-                                onClick={() => window.location.href = '/'}
+            {/* Full-width teal navbar */}
+          {/* =========================================================
+    FLOATING NAVBAR
+========================================================= */}
+
+<nav
+    className="
+        bg-[#FFFDF5]/90
+        backdrop-blur-md
+        border
+        border-[#164A41]/10
+        shadow-[0_8px_30px_rgba(22,74,65,0.06)]
+        sticky
+        top-4
+        w-[94%]
+        sm:w-[90%]
+        lg:w-[82%]
+        mx-auto
+        rounded-2xl
+        z-[90]
+    "
+>
+    <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-7 py-2.5">
+
+        <div className="flex items-center justify-between">
+
+            {/* =================================================
+                LOGO
+            ================================================= */}
+
+            <button
+                onClick={() => {
+                    window.location.href = '/';
+                }}
+                className="
+                    flex
+                    items-center
+                    gap-2
+                    hover:opacity-85
+                    transition-opacity
+                    flex-shrink-0
+                "
+            >
+                {/* <img
+                    src="/suzlon-nav.png"
+                    alt="Suzlon Logo"
+                    className="
+                        h-8
+                        sm:h-10
+                        lg:h-11
+                        w-auto
+                        object-contain
+                    "
+                /> */}
+                <img
+    src={suzlonnav}
+    alt="Suzlon Logo"
+    className="
+        h-8
+        sm:h-10
+        lg:h-11
+        w-auto
+        object-contain
+    "
+/>
+            </button>
+
+
+            {/* =================================================
+                DESKTOP NAVIGATION
+            ================================================= */}
+
+            <div className="hidden lg:flex items-center gap-5 xl:gap-9">
+
+                {/* Home */}
+                <button
+                    onClick={() => {
+                        window.location.href = '/';
+                    }}
+                    className="
+                        text-[#164A41]
+                        hover:text-[#178C92]
+                        font-medium
+                        transition-colors
+                        text-sm
+                        xl:text-base
+                    "
+                >
+                    Home
+                </button>
+
+
+                {/* =================================================
+                    PRODUCTS
+                ================================================= */}
+
+                <div
+                    className="relative"
+                    ref={productsDropdownRef}
+                >
+                    <button
+                        onClick={() => {
+                            setShowProductsDropdown(
+                                !showProductsDropdown
+                            );
+                            setShowPricingDropdown(false);
+                        }}
+                        className="
+                            flex
+                            items-center
+                            gap-1
+                            text-[#164A41]
+                            hover:text-[#178C92]
+                            font-medium
+                            transition-colors
+                            text-sm
+                            xl:text-base
+                        "
+                    >
+                        Products
+
+                        <ChevronDown
+                            className={`
+                                w-4
+                                h-4
+                                transition-transform
+                                ${
+                                    showProductsDropdown
+                                        ? 'rotate-180'
+                                        : ''
+                                }
+                            `}
+                        />
+                    </button>
+
+
+                    {showProductsDropdown && (
+                        <>
+                            {/* Backdrop */}
+                            <div
+                                className="
+                                    fixed
+                                    inset-0
+                                    bg-[#164A41]/10
+                                    backdrop-blur-[2px]
+                                    z-[100]
+                                "
+                                style={{ top: '80px' }}
+                                onClick={() =>
+                                    setShowProductsDropdown(false)
+                                }
                             />
-                        </div>
 
-                        {/* Desktop Navigation Links */}
-                        <div className="hidden lg:flex items-center gap-4 xl:gap-8">
-                            {/* Home Button */}
-                            <button
-                                onClick={() => window.location.href = '/'}
-                                className="text-black-700 hover:text-purple-600 font-medium transition-colors text-sm md:text-base"
+
+                            {/* Dropdown */}
+                            <div
+                                className="
+                                    fixed
+                                    left-1/2
+                                    -translate-x-1/2
+                                    mt-3
+                                    w-[90vw]
+                                    max-w-[900px]
+                                    bg-[#FFFDF5]
+                                    rounded-2xl
+                                    shadow-2xl
+                                    p-5
+                                    sm:p-7
+                                    lg:p-8
+                                    border
+                                    border-[#164A41]/10
+                                    z-[110]
+                                "
                             >
-                                Home
-                            </button>
 
-                            {/* Products Dropdown */}
-                            <div className="relative" ref={productsDropdownRef}>
-                                <button
-                                    onClick={() => setShowProductsDropdown(!showProductsDropdown)}
-                                    className="flex items-center gap-1 text-black-700 hover:text-purple-600 font-medium transition-colors text-sm md:text-base"
-                                >
-                                    Products
-                                    <ChevronDown className={`w-4 h-4 transition-transform ${showProductsDropdown ? 'rotate-180' : ''}`} />
-                                </button>
+                                <div className="
+                                    grid
+                                    grid-cols-1
+                                    sm:grid-cols-3
+                                    gap-6
+                                    lg:gap-10
+                                ">
 
-                                {showProductsDropdown && (
-                                    <>
-                                        <div className="fixed inset-0 bg-black/20 z-[100]" style={{ top: '80px' }}></div>
-                                        <div className="fixed left-1/2 transform -translate-x-1/2 mt-2 w-[90vw] max-w-[900px] bg-white rounded-2xl shadow-2xl p-4 sm:p-6 lg:p-8 border border-black-100 z-[110]">
-                                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-                                                <div>
-                                                    <h3 className="text-medium sm:text-lg font-bold text-black-900 mb-3 sm:mb-4">Solutions</h3>
-                                                    <ul className="space-y-2 sm:space-y-4">
-                                                        {productsData.solutions.map((item, idx) => (
-                                                            <li key={idx}>
-                                                                <button
-                                                                    onClick={() => handleComingSoon(item)}
-                                                                    className="text-left text-black-700 hover:text-red-600 transition-colors w-full text-md"
-                                                                >
-                                                                    {item}
-                                                                </button>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                                <div>
-                                                    <h3 className="text-base md:text-lg font-bold text-black-900 mb-3 sm:mb-4">Free Tools</h3>
-                                                    <ul className="space-y-2 sm:space-y-4">
-                                                        {productsData.freeTools.map((item, idx) => (
-                                                            <li key={idx}>
-                                                                <button
-                                                                    onClick={() => {
-                                                                        if (item.route) {
-                                                                            setShowProductsDropdown(false);
-                                                                            window.location.href = item.route;
-                                                                        } else {
-                                                                            handleComingSoon(item.name);
-                                                                        }
-                                                                    }}
-                                                                    className="text-left text-black-700 hover:text-red-600 transition-colors w-full text-md"
-                                                                >
-                                                                    {item.name}
-                                                                </button>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                                <div>
-                                                    <h3 className="text-base sm:text-lg font-bold text-black-900 mb-3 sm:mb-4">Categories</h3>
-                                                    <ul className="space-y-2 sm:space-y-3">
-                                                        {productsData.categories.map((item, idx) => (
-                                                            <li key={idx}>
-                                                                <button
-                                                                    onClick={() => handleComingSoon(item)}
-                                                                    className="text-left w-full text-black-700 hover:text-red-600 transition-colors text-md"
-                                                                >
-                                                                    {item}
-                                                                </button>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </>
-                                )}
-                            </div>
+                                    {/* Solutions */}
+                                    <div>
+                                        <h3 className="
+                                            text-base
+                                            sm:text-lg
+                                            font-bold
+                                            text-[#164A41]
+                                            mb-4
+                                        ">
+                                            Solutions
+                                        </h3>
 
-                            {/* Pricing Dropdown */}
-                            <div className="relative" ref={pricingDropdownRef}>
-                                <button
-                                    onClick={() => setShowPricingDropdown(!showPricingDropdown)}
-                                    className="flex items-center gap-1 text-black-700 hover:text-purple-600 font-medium transition-colors text-sm md:text-base"
-                                >
-                                    Pricing
-                                    <ChevronDown className={`w-4 h-4 transition-transform ${showPricingDropdown ? 'rotate-180' : ''}`} />
-                                </button>
-
-                                {showPricingDropdown && (
-                                    <>
-                                        <div className="fixed inset-0 bg-black/20 z-[100]" style={{ top: '80px' }}></div>
-                                        <div className="fixed left-1/2 transform -translate-x-1/2 mt-2 w-[90vw] max-w-[600px] bg-white rounded-2xl shadow-2xl p-4 sm:p-6 lg:p-8 border border-black-100 z-[110]">
-                                            <div className="text-center">
-                                                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-black-600 to-black-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                                                    <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                    </svg>
-                                                </div>
-                                                <h3 className="text-xl sm:text-2xl font-bold text-black-900 mb-2 sm:mb-3">Free for Everyone!</h3>
-                                                <p className="text-base sm:text-lg text-black-600 mb-4 sm:mb-6">
-                                                    Currently, we are providing all services <span className="font-semibold text-red-600">completely free</span> for all users.
-                                                </p>
-                                                <div className="bg-purple-50 rounded-xl p-4 sm:p-6 mb-4 sm:mb-6">
-                                                    <p className="text-black-700 mb-3 sm:mb-4 text-sm sm:text-base">Enjoy unlimited access to:</p>
-                                                    <ul className="space-y-2 text-left max-w-md mx-auto">
-                                                        {['Invoice Generation', 'Quotation & Purchase Orders', 'GST & Tax Compliance', 'All Premium Features'].map((feature, idx) => (
-                                                            <li key={idx} className="flex items-center gap-2 text-black-700 text-sm sm:text-base">
-                                                                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                                                </svg>
-                                                                {feature}
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                                <button
-                                                    onClick={() => {
-                                                        setShowPricingDropdown(false);
-                                                        window.location.href = '/signup';
-                                                    }}
-                                                    className="px-6 sm:px-8 py-2.5 sm:py-3 bg-purple-300 hover:bg-purple-600 text-black font-semibold rounded-xl transition-colors shadow-lg text-sm sm:text-base"
-                                                >
-                                                    Get Started for Free
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </>
-                                )}
-                            </div>
-
-                            {/* About Us Link */}
-                            <button
-                                onClick={() => window.open('https://elite8digital.in/about', '_blank')}
-                                className="text-black-700 hover:text-purple-600 font-medium transition-colors text-sm md:text-base"
-                            >
-                                About Us
-                            </button>
-
-                            {/* Contact Link */}
-                            <button
-                                onClick={() => window.open('https://elite8digital.in/contact', '_blank')}
-                                className="text-black-700 hover:text-purple-600 font-medium transition-colors text-sm md:text-base"
-                            >
-                                Contact
-                            </button>
-                        </div>
-
-                        {/* Desktop Auth Buttons */}
-                        <div className="hidden lg:flex items-center gap-4 xl:gap-8">
-                            <button
-                                onClick={() => window.location.href = '/login'}
-                                className="text-black-700 hover:text-purple-600 font-medium transition-colors text-sm md:text-base"
-                            >
-                                Login
-                            </button>
-                            <button
-                                onClick={() => window.location.href = '/signup'}
-                                className="px-3 sm:px-4 py-1.5 sm:py-2 bg-purple-400 hover:bg-purple-700 text-black font-medium rounded-xl transition-colors text-sm md:text-base"
-                            >
-                                Sign Up
-                            </button>
-                        </div>
-
-                        {/* Mobile Menu Button */}
-                        <button
-                            onClick={() => setShowMobileMenu(!showMobileMenu)}
-                            className="lg:hidden p-2 text-black-700 hover:text-purple-600"
-                        >
-                            {showMobileMenu ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-                        </button>
-                    </div>
-
-                    {/* Mobile Menu */}
-                    {showMobileMenu && (
-                        <div className="lg:hidden mt-4 pb-4 border-t border-gray-200 pt-4">
-                            <div className="flex flex-col gap-4">
-                                {/* Home Button for Mobile */}
-                                <button
-                                    onClick={() => {
-                                        setShowMobileMenu(false);
-                                        window.location.href = '/';
-                                    }}
-                                    className="text-left text-black-700 hover:text-purple-600 font-medium transition-colors"
-                                >
-                                    Home
-                                </button>
-
-                                <button
-                                    onClick={() => {
-                                        setShowProductsDropdown(!showProductsDropdown);
-                                    }}
-                                    className="flex items-center justify-between text-black-700 hover:text-purple-600 font-medium transition-colors"
-                                >
-                                    Products
-                                    <ChevronDown className={`w-4 h-4 transition-transform ${showProductsDropdown ? 'rotate-180' : ''}`} />
-                                </button>
-
-                                {showProductsDropdown && (
-                                    <div className="pl-4 space-y-3 text-sm">
-                                        <div>
-                                            <h4 className="font-semibold mb-2">Solutions</h4>
-                                            {productsData.solutions.map((item, idx) => (
-                                                <button
-                                                    key={idx}
-                                                    onClick={() => handleComingSoon(item)}
-                                                    className="block py-1 text-black-600 hover:text-red-600 text-left w-full"
-                                                >
-                                                    {item}
-                                                </button>
-                                            ))}
-                                        </div>
-                                        <div>
-                                            <h4 className="font-semibold mb-2">Free Tools</h4>
-                                            {productsData.freeTools.map((item, idx) => (
-                                                <button
-                                                    key={idx}
-                                                    onClick={() => {
-                                                        if (item.route) {
-                                                            setShowProductsDropdown(false);
-                                                            setShowMobileMenu(false);
-                                                            window.location.href = item.route;
-                                                        } else {
-                                                            handleComingSoon(item.name);
-                                                        }
-                                                    }}
-                                                    className="block py-1 text-black-600 hover:text-red-600 text-left w-full"
-                                                >
-                                                    {item.name}
-                                                </button>
-                                            ))}
-                                        </div>
-                                        <div>
-                                            <h4 className="font-semibold mb-2">Categories</h4>
-                                            {productsData.categories.map((item, idx) => (
-                                                <button
-                                                    key={idx}
-                                                    onClick={() => handleComingSoon(item)}
-                                                    className="block py-1 text-black-600 hover:text-red-600 text-left w-full"
-                                                >
-                                                    {item}
-                                                </button>
-                                            ))}
-                                        </div>
+                                        <ul className="space-y-3">
+                                            {productsData.solutions.map(
+                                                (item, idx) => (
+                                                    <li key={idx}>
+                                                        <button
+                                                            onClick={() =>
+                                                                handleComingSoon(
+                                                                    item
+                                                                )
+                                                            }
+                                                            className="
+                                                                text-left
+                                                                text-[#49645F]
+                                                                hover:text-[#178C92]
+                                                                transition-colors
+                                                                w-full
+                                                                text-sm
+                                                                sm:text-base
+                                                            "
+                                                        >
+                                                            {item}
+                                                        </button>
+                                                    </li>
+                                                )
+                                            )}
+                                        </ul>
                                     </div>
-                                )}
 
-                                <button
-                                    onClick={() => {
-                                        setShowPricingDropdown(!showPricingDropdown);
-                                    }}
-                                    className="text-left text-black-700 hover:text-purple-600 font-medium transition-colors flex items-center justify-between"
-                                >
-                                    Pricing
-                                    <ChevronDown className={`w-4 h-4 transition-transform ${showPricingDropdown ? 'rotate-180' : ''}`} />
-                                </button>
 
-                                {showPricingDropdown && (
-                                    <div className="pl-4 bg-purple-50 rounded-xl p-4 space-y-3 text-sm">
-                                        <p className="text-black-700 font-semibold">Free for Everyone!</p>
-                                        <p className="text-black-600">All services are currently <span className="font-semibold text-red-600">completely free</span>.</p>
-                                        <button
-                                            onClick={() => {
-                                                setShowPricingDropdown(false);
-                                                setShowMobileMenu(false);
-                                                window.location.href = '/signup';
-                                            }}
-                                            className="w-full py-2 bg-purple-300 hover:bg-purple-600 text-black font-semibold rounded-xl transition-colors"
-                                        >
-                                            Get Started for Free
-                                        </button>
+                                    {/* Free Tools */}
+                                    <div>
+                                        <h3 className="
+                                            text-base
+                                            sm:text-lg
+                                            font-bold
+                                            text-[#164A41]
+                                            mb-4
+                                        ">
+                                            Free Tools
+                                        </h3>
+
+                                        <ul className="space-y-3">
+                                            {productsData.freeTools.map(
+                                                (item, idx) => (
+                                                    <li key={idx}>
+                                                        <button
+                                                            onClick={() => {
+                                                                if (
+                                                                    item.route
+                                                                ) {
+                                                                    setShowProductsDropdown(
+                                                                        false
+                                                                    );
+
+                                                                    window.location.href =
+                                                                        item.route;
+                                                                } else {
+                                                                    handleComingSoon(
+                                                                        item.name
+                                                                    );
+                                                                }
+                                                            }}
+                                                            className="
+                                                                text-left
+                                                                text-[#49645F]
+                                                                hover:text-[#178C92]
+                                                                transition-colors
+                                                                w-full
+                                                                text-sm
+                                                                sm:text-base
+                                                            "
+                                                        >
+                                                            {item.name}
+                                                        </button>
+                                                    </li>
+                                                )
+                                            )}
+                                        </ul>
                                     </div>
-                                )}
 
-                                <div className="flex flex-col gap-2 pt-4 border-t border-gray-200">
-                                    <a
-                                        href="/login"
-                                        className="w-full py-2 text-black-700 hover:text-purple-600 font-medium transition-colors text-left"
-                                    >
-                                        Login
-                                    </a>
-                                    <a
-                                        href="/signup"
-                                        className="w-full py-2 bg-purple-400 hover:bg-purple-700 text-black font-medium rounded-xl transition-colors text-center"
-                                    >
-                                        Sign Up
-                                    </a>
+
+                                    {/* Categories */}
+                                    <div>
+                                        <h3 className="
+                                            text-base
+                                            sm:text-lg
+                                            font-bold
+                                            text-[#164A41]
+                                            mb-4
+                                        ">
+                                            Categories
+                                        </h3>
+
+                                        <ul className="space-y-3">
+                                            {productsData.categories.map(
+                                                (item, idx) => (
+                                                    <li key={idx}>
+                                                        <button
+                                                            onClick={() =>
+                                                                handleComingSoon(
+                                                                    item
+                                                                )
+                                                            }
+                                                            className="
+                                                                text-left
+                                                                w-full
+                                                                text-[#49645F]
+                                                                hover:text-[#178C92]
+                                                                transition-colors
+                                                                text-sm
+                                                                sm:text-base
+                                                            "
+                                                        >
+                                                            {item}
+                                                        </button>
+                                                    </li>
+                                                )
+                                            )}
+                                        </ul>
+                                    </div>
+
                                 </div>
                             </div>
-                        </div>
+                        </>
                     )}
                 </div>
-            </nav>
+
+
+                {/* =================================================
+                    PRICING
+                ================================================= */}
+
+                <div
+                    className="relative"
+                    ref={pricingDropdownRef}
+                >
+                    <button
+                        onClick={() => {
+                            setShowPricingDropdown(
+                                !showPricingDropdown
+                            );
+                            setShowProductsDropdown(false);
+                        }}
+                        className="
+                            flex
+                            items-center
+                            gap-1
+                            text-[#164A41]
+                            hover:text-[#178C92]
+                            font-medium
+                            transition-colors
+                            text-sm
+                            xl:text-base
+                        "
+                    >
+                        Pricing
+
+                        <ChevronDown
+                            className={`
+                                w-4
+                                h-4
+                                transition-transform
+                                ${
+                                    showPricingDropdown
+                                        ? 'rotate-180'
+                                        : ''
+                                }
+                            `}
+                        />
+                    </button>
+
+
+                    {showPricingDropdown && (
+                        <>
+                            {/* Backdrop */}
+                            <div
+                                className="
+                                    fixed
+                                    inset-0
+                                    bg-[#164A41]/10
+                                    backdrop-blur-[2px]
+                                    z-[100]
+                                "
+                                style={{ top: '80px' }}
+                                onClick={() =>
+                                    setShowPricingDropdown(false)
+                                }
+                            />
+
+
+                            {/* Pricing Dropdown */}
+                            <div
+                                className="
+                                    fixed
+                                    left-1/2
+                                    -translate-x-1/2
+                                    mt-3
+                                    w-[90vw]
+                                    max-w-[600px]
+                                    bg-[#FFFDF5]
+                                    rounded-2xl
+                                    shadow-2xl
+                                    p-6
+                                    sm:p-8
+                                    border
+                                    border-[#164A41]/10
+                                    z-[110]
+                                "
+                            >
+                                <div className="text-center">
+
+                                    {/* Icon */}
+                                    <div
+                                        className="
+                                            w-14
+                                            h-14
+                                            sm:w-16
+                                            sm:h-16
+                                            bg-[#178C92]
+                                            rounded-full
+                                            flex
+                                            items-center
+                                            justify-center
+                                            mx-auto
+                                            mb-4
+                                            shadow-lg
+                                        "
+                                    >
+                                        <svg
+                                            className="
+                                                w-7
+                                                h-7
+                                                sm:w-8
+                                                sm:h-8
+                                                text-white
+                                            "
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                            />
+                                        </svg>
+                                    </div>
+
+
+                                    <h3 className="
+                                        text-xl
+                                        sm:text-2xl
+                                        font-bold
+                                        text-[#164A41]
+                                        mb-3
+                                    ">
+                                        Free for Everyone!
+                                    </h3>
+
+
+                                    <p className="
+                                        text-base
+                                        sm:text-lg
+                                        text-[#49645F]
+                                        mb-6
+                                    ">
+                                        Currently, we are providing
+                                        all services{' '}
+                                        <span className="
+                                            font-semibold
+                                            text-[#178C92]
+                                        ">
+                                            completely free
+                                        </span>{' '}
+                                        for all users.
+                                    </p>
+
+
+                                    <div className="
+                                        bg-[#EAF4F1]
+                                        rounded-xl
+                                        p-5
+                                        sm:p-6
+                                        mb-6
+                                    ">
+                                        <p className="
+                                            text-[#49645F]
+                                            mb-4
+                                            text-sm
+                                            sm:text-base
+                                        ">
+                                            Enjoy unlimited access to:
+                                        </p>
+
+                                        <ul className="
+                                            space-y-3
+                                            text-left
+                                            max-w-md
+                                            mx-auto
+                                        ">
+                                            {[
+                                                'Invoice Generation',
+                                                'Quotation & Purchase Orders',
+                                                'GST & Tax Compliance',
+                                                'All Premium Features',
+                                            ].map(
+                                                (feature, idx) => (
+                                                    <li
+                                                        key={idx}
+                                                        className="
+                                                            flex
+                                                            items-center
+                                                            gap-2
+                                                            text-[#164A41]
+                                                            text-sm
+                                                            sm:text-base
+                                                        "
+                                                    >
+                                                        <span className="
+                                                            w-5
+                                                            h-5
+                                                            bg-[#178C92]
+                                                            rounded-full
+                                                            flex
+                                                            items-center
+                                                            justify-center
+                                                            flex-shrink-0
+                                                        ">
+                                                            <svg
+                                                                className="
+                                                                    w-3
+                                                                    h-3
+                                                                    text-white
+                                                                "
+                                                                fill="currentColor"
+                                                                viewBox="0 0 20 20"
+                                                            >
+                                                                <path
+                                                                    fillRule="evenodd"
+                                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                                    clipRule="evenodd"
+                                                                />
+                                                            </svg>
+                                                        </span>
+
+                                                        {feature}
+                                                    </li>
+                                                )
+                                            )}
+                                        </ul>
+                                    </div>
+
+
+                                    <button
+                                        onClick={() => {
+                                            setShowPricingDropdown(
+                                                false
+                                            );
+
+                                            window.location.href =
+                                                '/signup';
+                                        }}
+                                        className="
+                                            px-7
+                                            sm:px-8
+                                            py-3
+                                            bg-[#178C92]
+                                            hover:bg-[#007078]
+                                            text-white
+                                            font-semibold
+                                            rounded-xl
+                                            transition-all
+                                            shadow-lg
+                                            hover:shadow-xl
+                                            text-sm
+                                            sm:text-base
+                                        "
+                                    >
+                                        Get Started for Free
+                                    </button>
+
+                                </div>
+                            </div>
+                        </>
+                    )}
+                </div>
+
+
+                {/* About Us */}
+                <button
+                    onClick={() =>
+                        window.open(
+                            'https://suzlon.com/about',
+                            '_blank'
+                        )
+                    }
+                    className="
+                        text-[#164A41]
+                        hover:text-[#178C92]
+                        font-medium
+                        transition-colors
+                        text-sm
+                        xl:text-base
+                    "
+                >
+                    About Us
+                </button>
+
+
+                {/* Contact */}
+                <button
+                    onClick={() =>
+                        window.open(
+                            'https://suzlon.com/contact',
+                            '_blank'
+                        )
+                    }
+                    className="
+                        text-[#164A41]
+                        hover:text-[#178C92]
+                        font-medium
+                        transition-colors
+                        text-sm
+                        xl:text-base
+                    "
+                >
+                    Contact
+                </button>
+
+            </div>
+
+
+            {/* =================================================
+                DESKTOP AUTH
+            ================================================= */}
+
+            <div className="
+                hidden
+                lg:flex
+                items-center
+                gap-4
+                xl:gap-7
+            ">
+
+                <button
+                    onClick={() => {
+                        window.location.href = '/login';
+                    }}
+                    className="
+                        text-[#164A41]
+                        hover:text-[#178C92]
+                        font-medium
+                        transition-colors
+                        text-sm
+                        xl:text-base
+                    "
+                >
+                    Login
+                </button>
+
+
+                <button
+                    onClick={() => {
+                        window.location.href = '/signup';
+                    }}
+                    className="
+                        px-4
+                        sm:px-5
+                        py-2.5
+                        bg-[#178C92]
+                        hover:bg-[#007078]
+                        text-white
+                        font-semibold
+                        rounded-xl
+                        transition-all
+                        shadow-sm
+                        hover:shadow-md
+                        text-sm
+                        xl:text-base
+                    "
+                >
+                    Sign Up
+                </button>
+
+            </div>
+
+
+            {/* =================================================
+                MOBILE MENU BUTTON
+            ================================================= */}
+
+            <button
+                onClick={() =>
+                    setShowMobileMenu(!showMobileMenu)
+                }
+                className="
+                    lg:hidden
+                    p-2
+                    text-[#164A41]
+                    hover:text-[#178C92]
+                    transition-colors
+                "
+            >
+                {showMobileMenu ? (
+                    <X className="w-6 h-6" />
+                ) : (
+                    <Menu className="w-6 h-6" />
+                )}
+            </button>
+
+        </div>
+
+
+        {/* =====================================================
+            MOBILE MENU
+        ===================================================== */}
+
+        {showMobileMenu && (
+            <div
+                className="
+                    lg:hidden
+                    mt-4
+                    pb-5
+                    border-t
+                    border-[#164A41]/10
+                    pt-4
+                "
+            >
+                <div className="flex flex-col gap-3">
+
+                    {/* Home */}
+                    <button
+                        onClick={() => {
+                            setShowMobileMenu(false);
+                            window.location.href = '/';
+                        }}
+                        className="
+                            text-left
+                            px-3
+                            py-2
+                            text-[#164A41]
+                            hover:text-[#178C92]
+                            font-medium
+                            rounded-lg
+                            hover:bg-[#EAF4F1]
+                            transition-colors
+                        "
+                    >
+                        Home
+                    </button>
+
+
+                    {/* Products */}
+                    <button
+                        onClick={() =>
+                            setShowProductsDropdown(
+                                !showProductsDropdown
+                            )
+                        }
+                        className="
+                            flex
+                            items-center
+                            justify-between
+                            px-3
+                            py-2
+                            text-[#164A41]
+                            hover:text-[#178C92]
+                            font-medium
+                            rounded-lg
+                            hover:bg-[#EAF4F1]
+                            transition-colors
+                        "
+                    >
+                        Products
+
+                        <ChevronDown
+                            className={`
+                                w-4
+                                h-4
+                                transition-transform
+                                ${
+                                    showProductsDropdown
+                                        ? 'rotate-180'
+                                        : ''
+                                }
+                            `}
+                        />
+                    </button>
+
+
+                    {showProductsDropdown && (
+                        <div className="
+                            ml-3
+                            pl-4
+                            border-l-2
+                            border-[#178C92]/20
+                            space-y-1
+                            text-sm
+                        ">
+                            {productsData.freeTools
+                                .filter((item) => item.route)
+                                .map((item, idx) => (
+                                    <button
+                                        key={idx}
+                                        onClick={() => {
+                                            setShowProductsDropdown(
+                                                false
+                                            );
+                                            setShowMobileMenu(
+                                                false
+                                            );
+
+                                            window.location.href =
+                                                item.route!;
+                                        }}
+                                        className="
+                                            block
+                                            w-full
+                                            text-left
+                                            px-3
+                                            py-2
+                                            text-[#49645F]
+                                            hover:text-[#178C92]
+                                            hover:bg-[#EAF4F1]
+                                            rounded-lg
+                                            transition-colors
+                                        "
+                                    >
+                                        {item.name}
+                                    </button>
+                                ))}
+                        </div>
+                    )}
+
+
+                    {/* Pricing */}
+                    <button
+                        onClick={() =>
+                            setShowPricingDropdown(
+                                !showPricingDropdown
+                            )
+                        }
+                        className="
+                            flex
+                            items-center
+                            justify-between
+                            px-3
+                            py-2
+                            text-[#164A41]
+                            hover:text-[#178C92]
+                            font-medium
+                            rounded-lg
+                            hover:bg-[#EAF4F1]
+                            transition-colors
+                        "
+                    >
+                        Pricing
+
+                        <ChevronDown
+                            className={`
+                                w-4
+                                h-4
+                                transition-transform
+                                ${
+                                    showPricingDropdown
+                                        ? 'rotate-180'
+                                        : ''
+                                }
+                            `}
+                        />
+                    </button>
+
+
+                    {showPricingDropdown && (
+                        <div className="
+                            ml-3
+                            bg-[#EAF4F1]
+                            rounded-xl
+                            p-4
+                            space-y-3
+                        ">
+                            <p className="
+                                text-[#164A41]
+                                font-semibold
+                            ">
+                                Free for Everyone!
+                            </p>
+
+                            <p className="
+                                text-[#49645F]
+                                text-sm
+                            ">
+                                All services are currently{' '}
+                                <span className="
+                                    font-semibold
+                                    text-[#178C92]
+                                ">
+                                    completely free
+                                </span>
+                                .
+                            </p>
+
+                            <button
+                                onClick={() => {
+                                    setShowPricingDropdown(false);
+                                    setShowMobileMenu(false);
+                                    window.location.href =
+                                        '/signup';
+                                }}
+                                className="
+                                    w-full
+                                    py-2.5
+                                    bg-[#178C92]
+                                    hover:bg-[#007078]
+                                    text-white
+                                    font-semibold
+                                    rounded-xl
+                                    transition-colors
+                                "
+                            >
+                                Get Started for Free
+                            </button>
+                        </div>
+                    )}
+
+
+                    {/* About Us */}
+                    <button
+                        onClick={() => {
+                            setShowMobileMenu(false);
+                            window.open(
+                                'https://suzlon.com/about',
+                                '_blank'
+                            );
+                        }}
+                        className="
+                            text-left
+                            px-3
+                            py-2
+                            text-[#164A41]
+                            hover:text-[#178C92]
+                            font-medium
+                            rounded-lg
+                            hover:bg-[#EAF4F1]
+                            transition-colors
+                        "
+                    >
+                        About Us
+                    </button>
+
+
+                    {/* Contact */}
+                    <button
+                        onClick={() => {
+                            setShowMobileMenu(false);
+                            window.open(
+                                'https://suzlon.com/contact',
+                                '_blank'
+                            );
+                        }}
+                        className="
+                            text-left
+                            px-3
+                            py-2
+                            text-[#164A41]
+                            hover:text-[#178C92]
+                            font-medium
+                            rounded-lg
+                            hover:bg-[#EAF4F1]
+                            transition-colors
+                        "
+                    >
+                        Contact
+                    </button>
+
+
+                    {/* Mobile Auth */}
+                    <div className="
+                        pt-4
+                        mt-2
+                        border-t
+                        border-[#164A41]/10
+                        flex
+                        gap-3
+                    ">
+
+                        <a
+                            href="/login"
+                            className="
+                                flex-1
+                                py-2.5
+                                text-center
+                                text-[#164A41]
+                                font-medium
+                                border
+                                border-[#164A41]/20
+                                rounded-xl
+                                hover:bg-[#EAF4F1]
+                                transition-colors
+                                text-sm
+                            "
+                        >
+                            Login
+                        </a>
+
+                        <a
+                            href="/signup"
+                            className="
+                                flex-1
+                                py-2.5
+                                text-center
+                                bg-[#178C92]
+                                text-white
+                                font-semibold
+                                rounded-xl
+                                hover:bg-[#007078]
+                                transition-colors
+                                text-sm
+                            "
+                        >
+                            Sign Up
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+        )}
+
+    </div>
+</nav>
+
+
 
             {/* Coming Soon Modal */}
             {showComingSoonModal && (
@@ -391,7 +1111,7 @@ const LandingNavbar = () => {
                         {/* Icon */}
                         <div className="flex justify-center mb-4">
                             <div className="relative">
-                                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center animate-pulse">
+                                <div className="w-16 h-16 bg-gradient-to-br from-[#178C92] to-[#0f6368] rounded-full flex items-center justify-center animate-pulse">
                                     <Sparkles className="w-8 h-8 text-white" />
                                 </div>
                                 <div className="absolute -top-1 -right-1">
@@ -406,8 +1126,8 @@ const LandingNavbar = () => {
                         </h3>
 
                         {/* Feature Name */}
-                        <div className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-4 mb-4">
-                            <p className="text-center text-purple-700 font-semibold text-lg">
+                        <div className="bg-gradient-to-r from-[#e6f7f8] to-blue-50 rounded-xl p-4 mb-4">
+                            <p className="text-center text-[#178C92] font-semibold text-lg">
                                 {comingSoonFeature}
                             </p>
                         </div>
@@ -427,7 +1147,7 @@ const LandingNavbar = () => {
                                     setShowComingSoonModal(false);
                                     window.location.href = '/signup';
                                 }}
-                                className="w-full bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white font-semibold py-3 px-6 rounded-xl transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                                className="w-full bg-gradient-to-r from-[#178C92] to-[#1aa3aa] hover:from-[#0f6368] hover:to-[#0f6368] text-white font-semibold py-3 px-6 rounded-xl transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                             >
                                 Notify Me
                             </button>
@@ -448,3 +1168,5 @@ const LandingNavbar = () => {
 };
 
 export default LandingNavbar;
+
+

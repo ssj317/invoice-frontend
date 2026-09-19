@@ -9,14 +9,14 @@ const TaxInvoice = () => {
     // Form state based on the image
     const [formData, setFormData] = useState({
         // Company Details (Fixed Header)
-        companyName: 'ELITE8 DIGITAL',
+        companyName: 'SUZLON',
         companyTagline: 'FROM IMAGINATION TO INNOVATION - WE BUILD IT',
         companyCIN: 'U62099MP2025PTC076466',
         companyGST: '23AAICE8606R1Z3',
         companyPhone: '+91 6260894977',
         companyAddress: '2/5, MIG Sant Kabir Nagar Ujjain M.P - 456010',
-        companyEmail: 'contact@elite8digital.in',
-        companyWebsite: 'www.elite8digital.in',
+        companyEmail: 'contact@suzlon.com',
+        companyWebsite: 'www.suzlon.com',
 
         // Client Details (To Section)
         clientName: 'Vyahnavi Food Products',
@@ -25,7 +25,7 @@ const TaxInvoice = () => {
 
         // Invoice Details
         date: '1 March 2026',
-        ourRef: 'elite-8/2025',
+        ourRef: 'suzlon/2025',
         project: 'WEBSITE DESIGNING & DEVELOPMENT',
 
         // Items Table
@@ -58,10 +58,10 @@ const TaxInvoice = () => {
 
         // Bank Details
         bankName: 'SBI',
-        accountName: 'ELITE8 DIGITAL PRIVATE LIMITED',
+        accountName: 'SUZLON PRIVATE LIMITED',
         accountNumber: '44213821305',
         ifsc: 'SBIN0030288',
-        upiId: 'Elite8digital@sbi'
+        upiId: 'Suzlon@sbi'
     });
 
     const handleInputChange = (field: string, value: string) => {
@@ -533,7 +533,7 @@ const TaxInvoice = () => {
                 <div className="p-6 bg-gray-100">
                     <button
                         onClick={handleSaveAndContinue}
-                        className="w-full px-6 py-4 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-bold text-lg"
+                        className="w-full px-6 py-4 bg-[#178C92] text-white rounded-lg hover:bg-[#007078] transition-colors font-bold text-lg"
                     >
                         💾 Save & Switch to Preview
                     </button>

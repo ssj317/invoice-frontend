@@ -308,7 +308,7 @@ const ProposalApp = () => {
 				<div className="max-w-7xl mx-auto flex items-center justify-between">
 					<button
 						onClick={handleBack}
-						className="flex items-center gap-2 px-3 md:px-4 py-2 text-sm md:text-base text-gray-700 hover:text-purple-600 hover:bg-white rounded-lg transition-colors border border-gray-300 hover:border-purple-300"
+						className="flex items-center gap-2 px-3 md:px-4 py-2 text-sm md:text-base text-gray-700 hover:text-[#178C92] hover:bg-white rounded-lg transition-colors border border-gray-300 hover:border-[#a5d5d8]"
 					>
 						<ArrowLeft className="w-4 h-4" />
 						<span>Back</span>
@@ -316,7 +316,7 @@ const ProposalApp = () => {
 
 					<button
 						onClick={handleGoToDashboard}
-						className="flex items-center gap-2 px-3 md:px-4 py-2 text-sm md:text-base text-white bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors shadow-sm"
+						className="flex items-center gap-2 px-3 md:px-4 py-2 text-sm md:text-base text-white bg-[#178C92] hover:bg-[#007078] rounded-lg transition-colors shadow-sm"
 					>
 						<Home className="w-4 h-4" />
 						<span>Go to Dashboard</span>
@@ -331,13 +331,13 @@ const ProposalApp = () => {
 					<div className="flex gap-3 items-center flex-wrap">
 						<button
 							onClick={() => setActiveStep(1)}
-							className={`px-4 py-2 rounded-lg font-medium transition-colors ${activeStep === 1 ? 'bg-purple-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+							className={`px-4 py-2 rounded-lg font-medium transition-colors ${activeStep === 1 ? 'bg-[#178C92] text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
 						>
 							Edit
 						</button>
 						<button
 							onClick={() => setActiveStep(2)}
-							className={`px-4 py-2 rounded-lg font-medium transition-colors ${activeStep === 2 ? 'bg-purple-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+							className={`px-4 py-2 rounded-lg font-medium transition-colors ${activeStep === 2 ? 'bg-[#178C92] text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
 						>
 							Preview
 						</button>

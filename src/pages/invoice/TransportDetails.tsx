@@ -71,7 +71,7 @@ const TransportDetails: React.FC<TransportDetailsProps> = ({ onClose }) => {
             <select
               value={transportData.transporter}
               onChange={(e) => setTransportData({ ...transportData, transporter: e.target.value })}
-              className="w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
             >
               <option value="">Select Transporter</option>
               <option value="transporter1">DHL Express</option>
@@ -94,9 +94,9 @@ const TransportDetails: React.FC<TransportDetailsProps> = ({ onClose }) => {
             placeholder="Enter distance"
             value={transportData.distance}
             onChange={(e) => setTransportData({ ...transportData, distance: e.target.value })}
-            className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
           />
-          <button className="flex items-center gap-2 text-purple-600 hover:text-purple-700 font-medium text-sm transition-colors mt-2">
+          <button className="flex items-center gap-2 text-[#178C92] hover:text-[#007078] font-medium text-sm transition-colors mt-2">
             Calculate distance here
             <ExternalLink className="w-4 h-4" />
           </button>
@@ -105,7 +105,7 @@ const TransportDetails: React.FC<TransportDetailsProps> = ({ onClose }) => {
         {/* Add Mode of Transport */}
         <button
           onClick={addModeOfTransport}
-          className="flex items-center gap-2 text-purple-600 hover:text-purple-700 font-medium transition-colors"
+          className="flex items-center gap-2 text-[#178C92] hover:text-[#007078] font-medium transition-colors"
         >
           <Plus className="w-5 h-5" />
           Add Mode of Transport
@@ -118,7 +118,7 @@ const TransportDetails: React.FC<TransportDetailsProps> = ({ onClose }) => {
               <select
                 value={mode}
                 onChange={(e) => updateModeOfTransport(index, e.target.value)}
-                className="w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent pr-20"
+                className="w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent pr-20"
               >
                 <option value="">Select Mode</option>
                 <option value="road">Road</option>
@@ -148,7 +148,7 @@ const TransportDetails: React.FC<TransportDetailsProps> = ({ onClose }) => {
               placeholder="Transport Doc Number (optional)"
               value={transportData.challanNumber}
               onChange={(e) => setTransportData({ ...transportData, challanNumber: e.target.value })}
-              className="w-full px-4 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-4 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
             />
           </div>
 
@@ -162,7 +162,7 @@ const TransportDetails: React.FC<TransportDetailsProps> = ({ onClose }) => {
                 placeholder="Transport Doc Date (optional)"
                 value={transportData.challanDate}
                 onChange={(e) => setTransportData({ ...transportData, challanDate: e.target.value })}
-                className="w-full px-4 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-4 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
               />
               {/* <Calendar className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" /> */}
             </div>
@@ -179,7 +179,7 @@ const TransportDetails: React.FC<TransportDetailsProps> = ({ onClose }) => {
               <select
                 value={transportData.vehicleType}
                 onChange={(e) => setTransportData({ ...transportData, vehicleType: e.target.value })}
-                className="w-full px-4 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-4 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
               >
                 <option value="">Select...</option>
                 <option value="truck">Truck</option>
@@ -201,7 +201,7 @@ const TransportDetails: React.FC<TransportDetailsProps> = ({ onClose }) => {
               placeholder="Vehicle Number (optional)"
               value={transportData.vehicleNumber}
               onChange={(e) => setTransportData({ ...transportData, vehicleNumber: e.target.value })}
-              className="w-full px-4 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-4 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
             />
           </div>
         </div>
@@ -216,7 +216,7 @@ const TransportDetails: React.FC<TransportDetailsProps> = ({ onClose }) => {
               <select
                 value={transportData.transactionType}
                 onChange={(e) => setTransportData({ ...transportData, transactionType: e.target.value })}
-                className="w-full px-4 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-4 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
               >
                 <option value="">Select...</option>
                 <option value="regular">Regular</option>
@@ -236,7 +236,7 @@ const TransportDetails: React.FC<TransportDetailsProps> = ({ onClose }) => {
               <select
                 value={transportData.subSupplyType}
                 onChange={(e) => setTransportData({ ...transportData, subSupplyType: e.target.value })}
-                className="w-full px-4 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-4 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
               >
                 <option value="">Select...</option>
                 <option value="supply">Supply</option>

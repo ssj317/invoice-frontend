@@ -1,4 +1,4 @@
-// import React from 'react';
+﻿// import React from 'react';
 // import { useState } from 'react';
 // import { Pencil, Plus } from 'lucide-react';
 // import { useInvoiceSave } from '../../../hooks/useInvoiceSave';
@@ -47,7 +47,7 @@
 // 	return (
 // 		<div className='space-y-2'>
 // 			{/* Title Section Card */}
-// 			<div className="bg-white rounded-xl shadow-sm border border-purple-100 px-4 pt-6 pb-2">
+// 			<div className="bg-[#FFFDF5] rounded-xl shadow-sm border border-[#EAF4F1] px-4 pt-6 pb-2">
 // 				<div className="max-w-3xl flex flex-col items-center justify-center mx-auto">
 // 					{/* Title Section */}
 // 					<div className="flex flex-row justify-center items-center gap-3">
@@ -58,15 +58,15 @@
 // 								onChange={(e) => setTitle(e.target.value)}
 // 								onBlur={() => setIsEditingTitle(false)}
 // 								onKeyDown={(e) => e.key === 'Enter' && setIsEditingTitle(false)}
-// 								className="text-4xl font-bold outline-none border-b-2 border-purple-500 bg-transparent text-gray-900 w-full"
+// 								className="text-4xl font-bold outline-none border-b-2 border-[#178C92] bg-transparent text-gray-900 w-full"
 // 								autoFocus
 // 							/>
 // 						) : (
 // 							<div className='border-b-2 border-dotted border-gray-300 mb-4 flex items-center gap-3'>
-// 								<h1 className="text-3xl font-bold text-gray-900">{title}</h1>
+// 								<h1 className="text-3xl font-bold text-[#164A41]">{title}</h1>
 // 								<button
 // 									onClick={() => setIsEditingTitle(true)}
-// 									className="text-gray-400 hover:text-purple-600 transition-colors"
+// 									className="text-gray-400 hover:text-[#178C92] transition-colors"
 // 								>
 // 									<Pencil size={16} />
 // 								</button>
@@ -86,7 +86,7 @@
 // 									onBlur={() => setIsEditingSubtitle(false)}
 // 									onKeyDown={(e) => e.key === 'Enter' && setIsEditingSubtitle(false)}
 // 									placeholder="Enter subtitle"
-// 									className="text-lg text-gray-600 outline-none border-b-2 border-purple-500 bg-transparent flex-1"
+// 									className="text-lg text-gray-600 outline-none border-b-2 border-[#178C92] bg-transparent flex-1"
 // 									autoFocus
 // 								/>
 // 							) : (
@@ -99,7 +99,7 @@
 // 									</span>
 // 									<button
 // 										onClick={() => setIsEditingSubtitle(true)}
-// 										className="text-gray-400 hover:text-purple-600 transition-colors"
+// 										className="text-gray-400 hover:text-[#178C92] transition-colors"
 // 									>
 // 										<Pencil size={16} />
 // 									</button>
@@ -112,7 +112,7 @@
 // 								setShowSubtitle(true);
 // 								setIsEditingSubtitle(true);
 // 							}}
-// 							className="flex items-center gap-2 text-purple-600 hover:text-purple-700 transition-colors font-medium"
+// 							className="flex items-center gap-2 text-[#178C92] hover:text-[#007078] transition-colors font-medium"
 // 						>
 // 							<Plus size={18} />
 // 							<span>Add Subtitle</span>
@@ -123,12 +123,12 @@
 
 
 // 			{/* Invoice Details Form */}
-// 			<div className="bg-white rounded-xl shadow-sm border border-purple-100">
+// 			<div className="bg-[#FFFDF5] rounded-xl shadow-sm border border-[#EAF4F1]">
 // 				<DetailsForm />
 // 			</div>
 
 // 			{/* Billing Details */}
-// 			<div className="bg-white rounded-xl shadow-sm border border-purple-100">
+// 			<div className="bg-[#FFFDF5] rounded-xl shadow-sm border border-[#EAF4F1]">
 // 				<BillingDetailsSection
 // 					BilledBySection={BilledBySection}
 // 					BilledToSection={BilledToSection}
@@ -140,25 +140,25 @@
 // 			</div>
 
 // 			{/* Items Table */}
-// 			<div className="bg-white rounded-xl w-full shadow-sm border border-purple-100">
+// 			<div className="bg-[#FFFDF5] rounded-xl w-full shadow-sm border border-[#EAF4F1]">
 // 				<ItemHeader />
 // 				<InvoiceItemsTable />
 // 			</div>
 
 // 			{/* Totals Section */}
-// 			<div className="bg-white rounded-xl shadow-sm border border-purple-100 p-8">
+// 			<div className="bg-[#FFFDF5] rounded-xl shadow-sm border border-[#EAF4F1] p-8">
 // 				<div className="max-w-3xl mx-auto">
 // 					<InvoiceTotalsSection />
 // 				</div>
 // 			</div>
 
 // 			{/* Document Actions */}
-// 			<div className="bg-white rounded-xl shadow-sm border border-purple-100 p-8">
+// 			<div className="bg-[#FFFDF5] rounded-xl shadow-sm border border-[#EAF4F1] p-8">
 // 				<DocumentActionsUI />
 // 			</div>
 
 // 			{/* Advanced Options */}
-// 			<div className="bg-white rounded-xl shadow-sm border border-purple-100">
+// 			<div className="bg-[#FFFDF5] rounded-xl shadow-sm border border-[#EAF4F1]">
 // 				<AdvancedOptionsUI />
 // 			</div>
 
@@ -174,7 +174,7 @@
 // 				<button
 // 					onClick={handleSaveAndContinue}
 // 					disabled={saving}
-// 					className='bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition-all duration-200 font-medium shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed'
+// 					className='bg-[#178C92] text-white px-8 py-3 rounded-lg hover:bg-[#007078] transition-all duration-200 font-medium shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed'
 // 				>
 // 					{saving ? 'Saving...' : 'Save & Continue'}
 // 				</button>
@@ -234,7 +234,7 @@ const Invoice = () => {
 	return (
 		<div className='space-y-2'>
 			{/* Title Section Card */}
-			<div className="bg-white rounded-xl shadow-sm border border-purple-100 px-4 pt-6 pb-2">
+			<div className="bg-[#FFFDF5] rounded-xl shadow-sm border border-[#EAF4F1] px-4 pt-6 pb-2">
 				<div className="max-w-3xl flex flex-col items-center justify-center mx-auto">
 					{/* Title Section */}
 					<div className="flex flex-row justify-center items-center gap-3">
@@ -245,15 +245,15 @@ const Invoice = () => {
 								onChange={(e) => setTitle(e.target.value)}
 								onBlur={() => setIsEditingTitle(false)}
 								onKeyDown={(e) => e.key === 'Enter' && setIsEditingTitle(false)}
-								className="text-4xl font-bold outline-none border-b-2 border-purple-500 bg-transparent text-gray-900 w-full"
+								className="text-4xl font-bold outline-none border-b-2 border-[#178C92] bg-transparent text-gray-900 w-full"
 								autoFocus
 							/>
 						) : (
 							<div className='border-b-2 border-dotted border-gray-300 mb-4 flex items-center gap-3'>
-								<h1 className="text-3xl font-bold text-gray-900">{title}</h1>
+								<h1 className="text-3xl font-bold text-[#164A41]">{title}</h1>
 								<button
 									onClick={() => setIsEditingTitle(true)}
-									className="text-gray-400 hover:text-purple-600 transition-colors"
+									className="text-gray-400 hover:text-[#178C92] transition-colors"
 								>
 									<Pencil size={16} />
 								</button>
@@ -273,7 +273,7 @@ const Invoice = () => {
 									onBlur={() => setIsEditingSubtitle(false)}
 									onKeyDown={(e) => e.key === 'Enter' && setIsEditingSubtitle(false)}
 									placeholder="Enter subtitle"
-									className="text-lg text-gray-600 outline-none border-b-2 border-purple-500 bg-transparent flex-1"
+									className="text-lg text-gray-600 outline-none border-b-2 border-[#178C92] bg-transparent flex-1"
 									autoFocus
 								/>
 							) : (
@@ -286,7 +286,7 @@ const Invoice = () => {
 									</span>
 									<button
 										onClick={() => setIsEditingSubtitle(true)}
-										className="text-gray-400 hover:text-purple-600 transition-colors"
+										className="text-gray-400 hover:text-[#178C92] transition-colors"
 									>
 										<Pencil size={16} />
 									</button>
@@ -299,7 +299,7 @@ const Invoice = () => {
 								setShowSubtitle(true);
 								setIsEditingSubtitle(true);
 							}}
-							className="flex items-center gap-2 text-purple-600 hover:text-purple-700 transition-colors font-medium"
+							className="flex items-center gap-2 text-[#178C92] hover:text-[#007078] transition-colors font-medium"
 						>
 							<Plus size={18} />
 							<span>Add Subtitle</span>
@@ -310,12 +310,12 @@ const Invoice = () => {
 
 
 			{/* Invoice Details Form */}
-			<div className="bg-white rounded-xl shadow-sm border border-purple-100">
+			<div className="bg-[#FFFDF5] rounded-xl shadow-sm border border-[#EAF4F1]">
 				<DetailsForm />
 			</div>
 
 			{/* Billing Details */}
-			<div className="bg-white rounded-xl shadow-sm border border-purple-100">
+			<div className="bg-[#FFFDF5] rounded-xl shadow-sm border border-[#EAF4F1]">
 				<BillingDetailsSection
 					BilledBySection={BilledBySection}
 					BilledToSection={BilledToSection}
@@ -327,25 +327,25 @@ const Invoice = () => {
 			</div>
 
 			{/* Items Table */}
-			<div className="bg-white rounded-xl w-full shadow-sm border border-purple-100">
+			<div className="bg-[#FFFDF5] rounded-xl w-full shadow-sm border border-[#EAF4F1]">
 				<ItemHeader />
 				<InvoiceItemsTable />
 			</div>
 
 			{/* Totals Section */}
-			<div className="bg-white rounded-xl shadow-sm border border-purple-100 p-8">
+			<div className="bg-[#FFFDF5] rounded-xl shadow-sm border border-[#EAF4F1] p-8">
 				<div className="max-w-3xl mx-auto">
 					<InvoiceTotalsSection />
 				</div>
 			</div>
 
 			{/* Document Actions */}
-			<div className="bg-white rounded-xl shadow-sm border border-purple-100 p-8">
+			<div className="bg-[#FFFDF5] rounded-xl shadow-sm border border-[#EAF4F1] p-8">
 				<DocumentActionsUI />
 			</div>
 
 			{/* Advanced Options */}
-			<div className="bg-white rounded-xl shadow-sm border border-purple-100">
+			<div className="bg-[#FFFDF5] rounded-xl shadow-sm border border-[#EAF4F1]">
 				<AdvancedOptionsUI />
 			</div>
 
@@ -361,7 +361,7 @@ const Invoice = () => {
 				<button
 					onClick={handleSaveAndContinue}
 					disabled={saving}
-					className='bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition-all duration-200 font-medium shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed'
+					className='bg-[#178C92] text-white px-8 py-3 rounded-lg hover:bg-[#007078] transition-all duration-200 font-medium shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed'
 				>
 					{saving ? 'Saving...' : 'Save & Continue'}
 				</button>

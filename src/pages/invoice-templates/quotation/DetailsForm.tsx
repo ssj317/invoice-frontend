@@ -89,7 +89,7 @@ export default function InvoiceDetailsForm() {
                 Quotation No<span className="text-red-500">*</span>
               </label>
               <div className="flex-1">
-                <div className="border-b-2 border-dotted border-gray-300 w-60 hover:border-purple-400 transition-colors">
+                <div className="border-b-2 border-dotted border-gray-300 w-60 hover:border-[#178C92] transition-colors">
                   <input
                     type="text"
                     value={invoiceNo}
@@ -107,7 +107,7 @@ export default function InvoiceDetailsForm() {
                 Quotation Date<span className="text-red-500">*</span>
               </label>
               <div className="flex-1">
-                <div className="border-b-2 border-dotted border-gray-300 pb-1 w-60 hover:border-purple-400 transition-colors">
+                <div className="border-b-2 border-dotted border-gray-300 pb-1 w-60 hover:border-[#178C92] transition-colors">
                   <input
                     type="date"
                     value={invoiceDate}
@@ -125,7 +125,7 @@ export default function InvoiceDetailsForm() {
                   Due Date
                 </label>
                 <div className="flex-1">
-                  <div className="border-b-2 border-dotted border-gray-300 pb-1 w-60 hover:border-purple-400 transition-colors">
+                  <div className="border-b-2 border-dotted border-gray-300 pb-1 w-60 hover:border-[#178C92] transition-colors">
                     <input
                       type="date"
                       value={dueDate}
@@ -141,7 +141,7 @@ export default function InvoiceDetailsForm() {
             {!showDueDate && (
               <button
                 onClick={handleAddDueDate}
-                className="flex items-center gap-2 text-purple-600 hover:text-purple-700 transition-colors ml-40 font-medium"
+                className="flex items-center gap-2 text-[#178C92] hover:text-[#007078] transition-colors ml-40 font-medium"
               >
                 <Plus size={18} />
                 <span>Add due date</span>
@@ -155,7 +155,7 @@ export default function InvoiceDetailsForm() {
                   {field.label}
                 </label>
                 <div className="flex-1">
-                  <div className="border-b-2 border-dotted border-gray-300 pb-1 hover:border-purple-400 transition-colors">
+                  <div className="border-b-2 border-dotted border-gray-300 pb-1 hover:border-[#178C92] transition-colors">
                     <div className="flex items-center justify-between">
                       <input
                         type="text"
@@ -183,7 +183,7 @@ export default function InvoiceDetailsForm() {
             {/* Add Custom Fields */}
             <button
               onClick={() => setShowCustomFieldsModal(true)}
-              className="flex items-center gap-2 text-purple-600 hover:text-purple-700 transition-colors mt-6 ml-40 font-medium"
+              className="flex items-center gap-2 text-[#178C92] hover:text-[#007078] transition-colors mt-6 ml-40 font-medium"
             >
               <Plus size={18} />
               <span>Add Custom Fields</span>
@@ -192,7 +192,7 @@ export default function InvoiceDetailsForm() {
 
           {/* Right Column - Logo Upload */}
           <div className="w-60 h-48">
-            <div className="border-2 border-dashed border-gray-300 rounded-xl p-4 text-center hover:border-purple-400 transition-all duration-200 bg-purple-50/30">
+            <div className="border-2 border-dashed border-gray-300 rounded-xl p-4 text-center hover:border-[#178C92] transition-all duration-200 bg-[#EAF4F1]/30">
               <input
                 type="file"
                 id="logo-upload"
@@ -204,14 +204,14 @@ export default function InvoiceDetailsForm() {
                 {logo ? (
                   <div className="space-y-3">
                     <img src={logo} alt="Business Logo" className="max-h-32 mx-auto rounded-lg" />
-                    <p className="text-xs text-purple-600 font-medium hover:text-purple-700">Change Logo</p>
+                    <p className="text-xs text-[#178C92] font-medium hover:text-[#007078]">Change Logo</p>
                   </div>
                 ) : (
                   <div className="space-y-3">
                     <div className="flex justify-center">
-                      <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center border-2 border-purple-200">
+                      <div className="w-12 h-12 bg-[#EAF4F1] rounded-xl flex items-center justify-center border-2 border-[#d0eae8]">
                         <svg
-                          className="w-8 h-8 text-purple-500"
+                          className="w-8 h-8 text-[#178C92]"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -261,7 +261,7 @@ export default function InvoiceDetailsForm() {
                   customFields.map((field) => (
                     <div
                       key={field.id}
-                      className="flex items-center justify-between p-4 bg-purple-50 rounded-lg border border-purple-100 hover:border-purple-200 transition-colors"
+                      className="flex items-center justify-between p-4 bg-[#EAF4F1] rounded-lg border border-[#EAF4F1] hover:border-[#d0eae8] transition-colors"
                     >
                       <div>
                         <p className="font-medium text-gray-900">{field.label}</p>
@@ -283,7 +283,7 @@ export default function InvoiceDetailsForm() {
                   setShowCustomFieldsModal(false);
                   setShowAddFieldModal(true);
                 }}
-                className="w-full py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all duration-200 font-medium shadow-sm hover:shadow-md"
+                className="w-full py-3 bg-[#178C92] text-white rounded-lg hover:bg-[#007078] transition-all duration-200 font-medium shadow-sm hover:shadow-md"
               >
                 Add New Custom Field
               </button>
@@ -323,7 +323,7 @@ export default function InvoiceDetailsForm() {
                     placeholder="Enter field label"
                     value={newFieldLabel}
                     onChange={(e) => setNewFieldLabel(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] focus:ring-2 focus:ring-[#EAF4F1] transition-all"
                   />
                 </div>
 
@@ -335,7 +335,7 @@ export default function InvoiceDetailsForm() {
                     placeholder="Enter field value"
                     value={newFieldValue}
                     onChange={(e) => setNewFieldValue(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] focus:ring-2 focus:ring-[#EAF4F1] transition-all"
                   />
                 </div>
 
@@ -346,7 +346,7 @@ export default function InvoiceDetailsForm() {
                     id="default-value"
                     checked={setAsDefault}
                     onChange={(e) => setSetAsDefault(e.target.checked)}
-                    className="w-5 h-5 text-purple-600 rounded border-gray-300 focus:ring-purple-500 cursor-pointer"
+                    className="w-5 h-5 text-[#178C92] rounded border-gray-300 focus:ring-[#178C92] cursor-pointer"
                   />
                   <label htmlFor="default-value" className="text-gray-700 cursor-pointer">
                     Set as default value
@@ -369,7 +369,7 @@ export default function InvoiceDetailsForm() {
                 </button>
                 <button
                   onClick={handleSaveCustomField}
-                  className="px-6 py-2.5 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all duration-200 font-medium shadow-sm hover:shadow-md"
+                  className="px-6 py-2.5 bg-[#178C92] text-white rounded-lg hover:bg-[#007078] transition-all duration-200 font-medium shadow-sm hover:shadow-md"
                 >
                   Save
                 </button>

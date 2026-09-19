@@ -128,14 +128,14 @@ const BusinessDetails = () => {
                                 required
                                 value={businessData.businessName}
                                 onChange={handleBusinessChange}
-                                className="block w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                className="block w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
                                 placeholder="If you're a freelancer, add your personal name"
                             />
 
                             <button
                                 type="button"
                                 onClick={() => setShowBrandName(!showBrandName)}
-                                className="mt-3 flex items-center gap-2 text-purple-600 hover:text-purple-700 text-sm font-medium"
+                                className="mt-3 flex items-center gap-2 text-[#178C92] hover:text-[#007078] text-sm font-medium"
                             >
                                 <Plus className="w-4 h-4" />
                                 Add Brand or Display name
@@ -153,7 +153,7 @@ const BusinessDetails = () => {
                                         type="text"
                                         value={businessData.brandName}
                                         onChange={handleBusinessChange}
-                                        className="block w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                        className="block w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
                                         placeholder="Your Brand Name"
                                     />
                                 </div>
@@ -172,7 +172,7 @@ const BusinessDetails = () => {
                                     required
                                     value={businessData.teamSize}
                                     onChange={handleBusinessChange}
-                                    className="block w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent appearance-none bg-white"
+                                    className="block w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent appearance-none bg-white"
                                 >
                                     <option value="">Select Team Size</option>
                                     <option value="1">Just me</option>
@@ -197,7 +197,7 @@ const BusinessDetails = () => {
                                 type="url"
                                 value={businessData.website}
                                 onChange={handleBusinessChange}
-                                className="block w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                className="block w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
                                 placeholder="Your Work Website"
                             />
                         </div>
@@ -213,7 +213,7 @@ const BusinessDetails = () => {
                                     <button
                                         type="button"
                                         onClick={() => setShowCountryCodeDropdown(!showCountryCodeDropdown)}
-                                        className="w-full flex items-center justify-between px-3 py-3 border border-gray-300 rounded-lg bg-white hover:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                        className="w-full flex items-center justify-between px-3 py-3 border border-gray-300 rounded-lg bg-white hover:border-[#178C92] focus:outline-none focus:ring-2 focus:ring-[#178C92]"
                                     >
                                         <span className="flex items-center gap-2">
                                             <span className="text-lg">{countryData[businessData.country].flag}</span>
@@ -232,7 +232,7 @@ const BusinessDetails = () => {
                                                         handleBusinessChange({ target: { name: 'countryCode', value: countryData[country].code } } as React.ChangeEvent<HTMLSelectElement>);
                                                         setShowCountryCodeDropdown(false);
                                                     }}
-                                                    className={`w-full flex items-center gap-2 px-3 py-2 text-left hover:bg-purple-50 ${businessData.countryCode === countryData[country].code ? 'bg-purple-50' : ''
+                                                    className={`w-full flex items-center gap-2 px-3 py-2 text-left hover:bg-[#EAF4F1] ${businessData.countryCode === countryData[country].code ? 'bg-[#EAF4F1]' : ''
                                                         }`}
                                                 >
                                                     <span className="text-lg">{countryData[country].flag}</span>
@@ -250,7 +250,7 @@ const BusinessDetails = () => {
                                     required
                                     value={businessData.phoneNumber}
                                     onChange={handleBusinessChange}
-                                    className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                    className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
                                     placeholder="Phone number"
                                 />
                             </div>
@@ -267,7 +267,7 @@ const BusinessDetails = () => {
                                     <button
                                         type="button"
                                         onClick={() => setShowCountryDropdown(!showCountryDropdown)}
-                                        className="w-full flex items-center justify-between px-4 py-3 border border-gray-300 rounded-lg bg-white hover:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 text-left"
+                                        className="w-full flex items-center justify-between px-4 py-3 border border-gray-300 rounded-lg bg-white hover:border-[#178C92] focus:outline-none focus:ring-2 focus:ring-[#178C92] text-left"
                                     >
                                         <span className="text-sm">{businessData.country}</span>
                                         <ChevronDown className="w-5 h-5 text-gray-400 flex-shrink-0" />
@@ -283,7 +283,7 @@ const BusinessDetails = () => {
                                                         handleBusinessChange({ target: { name: 'country', value: country } } as React.ChangeEvent<HTMLSelectElement>);
                                                         setShowCountryDropdown(false);
                                                     }}
-                                                    className={`w-full px-4 py-2 text-left text-sm hover:bg-purple-50 ${businessData.country === country ? 'bg-purple-50' : ''
+                                                    className={`w-full px-4 py-2 text-left text-sm hover:bg-[#EAF4F1] ${businessData.country === country ? 'bg-[#EAF4F1]' : ''
                                                         }`}
                                                 >
                                                     {country}
@@ -303,7 +303,7 @@ const BusinessDetails = () => {
                                     <button
                                         type="button"
                                         onClick={() => setShowCurrencyDropdown(!showCurrencyDropdown)}
-                                        className="w-full flex items-center justify-between px-4 py-3 border border-gray-300 rounded-lg bg-white hover:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 text-left"
+                                        className="w-full flex items-center justify-between px-4 py-3 border border-gray-300 rounded-lg bg-white hover:border-[#178C92] focus:outline-none focus:ring-2 focus:ring-[#178C92] text-left"
                                     >
                                         <span className="text-sm">{businessData.currency}</span>
                                         <ChevronDown className="w-5 h-5 text-gray-400 flex-shrink-0" />
@@ -319,7 +319,7 @@ const BusinessDetails = () => {
                                                         handleBusinessChange({ target: { name: 'currency', value: currency } } as React.ChangeEvent<HTMLSelectElement>);
                                                         setShowCurrencyDropdown(false);
                                                     }}
-                                                    className={`w-full px-4 py-2 text-left text-sm hover:bg-purple-50 ${businessData.currency === currency ? 'bg-purple-50' : ''
+                                                    className={`w-full px-4 py-2 text-left text-sm hover:bg-[#EAF4F1] ${businessData.currency === currency ? 'bg-[#EAF4F1]' : ''
                                                         }`}
                                                 >
                                                     {currency}
@@ -344,7 +344,7 @@ const BusinessDetails = () => {
                                     required
                                     value={businessData.useFor}
                                     onChange={handleBusinessChange}
-                                    className="block w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent appearance-none bg-white text-gray-700"
+                                    className="block w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent appearance-none bg-white text-gray-700"
                                 >
                                     <option value="">Select...</option>
                                     <option value="invoicing">Invoicing & Billing</option>
@@ -360,7 +360,7 @@ const BusinessDetails = () => {
                         {/* Submit Button */}
                         <button
                             type="submit"
-                            className="w-full md:w-auto bg-purple-600 text-white py-3 px-8 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all duration-200 font-semibold text-lg shadow-sm hover:shadow-md"
+                            className="w-full md:w-auto bg-[#178C92] text-white py-3 px-8 rounded-lg hover:bg-[#007078] focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:ring-offset-2 transition-all duration-200 font-semibold text-lg shadow-sm hover:shadow-md"
                         >
                             Save & Continue
                         </button>
@@ -372,3 +372,4 @@ const BusinessDetails = () => {
 };
 
 export default BusinessDetails;
+

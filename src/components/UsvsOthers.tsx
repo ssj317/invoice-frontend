@@ -136,7 +136,7 @@ const UsvsOthers = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-200 via-white to-purple-200 py-16 px-4">
+    <div className="min-h-screen bg-[#F8F4E1] py-16 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
@@ -146,7 +146,7 @@ const UsvsOthers = () => {
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Why Pay When You Can Get It{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+            <span className="text-[#178C92]">
               Free?
             </span>
           </h1>
@@ -191,7 +191,7 @@ const UsvsOthers = () => {
                     <div className="font-semibold text-gray-900">Features</div>
                   </th>
                   {providers.map((provider, idx) => (
-                    <th key={idx} className={`p-6 ${provider.highlight ? 'bg-gradient-to-br from-blue-400 to-purple-600' : 'bg-gray-50'}`}>
+                    <th key={idx} className={`p-6 ${provider.highlight ? 'bg-[#178C92]' : 'bg-gray-50'}`}>
                       <div className="text-center">
                         {provider.highlight && (
                           <div className="inline-flex items-center gap-1 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-xs font-bold mb-2">
@@ -241,16 +241,16 @@ const UsvsOthers = () => {
 
         {/* Bottom CTA */}
         <div className="mt-12 text-center">
-          <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl p-8 text-white">
+          <div className="bg-[#178C92] rounded-2xl p-8 text-white">
             <h2 className="text-3xl font-bold mb-4">
               Save Up To $588/Year
             </h2>
             <p className="text-xl mb-6 text-blue-100">
               Get all premium features completely free. No credit card required. No hidden fees. Ever.
             </p>
-            <button className="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-50 transition-colors shadow-lg">
-              Start Creating Invoices Free
-            </button>
+           <button className="bg-white text-[#178C92] px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#EAF4F1] transition-colors shadow-lg">
+  Start Creating Invoices Free
+</button>
             <div className="mt-4 flex items-center justify-center gap-6 text-sm text-blue-100">
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4" />
@@ -273,3 +273,5 @@ const UsvsOthers = () => {
 };
 
 export default UsvsOthers;
+
+

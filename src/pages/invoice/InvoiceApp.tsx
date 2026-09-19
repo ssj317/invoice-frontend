@@ -101,13 +101,13 @@ const InvoiceApp = () => {
     };
 
     return (
-        <div className='min-h-screen bg-white py-2'>
+        <div className='min-h-screen bg-[#F8F4E1] py-2'>
             <div className="max-w-7xl mx-auto px-4">
                 {/* Navigation Buttons */}
                 <div className="flex items-center mt-3 justify-between mb-4">
                     <button
                         onClick={handleBack}
-                        className="flex items-center gap-2 px-3 md:px-4 py-2 text-sm md:text-base text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors border border-gray-300 hover:border-purple-300"
+                        className="flex items-center gap-2 px-3 md:px-4 py-2 text-sm md:text-base text-gray-700 hover:text-[#178C92] hover:bg-[#EAF4F1] rounded-lg transition-colors border border-gray-300 hover:border-[#a5d5d8]"
                     >
                         <ArrowLeft className="w-4 h-4" />
                         <span>Back</span>
@@ -115,7 +115,7 @@ const InvoiceApp = () => {
 
                     <button
                         onClick={handleGoToDashboard}
-                        className="flex items-center gap-2 px-3 md:px-4 py-2 text-sm md:text-base text-white bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors shadow-sm"
+                        className="flex items-center gap-2 px-3 md:px-4 py-2 text-sm md:text-base text-white bg-[#178C92] hover:bg-[#007078] rounded-lg transition-colors shadow-sm"
                     >
                         <Home className="w-4 h-4" />
                         <span>Go to Dashboard</span>
@@ -123,8 +123,8 @@ const InvoiceApp = () => {
                 </div>
 
                 {/* Header Section */}
-                <div className="bg-white rounded-xl shadow-sm border border-purple-100 p-4 pb-8 mb-4 ">
-                    <h1 className="text-2xl font-bold text-gray-700 mb-4 text-center">
+                <div className="bg-[#FFFDF5] rounded-xl shadow-sm border border-[#EAF4F1] p-4 pb-8 mb-4 ">
+                    <h1 className="text-2xl font-bold text-[#164A41] mb-4 text-center">
                         Create New {documentLabel}
                     </h1>
 
@@ -138,9 +138,9 @@ const InvoiceApp = () => {
                                 >
                                     <div
                                         className={`w-6 h-6 rounded-full flex items-center justify-center font-semibold text-xs transition-all duration-300 ${currentStep === step.number
-                                            ? 'bg-purple-600 text-white shadow-lg shadow-purple-300'
+                                            ? 'bg-[#178C92] text-white shadow-lg shadow-[#a5d5d8]'
                                             : currentStep > step.number
-                                                ? 'bg-purple-600 text-white cursor-pointer hover:shadow-lg'
+                                                ? 'bg-[#178C92] text-white cursor-pointer hover:shadow-lg'
                                                 : 'bg-gray-200 text-gray-500'
                                             }`}
                                     >
@@ -150,7 +150,7 @@ const InvoiceApp = () => {
                                     <div className="flex items-center gap-2">
                                         <span
                                             className={`text-base font-medium transition-colors ${currentStep === step.number
-                                                ? 'text-purple-700'
+                                                ? 'text-[#007078]'
                                                 : 'text-gray-500'
                                                 }`}
                                         >

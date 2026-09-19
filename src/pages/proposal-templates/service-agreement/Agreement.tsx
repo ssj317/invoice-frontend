@@ -201,10 +201,10 @@ const Agreement = () => {
                         ))}
                     </div>
                 </div>
-                <div className="p-10 border-4 border-purple-500 mt-8">
-                    <h2 className="text-2xl font-bold text-purple-600 mb-6 text-center">📄 PAGE 2 - EDIT MODE</h2>
+                <div className="p-10 border-4 border-[#178C92] mt-8">
+                    <h2 className="text-2xl font-bold text-[#178C92] mb-6 text-center">📄 PAGE 2 - EDIT MODE</h2>
                     <div className="space-y-4 text-[13px]">
-                        <input type="text" value={formData.supportTitle} onChange={(e) => handleInputChange('supportTitle', e.target.value)} className="w-full px-2 py-1 border-2 border-purple-300 rounded bg-purple-50 font-bold" />
+                        <input type="text" value={formData.supportTitle} onChange={(e) => handleInputChange('supportTitle', e.target.value)} className="w-full px-2 py-1 border-2 border-[#a5d5d8] rounded bg-[#EAF4F1] font-bold" />
                         <div className="flex justify-end mb-2">
                             <button
                                 type="button"
@@ -216,7 +216,7 @@ const Agreement = () => {
                         </div>
                         {formData.supportContent.map((item, i) => (
                             <div key={i} className="flex gap-2 items-start">
-                                <textarea value={item} onChange={(e) => handleArrayInputChange('supportContent', i, e.target.value)} rows={2} className="flex-1 px-2 py-1 border border-purple-300 rounded bg-purple-50" />
+                                <textarea value={item} onChange={(e) => handleArrayInputChange('supportContent', i, e.target.value)} rows={2} className="flex-1 px-2 py-1 border border-[#a5d5d8] rounded bg-[#EAF4F1]" />
                                 {formData.supportContent.length > 1 && (
                                     <button
                                         type="button"
@@ -229,7 +229,7 @@ const Agreement = () => {
                                 )}
                             </div>
                         ))}
-                        <input type="text" value={formData.ipTitle} onChange={(e) => handleInputChange('ipTitle', e.target.value)} className="w-full px-2 py-1 border-2 border-purple-300 rounded bg-purple-50 font-bold" />
+                        <input type="text" value={formData.ipTitle} onChange={(e) => handleInputChange('ipTitle', e.target.value)} className="w-full px-2 py-1 border-2 border-[#a5d5d8] rounded bg-[#EAF4F1] font-bold" />
                         <div className="flex justify-end mb-2">
                             <button
                                 type="button"
@@ -241,7 +241,7 @@ const Agreement = () => {
                         </div>
                         {formData.ipContent.map((item, i) => (
                             <div key={i} className="flex gap-2 items-start">
-                                <textarea value={item} onChange={(e) => handleArrayInputChange('ipContent', i, e.target.value)} rows={2} className="flex-1 px-2 py-1 border border-purple-300 rounded bg-purple-50" />
+                                <textarea value={item} onChange={(e) => handleArrayInputChange('ipContent', i, e.target.value)} rows={2} className="flex-1 px-2 py-1 border border-[#a5d5d8] rounded bg-[#EAF4F1]" />
                                 {formData.ipContent.length > 1 && (
                                     <button
                                         type="button"
@@ -254,20 +254,20 @@ const Agreement = () => {
                                 )}
                             </div>
                         ))}
-                        <input type="text" value={formData.confidentialityTitle} onChange={(e) => handleInputChange('confidentialityTitle', e.target.value)} className="w-full px-2 py-1 border-2 border-purple-300 rounded bg-purple-50 font-bold" />
-                        <textarea value={formData.confidentialityContent} onChange={(e) => handleInputChange('confidentialityContent', e.target.value)} rows={2} className="w-full px-2 py-1 border border-purple-300 rounded bg-purple-50" />
-                        <input type="text" value={formData.liabilityTitle} onChange={(e) => handleInputChange('liabilityTitle', e.target.value)} className="w-full px-2 py-1 border-2 border-purple-300 rounded bg-purple-50 font-bold" />
-                        <textarea value={formData.liabilityContent} onChange={(e) => handleInputChange('liabilityContent', e.target.value)} rows={2} className="w-full px-2 py-1 border border-purple-300 rounded bg-purple-50" />
-                        <input type="text" value={formData.acceptanceTitle} onChange={(e) => handleInputChange('acceptanceTitle', e.target.value)} className="w-full px-2 py-1 border-2 border-purple-300 rounded bg-purple-50 font-bold" />
-                        <textarea value={formData.acceptanceContent} onChange={(e) => handleInputChange('acceptanceContent', e.target.value)} rows={3} className="w-full px-2 py-1 border border-purple-300 rounded bg-purple-50" />
-                        <input type="text" value={formData.signatureLabel} onChange={(e) => handleInputChange('signatureLabel', e.target.value)} className="w-full px-2 py-1 border-2 border-purple-300 rounded bg-purple-50 font-bold" />
-                        <input type="text" value={formData.signatureName} onChange={(e) => handleInputChange('signatureName', e.target.value)} className="w-full px-2 py-1 border border-purple-300 rounded bg-purple-50" />
-                        <input type="text" value={formData.signatureText} onChange={(e) => handleInputChange('signatureText', e.target.value)} className="w-full px-2 py-1 border border-purple-300 rounded bg-purple-50" />
-                        <input type="text" value={formData.signatureDate} onChange={(e) => handleInputChange('signatureDate', e.target.value)} className="w-full px-2 py-1 border border-purple-300 rounded bg-purple-50" />
+                        <input type="text" value={formData.confidentialityTitle} onChange={(e) => handleInputChange('confidentialityTitle', e.target.value)} className="w-full px-2 py-1 border-2 border-[#a5d5d8] rounded bg-[#EAF4F1] font-bold" />
+                        <textarea value={formData.confidentialityContent} onChange={(e) => handleInputChange('confidentialityContent', e.target.value)} rows={2} className="w-full px-2 py-1 border border-[#a5d5d8] rounded bg-[#EAF4F1]" />
+                        <input type="text" value={formData.liabilityTitle} onChange={(e) => handleInputChange('liabilityTitle', e.target.value)} className="w-full px-2 py-1 border-2 border-[#a5d5d8] rounded bg-[#EAF4F1] font-bold" />
+                        <textarea value={formData.liabilityContent} onChange={(e) => handleInputChange('liabilityContent', e.target.value)} rows={2} className="w-full px-2 py-1 border border-[#a5d5d8] rounded bg-[#EAF4F1]" />
+                        <input type="text" value={formData.acceptanceTitle} onChange={(e) => handleInputChange('acceptanceTitle', e.target.value)} className="w-full px-2 py-1 border-2 border-[#a5d5d8] rounded bg-[#EAF4F1] font-bold" />
+                        <textarea value={formData.acceptanceContent} onChange={(e) => handleInputChange('acceptanceContent', e.target.value)} rows={3} className="w-full px-2 py-1 border border-[#a5d5d8] rounded bg-[#EAF4F1]" />
+                        <input type="text" value={formData.signatureLabel} onChange={(e) => handleInputChange('signatureLabel', e.target.value)} className="w-full px-2 py-1 border-2 border-[#a5d5d8] rounded bg-[#EAF4F1] font-bold" />
+                        <input type="text" value={formData.signatureName} onChange={(e) => handleInputChange('signatureName', e.target.value)} className="w-full px-2 py-1 border border-[#a5d5d8] rounded bg-[#EAF4F1]" />
+                        <input type="text" value={formData.signatureText} onChange={(e) => handleInputChange('signatureText', e.target.value)} className="w-full px-2 py-1 border border-[#a5d5d8] rounded bg-[#EAF4F1]" />
+                        <input type="text" value={formData.signatureDate} onChange={(e) => handleInputChange('signatureDate', e.target.value)} className="w-full px-2 py-1 border border-[#a5d5d8] rounded bg-[#EAF4F1]" />
                     </div>
                 </div>
                 <div className="p-6 bg-gray-100">
-                    <button onClick={handleSaveAndContinue} className="w-full px-6 py-4 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-bold text-lg">💾 Save & Switch to Preview</button>
+                    <button onClick={handleSaveAndContinue} className="w-full px-6 py-4 bg-[#178C92] text-white rounded-lg hover:bg-[#007078] font-bold text-lg">💾 Save & Switch to Preview</button>
                 </div>
             </div>
         </div>

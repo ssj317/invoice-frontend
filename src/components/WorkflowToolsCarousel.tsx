@@ -300,7 +300,7 @@ const HorizontalScrollWorkflow = () => {
 	};
 
 	return (
-		<div ref={sectionRef} className="min-h-[75vh] bg-gradient-to-br from-blue-100 via-white to-purple-200 sm:min-h-[400vh] md:min-h-[500vh] lg:min-h-[600vh] relative">
+		<div ref={sectionRef} className="min-h-[75vh] bg-[#F8F4E1] sm:min-h-[400vh] md:min-h-[500vh] lg:min-h-[600vh] relative">
 			{/* Animated Background */}
 			<div className="fixed inset-0 overflow-hidden pointer-events-none">
 				<div
@@ -343,7 +343,7 @@ const HorizontalScrollWorkflow = () => {
 								}}
 							>
 								<div
-									className={`relative h-[400px] sm:h-[400px] md:h-[440px] lg:h-[440px] rounded-xl md:rounded-2xl overflow-hidden border border-gray-200 hover:border-gray-300 transition-all duration-500 group-hover:scale-105 group-hover:shadow-2xl ${tool.featured ? 'ring-2 ring-purple-300' : ''
+									className={`relative h-[400px] sm:h-[400px] md:h-[440px] lg:h-[440px] rounded-xl md:rounded-2xl overflow-hidden border border-gray-200 hover:border-gray-300 transition-all duration-500 group-hover:scale-105 group-hover:shadow-2xl ${tool.featured ? 'ring-2 ring-[#178C92]' : ''
 										}`}
 								>
 									{/* <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div> */}
@@ -354,7 +354,7 @@ const HorizontalScrollWorkflow = () => {
 
 										<div className="flex-grow flex flex-col justify-between w-full">
 											<div>
-												<h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-1 sm:mb-1.5 md:mb-2 group-hover:text-purple-600 transition-colors duration-300 line-clamp-2">
+												<h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-1 sm:mb-1.5 md:mb-2 group-hover:text-[#178C92] transition-colors duration-300 line-clamp-2">
 													{tool.title}
 												</h3>
 												<p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed mb-3 sm:mb-4 md:mb-6 line-clamp-3">
@@ -365,7 +365,7 @@ const HorizontalScrollWorkflow = () => {
 											{/* CTA Button */}
 											<button
 												onClick={() => handleNavigation(tool.route)}
-												className="w-full py-2 sm:py-2.5 md:py-3 bg-gray-900 hover:bg-purple-600 text-white rounded-lg transition-all duration-300 font-semibold group-hover:shadow-lg group-hover:shadow-purple-500/30 flex items-center justify-center gap-2 text-xs sm:text-sm md:text-base"
+												className="w-full py-2 sm:py-2.5 md:py-3 bg-gray-900 hover:bg-[#0f6368] text-white rounded-lg transition-all duration-300 font-semibold group-hover:shadow-lg group-hover:shadow-[#178C92]/30 flex items-center justify-center gap-2 text-xs sm:text-sm md:text-base"
 											>
 												<span className="truncate">{tool.buttonText}</span>
 												<ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
@@ -381,7 +381,7 @@ const HorizontalScrollWorkflow = () => {
 					{/* <div className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 flex items-center gap-2 sm:gap-3 md:gap-4">
 						<div className="flex-1 h-0.5 sm:h-1 bg-gray-300 rounded-full overflow-hidden">
 							<div
-								className="h-full bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 transition-all duration-300"
+								className="h-full bg-[#178C92] transition-all duration-300"
 								style={{ width: `${scrollProgress * 100}%` }}
 							/>
 						</div>
@@ -396,3 +396,5 @@ const HorizontalScrollWorkflow = () => {
 };
 
 export default HorizontalScrollWorkflow;
+
+

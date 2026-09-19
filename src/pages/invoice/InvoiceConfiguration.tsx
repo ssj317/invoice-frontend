@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { ChevronDown, X, Plus, Eye, Trash2, GripVertical, Info } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { updateInvoiceData } from '../../store/invoiceSlice';
@@ -304,14 +304,14 @@ export default function InvoiceConfiguration() {
   };
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-2 sm:px-4 md:px-1 pt-3 sm:pt-4 pb-2 sm:pb-3 bg-gray-50">
+    <div className="w-full max-w-6xl mx-auto px-2 sm:px-4 md:px-1 pt-3 sm:pt-4 pb-2 sm:pb-3 bg-[#EAF4F1]">
       {/* Buttons Row */}
       <div className="flex flex-wrap gap-2 sm:gap-3">
         <button
           onClick={() => setIsGSTModalOpen(true)}
           className="flex items-center gap-2 px-3 sm:px-5 py-2 sm:py-3 text-xs sm:text-sm bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors shadow-sm"
         >
-          {/* <svg className="w-5 h-5 text-purple-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          {/* <svg className="w-5 h-5 text-[#178C92]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M9 12h6" strokeLinecap="round" strokeLinejoin="round"/>
           </svg> */}
@@ -362,7 +362,7 @@ export default function InvoiceConfiguration() {
         </div>
 
         <button className="flex items-center gap-2 px-3 sm:px-5 py-2 sm:py-3 text-xs sm:text-sm bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
-          <svg className="w-5 h-5 text-purple-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg className="w-5 h-5 text-[#178C92]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <rect x="3" y="3" width="7" height="7" rx="1" strokeLinecap="round" strokeLinejoin="round" />
             <rect x="14" y="3" width="7" height="7" rx="1" strokeLinecap="round" strokeLinejoin="round" />
             <rect x="14" y="14" width="7" height="7" rx="1" strokeLinecap="round" strokeLinejoin="round" />
@@ -447,15 +447,15 @@ export default function InvoiceConfiguration() {
                     </label>
                     <div className="flex items-center gap-8 mb-4">
                       <label className="flex items-center gap-3 cursor-pointer">
-                        <input type="radio" name="gstType" value="IGST" checked={selectedGSTType === 'IGST'} onChange={(e) => setSelectedGSTType(e.target.value)} className="w-5 h-5 text-purple-600 accent-purple-600" />
+                        <input type="radio" name="gstType" value="IGST" checked={selectedGSTType === 'IGST'} onChange={(e) => setSelectedGSTType(e.target.value)} className="w-5 h-5 text-[#178C92] accent-[#178C92]" />
                         <span className="text-gray-900">IGST</span>
                       </label>
                       <label className="flex items-center gap-3 cursor-pointer">
-                        <input type="radio" name="gstType" value="CGST & SGST" checked={selectedGSTType === 'CGST & SGST'} onChange={(e) => setSelectedGSTType(e.target.value)} className="w-5 h-5 text-purple-600 accent-purple-600" />
+                        <input type="radio" name="gstType" value="CGST & SGST" checked={selectedGSTType === 'CGST & SGST'} onChange={(e) => setSelectedGSTType(e.target.value)} className="w-5 h-5 text-[#178C92] accent-[#178C92]" />
                         <span className="text-gray-900">CGST & SGST</span>
                       </label>
                     </div>
-                    <button onClick={() => setIsCessModalOpen(true)} className="flex items-center gap-2 text-purple-600 hover:text-purple-700 font-medium">
+                    <button onClick={() => setIsCessModalOpen(true)} className="flex items-center gap-2 text-[#178C92] hover:text-[#007078] font-medium">
                       <Plus className="w-5 h-5" />
                       <span>Add Cess</span>
                     </button>
@@ -468,7 +468,7 @@ export default function InvoiceConfiguration() {
                   {selectedTaxType === 'GST (India)' ? '4. Other Options' : '2. Other Options'}
                 </label>
                 <label className="flex items-center gap-3 cursor-pointer">
-                  <input type="checkbox" checked={isReverseCharge} onChange={(e) => setIsReverseCharge(e.target.checked)} className="w-5 h-5 text-purple-600 accent-purple-600 rounded" />
+                  <input type="checkbox" checked={isReverseCharge} onChange={(e) => setIsReverseCharge(e.target.checked)} className="w-5 h-5 text-[#178C92] accent-[#178C92] rounded" />
                   <span className="text-gray-900">Is Reverse Charge Applicable?</span>
                 </label>
               </div>
@@ -481,7 +481,7 @@ export default function InvoiceConfiguration() {
             </div>
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between px-4 sm:px-8 py-4 sm:py-6 border-t border-gray-200 gap-3">
               <button onClick={() => setIsGSTModalOpen(false)} className="w-full sm:w-auto text-sm sm:text-base text-gray-700 font-medium hover:text-gray-900">Cancel</button>
-              <button onClick={saveGSTConfiguration} className="w-full sm:w-auto px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 shadow-sm">Save Changes</button>
+              <button onClick={saveGSTConfiguration} className="w-full sm:w-auto px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base bg-[#178C92] text-white font-medium rounded-lg hover:bg-[#007078] shadow-sm">Save Changes</button>
             </div>
           </div>
         </div>
@@ -515,7 +515,7 @@ export default function InvoiceConfiguration() {
               </div>
               <div>
                 <label className="block text-gray-900 font-normal mb-3">Cess Name</label>
-                <input type="text" value={cessName} onChange={(e) => setCessName(e.target.value)} placeholder="Cess Name" className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600" />
+                <input type="text" value={cessName} onChange={(e) => setCessName(e.target.value)} placeholder="Cess Name" className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92]600" />
               </div>
               <div className="bg-gray-50 px-4 py-3 rounded-lg">
                 <p className="text-gray-600 text-sm">Additional cess can be levied in addition to GST tax invoice</p>
@@ -523,7 +523,7 @@ export default function InvoiceConfiguration() {
             </div>
             <div className="flex items-center justify-between px-8 py-6 border-t border-gray-200">
               <button onClick={() => setIsCessModalOpen(false)} className="text-gray-700 font-medium hover:text-gray-900">Cancel</button>
-              <button onClick={() => setIsCessModalOpen(false)} className="px-8 py-3 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 shadow-sm">Save</button>
+              <button onClick={() => setIsCessModalOpen(false)} className="px-8 py-3 bg-[#178C92] text-white font-medium rounded-lg hover:bg-[#007078] shadow-sm">Save</button>
             </div>
           </div>
         </div>
@@ -544,7 +544,7 @@ export default function InvoiceConfiguration() {
             </div>
 
             <div className="flex-1 overflow-y-auto px-4 sm:px-8 py-4 sm:py-6">
-              <div className="bg-purple-50 rounded-lg p-4 sm:p-6 mb-4 sm:mb-6">
+              <div className="bg-[#EAF4F1] rounded-lg p-4 sm:p-6 mb-4 sm:mb-6">
                 <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">Need Advanced Formulas?</h3>
                 <p className="text-sm sm:text-base text-gray-700 mb-3 sm:mb-4">Add custom calculations, formulae and custom fields in your columns.</p>
                 <button className="px-4 sm:px-6 py-2 text-sm sm:text-base bg-pink-600 text-white font-medium rounded-lg hover:bg-pink-700">
@@ -563,7 +563,7 @@ export default function InvoiceConfiguration() {
                 </div>
                 <button
                   onClick={addNewColumn}
-                  className="w-full sm:w-auto sm:ml-4 flex items-center justify-center gap-2 px-3 sm:px-4 py-2 text-xs sm:text-sm text-purple-600 border-2 border-purple-600 rounded-lg hover:bg-purple-50 font-medium"
+                  className="w-full sm:w-auto sm:ml-4 flex items-center justify-center gap-2 px-3 sm:px-4 py-2 text-xs sm:text-sm text-[#178C92] border-2 border-[#178C92] rounded-lg hover:bg-[#EAF4F1] font-medium"
                 >
                   <Plus className="w-5 h-5" />
                   Add New Column
@@ -589,7 +589,7 @@ export default function InvoiceConfiguration() {
                           type="text"
                           value={column.name}
                           onChange={(e) => updateColumnName(column.id, e.target.value)}
-                          className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                          className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92]600"
                         />
 
                         {column.type === 'FORMULA' && !column.editable ? (
@@ -655,7 +655,7 @@ export default function InvoiceConfiguration() {
 
                     {(column as any).makePrivate !== undefined && (
                       <div className="flex items-center gap-2 ml-12 mt-2">
-                        <input type="checkbox" checked={(column as any).makePrivate} className="w-4 h-4 text-purple-600 accent-purple-600 rounded" />
+                        <input type="checkbox" checked={(column as any).makePrivate} className="w-4 h-4 text-[#178C92] accent-[#178C92] rounded" />
                         <label className="text-gray-700 text-sm flex items-center gap-1">
                           Make private?
                           <Info className="w-4 h-4 text-gray-400" />
@@ -666,7 +666,7 @@ export default function InvoiceConfiguration() {
                 ))}
               </div>
 
-              <div className="mt-8 bg-purple-700 text-white rounded-lg p-4">
+              <div className="mt-8 bg-[#007078] text-white rounded-lg p-4">
                 <div className="flex items-center justify-between text-sm flex-wrap gap-2">
                   {columns.map((col) => (
                     <span key={col.id}>{col.name}</span>

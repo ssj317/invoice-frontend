@@ -7,7 +7,7 @@ import FAQs from './FAQs';
 
 const HomePage = () => {
     return (
-        <div className='bg-gradient-to-br from-blue-50 via-white to-purple-50'>
+        <div className='bg-[#F8F4E1]'>
             <RefrensHomepage />
             <div id="business-section">
                 <BusinessPage />
@@ -21,3 +21,6 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+
+

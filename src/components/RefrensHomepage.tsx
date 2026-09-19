@@ -1,3 +1,548 @@
+// import { useState, useRef, useEffect } from 'react';
+// import { ChevronDown, Menu, X, Sparkles, Bell } from 'lucide-react';
+
+// const RefrensHomepage = () => {
+//     const [showProductsDropdown, setShowProductsDropdown] = useState(false);
+//     const [showCountryDropdown, setShowCountryDropdown] = useState(false);
+//     const [showPricingDropdown, setShowPricingDropdown] = useState(false);
+//     const [showMobileMenu, setShowMobileMenu] = useState(false);
+//     const [showComingSoonModal, setShowComingSoonModal] = useState(false);
+//     const [comingSoonFeature, setComingSoonFeature] = useState('');
+//     const [displayText, setDisplayText] = useState('');
+//     const [isDeleting, setIsDeleting] = useState(false);
+//     const [textIndex, setTextIndex] = useState(0);
+//     const productsDropdownRef = useRef<HTMLDivElement>(null);
+//     const countryDropdownRef = useRef<HTMLDivElement>(null);
+//     const pricingDropdownRef = useRef<HTMLDivElement>(null);
+
+//     const texts = [
+//         'Create All kind of Invoices for free',
+//         'Create Professional Invoices for free',
+//         'Create GST Invoices for free',
+//         'Create Custom Invoices for free'
+//     ];
+
+//     // Typewriter effect
+//     useEffect(() => {
+//         const currentText = texts[textIndex];
+//         const typingSpeed = isDeleting ? 50 : 100;
+//         const pauseTime = isDeleting ? 500 : 2000;
+
+//         const timer = setTimeout(() => {
+//             if (!isDeleting && displayText === currentText) {
+//                 setTimeout(() => setIsDeleting(true), pauseTime);
+//             } else if (isDeleting && displayText === '') {
+//                 setIsDeleting(false);
+//                 setTextIndex((prev) => (prev + 1) % texts.length);
+//             } else {
+//                 setDisplayText(
+//                     isDeleting
+//                         ? currentText.substring(0, displayText.length - 1)
+//                         : currentText.substring(0, displayText.length + 1)
+//                 );
+//             }
+//         }, typingSpeed);
+
+//         return () => clearTimeout(timer);
+//     }, [displayText, isDeleting, textIndex]);
+
+//     // Handle click outside to close dropdowns
+//     useEffect(() => {
+//         const handleClickOutside = (event: MouseEvent) => {
+//             if (productsDropdownRef.current && !productsDropdownRef.current.contains(event.target as Node)) {
+//                 setShowProductsDropdown(false);
+//             }
+//             if (countryDropdownRef.current && !countryDropdownRef.current.contains(event.target as Node)) {
+//                 setShowCountryDropdown(false);
+//             }
+//             if (pricingDropdownRef.current && !pricingDropdownRef.current.contains(event.target as Node)) {
+//                 setShowPricingDropdown(false);
+//             }
+//         };
+
+//         document.addEventListener('mousedown', handleClickOutside);
+//         return () => {
+//             document.removeEventListener('mousedown', handleClickOutside);
+//         };
+//     }, []);
+
+//     const scrollToBusinessSection = () => {
+//         const businessSection = document.getElementById('business-section');
+//         if (businessSection) {
+//             businessSection.scrollIntoView({ behavior: 'smooth' });
+//         }
+//     };
+
+//     const handleComingSoon = (featureName: string) => {
+//         setComingSoonFeature(featureName);
+//         setShowComingSoonModal(true);
+//         setShowProductsDropdown(false);
+//         setShowMobileMenu(false);
+//     };
+
+//     const productsData = {
+//         solutions: [
+//             'GST Billing Software',
+//             'Invoicing Software',
+//             'Quotation Software',
+//             'e-Invoicing Software',
+//             'eWay Bill Software',
+//             'Inventory Software',
+//             'Invoicing API'
+//         ],
+//         freeTools: [
+//             { name: 'GST Invoice Maker', route: '/invoice/gst-invoice' },
+//             { name: 'Invoice Generator', route: '/invoice/invoice-generator' },
+//             { name: 'Quotation Generator', route: '/invoice/quotation' },
+//             { name: 'Create Proforma Invoice', route: '/invoice/proforma-invoice' },
+//             { name: 'Invoice Formats', route: null },
+//             { name: 'Create Purchase Order', route: '/invoice/purchase-order' },
+//             { name: 'Create Delivery Challan', route: '/invoice/delivery-challan' },
+//             { name: 'Quotation Templates', route: null },
+//         ],
+//         categories: [
+//             'Startups',
+//             'Chartered Accountant',
+//             'Export/Import Business',
+//             'Professional Services',
+//             'Freelancers/Self-Employed'
+//         ]
+//     };
+
+//     return (
+//         <div className="min-h-[75vh] bg-[#F8F4E1]">
+//             {/* Navigation Bar */}
+//             <nav className="bg-white/60 backdrop-blur-md shadow-sm sticky top-2 sm:top-4 lg:top-6 w-[95%] sm:w-[90%] lg:w-[80%] mx-auto rounded-xl z-[90]">
+//                 <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-2">
+//                     <div className="flex items-center justify-between">
+//                         {/* Logo */}
+//                         <div className="flex items-center py-1 sm:py-2 gap-2">
+//                             <img
+//                                 src="/suzlon-nav-cropped.png"
+//                                 alt="Suzlon Logo"
+//                                 className="h-8 sm:h-10 lg:h-12 w-auto"
+//                             />
+//                         </div>
+
+//                         {/* Desktop Navigation Links */}
+//                         <div className="hidden lg:flex items-center gap-4 xl:gap-8">
+//                             {/* Home Button */}
+//                             <button
+//                                 onClick={() => window.location.href = '/'}
+//                                 className="text-black-700 hover:text-[#178C92] font-medium transition-colors text-sm md:text-base"
+//                             >
+//                                 Home
+//                             </button>
+
+//                             {/* Products Dropdown */}
+//                             <div className="relative" ref={productsDropdownRef}>
+//                                 <button
+//                                     onClick={() => setShowProductsDropdown(!showProductsDropdown)}
+//                                     className="flex items-center gap-1 text-black-700 hover:text-[#178C92] font-medium transition-colors text-sm md:text-base"
+//                                 >
+//                                     Products
+//                                     <ChevronDown className={`w-4 h-4 transition-transform ${showProductsDropdown ? 'rotate-180' : ''}`} />
+//                                 </button>
+
+//                                 {showProductsDropdown && (
+//                                     <>
+//                                         <div className="fixed inset-0 bg-black/20 z-[100]" style={{ top: '80px' }}></div>
+//                                         <div className="fixed left-1/2 transform -translate-x-1/2 mt-2 w-[90vw] max-w-[900px] bg-white rounded-2xl shadow-2xl p-4 sm:p-6 lg:p-8 border border-black-100 z-[110]">
+//                                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+//                                                 <div>
+//                                                     <h3 className="text-medium sm:text-lg font-bold text-black-900 mb-3 sm:mb-4">Solutions</h3>
+//                                                     <ul className="space-y-2 sm:space-y-4">
+//                                                         {productsData.solutions.map((item, idx) => (
+//                                                             <li key={idx}>
+//                                                                 <button
+//                                                                     onClick={() => handleComingSoon(item)}
+//                                                                     className="text-left text-black-700 hover:text-red-600 transition-colors w-full text-md"
+//                                                                 >
+//                                                                     {item}
+//                                                                 </button>
+//                                                             </li>
+//                                                         ))}
+//                                                     </ul>
+//                                                 </div>
+//                                                 <div>
+//                                                     <h3 className="text-base md:text-lg font-bold text-black-900 mb-3 sm:mb-4">Free Tools</h3>
+//                                                     <ul className="space-y-2 sm:space-y-4">
+//                                                         {productsData.freeTools.map((item, idx) => (
+//                                                             <li key={idx}>
+//                                                                 <button
+//                                                                     onClick={() => {
+//                                                                         if (item.route) {
+//                                                                             setShowProductsDropdown(false);
+//                                                                             window.location.href = item.route;
+//                                                                         } else {
+//                                                                             handleComingSoon(item.name);
+//                                                                         }
+//                                                                     }}
+//                                                                     className="text-left text-black-700 hover:text-red-600 transition-colors w-full text-md"
+//                                                                 >
+//                                                                     {item.name}
+//                                                                 </button>
+//                                                             </li>
+//                                                         ))}
+//                                                     </ul>
+//                                                 </div>
+//                                                 <div>
+//                                                     <h3 className="text-base sm:text-lg font-bold text-black-900 mb-3 sm:mb-4">Categories</h3>
+//                                                     <ul className="space-y-2 sm:space-y-3">
+//                                                         {productsData.categories.map((item, idx) => (
+//                                                             <li key={idx}>
+//                                                                 <button
+//                                                                     onClick={() => handleComingSoon(item)}
+//                                                                     className="text-left w-full text-black-700 hover:text-red-600 transition-colors text-md"
+//                                                                 >
+//                                                                     {item}
+//                                                                 </button>
+//                                                             </li>
+//                                                         ))}
+//                                                     </ul>
+//                                                 </div>
+//                                             </div>
+//                                         </div>
+//                                     </>
+//                                 )}
+//                             </div>
+
+//                             {/* Pricing Dropdown */}
+//                             <div className="relative" ref={pricingDropdownRef}>
+//                                 <button
+//                                     onClick={() => setShowPricingDropdown(!showPricingDropdown)}
+//                                     className="flex items-center gap-1 text-black-700 hover:text-[#178C92] font-medium transition-colors text-sm md:text-base"
+//                                 >
+//                                     Pricing
+//                                     <ChevronDown className={`w-4 h-4 transition-transform ${showPricingDropdown ? 'rotate-180' : ''}`} />
+//                                 </button>
+
+//                                 {showPricingDropdown && (
+//                                     <>
+//                                         <div className="fixed inset-0 bg-black/20 z-[100]" style={{ top: '80px' }}></div>
+//                                         <div className="fixed left-1/2 transform -translate-x-1/2 mt-2 w-[90vw] max-w-[600px] bg-white rounded-2xl shadow-2xl p-4 sm:p-6 lg:p-8 border border-black-100 z-[110]">
+//                                             <div className="text-center">
+//                                                 <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-black-600 to-black-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+//                                                     <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+//                                                     </svg>
+//                                                 </div>
+//                                                 <h3 className="text-xl sm:text-2xl font-bold text-black-900 mb-2 sm:mb-3">Free for Everyone!</h3>
+//                                                 <p className="text-base sm:text-lg text-black-600 mb-4 sm:mb-6">
+//                                                     Currently, we are providing all services <span className="font-semibold text-red-600">completely free</span> for all users.
+//                                                 </p>
+//                                                 <div className="bg-[#e6f7f8] rounded-xl p-4 sm:p-6 mb-4 sm:mb-6">
+//                                                     <p className="text-black-700 mb-3 sm:mb-4 text-sm sm:text-base">Enjoy unlimited access to:</p>
+//                                                     <ul className="space-y-2 text-left max-w-md mx-auto">
+//                                                         {['Invoice Generation', 'Quotation & Purchase Orders', 'GST & Tax Compliance', 'All Premium Features'].map((feature, idx) => (
+//                                                             <li key={idx} className="flex items-center gap-2 text-black-700 text-sm sm:text-base">
+//                                                                 <svg className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+//                                                                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+//                                                                 </svg>
+//                                                                 {feature}
+//                                                             </li>
+//                                                         ))}
+//                                                     </ul>
+//                                                 </div>
+//                                                 <button
+//                                                     onClick={() => {
+//                                                         setShowPricingDropdown(false);
+//                                                         window.location.href = '/signup';
+//                                                     }}
+//                                                     className="px-6 sm:px-8 py-2.5 sm:py-3 bg-[#178C92] hover:bg-[#0f6368] text-black font-semibold rounded-xl transition-colors shadow-lg text-sm sm:text-base"
+//                                                 >
+//                                                     Get Started for Free
+//                                                 </button>
+//                                             </div>
+//                                         </div>
+//                                     </>
+//                                 )}
+//                             </div>
+
+//                             {/* About Us Link */}
+//                             <button
+//                                 onClick={() => window.open('https://suzlon.com/about', '_blank')}
+//                                 className="text-black-700 hover:text-[#178C92] font-medium transition-colors text-sm md:text-base"
+//                             >
+//                                 About Us
+//                             </button>
+
+//                             {/* Contact Link */}
+//                             <button
+//                                 onClick={() => window.open('https://suzlon.com/contact', '_blank')}
+//                                 className="text-black-700 hover:text-[#178C92] font-medium transition-colors text-sm md:text-base"
+//                             >
+//                                 Contact
+//                             </button>
+
+
+//                         </div>
+
+//                         {/* Desktop Auth Buttons */}
+//                         <div className="hidden lg:flex items-center gap-4 xl:gap-8">
+//                             <button
+//                                 onClick={() => window.location.href = '/login'}
+//                                 className="text-black-700 hover:text-[#178C92] font-medium transition-colors text-sm md:text-base"
+//                             >
+//                                 Login
+//                             </button>
+//                             <button
+//                                 onClick={() => window.location.href = '/signup'}
+//                                 className="px-3 sm:px-4 py-1.5 sm:py-2 bg-[#178C92] hover:bg-[#0f6368] text-black font-medium rounded-xl transition-colors text-sm md:text-base"
+//                             >
+//                                 Sign Up
+//                             </button>
+//                         </div>
+
+//                         {/* Mobile Menu Button */}
+//                         <button
+//                             onClick={() => setShowMobileMenu(!showMobileMenu)}
+//                             className="lg:hidden p-2 text-black-700 hover:text-[#178C92]"
+//                         >
+//                             {showMobileMenu ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+//                         </button>
+//                     </div>
+
+//                     {/* Mobile Menu */}
+//                     {showMobileMenu && (
+//                         <div className="lg:hidden mt-4 pb-4 border-t border-gray-200 pt-4">
+//                             <div className="flex flex-col gap-4">
+//                                 {/* Home Button for Mobile */}
+//                                 <button
+//                                     onClick={() => {
+//                                         setShowMobileMenu(false);
+//                                         window.location.href = '/';
+//                                     }}
+//                                     className="text-left text-black-700 hover:text-[#178C92] font-medium transition-colors"
+//                                 >
+//                                     Home
+//                                 </button>
+
+//                                 <button
+//                                     onClick={() => {
+//                                         setShowProductsDropdown(!showProductsDropdown);
+//                                     }}
+//                                     className="flex items-center justify-between text-black-700 hover:text-[#178C92] font-medium transition-colors"
+//                                 >
+//                                     Products
+//                                     <ChevronDown className={`w-4 h-4 transition-transform ${showProductsDropdown ? 'rotate-180' : ''}`} />
+//                                 </button>
+
+//                                 {showProductsDropdown && (
+//                                     <div className="pl-4 space-y-3 text-sm">
+//                                         <div>
+//                                             <h4 className="font-semibold mb-2">Solutions</h4>
+//                                             {productsData.solutions.map((item, idx) => (
+//                                                 <button
+//                                                     key={idx}
+//                                                     onClick={() => handleComingSoon(item)}
+//                                                     className="block py-1 text-black-600 hover:text-red-600 text-left w-full"
+//                                                 >
+//                                                     {item}
+//                                                 </button>
+//                                             ))}
+//                                         </div>
+//                                         <div>
+//                                             <h4 className="font-semibold mb-2">Free Tools</h4>
+//                                             {productsData.freeTools.map((item, idx) => (
+//                                                 <button
+//                                                     key={idx}
+//                                                     onClick={() => {
+//                                                         if (item.route) {
+//                                                             setShowProductsDropdown(false);
+//                                                             setShowMobileMenu(false);
+//                                                             window.location.href = item.route;
+//                                                         } else {
+//                                                             handleComingSoon(item.name);
+//                                                         }
+//                                                     }}
+//                                                     className="block py-1 text-black-600 hover:text-red-600 text-left w-full"
+//                                                 >
+//                                                     {item.name}
+//                                                 </button>
+//                                             ))}
+//                                         </div>
+//                                         <div>
+//                                             <h4 className="font-semibold mb-2">Categories</h4>
+//                                             {productsData.categories.map((item, idx) => (
+//                                                 <button
+//                                                     key={idx}
+//                                                     onClick={() => handleComingSoon(item)}
+//                                                     className="block py-1 text-black-600 hover:text-red-600 text-left w-full"
+//                                                 >
+//                                                     {item}
+//                                                 </button>
+//                                             ))}
+//                                         </div>
+//                                     </div>
+//                                 )}
+
+//                                 <button
+//                                     onClick={() => {
+//                                         setShowPricingDropdown(!showPricingDropdown);
+//                                     }}
+//                                     className="text-left text-black-700 hover:text-[#178C92] font-medium transition-colors flex items-center justify-between"
+//                                 >
+//                                     Pricing
+//                                     <ChevronDown className={`w-4 h-4 transition-transform ${showPricingDropdown ? 'rotate-180' : ''}`} />
+//                                 </button>
+
+//                                 {showPricingDropdown && (
+//                                     <div className="pl-4 bg-[#e6f7f8] rounded-xl p-4 space-y-3 text-sm">
+//                                         <p className="text-black-700 font-semibold">Free for Everyone!</p>
+//                                         <p className="text-black-600">All services are currently <span className="font-semibold text-red-600">completely free</span>.</p>
+//                                         <button
+//                                             onClick={() => {
+//                                                 setShowPricingDropdown(false);
+//                                                 setShowMobileMenu(false);
+//                                                 window.location.href = '/signup';
+//                                             }}
+//                                             className="w-full py-2 bg-[#178C92] hover:bg-[#0f6368] text-black font-semibold rounded-xl transition-colors"
+//                                         >
+//                                             Get Started for Free
+//                                         </button>
+//                                     </div>
+//                                 )}
+
+//                                 <div className="flex flex-col gap-2 pt-4 border-t border-gray-200">
+//                                     <a
+//                                         href="/login"
+//                                         className="w-full py-2 text-black-700 hover:text-[#178C92] font-medium transition-colors text-left"
+//                                     >
+//                                         Login
+//                                     </a>
+//                                     <a
+//                                         href="/signup"
+//                                         className="w-full py-2 bg-[#178C92] hover:bg-[#0f6368] text-black font-medium rounded-xl transition-colors text-center"
+//                                     >
+//                                         Sign Up
+//                                     </a>
+//                                 </div>
+//                             </div>
+//                         </div>
+//                     )}
+//                 </div>
+//             </nav>
+
+//             {/* Hero Section */}
+//             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16 lg:py-20">
+//                 {/* Rating Badge */}
+//                 <div className="flex justify-center  mb-6 sm:mb-8">
+//                     <div className="flex items-center  gap-2 bg-white px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-md">
+//                         <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-green-500 rounded-full"></div>
+//                         <span className="text-black-900  font-medium text-xs sm:text-sm lg:text-base">Rated 4.8/5 by businesses worldwide</span>
+//                     </div>
+//                 </div>
+
+//                 {/* Main Title with Typewriter Animation */}
+//                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mt-10 sm:mt-8 lg:mt-12 text-black-900 mb-4 sm:mb-6 leading-tight px-4 min-h-[3em] flex items-center justify-center">
+//                     {displayText}
+//                     <span className="inline-block w-1 h-8 sm:h-10 lg:h-12 bg-[#178C92] ml-1 animate-pulse"></span>
+//                 </h1>
+
+//                 {/* Subtitle */}
+//                 <p className="text-base sm:text-lg lg:text-xl text-center text-black-700 mb-8 sm:mb-10 lg:mb-12 px-4">
+//                     Trusted by 10,000+ businesses from 100+ countries.
+//                 </p>
+
+//                 {/* CTA Buttons */}
+//                 <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-12 sm:mb-16 lg:mb-20 px-4">
+//                     {/* <button
+//                         onClick={() => window.location.href = '/'}
+//                         className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-[#178C92] hover:bg-[#0f6368] text-white font-semibold rounded-xl transition-colors shadow-lg text-sm sm:text-base"
+//                     >
+//                         Home
+//                     </button> */}
+//                     <button
+//                         onClick={() => window.location.href = '/templete'}
+//                         className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-[#e6f7f8]0 hover:bg-black text-white font-semibold rounded-xl transition-colors shadow-lg text-sm sm:text-base"
+//                     >
+//                         Try for Free
+//                     </button>
+//                     <button
+//                         onClick={scrollToBusinessSection}
+//                         className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white/50 hover:bg-black-200 text-black-900 font-semibold rounded-xl border-2 border-black-200 transition-colors text-sm sm:text-base"
+//                     >
+//                         Get a Demo
+//                     </button>
+//                 </div>
+//             </div>
+
+//             {/* Coming Soon Modal */}
+//             {showComingSoonModal && (
+//                 <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[200] flex items-center justify-center p-4 animate-fadeIn">
+//                     <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 sm:p-8 relative animate-slideUp">
+//                         {/* Close Button */}
+//                         <button
+//                             onClick={() => setShowComingSoonModal(false)}
+//                             className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+//                         >
+//                             <X className="w-6 h-6" />
+//                         </button>
+
+//                         {/* Icon */}
+//                         <div className="flex justify-center mb-4">
+//                             <div className="relative">
+//                                 <div className="w-16 h-16 bg-gradient-to-br from-[#178C92] to-[#0f6368] rounded-full flex items-center justify-center animate-pulse">
+//                                     <Sparkles className="w-8 h-8 text-white" />
+//                                 </div>
+//                                 <div className="absolute -top-1 -right-1">
+//                                     <Bell className="w-6 h-6 text-yellow-400 animate-bounce" />
+//                                 </div>
+//                             </div>
+//                         </div>
+
+//                         {/* Title */}
+//                         <h3 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-2">
+//                             Coming Soon!
+//                         </h3>
+
+//                         {/* Feature Name */}
+//                         <div className="bg-[#e6f7f8] rounded-xl p-4 mb-4">
+//                             <p className="text-center text-[#178C92] font-semibold text-lg">
+//                                 {comingSoonFeature}
+//                             </p>
+//                         </div>
+
+//                         {/* Description */}
+//                         <p className="text-center text-gray-600 mb-6">
+//                             We're working hard to bring you this amazing feature. Stay tuned for updates!
+//                         </p>
+
+//                         {/* Notify Me Section */}
+//                         <div className="bg-gray-50 rounded-xl p-4 mb-6">
+//                             <p className="text-sm text-gray-700 text-center mb-3">
+//                                 Want to be notified when this feature launches?
+//                             </p>
+//                             <button
+//                                 onClick={() => {
+//                                     setShowComingSoonModal(false);
+//                                     window.location.href = '/signup';
+//                                 }}
+//                                 className="w-full bg-[#178C92] hover:bg-[#0f6368] text-white font-semibold py-3 px-6 rounded-xl transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+//                             >
+//                                 Notify Me
+//                             </button>
+//                         </div>
+
+//                         {/* Close Button */}
+//                         <button
+//                             onClick={() => setShowComingSoonModal(false)}
+//                             className="w-full text-gray-500 hover:text-gray-700 font-medium py-2 transition-colors"
+//                         >
+//                             Maybe Later
+//                         </button>
+//                     </div>
+//                 </div>
+//             )}
+//         </div>
+//     );
+// };
+
+// export default RefrensHomepage;
+
+
+
 import { useState, useRef, useEffect } from 'react';
 import { ChevronDown, Menu, X, Sparkles, Bell } from 'lucide-react';
 
@@ -11,6 +556,7 @@ const RefrensHomepage = () => {
     const [displayText, setDisplayText] = useState('');
     const [isDeleting, setIsDeleting] = useState(false);
     const [textIndex, setTextIndex] = useState(0);
+
     const productsDropdownRef = useRef<HTMLDivElement>(null);
     const countryDropdownRef = useRef<HTMLDivElement>(null);
     const pricingDropdownRef = useRef<HTMLDivElement>(null);
@@ -19,7 +565,7 @@ const RefrensHomepage = () => {
         'Create All kind of Invoices for free',
         'Create Professional Invoices for free',
         'Create GST Invoices for free',
-        'Create Custom Invoices for free'
+        'Create Custom Invoices for free',
     ];
 
     // Typewriter effect
@@ -30,7 +576,7 @@ const RefrensHomepage = () => {
 
         const timer = setTimeout(() => {
             if (!isDeleting && displayText === currentText) {
-                setTimeout(() => setIsDeleting(true), pauseTime);
+                setIsDeleting(true);
             } else if (isDeleting && displayText === '') {
                 setIsDeleting(false);
                 setTextIndex((prev) => (prev + 1) % texts.length);
@@ -41,26 +587,38 @@ const RefrensHomepage = () => {
                         : currentText.substring(0, displayText.length + 1)
                 );
             }
-        }, typingSpeed);
+        }, !isDeleting && displayText === currentText ? pauseTime : typingSpeed);
 
         return () => clearTimeout(timer);
     }, [displayText, isDeleting, textIndex]);
 
-    // Handle click outside to close dropdowns
+    // Close dropdowns when clicking outside
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
-            if (productsDropdownRef.current && !productsDropdownRef.current.contains(event.target as Node)) {
+            if (
+                productsDropdownRef.current &&
+                !productsDropdownRef.current.contains(event.target as Node)
+            ) {
                 setShowProductsDropdown(false);
             }
-            if (countryDropdownRef.current && !countryDropdownRef.current.contains(event.target as Node)) {
+
+            if (
+                countryDropdownRef.current &&
+                !countryDropdownRef.current.contains(event.target as Node)
+            ) {
                 setShowCountryDropdown(false);
             }
-            if (pricingDropdownRef.current && !pricingDropdownRef.current.contains(event.target as Node)) {
+
+            if (
+                pricingDropdownRef.current &&
+                !pricingDropdownRef.current.contains(event.target as Node)
+            ) {
                 setShowPricingDropdown(false);
             }
         };
 
         document.addEventListener('mousedown', handleClickOutside);
+
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
@@ -68,8 +626,11 @@ const RefrensHomepage = () => {
 
     const scrollToBusinessSection = () => {
         const businessSection = document.getElementById('business-section');
+
         if (businessSection) {
-            businessSection.scrollIntoView({ behavior: 'smooth' });
+            businessSection.scrollIntoView({
+                behavior: 'smooth',
+            });
         }
     };
 
@@ -88,168 +649,461 @@ const RefrensHomepage = () => {
             'e-Invoicing Software',
             'eWay Bill Software',
             'Inventory Software',
-            'Invoicing API'
+            'Invoicing API',
         ],
+
         freeTools: [
-            { name: 'GST Invoice Maker', route: '/invoice/gst-invoice' },
-            { name: 'Invoice Generator', route: '/invoice/invoice-generator' },
-            { name: 'Quotation Generator', route: '/invoice/quotation' },
-            { name: 'Create Proforma Invoice', route: '/invoice/proforma-invoice' },
-            { name: 'Invoice Formats', route: null },
-            { name: 'Create Purchase Order', route: '/invoice/purchase-order' },
-            { name: 'Create Delivery Challan', route: '/invoice/delivery-challan' },
-            { name: 'Quotation Templates', route: null },
+            {
+                name: 'GST Invoice Maker',
+                route: '/invoice/gst-invoice',
+            },
+            {
+                name: 'Invoice Generator',
+                route: '/invoice/invoice-generator',
+            },
+            {
+                name: 'Quotation Generator',
+                route: '/invoice/quotation',
+            },
+            {
+                name: 'Create Proforma Invoice',
+                route: '/invoice/proforma-invoice',
+            },
+            {
+                name: 'Invoice Formats',
+                route: null,
+            },
+            {
+                name: 'Create Purchase Order',
+                route: '/invoice/purchase-order',
+            },
+            {
+                name: 'Create Delivery Challan',
+                route: '/invoice/delivery-challan',
+            },
+            {
+                name: 'Quotation Templates',
+                route: null,
+            },
         ],
+
         categories: [
             'Startups',
             'Chartered Accountant',
             'Export/Import Business',
             'Professional Services',
-            'Freelancers/Self-Employed'
-        ]
+            'Freelancers/Self-Employed',
+        ],
     };
 
     return (
-        <div className="min-h-[75vh] bg bg-gradient-to-b from-blue-100 via-white to-purple-200">
-            {/* Navigation Bar */}
-            <nav className="bg-white/60 backdrop-blur-md shadow-sm sticky top-2 sm:top-4 lg:top-6 w-[95%] sm:w-[90%] lg:w-[80%] mx-auto rounded-xl z-[90]">
-                <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-2">
+        <div className="min-h-screen bg-[#F8F4E1] text-[#164A41]">
+
+            {/* =========================================================
+                NAVIGATION
+            ========================================================= */}
+
+            <nav
+                className="
+                    bg-[#FFFDF5]/90
+                    backdrop-blur-md
+                    border border-[#164A41]/10
+                    shadow-[0_8px_30px_rgba(22,74,65,0.06)]
+                    sticky top-4
+                    w-[94%] sm:w-[90%] lg:w-[82%]
+                    mx-auto
+                    rounded-2xl
+                    z-[90]
+                "
+            >
+                <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-7 py-2.5">
                     <div className="flex items-center justify-between">
+
                         {/* Logo */}
-                        <div className="flex items-center py-1 sm:py-2 gap-2">
+                        <div className="flex items-center py-1.5 gap-2">
                             <img
-                                src="/elite8digital-nav-cropped.png"
-                                alt="Elite8Digital Logo"
-                                className="h-8 sm:h-10 lg:h-12 w-auto"
+                                src="/suzlon-nav.png"
+                                alt="Suzlon Logo"
+                                className="h-8 sm:h-10 lg:h-11 w-auto object-contain"
                             />
                         </div>
 
-                        {/* Desktop Navigation Links */}
-                        <div className="hidden lg:flex items-center gap-4 xl:gap-8">
-                            {/* Home Button */}
+                        {/* Desktop Navigation */}
+                        <div className="hidden lg:flex items-center gap-5 xl:gap-9">
+
+                            {/* Home */}
                             <button
-                                onClick={() => window.location.href = '/'}
-                                className="text-black-700 hover:text-purple-600 font-medium transition-colors text-sm md:text-base"
+                                onClick={() => {
+                                    window.location.href = '/';
+                                }}
+                                className="
+                                    text-[#164A41]
+                                    hover:text-[#178C92]
+                                    font-medium
+                                    transition-colors
+                                    text-sm xl:text-base
+                                "
                             >
                                 Home
                             </button>
 
-                            {/* Products Dropdown */}
-                            <div className="relative" ref={productsDropdownRef}>
+                            {/* Products */}
+                            <div
+                                className="relative"
+                                ref={productsDropdownRef}
+                            >
                                 <button
-                                    onClick={() => setShowProductsDropdown(!showProductsDropdown)}
-                                    className="flex items-center gap-1 text-black-700 hover:text-purple-600 font-medium transition-colors text-sm md:text-base"
+                                    onClick={() => {
+                                        setShowProductsDropdown(
+                                            !showProductsDropdown
+                                        );
+                                        setShowPricingDropdown(false);
+                                    }}
+                                    className="
+                                        flex items-center gap-1
+                                        text-[#164A41]
+                                        hover:text-[#178C92]
+                                        font-medium
+                                        transition-colors
+                                        text-sm xl:text-base
+                                    "
                                 >
                                     Products
-                                    <ChevronDown className={`w-4 h-4 transition-transform ${showProductsDropdown ? 'rotate-180' : ''}`} />
+
+                                    <ChevronDown
+                                        className={`
+                                            w-4 h-4
+                                            transition-transform
+                                            ${
+                                                showProductsDropdown
+                                                    ? 'rotate-180'
+                                                    : ''
+                                            }
+                                        `}
+                                    />
                                 </button>
 
                                 {showProductsDropdown && (
                                     <>
-                                        <div className="fixed inset-0 bg-black/20 z-[100]" style={{ top: '80px' }}></div>
-                                        <div className="fixed left-1/2 transform -translate-x-1/2 mt-2 w-[90vw] max-w-[900px] bg-white rounded-2xl shadow-2xl p-4 sm:p-6 lg:p-8 border border-black-100 z-[110]">
-                                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+                                        <div
+                                            className="
+                                                fixed inset-0
+                                                bg-[#164A41]/10
+                                                backdrop-blur-[2px]
+                                                z-[100]
+                                            "
+                                            style={{ top: '80px' }}
+                                        />
+
+                                        <div
+                                            className="
+                                                fixed
+                                                left-1/2
+                                                -translate-x-1/2
+                                                mt-3
+                                                w-[90vw]
+                                                max-w-[900px]
+                                                bg-[#FFFDF5]
+                                                rounded-2xl
+                                                shadow-2xl
+                                                p-5 sm:p-7 lg:p-8
+                                                border
+                                                border-[#164A41]/10
+                                                z-[110]
+                                            "
+                                        >
+                                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-10">
+
+                                                {/* Solutions */}
                                                 <div>
-                                                    <h3 className="text-medium sm:text-lg font-bold text-black-900 mb-3 sm:mb-4">Solutions</h3>
-                                                    <ul className="space-y-2 sm:space-y-4">
-                                                        {productsData.solutions.map((item, idx) => (
-                                                            <li key={idx}>
-                                                                <button
-                                                                    onClick={() => handleComingSoon(item)}
-                                                                    className="text-left text-black-700 hover:text-red-600 transition-colors w-full text-md"
-                                                                >
-                                                                    {item}
-                                                                </button>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                                <div>
-                                                    <h3 className="text-base md:text-lg font-bold text-black-900 mb-3 sm:mb-4">Free Tools</h3>
-                                                    <ul className="space-y-2 sm:space-y-4">
-                                                        {productsData.freeTools.map((item, idx) => (
-                                                            <li key={idx}>
-                                                                <button
-                                                                    onClick={() => {
-                                                                        if (item.route) {
-                                                                            setShowProductsDropdown(false);
-                                                                            window.location.href = item.route;
-                                                                        } else {
-                                                                            handleComingSoon(item.name);
+                                                    <h3 className="text-base sm:text-lg font-bold text-[#164A41] mb-4">
+                                                        Solutions
+                                                    </h3>
+
+                                                    <ul className="space-y-3">
+                                                        {productsData.solutions.map(
+                                                            (item, idx) => (
+                                                                <li key={idx}>
+                                                                    <button
+                                                                        onClick={() =>
+                                                                            handleComingSoon(
+                                                                                item
+                                                                            )
                                                                         }
-                                                                    }}
-                                                                    className="text-left text-black-700 hover:text-red-600 transition-colors w-full text-md"
-                                                                >
-                                                                    {item.name}
-                                                                </button>
-                                                            </li>
-                                                        ))}
+                                                                        className="
+                                                                            text-left
+                                                                            text-[#49645F]
+                                                                            hover:text-[#178C92]
+                                                                            transition-colors
+                                                                            w-full
+                                                                            text-sm
+                                                                            sm:text-base
+                                                                        "
+                                                                    >
+                                                                        {item}
+                                                                    </button>
+                                                                </li>
+                                                            )
+                                                        )}
                                                     </ul>
                                                 </div>
+
+                                                {/* Free Tools */}
                                                 <div>
-                                                    <h3 className="text-base sm:text-lg font-bold text-black-900 mb-3 sm:mb-4">Categories</h3>
-                                                    <ul className="space-y-2 sm:space-y-3">
-                                                        {productsData.categories.map((item, idx) => (
-                                                            <li key={idx}>
-                                                                <button
-                                                                    onClick={() => handleComingSoon(item)}
-                                                                    className="text-left w-full text-black-700 hover:text-red-600 transition-colors text-md"
-                                                                >
-                                                                    {item}
-                                                                </button>
-                                                            </li>
-                                                        ))}
+                                                    <h3 className="text-base sm:text-lg font-bold text-[#164A41] mb-4">
+                                                        Free Tools
+                                                    </h3>
+
+                                                    <ul className="space-y-3">
+                                                        {productsData.freeTools.map(
+                                                            (item, idx) => (
+                                                                <li key={idx}>
+                                                                    <button
+                                                                        onClick={() => {
+                                                                            if (
+                                                                                item.route
+                                                                            ) {
+                                                                                setShowProductsDropdown(
+                                                                                    false
+                                                                                );
+
+                                                                                window.location.href =
+                                                                                    item.route;
+                                                                            } else {
+                                                                                handleComingSoon(
+                                                                                    item.name
+                                                                                );
+                                                                            }
+                                                                        }}
+                                                                        className="
+                                                                            text-left
+                                                                            text-[#49645F]
+                                                                            hover:text-[#178C92]
+                                                                            transition-colors
+                                                                            w-full
+                                                                            text-sm
+                                                                            sm:text-base
+                                                                        "
+                                                                    >
+                                                                        {item.name}
+                                                                    </button>
+                                                                </li>
+                                                            )
+                                                        )}
                                                     </ul>
                                                 </div>
+
+                                                {/* Categories */}
+                                                <div>
+                                                    <h3 className="text-base sm:text-lg font-bold text-[#164A41] mb-4">
+                                                        Categories
+                                                    </h3>
+
+                                                    <ul className="space-y-3">
+                                                        {productsData.categories.map(
+                                                            (item, idx) => (
+                                                                <li key={idx}>
+                                                                    <button
+                                                                        onClick={() =>
+                                                                            handleComingSoon(
+                                                                                item
+                                                                            )
+                                                                        }
+                                                                        className="
+                                                                            text-left
+                                                                            w-full
+                                                                            text-[#49645F]
+                                                                            hover:text-[#178C92]
+                                                                            transition-colors
+                                                                            text-sm
+                                                                            sm:text-base
+                                                                        "
+                                                                    >
+                                                                        {item}
+                                                                    </button>
+                                                                </li>
+                                                            )
+                                                        )}
+                                                    </ul>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </>
                                 )}
                             </div>
 
-                            {/* Pricing Dropdown */}
-                            <div className="relative" ref={pricingDropdownRef}>
+                            {/* Pricing */}
+                            <div
+                                className="relative"
+                                ref={pricingDropdownRef}
+                            >
                                 <button
-                                    onClick={() => setShowPricingDropdown(!showPricingDropdown)}
-                                    className="flex items-center gap-1 text-black-700 hover:text-purple-600 font-medium transition-colors text-sm md:text-base"
+                                    onClick={() => {
+                                        setShowPricingDropdown(
+                                            !showPricingDropdown
+                                        );
+                                        setShowProductsDropdown(false);
+                                    }}
+                                    className="
+                                        flex items-center gap-1
+                                        text-[#164A41]
+                                        hover:text-[#178C92]
+                                        font-medium
+                                        transition-colors
+                                        text-sm xl:text-base
+                                    "
                                 >
                                     Pricing
-                                    <ChevronDown className={`w-4 h-4 transition-transform ${showPricingDropdown ? 'rotate-180' : ''}`} />
+
+                                    <ChevronDown
+                                        className={`
+                                            w-4 h-4
+                                            transition-transform
+                                            ${
+                                                showPricingDropdown
+                                                    ? 'rotate-180'
+                                                    : ''
+                                            }
+                                        `}
+                                    />
                                 </button>
 
                                 {showPricingDropdown && (
                                     <>
-                                        <div className="fixed inset-0 bg-black/20 z-[100]" style={{ top: '80px' }}></div>
-                                        <div className="fixed left-1/2 transform -translate-x-1/2 mt-2 w-[90vw] max-w-[600px] bg-white rounded-2xl shadow-2xl p-4 sm:p-6 lg:p-8 border border-black-100 z-[110]">
+                                        <div
+                                            className="
+                                                fixed inset-0
+                                                bg-[#164A41]/10
+                                                backdrop-blur-[2px]
+                                                z-[100]
+                                            "
+                                            style={{ top: '80px' }}
+                                        />
+
+                                        <div
+                                            className="
+                                                fixed
+                                                left-1/2
+                                                -translate-x-1/2
+                                                mt-3
+                                                w-[90vw]
+                                                max-w-[600px]
+                                                bg-[#FFFDF5]
+                                                rounded-2xl
+                                                shadow-2xl
+                                                p-6 sm:p-8
+                                                border
+                                                border-[#164A41]/10
+                                                z-[110]
+                                            "
+                                        >
                                             <div className="text-center">
-                                                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-black-600 to-black-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                                                    <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+
+                                                {/* Icon */}
+                                                <div
+                                                    className="
+                                                        w-14 h-14 sm:w-16 sm:h-16
+                                                        bg-[#178C92]
+                                                        rounded-full
+                                                        flex items-center justify-center
+                                                        mx-auto mb-4
+                                                        shadow-lg
+                                                    "
+                                                >
+                                                    <svg
+                                                        className="w-7 h-7 sm:w-8 sm:h-8 text-white"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <path
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            strokeWidth={2}
+                                                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3  .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                                        />
                                                     </svg>
                                                 </div>
-                                                <h3 className="text-xl sm:text-2xl font-bold text-black-900 mb-2 sm:mb-3">Free for Everyone!</h3>
-                                                <p className="text-base sm:text-lg text-black-600 mb-4 sm:mb-6">
-                                                    Currently, we are providing all services <span className="font-semibold text-red-600">completely free</span> for all users.
+
+                                                <h3 className="text-xl sm:text-2xl font-bold text-[#164A41] mb-3">
+                                                    Free for Everyone!
+                                                </h3>
+
+                                                <p className="text-base sm:text-lg text-[#49645F] mb-6">
+                                                    Currently, we are providing
+                                                    all services{' '}
+                                                    <span className="font-semibold text-[#178C92]">
+                                                        completely free
+                                                    </span>{' '}
+                                                    for all users.
                                                 </p>
-                                                <div className="bg-purple-50 rounded-xl p-4 sm:p-6 mb-4 sm:mb-6">
-                                                    <p className="text-black-700 mb-3 sm:mb-4 text-sm sm:text-base">Enjoy unlimited access to:</p>
-                                                    <ul className="space-y-2 text-left max-w-md mx-auto">
-                                                        {['Invoice Generation', 'Quotation & Purchase Orders', 'GST & Tax Compliance', 'All Premium Features'].map((feature, idx) => (
-                                                            <li key={idx} className="flex items-center gap-2 text-black-700 text-sm sm:text-base">
-                                                                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                                                </svg>
-                                                                {feature}
-                                                            </li>
-                                                        ))}
+
+                                                <div className="bg-[#EAF4F1] rounded-xl p-5 sm:p-6 mb-6">
+
+                                                    <p className="text-[#49645F] mb-4 text-sm sm:text-base">
+                                                        Enjoy unlimited access to:
+                                                    </p>
+
+                                                    <ul className="space-y-3 text-left max-w-md mx-auto">
+                                                        {[
+                                                            'Invoice Generation',
+                                                            'Quotation & Purchase Orders',
+                                                            'GST & Tax Compliance',
+                                                            'All Premium Features',
+                                                        ].map(
+                                                            (feature, idx) => (
+                                                                <li
+                                                                    key={idx}
+                                                                    className="
+                                                                        flex
+                                                                        items-center
+                                                                        gap-2
+                                                                        text-[#164A41]
+                                                                        text-sm
+                                                                        sm:text-base
+                                                                    "
+                                                                >
+                                                                    <svg
+                                                                        className="w-5 h-5 text-[#178C92] flex-shrink-0"
+                                                                        fill="currentColor"
+                                                                        viewBox="0 0 20 20"
+                                                                    >
+                                                                        <path
+                                                                            fillRule="evenodd"
+                                                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                                            clipRule="evenodd"
+                                                                        />
+                                                                    </svg>
+
+                                                                    {feature}
+                                                                </li>
+                                                            )
+                                                        )}
                                                     </ul>
                                                 </div>
+
                                                 <button
                                                     onClick={() => {
-                                                        setShowPricingDropdown(false);
-                                                        window.location.href = '/signup';
+                                                        setShowPricingDropdown(
+                                                            false
+                                                        );
+                                                        window.location.href =
+                                                            '/signup';
                                                     }}
-                                                    className="px-6 sm:px-8 py-2.5 sm:py-3 bg-purple-300 hover:bg-purple-600 text-black font-semibold rounded-xl transition-colors shadow-lg text-sm sm:text-base"
+                                                    className="
+                                                        px-7 sm:px-8
+                                                        py-3
+                                                        bg-[#178C92]
+                                                        hover:bg-[#007078]
+                                                        text-white
+                                                        font-semibold
+                                                        rounded-xl
+                                                        transition-all
+                                                        shadow-lg
+                                                        hover:shadow-xl
+                                                        text-sm sm:text-base
+                                                    "
                                                 >
                                                     Get Started for Free
                                                 </button>
@@ -259,164 +1113,369 @@ const RefrensHomepage = () => {
                                 )}
                             </div>
 
-                            {/* About Us Link */}
+                            {/* About Us */}
                             <button
-                                onClick={() => window.open('https://elite8digital.in/about', '_blank')}
-                                className="text-black-700 hover:text-purple-600 font-medium transition-colors text-sm md:text-base"
+                                onClick={() =>
+                                    window.open(
+                                        'https://suzlon.com/about',
+                                        '_blank'
+                                    )
+                                }
+                                className="
+                                    text-[#164A41]
+                                    hover:text-[#178C92]
+                                    font-medium
+                                    transition-colors
+                                    text-sm xl:text-base
+                                "
                             >
                                 About Us
                             </button>
 
-                            {/* Contact Link */}
+                            {/* Contact */}
                             <button
-                                onClick={() => window.open('https://elite8digital.in/contact', '_blank')}
-                                className="text-black-700 hover:text-purple-600 font-medium transition-colors text-sm md:text-base"
+                                onClick={() =>
+                                    window.open(
+                                        'https://suzlon.com/contact',
+                                        '_blank'
+                                    )
+                                }
+                                className="
+                                    text-[#164A41]
+                                    hover:text-[#178C92]
+                                    font-medium
+                                    transition-colors
+                                    text-sm xl:text-base
+                                "
                             >
                                 Contact
                             </button>
-
-
                         </div>
 
-                        {/* Desktop Auth Buttons */}
-                        <div className="hidden lg:flex items-center gap-4 xl:gap-8">
+                        {/* Desktop Auth */}
+                        <div className="hidden lg:flex items-center gap-4 xl:gap-7">
+
                             <button
-                                onClick={() => window.location.href = '/login'}
-                                className="text-black-700 hover:text-purple-600 font-medium transition-colors text-sm md:text-base"
+                                onClick={() => {
+                                    window.location.href = '/login';
+                                }}
+                                className="
+                                    text-[#164A41]
+                                    hover:text-[#178C92]
+                                    font-medium
+                                    transition-colors
+                                    text-sm xl:text-base
+                                "
                             >
                                 Login
                             </button>
+
                             <button
-                                onClick={() => window.location.href = '/signup'}
-                                className="px-3 sm:px-4 py-1.5 sm:py-2 bg-purple-400 hover:bg-purple-700 text-black font-medium rounded-xl transition-colors text-sm md:text-base"
+                                onClick={() => {
+                                    window.location.href = '/signup';
+                                }}
+                                className="
+                                    px-4 sm:px-5
+                                    py-2.5
+                                    bg-[#178C92]
+                                    hover:bg-[#007078]
+                                    text-white
+                                    font-semibold
+                                    rounded-xl
+                                    transition-all
+                                    shadow-sm
+                                    hover:shadow-md
+                                    text-sm xl:text-base
+                                "
                             >
                                 Sign Up
                             </button>
+
                         </div>
 
                         {/* Mobile Menu Button */}
                         <button
-                            onClick={() => setShowMobileMenu(!showMobileMenu)}
-                            className="lg:hidden p-2 text-black-700 hover:text-purple-600"
+                            onClick={() =>
+                                setShowMobileMenu(!showMobileMenu)
+                            }
+                            className="
+                                lg:hidden
+                                p-2
+                                text-[#164A41]
+                                hover:text-[#178C92]
+                            "
                         >
-                            {showMobileMenu ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                            {showMobileMenu ? (
+                                <X className="w-6 h-6" />
+                            ) : (
+                                <Menu className="w-6 h-6" />
+                            )}
                         </button>
                     </div>
 
-                    {/* Mobile Menu */}
+                    {/* =====================================================
+                        MOBILE MENU
+                    ===================================================== */}
+
                     {showMobileMenu && (
-                        <div className="lg:hidden mt-4 pb-4 border-t border-gray-200 pt-4">
+                        <div className="lg:hidden mt-4 pb-5 border-t border-[#164A41]/10 pt-4">
+
                             <div className="flex flex-col gap-4">
-                                {/* Home Button for Mobile */}
+
+                                {/* Home */}
                                 <button
                                     onClick={() => {
                                         setShowMobileMenu(false);
                                         window.location.href = '/';
                                     }}
-                                    className="text-left text-black-700 hover:text-purple-600 font-medium transition-colors"
+                                    className="
+                                        text-left
+                                        text-[#164A41]
+                                        hover:text-[#178C92]
+                                        font-medium
+                                    "
                                 >
                                     Home
                                 </button>
 
+                                {/* Products */}
                                 <button
-                                    onClick={() => {
-                                        setShowProductsDropdown(!showProductsDropdown);
-                                    }}
-                                    className="flex items-center justify-between text-black-700 hover:text-purple-600 font-medium transition-colors"
+                                    onClick={() =>
+                                        setShowProductsDropdown(
+                                            !showProductsDropdown
+                                        )
+                                    }
+                                    className="
+                                        flex items-center
+                                        justify-between
+                                        text-[#164A41]
+                                        hover:text-[#178C92]
+                                        font-medium
+                                    "
                                 >
                                     Products
-                                    <ChevronDown className={`w-4 h-4 transition-transform ${showProductsDropdown ? 'rotate-180' : ''}`} />
+
+                                    <ChevronDown
+                                        className={`
+                                            w-4 h-4
+                                            transition-transform
+                                            ${
+                                                showProductsDropdown
+                                                    ? 'rotate-180'
+                                                    : ''
+                                            }
+                                        `}
+                                    />
                                 </button>
 
                                 {showProductsDropdown && (
-                                    <div className="pl-4 space-y-3 text-sm">
+                                    <div className="pl-4 space-y-5 text-sm">
+
                                         <div>
-                                            <h4 className="font-semibold mb-2">Solutions</h4>
-                                            {productsData.solutions.map((item, idx) => (
-                                                <button
-                                                    key={idx}
-                                                    onClick={() => handleComingSoon(item)}
-                                                    className="block py-1 text-black-600 hover:text-red-600 text-left w-full"
-                                                >
-                                                    {item}
-                                                </button>
-                                            ))}
-                                        </div>
-                                        <div>
-                                            <h4 className="font-semibold mb-2">Free Tools</h4>
-                                            {productsData.freeTools.map((item, idx) => (
-                                                <button
-                                                    key={idx}
-                                                    onClick={() => {
-                                                        if (item.route) {
-                                                            setShowProductsDropdown(false);
-                                                            setShowMobileMenu(false);
-                                                            window.location.href = item.route;
-                                                        } else {
-                                                            handleComingSoon(item.name);
+                                            <h4 className="font-semibold text-[#164A41] mb-2">
+                                                Solutions
+                                            </h4>
+
+                                            {productsData.solutions.map(
+                                                (item, idx) => (
+                                                    <button
+                                                        key={idx}
+                                                        onClick={() =>
+                                                            handleComingSoon(
+                                                                item
+                                                            )
                                                         }
-                                                    }}
-                                                    className="block py-1 text-black-600 hover:text-red-600 text-left w-full"
-                                                >
-                                                    {item.name}
-                                                </button>
-                                            ))}
+                                                        className="
+                                                            block
+                                                            py-1
+                                                            text-[#49645F]
+                                                            hover:text-[#178C92]
+                                                            text-left
+                                                            w-full
+                                                        "
+                                                    >
+                                                        {item}
+                                                    </button>
+                                                )
+                                            )}
                                         </div>
+
                                         <div>
-                                            <h4 className="font-semibold mb-2">Categories</h4>
-                                            {productsData.categories.map((item, idx) => (
-                                                <button
-                                                    key={idx}
-                                                    onClick={() => handleComingSoon(item)}
-                                                    className="block py-1 text-black-600 hover:text-red-600 text-left w-full"
-                                                >
-                                                    {item}
-                                                </button>
-                                            ))}
+                                            <h4 className="font-semibold text-[#164A41] mb-2">
+                                                Free Tools
+                                            </h4>
+
+                                            {productsData.freeTools.map(
+                                                (item, idx) => (
+                                                    <button
+                                                        key={idx}
+                                                        onClick={() => {
+                                                            if (item.route) {
+                                                                setShowProductsDropdown(
+                                                                    false
+                                                                );
+                                                                setShowMobileMenu(
+                                                                    false
+                                                                );
+                                                                window.location.href =
+                                                                    item.route;
+                                                            } else {
+                                                                handleComingSoon(
+                                                                    item.name
+                                                                );
+                                                            }
+                                                        }}
+                                                        className="
+                                                            block
+                                                            py-1
+                                                            text-[#49645F]
+                                                            hover:text-[#178C92]
+                                                            text-left
+                                                            w-full
+                                                        "
+                                                    >
+                                                        {item.name}
+                                                    </button>
+                                                )
+                                            )}
                                         </div>
+
+                                        <div>
+                                            <h4 className="font-semibold text-[#164A41] mb-2">
+                                                Categories
+                                            </h4>
+
+                                            {productsData.categories.map(
+                                                (item, idx) => (
+                                                    <button
+                                                        key={idx}
+                                                        onClick={() =>
+                                                            handleComingSoon(
+                                                                item
+                                                            )
+                                                        }
+                                                        className="
+                                                            block
+                                                            py-1
+                                                            text-[#49645F]
+                                                            hover:text-[#178C92]
+                                                            text-left
+                                                            w-full
+                                                        "
+                                                    >
+                                                        {item}
+                                                    </button>
+                                                )
+                                            )}
+                                        </div>
+
                                     </div>
                                 )}
 
+                                {/* Pricing */}
                                 <button
-                                    onClick={() => {
-                                        setShowPricingDropdown(!showPricingDropdown);
-                                    }}
-                                    className="text-left text-black-700 hover:text-purple-600 font-medium transition-colors flex items-center justify-between"
+                                    onClick={() =>
+                                        setShowPricingDropdown(
+                                            !showPricingDropdown
+                                        )
+                                    }
+                                    className="
+                                        text-left
+                                        text-[#164A41]
+                                        hover:text-[#178C92]
+                                        font-medium
+                                        flex
+                                        items-center
+                                        justify-between
+                                    "
                                 >
                                     Pricing
-                                    <ChevronDown className={`w-4 h-4 transition-transform ${showPricingDropdown ? 'rotate-180' : ''}`} />
+
+                                    <ChevronDown
+                                        className={`
+                                            w-4 h-4
+                                            transition-transform
+                                            ${
+                                                showPricingDropdown
+                                                    ? 'rotate-180'
+                                                    : ''
+                                            }
+                                        `}
+                                    />
                                 </button>
 
                                 {showPricingDropdown && (
-                                    <div className="pl-4 bg-purple-50 rounded-xl p-4 space-y-3 text-sm">
-                                        <p className="text-black-700 font-semibold">Free for Everyone!</p>
-                                        <p className="text-black-600">All services are currently <span className="font-semibold text-red-600">completely free</span>.</p>
+                                    <div className="pl-4 bg-[#EAF4F1] rounded-xl p-4 space-y-3 text-sm">
+
+                                        <p className="text-[#164A41] font-semibold">
+                                            Free for Everyone!
+                                        </p>
+
+                                        <p className="text-[#49645F]">
+                                            All services are currently{' '}
+                                            <span className="font-semibold text-[#178C92]">
+                                                completely free
+                                            </span>
+                                            .
+                                        </p>
+
                                         <button
                                             onClick={() => {
                                                 setShowPricingDropdown(false);
                                                 setShowMobileMenu(false);
-                                                window.location.href = '/signup';
+                                                window.location.href =
+                                                    '/signup';
                                             }}
-                                            className="w-full py-2 bg-purple-300 hover:bg-purple-600 text-black font-semibold rounded-xl transition-colors"
+                                            className="
+                                                w-full
+                                                py-2.5
+                                                bg-[#178C92]
+                                                hover:bg-[#007078]
+                                                text-white
+                                                font-semibold
+                                                rounded-xl
+                                                transition-colors
+                                            "
                                         >
                                             Get Started for Free
                                         </button>
                                     </div>
                                 )}
 
-                                <div className="flex flex-col gap-2 pt-4 border-t border-gray-200">
+                                {/* Auth */}
+                                <div className="flex flex-col gap-2 pt-4 border-t border-[#164A41]/10">
+
                                     <a
                                         href="/login"
-                                        className="w-full py-2 text-black-700 hover:text-purple-600 font-medium transition-colors text-left"
+                                        className="
+                                            w-full
+                                            py-2
+                                            text-[#164A41]
+                                            hover:text-[#178C92]
+                                            font-medium
+                                            transition-colors
+                                        "
                                     >
                                         Login
                                     </a>
+
                                     <a
                                         href="/signup"
-                                        className="w-full py-2 bg-purple-400 hover:bg-purple-700 text-black font-medium rounded-xl transition-colors text-center"
+                                        className="
+                                            w-full
+                                            py-2.5
+                                            bg-[#178C92]
+                                            hover:bg-[#007078]
+                                            text-white
+                                            font-semibold
+                                            rounded-xl
+                                            transition-colors
+                                            text-center
+                                        "
                                     >
                                         Sign Up
                                     </a>
+
                                 </div>
                             </div>
                         </div>
@@ -424,114 +1483,330 @@ const RefrensHomepage = () => {
                 </div>
             </nav>
 
-            {/* Hero Section */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16 lg:py-20">
+            {/* =========================================================
+                HERO SECTION
+            ========================================================= */}
+
+            <main className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-20">
+
                 {/* Rating Badge */}
-                <div className="flex justify-center  mb-6 sm:mb-8">
-                    <div className="flex items-center  gap-2 bg-white px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-md">
-                        <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-green-500 rounded-full"></div>
-                        <span className="text-black-900  font-medium text-xs sm:text-sm lg:text-base">Rated 4.8/5 by businesses worldwide</span>
+                <div className="flex justify-center mb-8">
+
+                    <div
+                        className="
+                            flex items-center
+                            gap-3
+                            bg-[#FFFDF5]
+                            border border-[#164A41]/10
+                            px-5 sm:px-6
+                            py-2.5 sm:py-3
+                            rounded-full
+                            shadow-[0_8px_25px_rgba(22,74,65,0.08)]
+                        "
+                    >
+                        <div className="w-2.5 h-2.5 bg-[#E7B83C] rounded-full shadow-sm" />
+
+                        <span className="text-[#164A41] font-medium text-xs sm:text-sm lg:text-base">
+                            Rated 4.8/5 by businesses worldwide
+                        </span>
                     </div>
                 </div>
 
-                {/* Main Title with Typewriter Animation */}
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mt-10 sm:mt-8 lg:mt-12 text-black-900 mb-4 sm:mb-6 leading-tight px-4 min-h-[3em] flex items-center justify-center">
-                    {displayText}
-                    <span className="inline-block w-1 h-8 sm:h-10 lg:h-12 bg-purple-600 ml-1 animate-pulse"></span>
-                </h1>
+                {/* Main Heading */}
+                <div className="flex justify-center px-4">
+
+                    <h1
+                        className="
+                            text-3xl
+                            sm:text-4xl
+                            md:text-5xl
+                            lg:text-6xl
+                            xl:text-7xl
+                            font-bold
+                            text-center
+                            text-[#164A41]
+                            mb-5 sm:mb-6
+                            leading-[1.08]
+                            tracking-tight
+                            min-h-[2.2em]
+                            max-w-5xl
+                        "
+                    >
+                        {displayText}
+
+                        <span
+                            className="
+                                inline-block
+                                w-1
+                                h-9
+                                sm:h-11
+                                md:h-12
+                                lg:h-14
+                                bg-[#178C92]
+                                ml-1
+                                align-middle
+                                animate-pulse
+                            "
+                        />
+                    </h1>
+
+                </div>
+
+                {/* Accent line */}
+                <div className="flex justify-center mb-6">
+                    <div className="h-1 w-16 rounded-full bg-[#E7B83C]" />
+                </div>
 
                 {/* Subtitle */}
-                <p className="text-base sm:text-lg lg:text-xl text-center text-black-700 mb-8 sm:mb-10 lg:mb-12 px-4">
+                <p
+                    className="
+                        text-base
+                        sm:text-lg
+                        lg:text-xl
+                        text-center
+                        text-[#49645F]
+                        mb-8
+                        sm:mb-10
+                        lg:mb-12
+                        px-4
+                    "
+                >
                     Trusted by 10,000+ businesses from 100+ countries.
                 </p>
 
                 {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-12 sm:mb-16 lg:mb-20 px-4">
-                    {/* <button
-                        onClick={() => window.location.href = '/'}
-                        className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white font-semibold rounded-xl transition-colors shadow-lg text-sm sm:text-base"
-                    >
-                        Home
-                    </button> */}
+                <div
+                    className="
+                        flex
+                        flex-col
+                        sm:flex-row
+                        justify-center
+                        gap-3
+                        sm:gap-4
+                        mb-12
+                        sm:mb-16
+                        lg:mb-20
+                        px-4
+                    "
+                >
+
+                    {/* Primary CTA */}
                     <button
-                        onClick={() => window.location.href = '/templete'}
-                        className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-purple-500 hover:bg-black text-white font-semibold rounded-xl transition-colors shadow-lg text-sm sm:text-base"
+                        onClick={() => {
+                            window.location.href = '/templete';
+                        }}
+                        className="
+                            w-full
+                            sm:w-auto
+                            px-7
+                            sm:px-9
+                            py-3.5
+                            sm:py-4
+                            bg-[#178C92]
+                            hover:bg-[#007078]
+                            text-white
+                            font-semibold
+                            rounded-xl
+                            transition-all
+                            duration-300
+                            shadow-[0_8px_20px_rgba(23,140,146,0.22)]
+                            hover:-translate-y-0.5
+                            hover:shadow-[0_12px_25px_rgba(23,140,146,0.28)]
+                            text-sm
+                            sm:text-base
+                        "
                     >
                         Try for Free
                     </button>
+
+                    {/* Secondary CTA */}
                     <button
                         onClick={scrollToBusinessSection}
-                        className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white/50 hover:bg-black-200 text-black-900 font-semibold rounded-xl border-2 border-black-200 transition-colors text-sm sm:text-base"
+                        className="
+                            w-full
+                            sm:w-auto
+                            px-7
+                            sm:px-9
+                            py-3.5
+                            sm:py-4
+                            bg-[#FFFDF5]
+                            hover:bg-[#EAF4F1]
+                            text-[#164A41]
+                            font-semibold
+                            rounded-xl
+                            border
+                            border-[#164A41]/20
+                            transition-all
+                            duration-300
+                            hover:-translate-y-0.5
+                            text-sm
+                            sm:text-base
+                        "
                     >
                         Get a Demo
                     </button>
-                </div>
-            </div>
 
-            {/* Coming Soon Modal */}
+                </div>
+            </main>
+
+            {/* =========================================================
+                COMING SOON MODAL
+            ========================================================= */}
+
             {showComingSoonModal && (
-                <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[200] flex items-center justify-center p-4 animate-fadeIn">
-                    <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 sm:p-8 relative animate-slideUp">
-                        {/* Close Button */}
+                <div
+                    className="
+                        fixed
+                        inset-0
+                        bg-[#164A41]/50
+                        backdrop-blur-sm
+                        z-[200]
+                        flex
+                        items-center
+                        justify-center
+                        p-4
+                    "
+                >
+                    <div
+                        className="
+                            bg-[#FFFDF5]
+                            rounded-2xl
+                            shadow-2xl
+                            max-w-md
+                            w-full
+                            p-6
+                            sm:p-8
+                            relative
+                        "
+                    >
+
+                        {/* Close */}
                         <button
-                            onClick={() => setShowComingSoonModal(false)}
-                            className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+                            onClick={() =>
+                                setShowComingSoonModal(false)
+                            }
+                            className="
+                                absolute
+                                top-4
+                                right-4
+                                text-[#49645F]
+                                hover:text-[#164A41]
+                                transition-colors
+                            "
                         >
                             <X className="w-6 h-6" />
                         </button>
 
                         {/* Icon */}
-                        <div className="flex justify-center mb-4">
+                        <div className="flex justify-center mb-5">
+
                             <div className="relative">
-                                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center animate-pulse">
+
+                                <div
+                                    className="
+                                        w-16
+                                        h-16
+                                        bg-[#178C92]
+                                        rounded-full
+                                        flex
+                                        items-center
+                                        justify-center
+                                        shadow-lg
+                                    "
+                                >
                                     <Sparkles className="w-8 h-8 text-white" />
                                 </div>
+
                                 <div className="absolute -top-1 -right-1">
-                                    <Bell className="w-6 h-6 text-yellow-400 animate-bounce" />
+                                    <Bell
+                                        className="
+                                            w-6
+                                            h-6
+                                            text-[#E7B83C]
+                                            animate-bounce
+                                        "
+                                    />
                                 </div>
+
                             </div>
                         </div>
 
                         {/* Title */}
-                        <h3 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-2">
+                        <h3
+                            className="
+                                text-2xl
+                                sm:text-3xl
+                                font-bold
+                                text-center
+                                text-[#164A41]
+                                mb-3
+                            "
+                        >
                             Coming Soon!
                         </h3>
 
-                        {/* Feature Name */}
-                        <div className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-4 mb-4">
-                            <p className="text-center text-purple-700 font-semibold text-lg">
+                        {/* Feature */}
+                        <div className="bg-[#EAF4F1] rounded-xl p-4 mb-5">
+                            <p className="text-center text-[#178C92] font-semibold text-lg">
                                 {comingSoonFeature}
                             </p>
                         </div>
 
                         {/* Description */}
-                        <p className="text-center text-gray-600 mb-6">
-                            We're working hard to bring you this amazing feature. Stay tuned for updates!
+                        <p className="text-center text-[#49645F] mb-6">
+                            We're working hard to bring you this amazing
+                            feature. Stay tuned for updates!
                         </p>
 
-                        {/* Notify Me Section */}
-                        <div className="bg-gray-50 rounded-xl p-4 mb-6">
-                            <p className="text-sm text-gray-700 text-center mb-3">
-                                Want to be notified when this feature launches?
+                        {/* Notify */}
+                        <div className="bg-[#F8F4E1] rounded-xl p-4 mb-6">
+
+                            <p className="text-sm text-[#49645F] text-center mb-3">
+                                Want to be notified when this feature
+                                launches?
                             </p>
+
                             <button
                                 onClick={() => {
                                     setShowComingSoonModal(false);
                                     window.location.href = '/signup';
                                 }}
-                                className="w-full bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white font-semibold py-3 px-6 rounded-xl transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                                className="
+                                    w-full
+                                    bg-[#178C92]
+                                    hover:bg-[#007078]
+                                    text-white
+                                    font-semibold
+                                    py-3
+                                    px-6
+                                    rounded-xl
+                                    transition-all
+                                    shadow-lg
+                                    hover:shadow-xl
+                                "
                             >
                                 Notify Me
                             </button>
+
                         </div>
 
-                        {/* Close Button */}
+                        {/* Maybe Later */}
                         <button
-                            onClick={() => setShowComingSoonModal(false)}
-                            className="w-full text-gray-500 hover:text-gray-700 font-medium py-2 transition-colors"
+                            onClick={() =>
+                                setShowComingSoonModal(false)
+                            }
+                            className="
+                                w-full
+                                text-[#49645F]
+                                hover:text-[#164A41]
+                                font-medium
+                                py-2
+                                transition-colors
+                            "
                         >
                             Maybe Later
                         </button>
+
                     </div>
                 </div>
             )}

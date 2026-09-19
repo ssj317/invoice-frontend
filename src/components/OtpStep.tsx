@@ -86,10 +86,10 @@ const OtpStep: React.FC<OtpStepProps> = ({ email, onBack, redirectTo }) => {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-lg border border-purple-100 p-8">
+    <div className="bg-white rounded-xl shadow-lg border border-[#d0eff1] p-8">
       <div className="flex justify-center mb-4">
-        <div className="bg-purple-100 rounded-full p-3">
-          <ShieldCheck className="h-8 w-8 text-purple-600" />
+        <div className="bg-[#d0eff1] rounded-full p-3">
+          <ShieldCheck className="h-8 w-8 text-[#178C92]" />
         </div>
       </div>
       <h2 className="text-xl font-semibold text-gray-800 text-center mb-1">Check your email</h2>
@@ -112,14 +112,14 @@ const OtpStep: React.FC<OtpStepProps> = ({ email, onBack, redirectTo }) => {
               value={digit}
               onChange={(e) => handleOtpChange(i, e.target.value)}
               onKeyDown={(e) => handleOtpKeyDown(i, e)}
-              className="w-12 h-12 text-center text-xl font-bold border-2 border-gray-300 rounded-lg focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all"
+              className="w-12 h-12 text-center text-xl font-bold border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#178C92] focus:ring-2 focus:ring-[#b0dfe2] transition-all"
             />
           ))}
         </div>
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-purple-600 text-white py-3 px-4 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-[#178C92] text-white py-3 px-4 rounded-lg hover:bg-[#0f6368] focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:ring-offset-2 transition-all font-medium disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? 'Verifying...' : 'Verify & Continue'}
         </button>
@@ -130,7 +130,7 @@ const OtpStep: React.FC<OtpStepProps> = ({ email, onBack, redirectTo }) => {
         <button
           onClick={handleResend}
           disabled={resendCooldown > 0}
-          className="font-medium text-purple-600 hover:text-purple-700 disabled:text-gray-400 disabled:cursor-not-allowed transition-colors"
+          className="font-medium text-[#178C92] hover:text-[#178C92] disabled:text-gray-400 disabled:cursor-not-allowed transition-colors"
         >
           {resendCooldown > 0 ? `Resend in ${resendCooldown}s` : 'Resend'}
         </button>
@@ -145,3 +145,6 @@ const OtpStep: React.FC<OtpStepProps> = ({ email, onBack, redirectTo }) => {
 };
 
 export default OtpStep;
+
+
+

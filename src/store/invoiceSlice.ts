@@ -220,7 +220,7 @@ const initialState: InvoiceData = {
   logo: null,
   customFields: [],
   businessDetails: {
-    vendorName: 'Lokesh',
+    vendorName: '',
     country: 'India',
     city: '',
     gstin: '',
@@ -232,10 +232,7 @@ const initialState: InvoiceData = {
     streetAddress: '',
   },
   selectedClient: '',
-  clients: [
-    { id: 1, name: 'Ayush', company: 'Company A' },
-    { id: 2, name: 'Sai', company: 'Company B' },
-  ],
+  clients: [],
   items: [
     {
       id: 1,

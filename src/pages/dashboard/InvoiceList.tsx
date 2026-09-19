@@ -142,7 +142,7 @@ const InvoiceList = ({ type = 'all' }: InvoiceListProps) => {
     <tr key={inv._id} className="hover:bg-gray-50 transition-colors">
       <td className="px-4 py-3 font-medium text-gray-900">{inv.invoiceNo}</td>
       <td className="px-4 py-3">
-        <span className="text-xs text-purple-700 bg-purple-50 px-2 py-0.5 rounded-full capitalize">
+        <span className="text-xs text-[#007078] bg-[#EAF4F1] px-2 py-0.5 rounded-full capitalize">
           {inv.templateType?.replace(/-/g, ' ')}
         </span>
       </td>
@@ -162,7 +162,7 @@ const InvoiceList = ({ type = 'all' }: InvoiceListProps) => {
         <div className="flex items-center justify-end gap-2">
           <button
             onClick={() => navigate(`/invoice/${inv.templateType || templateType}?id=${inv._id}`)}
-            className="p-1.5 text-gray-400 hover:text-purple-600 hover:bg-purple-50 rounded transition-colors"
+            className="p-1.5 text-gray-400 hover:text-[#178C92] hover:bg-[#EAF4F1] rounded transition-colors"
             title="View"
           >
             <Eye className="w-4 h-4" />
@@ -200,8 +200,8 @@ const InvoiceList = ({ type = 'all' }: InvoiceListProps) => {
               onClick={() => setGroupByClient((v) => !v)}
               className={`flex items-center gap-2 px-3 py-2 rounded-lg border text-sm font-medium transition-colors ${
                 groupByClient
-                  ? 'bg-purple-600 text-white border-purple-600'
-                  : 'bg-white text-gray-600 border-gray-300 hover:border-purple-400'
+                  ? 'bg-[#178C92] text-white border-[#178C92]'
+                  : 'bg-white text-gray-600 border-gray-300 hover:border-[#178C92]'
               }`}
             >
               <Users className="w-4 h-4" />
@@ -209,7 +209,7 @@ const InvoiceList = ({ type = 'all' }: InvoiceListProps) => {
             </button>
             <button
               onClick={() => navigate(createRoute)}
-              className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm font-medium"
+              className="flex items-center gap-2 px-4 py-2 bg-[#178C92] text-white rounded-lg hover:bg-[#007078] transition-colors text-sm font-medium"
             >
               <Plus className="w-4 h-4" />
               <span>Create {type === 'quotation' ? 'Quotation' : 'Invoice'}</span>
@@ -232,7 +232,7 @@ const InvoiceList = ({ type = 'all' }: InvoiceListProps) => {
               <p className="text-gray-400 text-sm mt-1">Create your first one to get started</p>
               <button
                 onClick={() => navigate(createRoute)}
-                className="mt-4 flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm"
+                className="mt-4 flex items-center gap-2 px-4 py-2 bg-[#178C92] text-white rounded-lg hover:bg-[#007078] transition-colors text-sm"
               >
                 <Plus className="w-4 h-4" />
                 Create {type === 'quotation' ? 'Quotation' : 'Invoice'}
@@ -266,17 +266,17 @@ const InvoiceList = ({ type = 'all' }: InvoiceListProps) => {
                             {/* Group header row */}
                             <tr
                               key={`group-${clientName}`}
-                              className="bg-purple-50 cursor-pointer select-none"
+                              className="bg-[#EAF4F1] cursor-pointer select-none"
                               onClick={() => toggleGroup(clientName)}
                             >
                               <td colSpan={7} className="px-4 py-2.5">
                                 <div className="flex items-center justify-between">
                                   <div className="flex items-center gap-2">
                                     {isCollapsed
-                                      ? <ChevronRight className="w-4 h-4 text-purple-500" />
-                                      : <ChevronDown className="w-4 h-4 text-purple-500" />
+                                      ? <ChevronRight className="w-4 h-4 text-[#178C92]" />
+                                      : <ChevronDown className="w-4 h-4 text-[#178C92]" />
                                     }
-                                    <div className="w-7 h-7 bg-purple-600 rounded flex items-center justify-center text-white text-xs font-bold">
+                                    <div className="w-7 h-7 bg-[#178C92] rounded flex items-center justify-center text-white text-xs font-bold">
                                       {clientName.charAt(0).toUpperCase()}
                                     </div>
                                     <span className="font-semibold text-gray-800 text-sm">{clientName}</span>
@@ -284,7 +284,7 @@ const InvoiceList = ({ type = 'all' }: InvoiceListProps) => {
                                       {clientInvoices.length} {clientInvoices.length === 1 ? 'invoice' : 'invoices'}
                                     </span>
                                   </div>
-                                  <span className="text-sm font-semibold text-purple-700 mr-2">
+                                  <span className="text-sm font-semibold text-[#007078] mr-2">
                                     {formatCurrency(groupTotal, symbol)}
                                   </span>
                                 </div>
@@ -337,7 +337,7 @@ const InvoiceList = ({ type = 'all' }: InvoiceListProps) => {
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-md">
             <div className="flex items-center justify-between p-5 border-b">
               <div className="flex items-center gap-2">
-                <Mail className="w-5 h-5 text-purple-600" />
+                <Mail className="w-5 h-5 text-[#178C92]" />
                 <h2 className="text-lg font-semibold text-gray-900">Send via Email</h2>
               </div>
               <button onClick={() => setEmailModal({ open: false, invoice: null })} className="text-gray-400 hover:text-gray-600">
@@ -362,7 +362,7 @@ const InvoiceList = ({ type = 'all' }: InvoiceListProps) => {
                       value={emailTo}
                       onChange={(e) => setEmailTo(e.target.value)}
                       placeholder="client@example.com"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#178C92]"
                     />
                   </div>
                   <div>
@@ -371,7 +371,7 @@ const InvoiceList = ({ type = 'all' }: InvoiceListProps) => {
                       type="text"
                       value={emailSubject}
                       onChange={(e) => setEmailSubject(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#178C92]"
                     />
                   </div>
                   <div>
@@ -380,7 +380,7 @@ const InvoiceList = ({ type = 'all' }: InvoiceListProps) => {
                       value={emailMessage}
                       onChange={(e) => setEmailMessage(e.target.value)}
                       rows={4}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#178C92] resize-none"
                     />
                   </div>
                   {emailError && <p className="text-sm text-red-600">{emailError}</p>}
@@ -394,7 +394,7 @@ const InvoiceList = ({ type = 'all' }: InvoiceListProps) => {
                     <button
                       onClick={handleSendEmail}
                       disabled={emailSending}
-                      className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg text-sm hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-[#178C92] text-white rounded-lg text-sm hover:bg-[#007078] disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <Send className="w-4 h-4" />
                       {emailSending ? 'Sending...' : 'Send Email'}

@@ -448,7 +448,7 @@ export default function InvoiceItemsTable() {
               value={inputValue}
               onChange={(e) => updateItem(item.id, fieldName, e.target.value)}
               placeholder={column.name}
-              className="w-full text-sm text-gray-900 outline-none py-1 border-b border-transparent hover:border-gray-300 focus:border-purple-500"
+              className="w-full text-sm text-gray-900 outline-none py-1 border-b border-transparent hover:border-gray-300 focus:border-[#178C92]"
             />
           </div>
         );
@@ -576,7 +576,7 @@ export default function InvoiceItemsTable() {
                     onKeyDown={(e) => handleEditorKeyDown(item.id, e)}
                     onPaste={handleEditorPaste}
                     dangerouslySetInnerHTML={{ __html: item.description || '' }}
-                    className="w-full px-3 py-3 text-sm outline-none focus:ring-2 focus:ring-purple-200 min-h-[120px] max-h-[300px] overflow-y-auto"
+                    className="w-full px-3 py-3 text-sm outline-none focus:ring-2 focus:ring-[#EAF4F1] min-h-[120px] max-h-[300px] overflow-y-auto"
                     style={{ wordBreak: 'break-word', direction: 'ltr', textAlign: 'left' }}
                     suppressContentEditableWarning
                   />
@@ -607,7 +607,7 @@ export default function InvoiceItemsTable() {
                     />
                     <label
                       htmlFor={`image-${item.id}`}
-                      className="inline-flex items-center gap-2 px-4 py-2 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-purple-400 transition-colors"
+                      className="inline-flex items-center gap-2 px-4 py-2 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-[#178C92] transition-colors"
                     >
                       <Image size={20} className="text-gray-400" />
                       <span className="text-sm text-gray-600">Click to upload image</span>
@@ -620,14 +620,14 @@ export default function InvoiceItemsTable() {
             <div className="flex items-center gap-4 mb-3">
               <button
                 onClick={() => toggleDescription(item.id)}
-                className="flex items-center gap-2 text-purple-600 hover:text-purple-700 text-sm"
+                className="flex items-center gap-2 text-[#178C92] hover:text-[#007078] text-sm"
               >
                 <Plus size={16} />
                 <span>{item.showDescription ? 'Hide Description' : 'Add Description'}</span>
               </button>
               <button
                 onClick={() => toggleImage(item.id)}
-                className="flex items-center gap-2 text-purple-600 hover:text-purple-700 text-sm"
+                className="flex items-center gap-2 text-[#178C92] hover:text-[#007078] text-sm"
               >
                 <Image size={16} />
                 <span>{item.showImage ? 'Hide Image' : 'Add Image'}</span>
@@ -645,7 +645,7 @@ export default function InvoiceItemsTable() {
     <div className="px-8 pt-0 pb-6">
       <div className="max-w-7xl mx-auto">
         <div className="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200">
-          <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white flex px-6 py-4 text-sm font-semibold">
+          <div className="bg-gradient-to-r from-[#178C92] to-[#007078] text-white flex px-6 py-4 text-sm font-semibold">
             {visibleColumns.map((column, idx) => (
               <div
                 key={column.id}
@@ -664,9 +664,9 @@ export default function InvoiceItemsTable() {
 
           {groups.map((group) => (
             <div key={group.id} className="border-t-2 border-gray-300">
-              <div className="bg-purple-50 px-6 py-4 flex items-center justify-between">
+              <div className="bg-[#EAF4F1] px-6 py-4 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <button onClick={() => toggleGroup(group.id)} className="text-purple-600 hover:text-purple-700">
+                  <button onClick={() => toggleGroup(group.id)} className="text-[#178C92] hover:text-[#007078]">
                     {group.isCollapsed ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
                   </button>
                   <h3 className="font-semibold text-gray-900">{group.name}</h3>
@@ -674,7 +674,7 @@ export default function InvoiceItemsTable() {
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => addNewItem(group.id)}
-                    className="text-purple-600 hover:text-purple-700 text-sm font-medium transition-colors"
+                    className="text-[#178C92] hover:text-[#007078] text-sm font-medium transition-colors"
                   >
                     + Add Item
                   </button>
@@ -698,7 +698,7 @@ export default function InvoiceItemsTable() {
           <div className="grid grid-cols-2 gap-4 p-3 border-t-2 border-dashed border-gray-300 bg-gray-50">
             <button
               onClick={() => addNewItem()}
-              className="flex items-center justify-center required gap-2 py-2 border-2 border-dashed border-purple-300 rounded-lg text-purple-600 hover:border-purple-500 hover:bg-purple-50 transition-all duration-200 font-medium"
+              className="flex items-center justify-center required gap-2 py-2 border-2 border-dashed border-[#a5d5d8] rounded-lg text-[#178C92] hover:border-[#178C92] hover:bg-[#EAF4F1] transition-all duration-200 font-medium"
             >
               <Plus size={20} />
               <span>Add New Line</span>
@@ -706,7 +706,7 @@ export default function InvoiceItemsTable() {
 
             <button
               onClick={() => setShowGroupModal(true)}
-              className="flex items-center justify-center gap-2 py-2 border-2 border-dashed border-purple-300 rounded-lg text-purple-600 hover:border-purple-500 hover:bg-purple-50 transition-all duration-200 font-medium"
+              className="flex items-center justify-center gap-2 py-2 border-2 border-dashed border-[#a5d5d8] rounded-lg text-[#178C92] hover:border-[#178C92] hover:bg-[#EAF4F1] transition-all duration-200 font-medium"
             >
               <Plus size={20} />
               <span>Add New Group</span>
@@ -739,7 +739,7 @@ export default function InvoiceItemsTable() {
                   placeholder="Enter group name"
                   value={groupName}
                   onChange={(e) => setGroupName(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] focus:ring-2 focus:ring-[#EAF4F1] transition-all"
                   autoFocus
                 />
               </div>
@@ -756,7 +756,7 @@ export default function InvoiceItemsTable() {
                 </button>
                 <button
                   onClick={addNewGroup}
-                  className="px-6 py-2.5 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all duration-200 font-medium shadow-sm hover:shadow-md"
+                  className="px-6 py-2.5 bg-[#178C92] text-white rounded-lg hover:bg-[#007078] transition-all duration-200 font-medium shadow-sm hover:shadow-md"
                 >
                   Create Group
                 </button>

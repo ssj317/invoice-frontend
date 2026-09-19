@@ -7,29 +7,42 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Brand palette
+        evergreen: '#164A41',       // headings, primary dark text
+        teal: {
+          DEFAULT: '#178C92',       // primary actions/icons
+          deep: '#007078',          // hover states
+          light: '#EAF4F1',         // subtle backgrounds
+        },
+        accent: {
+          yellow: '#E7B83C',        // accents/status highlights
+          beige: '#F8F4E1',         // dashboard background
+          warmwhite: '#FFFDF5',     // cards/input surfaces
+        },
+        // Keep primary/secondary for legacy compatibility
         primary: {
-          50: '#f0f9f0',
-          100: '#e0f3e0',
-          200: '#c2e7c2',
-          300: '#95d495',
-          400: '#5bb85d',
-          500: '#2e8b32', // Main primary color (lighter green)
-          600: '#1a5f1d',
-          700: '#145317',
-          800: '#0f4213',
-          900: '#0a2f0a',
+          50: '#EAF4F1',
+          100: '#d0eae8',
+          200: '#a5d5d8',
+          300: '#70bcbf',
+          400: '#3da3a7',
+          500: '#178C92',
+          600: '#178C92',
+          700: '#007078',
+          800: '#0d5055',
+          900: '#164A41',
         },
         secondary: {
-          50: '#fffde7',
-          100: '#fff9c4',
-          200: '#fff59d',
-          300: '#fff176',
-          400: '#ffee58',
-          500: '#ffc107', // Main secondary color (gold)
-          600: '#ffb300',
-          700: '#ffa000',
-          800: '#ff8f00',
-          900: '#ff6f00',
+          50: '#fefdf6',
+          100: '#F8F4E1',
+          200: '#f0e9c0',
+          300: '#e7d99a',
+          400: '#E7B83C',
+          500: '#d4a030',
+          600: '#b88928',
+          700: '#96711f',
+          800: '#755918',
+          900: '#544010',
         },
       },
       fontFamily: {

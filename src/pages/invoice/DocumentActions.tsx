@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+﻿import React, { useState, useRef, useEffect } from 'react';
 import { Plus, FileText, Paperclip, Phone, PenTool, X, Upload, Edit3, Trash2 } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { updateInvoiceData } from '../../store/invoiceSlice';
@@ -350,11 +350,11 @@ export default function DocumentActions() {
 	};
 
 	return (
-		<div className="bg-gray-50 p-2 sm:p-4">
+		<div className="bg-[#EAF4F1] p-2 sm:p-4">
 			<div className="max-w-6xl mx-auto">
 				{/* Saved Signature Display */}
 				{savedSignature && (
-					<div className="mb-4 bg-white rounded-lg border-2 border-purple-200 py-8 sm:py-12 px-4">
+					<div className="mb-4 bg-white rounded-lg border-2 border-[#d0eae8] py-8 sm:py-12 px-4">
 						<div className="flex items-start justify-between mb-3">
 							<h3 className="text-xs font-semibold text-gray-900">{savedLabel}</h3>
 							<button
@@ -375,9 +375,9 @@ export default function DocumentActions() {
 				<div className="mb-4 sm:mb-6">
 					<button
 						onClick={() => setShowSignatureModal(true)}
-						className="w-full border-2 border-dashed text-xs sm:text-sm border-gray-300 rounded-lg px-4 sm:px-6 py-2 bg-white hover:border-purple-400 hover:bg-purple-50 transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3 text-gray-700 font-medium"
+						className="w-full border-2 border-dashed text-xs sm:text-sm border-gray-300 rounded-lg px-4 sm:px-6 py-2 bg-white hover:border-[#178C92] hover:bg-[#EAF4F1] transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3 text-gray-700 font-medium"
 					>
-						<PenTool className="w-5 h-5 text-purple-600" />
+						<PenTool className="w-5 h-5 text-[#178C92]" />
 						<span>Add Signature</span>
 					</button>
 				</div>
@@ -394,17 +394,17 @@ export default function DocumentActions() {
 
 					<button
 						onClick={() => setShowNotesModal(true)}
-						className="border-2 border-dashed text-xs sm:text-sm border-gray-300 rounded-lg px-4 sm:px-6 py-2 bg-white hover:border-purple-400 hover:bg-purple-50 transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3 text-gray-700 font-medium"
+						className="border-2 border-dashed text-xs sm:text-sm border-gray-300 rounded-lg px-4 sm:px-6 py-2 bg-white hover:border-[#178C92] hover:bg-[#EAF4F1] transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3 text-gray-700 font-medium"
 					>
-						<FileText className="w-5 h-5 text-purple-600" />
+						<FileText className="w-5 h-5 text-[#178C92]" />
 						<span>Add Notes</span>
 					</button>
 
 					<button
 						onClick={() => setShowAttachmentsModal(true)}
-						className="border-2 border-dashed text-xs sm:text-sm border-gray-300 rounded-lg px-4 sm:px-6 py-2 bg-white hover:border-purple-400 hover:bg-purple-50 transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3 text-gray-700 font-medium"
+						className="border-2 border-dashed text-xs sm:text-sm border-gray-300 rounded-lg px-4 sm:px-6 py-2 bg-white hover:border-[#178C92] hover:bg-[#EAF4F1] transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3 text-gray-700 font-medium"
 					>
-						<Paperclip className="w-5 h-5 text-purple-600" />
+						<Paperclip className="w-5 h-5 text-[#178C92]" />
 						<span>Add Attachments</span>
 					</button>
 				</div>
@@ -413,17 +413,17 @@ export default function DocumentActions() {
 				<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
 					<button
 						onClick={() => setShowAdditionalInfoModal(true)}
-						className="border-2 border-dashed border-gray-300 text-xs sm:text-sm rounded-lg px-4 sm:px-6 py-2 bg-white hover:border-purple-400 hover:bg-purple-50 transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3 text-gray-700 font-medium"
+						className="border-2 border-dashed border-gray-300 text-xs sm:text-sm rounded-lg px-4 sm:px-6 py-2 bg-white hover:border-[#178C92] hover:bg-[#EAF4F1] transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3 text-gray-700 font-medium"
 					>
-						<FileText className="w-5 h-5 text-purple-600" />
+						<FileText className="w-5 h-5 text-[#178C92]" />
 						<span>Add Additional Info</span>
 					</button>
 
 					<button
 						onClick={() => setShowContactModal(true)}
-						className="border-2 border-dashed border-gray-300 text-xs sm:text-sm rounded-lg px-4 sm:px-6 py-2 bg-white hover:border-purple-400 hover:bg-purple-50 transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3 text-gray-700 font-medium"
+						className="border-2 border-dashed border-gray-300 text-xs sm:text-sm rounded-lg px-4 sm:px-6 py-2 bg-white hover:border-[#178C92] hover:bg-[#EAF4F1] transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3 text-gray-700 font-medium"
 					>
-						<Phone className="w-5 h-5 text-purple-600" />
+						<Phone className="w-5 h-5 text-[#178C92]" />
 						<span>Add Contact Details</span>
 					</button>
 				</div>
@@ -455,7 +455,7 @@ export default function DocumentActions() {
 									<div className="flex flex-col items-center justify-center py-12 mb-8">
 										<div className="relative mb-4">
 											<svg
-												className="w-16 h-16 text-purple-600"
+												className="w-16 h-16 text-[#178C92]"
 												viewBox="0 0 24 24"
 												fill="none"
 												xmlns="http://www.w3.org/2000/svg"
@@ -492,16 +492,16 @@ export default function DocumentActions() {
 											className="flex items-center py-3 justify-center border-2 my-1 gap-3 text-gray-600 font-medium border-dotted "
 											onClick={() => fileInputRef.current?.click()}
 										>
-											<Upload className="w-5 h-5 text-purple-600" />
+											<Upload className="w-5 h-5 text-[#178C92]" />
 											<span>Upload Signature</span>
 										</button>
 									</div>
 									{/* Use Signature Pad Button */}
 									<button
 										onClick={() => setSignatureMode('pad')}
-										className="w-full border-2 border-dashed border-gray-300 rounded-lg px-6 py-2 mb-5 bg-white hover:border-purple-400 hover:bg-purple-50 transition-all duration-200 flex items-center justify-center gap-3 text-gray-600 font-medium"
+										className="w-full border-2 border-dashed border-gray-300 rounded-lg px-6 py-2 mb-5 bg-white hover:border-[#178C92] hover:bg-[#EAF4F1] transition-all duration-200 flex items-center justify-center gap-3 text-gray-600 font-medium"
 									>
-										<Edit3 className="w-5 h-5 text-purple-600" />
+										<Edit3 className="w-5 h-5 text-[#178C92]" />
 										<span>Use Signature Pad</span>
 									</button>
 								</>
@@ -528,7 +528,7 @@ export default function DocumentActions() {
 									<div className="flex gap-3">
 										<button
 											onClick={() => fileInputRef.current?.click()}
-											className="flex-1 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors"
+											className="flex-1 bg-[#178C92] text-white px-4 py-2 rounded-lg hover:bg-[#007078] transition-colors"
 										>
 											Choose File
 										</button>
@@ -590,7 +590,7 @@ export default function DocumentActions() {
 										type="text"
 										value={signatureLabel}
 										onChange={(e) => setSignatureLabel(e.target.value)}
-										className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+										className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
 										placeholder="Enter signature label"
 									/>
 									{signatureLabel && (
@@ -609,7 +609,7 @@ export default function DocumentActions() {
 								<button
 									onClick={saveSignature}
 									disabled={signatureMode === 'upload' && !uploadedImage}
-									className="w-full bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed font-medium"
+									className="w-full bg-[#178C92] text-white px-6 py-2 rounded-lg hover:bg-[#007078] transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed font-medium"
 								>
 									Save Signature
 								</button>
@@ -647,7 +647,7 @@ export default function DocumentActions() {
 											type="text"
 											value={term.text}
 											onChange={(e) => updateTerm(term.id, e.target.value)}
-											className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+											className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
 											placeholder="Enter term or condition"
 										/>
 										<div className="flex items-center gap-2 mt-2">
@@ -856,7 +856,7 @@ export default function DocumentActions() {
 								ref={notesTextareaRef}
 								contentEditable
 								suppressContentEditableWarning
-								className="w-full min-h-[300px] border border-t-0 border-gray-300 rounded-b-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
+								className="w-full min-h-[300px] border border-t-0 border-gray-300 rounded-b-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#178C92]"
 								style={{
 									listStylePosition: 'inside',
 								}}
@@ -888,7 +888,7 @@ export default function DocumentActions() {
 										alert('Notes saved!');
 										setShowNotesModal(false);
 									}}
-									className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+									className="px-6 py-2 bg-[#178C92] text-white rounded-lg hover:bg-[#007078] transition-colors"
 								>
 									Save Notes
 								</button>
@@ -932,7 +932,7 @@ export default function DocumentActions() {
 							/>
 							<button
 								onClick={() => attachmentInputRef.current?.click()}
-								className="w-24 h-24 border-2 border-dashed border-gray-300 rounded-lg bg-white hover:border-purple-400 hover:bg-purple-50 transition-all duration-200 flex items-center justify-center"
+								className="w-24 h-24 border-2 border-dashed border-gray-300 rounded-lg bg-white hover:border-[#178C92] hover:bg-[#EAF4F1] transition-all duration-200 flex items-center justify-center"
 							>
 								<Plus className="w-8 h-8 text-gray-400" />
 							</button>
@@ -982,7 +982,7 @@ export default function DocumentActions() {
 										alert(`${attachments.length} attachment(s) saved!`);
 										setShowAttachmentsModal(false);
 									}}
-									className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+									className="px-6 py-2 bg-[#178C92] text-white rounded-lg hover:bg-[#007078] transition-colors"
 								>
 									Save Attachments
 								</button>
@@ -1064,7 +1064,7 @@ export default function DocumentActions() {
 											value={contactPhone}
 											onChange={(e) => setContactPhone(e.target.value)}
 											placeholder="Phone Number"
-											className="px-2 sm:px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg bg-gray-50 outline-none focus:ring-2 focus:ring-purple-500 w-full sm:min-w-[120px]"
+											className="px-2 sm:px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg bg-gray-50 outline-none focus:ring-2 focus:ring-[#178C92] w-full sm:min-w-[120px]"
 										/>
 									</div>
 								</div>
@@ -1083,7 +1083,7 @@ export default function DocumentActions() {
 										alert('Contact details saved!');
 										setShowContactModal(false);
 									}}
-									className="w-full sm:w-auto px-4 sm:px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+									className="w-full sm:w-auto px-4 sm:px-6 py-2 bg-[#178C92] text-white rounded-lg hover:bg-[#007078] transition-colors"
 								>
 									Save Contact Details
 								</button>
@@ -1139,7 +1139,7 @@ export default function DocumentActions() {
 							{/* Add Custom Fields Button */}
 							<button
 								onClick={() => setShowCustomFieldDropdown(!showCustomFieldDropdown)}
-								className="flex items-center gap-2 text-purple-600 hover:text-purple-700 font-medium"
+								className="flex items-center gap-2 text-[#178C92] hover:text-[#007078] font-medium"
 							>
 								<Plus className="w-5 h-5" />
 								<span>Add Custom Fields</span>
@@ -1178,7 +1178,7 @@ export default function DocumentActions() {
 												setShowAddCustomFieldModal(true);
 												setShowCustomFieldDropdown(false);
 											}}
-											className="w-full bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors font-medium"
+											className="w-full bg-[#178C92] text-white px-6 py-3 rounded-lg hover:bg-[#007078] transition-colors font-medium"
 										>
 											Add New Custom Field
 										</button>
@@ -1235,7 +1235,7 @@ export default function DocumentActions() {
 									value={newFieldLabel}
 									onChange={(e) => setNewFieldLabel(e.target.value)}
 									placeholder="Enter field label"
-									className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+									className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
 								/>
 							</div>
 
@@ -1247,7 +1247,7 @@ export default function DocumentActions() {
 									value={newFieldValue}
 									onChange={(e) => setNewFieldValue(e.target.value)}
 									placeholder="Enter field value"
-									className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+									className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#178C92] focus:border-transparent"
 								/>
 							</div>
 
@@ -1258,7 +1258,7 @@ export default function DocumentActions() {
 									id="setAsDefault"
 									checked={setAsDefault}
 									onChange={(e) => setSetAsDefault(e.target.checked)}
-									className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+									className="w-4 h-4 text-[#178C92] border-gray-300 rounded focus:ring-[#178C92]"
 								/>
 								<label htmlFor="setAsDefault" className="text-gray-700">
 									Set as default value
@@ -1281,7 +1281,7 @@ export default function DocumentActions() {
 								<button
 									onClick={saveCustomField}
 									disabled={!newFieldLabel || !newFieldValue}
-									className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
+									className="px-6 py-2 bg-[#178C92] text-white rounded-lg hover:bg-[#007078] transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
 								>
 									Save
 								</button>

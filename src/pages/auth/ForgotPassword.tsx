@@ -31,11 +31,11 @@ const ForgotPassword = () => {
 
     if (isSubmitted) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-50 flex items-center justify-center p-4">
+            <div className="min-h-screen bg-gradient-to-br from-[#e6f7f8] via-white to-[#e6f7f8] flex items-center justify-center p-4">
                 <div className="max-w-md w-full">
-                    <div className="bg-white rounded-xl shadow-lg border border-purple-100 p-8 text-center">
-                        <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <Mail className="h-8 w-8 text-purple-600" />
+                    <div className="bg-white rounded-xl shadow-lg border border-[#d0eff1] p-8 text-center">
+                        <div className="w-16 h-16 bg-[#d0eff1] rounded-full flex items-center justify-center mx-auto mb-4">
+                            <Mail className="h-8 w-8 text-[#178C92]" />
                         </div>
                         <h2 className="text-2xl font-bold text-gray-800 mb-2">Check your email</h2>
                         <p className="text-gray-600 mb-6">
@@ -45,14 +45,14 @@ const ForgotPassword = () => {
                             Didn't receive the email? Check your spam folder or{' '}
                             <button
                                 onClick={() => setIsSubmitted(false)}
-                                className="text-purple-600 hover:text-purple-700 font-medium"
+                                className="text-[#178C92] hover:text-[#0f6368] font-medium"
                             >
                                 try again
                             </button>
                         </p>
                         <Link
                             to="/login"
-                            className="inline-flex items-center text-purple-600 hover:text-purple-700 font-medium transition-colors"
+                            className="inline-flex items-center text-[#178C92] hover:text-[#0f6368] font-medium transition-colors"
                         >
                             <ArrowLeft className="h-4 w-4 mr-2" />
                             Back to login
@@ -64,16 +64,16 @@ const ForgotPassword = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-50 flex items-center justify-center p-4">
+        <div className="min-h-screen bg-gradient-to-br from-[#e6f7f8] via-white to-[#e6f7f8] flex items-center justify-center p-4">
             <div className="max-w-md w-full">
                 {/* Logo/Brand */}
                 <div className="text-center mb-8">
-                    <h1 className="text-4xl font-bold text-purple-600 mb-2">Invoice Pro</h1>
+                    <h1 className="text-4xl font-bold text-[#178C92] mb-2">Suzlon</h1>
                     <p className="text-gray-600">Reset your password</p>
                 </div>
 
                 {/* Forgot Password Card */}
-                <div className="bg-white rounded-xl shadow-lg border border-purple-100 p-8">
+                <div className="bg-white rounded-xl shadow-lg border border-[#d0eff1] p-8">
                     <div className="mb-6">
                         <h2 className="text-xl font-semibold text-gray-800 mb-2">Forgot your password?</h2>
                         <p className="text-sm text-gray-600">
@@ -97,7 +97,7 @@ const ForgotPassword = () => {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     className={`block w-full pl-10 pr-3 py-3 border ${error ? 'border-red-300' : 'border-gray-300'
-                                        } rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all`}
+                                        } rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e6f7f8]0 focus:border-transparent transition-all`}
                                     placeholder="you@example.com"
                                 />
                             </div>
@@ -109,7 +109,7 @@ const ForgotPassword = () => {
                         {/* Submit Button */}
                         <button
                             type="submit"
-                            className="w-full bg-purple-600 text-white py-3 px-4 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all duration-200 font-medium shadow-sm hover:shadow-md"
+                            className="w-full bg-[#178C92] text-white py-3 px-4 rounded-lg hover:bg-[#0f6368] focus:outline-none focus:ring-2 focus:ring-[#e6f7f8]0 focus:ring-offset-2 transition-all duration-200 font-medium shadow-sm hover:shadow-md"
                         >
                             Send Reset Link
                         </button>
@@ -119,7 +119,7 @@ const ForgotPassword = () => {
                     <div className="mt-6 text-center">
                         <Link
                             to="/login"
-                            className="inline-flex items-center text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
+                            className="inline-flex items-center text-sm text-[#178C92] hover:text-[#0f6368] font-medium transition-colors"
                         >
                             <ArrowLeft className="h-4 w-4 mr-2" />
                             Back to login
@@ -132,3 +132,5 @@ const ForgotPassword = () => {
 };
 
 export default ForgotPassword;
+
+

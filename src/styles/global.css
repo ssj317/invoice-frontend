@@ -5,15 +5,22 @@
 @tailwind utilities;
 
 :root {
-  --primary-color: #7b1113;       /* Premium maroon */
-  --primary-light: #9c1b1f;       /* Slightly lighter maroon for hover */
-  --primary-dark: #4a0b0c;        /* Deep maroon for text accents */
-  --secondary-color: #ffc107;     /* Gold accent */
-  --secondary-light: #ffd54f;
-  --secondary-dark: #ff8f00;
-  --background: #fdf9f3;          /* Soft cream background */
-  --text-primary: #2e2e2e;        /* Slightly softer black */
-  --text-secondary: #6b6b6b;
+  --cream: #F8F4E1;               /* Beige/dashboard background */
+  --warm-white: #FFFDF5;          /* Cards/input surfaces */
+  --teal: #178C92;                /* Primary teal — actions/icons */
+  --deep-teal: #007078;           /* Deep teal — hover states */
+  --evergreen: #164A41;           /* Evergreen — headings/primary dark text */
+  --light-teal: #EAF4F1;          /* Light teal — subtle backgrounds */
+  --accent-yellow: #E7B83C;       /* Yellow — accents/status highlights */
+  --primary-color: #178C92;       /* Teal */
+  --primary-light: #1aa3aa;       /* Lighter teal for hover */
+  --primary-dark: #007078;        /* Deep teal for hover states */
+  --secondary-color: #F8F4E1;     /* Beige accent */
+  --secondary-light: #FFFDF5;     /* Warm white */
+  --secondary-dark: #e8e2c8;
+  --background: #F8F4E1;          /* Beige background */
+  --text-primary: #164A41;        /* Evergreen for headings/primary text */
+  --text-secondary: #178C92;      /* Teal for secondary text */
 }
 
 

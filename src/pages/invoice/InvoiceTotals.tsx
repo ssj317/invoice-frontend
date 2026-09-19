@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+﻿import { useState, useEffect, useMemo } from 'react';
 import { ChevronDown, Plus, Tag, X } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { updateInvoiceData } from '../../store/invoiceSlice';
@@ -235,7 +235,7 @@ export default function InvoiceTotalsSection() {
 				<div className="bg-white rounded-lg border border-gray-200 p-6">
 					<div className="flex items-center justify-between mb-6">
 						<h3 className="text-xl font-semibold text-gray-900">Show Total in PDF</h3>
-						<span className="text-xl font-bold text-purple-600">{invoiceData.currency.symbol}{calculateFinalTotal().toFixed(2)}</span>
+						<span className="text-xl font-bold text-[#178C92]">{invoiceData.currency.symbol}{calculateFinalTotal().toFixed(2)}</span>
 					</div>
 
 					<div className="space-y-2">
@@ -262,7 +262,7 @@ export default function InvoiceTotalsSection() {
 											setManualCgst(igstValue / 2);
 										}}
 										placeholder="0.00"
-										className="w-24 px-2 py-1 text-right border border-gray-300 rounded outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200"
+										className="w-24 px-2 py-1 text-right border border-gray-300 rounded outline-none focus:border-[#178C92] focus:ring-2 focus:ring-[#EAF4F1]"
 									/>
 									{(manualSgst !== null || manualCgst !== null) && (
 										<button
@@ -291,7 +291,7 @@ export default function InvoiceTotalsSection() {
 											value={manualSgst !== null ? manualSgst : calculatedTotals.sgst}
 											onChange={(e) => setManualSgst(parseFloat(e.target.value) || 0)}
 											placeholder="0.00"
-											className="w-24 px-2 py-1 text-right border border-gray-300 rounded outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200"
+											className="w-24 px-2 py-1 text-right border border-gray-300 rounded outline-none focus:border-[#178C92] focus:ring-2 focus:ring-[#EAF4F1]"
 										/>
 										{manualSgst !== null && (
 											<button
@@ -315,7 +315,7 @@ export default function InvoiceTotalsSection() {
 											value={manualCgst !== null ? manualCgst : calculatedTotals.cgst}
 											onChange={(e) => setManualCgst(parseFloat(e.target.value) || 0)}
 											placeholder="0.00"
-											className="w-24 px-2 py-1 text-right border border-gray-300 rounded outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200"
+											className="w-24 px-2 py-1 text-right border border-gray-300 rounded outline-none focus:border-[#178C92] focus:ring-2 focus:ring-[#EAF4F1]"
 										/>
 										{manualCgst !== null && (
 											<button
@@ -351,7 +351,7 @@ export default function InvoiceTotalsSection() {
 											setManualCgst(taxValue / 2);
 										}}
 										placeholder="0.00"
-										className="w-24 px-2 py-1 text-right border border-gray-300 rounded outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200"
+										className="w-24 px-2 py-1 text-right border border-gray-300 rounded outline-none focus:border-[#178C92] focus:ring-2 focus:ring-[#EAF4F1]"
 									/>
 									{(manualSgst !== null || manualCgst !== null) && (
 										<button
@@ -384,13 +384,13 @@ export default function InvoiceTotalsSection() {
 										value={totalDiscount}
 										onChange={(e) => setTotalDiscount(parseFloat(e.target.value) || 0)}
 										placeholder="0"
-										className="w-20 px-2 py-1 text-right border border-gray-300 rounded outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200"
+										className="w-20 px-2 py-1 text-right border border-gray-300 rounded outline-none focus:border-[#178C92] focus:ring-2 focus:ring-[#EAF4F1]"
 									/>
 									<div className="relative">
 										<select
 											value={totalDiscountType}
 											onChange={(e) => setTotalDiscountType(e.target.value)}
-											className="appearance-none px-2 py-1 pr-9 border border-gray-300 rounded outline-none focus:border-purple-500 bg-white cursor-pointer"
+											className="appearance-none px-2 py-1 pr-9 border border-gray-300 rounded outline-none focus:border-[#178C92] bg-white cursor-pointer"
 										>
 											<option value="fixed px-6">{invoiceData.currency.symbol}</option>
 											<option value="percentage">%</option>
@@ -417,7 +417,7 @@ export default function InvoiceTotalsSection() {
 						<div>
 							<button
 								onClick={() => setShowDiscounts(!showDiscounts)}
-								className="flex items-center py-2 gap-2 text-purple-600 hover:text-purple-700 transition-colors w-full text-sm font-xs"
+								className="flex items-center py-2 gap-2 text-[#178C92] hover:text-[#007078] transition-colors w-full text-sm font-xs"
 							>
 								<Tag size={18} />
 								<span>Add Discounts</span>
@@ -428,13 +428,13 @@ export default function InvoiceTotalsSection() {
 							</button>
 
 							{showDiscounts && (
-								<div className="mt-4 p-4 bg-purple-50 rounded-lg space-y-1 border border-purple-100">
+								<div className="mt-4 p-4 bg-[#EAF4F1] rounded-lg space-y-1 border border-[#EAF4F1]">
 									<button
 										onClick={() => {
 											setDiscountType('total');
 											setShowDiscounts(false);
 										}}
-										className="w-full text-left px-4 py-2 rounded-lg border text-sm border-purple-200 bg-white text-gray-700  hover:bg-purple-50 transition-all"
+										className="w-full text-left px-4 py-2 rounded-lg border text-sm border-[#d0eae8] bg-white text-gray-700  hover:bg-[#EAF4F1] transition-all"
 									>
 										Give Discount on Total
 									</button>
@@ -444,7 +444,7 @@ export default function InvoiceTotalsSection() {
                       setDiscountType('itemwise');
                       setShowDiscounts(false);
                     }}
-                    className="w-full text-left px-4 py-3 rounded-lg border border-purple-200 bg-white text-gray-700 hover:border-purple-400 hover:bg-purple-50 transition-all"
+                    className="w-full text-left px-4 py-3 rounded-lg border border-[#d0eae8] bg-white text-gray-700 hover:border-[#178C92] hover:bg-[#EAF4F1] transition-all"
                   >
                     Give Item Wise Discount
                   </button> */}
@@ -456,7 +456,7 @@ export default function InvoiceTotalsSection() {
 						<div>
 							<button
 								onClick={() => setShowAdditionalCharges(!showAdditionalCharges)}
-								className="flex items-center gap-2 text-purple-600 text-sm hover:text-purple-700 transition-colors w-full font-sm"
+								className="flex items-center gap-2 text-[#178C92] text-sm hover:text-[#007078] transition-colors w-full font-sm"
 							>
 								<Plus size={18} />
 								<span>Add Additional Charges</span>
@@ -467,11 +467,11 @@ export default function InvoiceTotalsSection() {
 							</button>
 
 							{showAdditionalCharges && (
-								<div className="mt-4 p-4 bg-purple-50 rounded-lg space-y-3 border border-purple-100">
+								<div className="mt-4 p-4 bg-[#EAF4F1] rounded-lg space-y-3 border border-[#EAF4F1]">
 									{additionalCharges.map((charge) => (
 										<div
 											key={charge.id}
-											className="flex items-center gap-3 bg-white p-3 rounded-lg border border-purple-200"
+											className="flex items-center gap-3 bg-white p-3 rounded-lg border border-[#d0eae8]"
 										>
 											<input
 												type="text"
@@ -480,7 +480,7 @@ export default function InvoiceTotalsSection() {
 													updateAdditionalCharge(charge.id, 'name', e.target.value)
 												}
 												placeholder="Charge name"
-												className="flex-1 px-3 py-2 border border-gray-300 rounded-lg outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200"
+												className="flex-1 px-3 py-2 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] focus:ring-2 focus:ring-[#EAF4F1]"
 											/>
 											<input
 												type="number"
@@ -493,7 +493,7 @@ export default function InvoiceTotalsSection() {
 													)
 												}
 												placeholder="0"
-												className="w-32 px-3 py-2 border border-gray-300 rounded-lg outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200"
+												className="w-32 px-3 py-2 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] focus:ring-2 focus:ring-[#EAF4F1]"
 											/>
 											<span className="text-gray-600">{invoiceData.currency.symbol}</span>
 											<button
@@ -507,7 +507,7 @@ export default function InvoiceTotalsSection() {
 
 									<button
 										onClick={addAdditionalCharge}
-										className="w-full px-4 py-2 border-2 border-dashed border-purple-300 rounded-lg text-purple-600 hover:bg-purple-100 transition-all"
+										className="w-full px-4 py-2 border-2 border-dashed border-[#a5d5d8] rounded-lg text-[#178C92] hover:bg-[#EAF4F1] transition-all"
 									>
 										+ Add Charge
 									</button>
@@ -516,13 +516,13 @@ export default function InvoiceTotalsSection() {
 						</div>
 
 						{/* Summarise Total Quantity */}
-						<div className="flex items-center gap-3 p-3 rounded-lg hover:bg-purple-50 transition-colors">
+						<div className="flex items-center gap-3 p-3 rounded-lg hover:bg-[#EAF4F1] transition-colors">
 							<input
 								type="checkbox"
 								id="summarise-quantity"
 								checked={summarizeQuantity}
 								onChange={(e) => setSummarizeQuantity(e.target.checked)}
-								className="w-5 h-5 text-purple-600 rounded border-gray-300 focus:ring-purple-500 cursor-pointer"
+								className="w-5 h-5 text-[#178C92] rounded border-gray-300 focus:ring-[#178C92] cursor-pointer"
 							/>
 							<label
 								htmlFor="summarise-quantity"
@@ -565,13 +565,13 @@ export default function InvoiceTotalsSection() {
 									value={totalLabel}
 									onChange={(e) => setTotalLabel(e.target.value)}
 									className="text-xl font-bold text-gray-900 w-full max-w-28 px-4
-                 outline-none border-b-2 border-purple-100
+                 outline-none border-b-2 border-[#EAF4F1]
                  bg-transparent "
 								/>
 								<span className="text-gray-500 text-md font-medium">({invoiceData.currency.code})</span>
 							</div>
 
-							<span className="text-lg font-bold text-purple-500">
+							<span className="text-lg font-bold text-[#178C92]">
 								{invoiceData.currency.symbol}{calculateFinalTotal().toFixed(2)}
 							</span>
 						</div>
@@ -595,7 +595,7 @@ export default function InvoiceTotalsSection() {
 									value={field.value}
 									onChange={(e) => updateCustomFieldValue(field.id, e.target.value)}
 									placeholder="Enter value"
-									className="w-40 px-2 py-1 text-right border border-gray-300 rounded outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200"
+									className="w-40 px-2 py-1 text-right border border-gray-300 rounded outline-none focus:border-[#178C92] focus:ring-2 focus:ring-[#EAF4F1]"
 								/>
 								<button
 									onClick={() => deleteCustomField(field.id)}
@@ -611,14 +611,14 @@ export default function InvoiceTotalsSection() {
 					<div className="relative mt-4">
 						<button
 							onClick={() => setShowCustomFieldDropdown(!showCustomFieldDropdown)}
-							className="flex items-center gap-2 text-purple-600 hover:text-purple-700 transition-colors font-medium"
+							className="flex items-center gap-2 text-[#178C92] hover:text-[#007078] transition-colors font-medium"
 						>
 							<Plus size={18} />
 							<span>Add Custom Fields</span>
 						</button>
 
 						{showCustomFieldDropdown && (
-							<div className="absolute top-full left-0 right-0 mt-2 bg-white border-2 border-purple-200 rounded-lg shadow-lg z-10 overflow-hidden">
+							<div className="absolute top-full left-0 right-0 mt-2 bg-white border-2 border-[#d0eae8] rounded-lg shadow-lg z-10 overflow-hidden">
 								<div className="p-4">
 									{customFields.length === 0 ? (
 										<div className="text-center py-4">
@@ -626,7 +626,7 @@ export default function InvoiceTotalsSection() {
 										</div>
 									) : (
 										<div className="mb-4">
-											<select className="w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:border-purple-500">
+											<select className="w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:border-[#178C92]">
 												<option>Select any custom field</option>
 												{customFields.map((field) => (
 													<option key={field.id} value={field.id}>
@@ -641,7 +641,7 @@ export default function InvoiceTotalsSection() {
 											setShowCustomFieldDropdown(false);
 											setShowCustomFieldModal(true);
 										}}
-										className="w-full px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all duration-200 font-medium shadow-sm hover:shadow-md"
+										className="w-full px-6 py-3 bg-[#178C92] text-white rounded-lg hover:bg-[#007078] transition-all duration-200 font-medium shadow-sm hover:shadow-md"
 									>
 										Add New Custom Field
 									</button>
@@ -658,7 +658,7 @@ export default function InvoiceTotalsSection() {
 						{/* <button
 							onClick={() => setShowTotalInWords(!showTotalInWords)}
 							className={`p-2 rounded-lg transition-all duration-200 ${
-								showTotalInWords ? 'text-purple-600 bg-purple-50' : 'text-gray-400 bg-gray-50'
+								showTotalInWords ? 'text-[#178C92] bg-[#EAF4F1]' : 'text-gray-400 bg-gray-50'
 							}`}
 						>
 							<Eye size={20} />
@@ -673,7 +673,7 @@ export default function InvoiceTotalsSection() {
 								onChange={(e) => setTotalInWordsLabel(e.target.value)}
 								className="text-gray-900 font-medium text-sm outline-none
                  border-b-2 border-dotted border-gray-400
-                 bg-transparent hover:border-purple-400
+                 bg-transparent hover:border-[#178C92]
                  transition-colors
                  w-full max-w-md px-2"
 							/>
@@ -686,7 +686,7 @@ export default function InvoiceTotalsSection() {
 								onChange={(e) => setTotalInWordsValue(e.target.value)}
 								className="text-gray-900 outline-none
                  border-b-2 border-dotted border-gray-400
-                 bg-transparent text-sm hover:border-purple-400
+                 bg-transparent text-sm hover:border-[#178C92]
                  transition-colors
                  w-full max-w-md px-2"
 							/>
@@ -726,7 +726,7 @@ export default function InvoiceTotalsSection() {
 										onChange={(e) =>
 											setNewCustomField({ ...newCustomField, label: e.target.value })
 										}
-										className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all"
+										className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] focus:ring-2 focus:ring-[#EAF4F1] transition-all"
 									/>
 								</div>
 
@@ -740,7 +740,7 @@ export default function InvoiceTotalsSection() {
 										onChange={(e) =>
 											setNewCustomField({ ...newCustomField, value: e.target.value })
 										}
-										className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all"
+										className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-[#178C92] focus:ring-2 focus:ring-[#EAF4F1] transition-all"
 									/>
 								</div>
 
@@ -753,7 +753,7 @@ export default function InvoiceTotalsSection() {
 										onChange={(e) =>
 											setNewCustomField({ ...newCustomField, setAsDefault: e.target.checked })
 										}
-										className="w-5 h-5 text-purple-600 rounded border-gray-300 focus:ring-purple-500 cursor-pointer"
+										className="w-5 h-5 text-[#178C92] rounded border-gray-300 focus:ring-[#178C92] cursor-pointer"
 									/>
 									<label htmlFor="custom-field-default" className="text-gray-700 cursor-pointer">
 										Set as default value
@@ -774,7 +774,7 @@ export default function InvoiceTotalsSection() {
 								</button>
 								<button
 									onClick={handleSaveCustomField}
-									className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all duration-200 font-medium shadow-sm hover:shadow-md"
+									className="px-4 py-2 bg-[#178C92] text-white rounded-lg hover:bg-[#007078] transition-all duration-200 font-medium shadow-sm hover:shadow-md"
 								>
 									Save
 								</button>

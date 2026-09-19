@@ -533,7 +533,7 @@ const TaxInvoice = () => {
                 <div className="p-6 bg-gray-100">
                     <button
                         onClick={handleSaveAndContinue}
-                        className="w-full px-6 py-4 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-bold text-lg"
+                        className="w-full px-6 py-4 bg-[#178C92] text-white rounded-lg hover:bg-[#007078] transition-colors font-bold text-lg"
                     >
                         💾 Save & Switch to Preview
                     </button>
