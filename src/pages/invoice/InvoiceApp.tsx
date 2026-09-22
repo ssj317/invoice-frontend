@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { ChevronRight, ArrowLeft, Home } from 'lucide-react';
 import { useAppSelector, useAppDispatch } from '../../store';
-import { setCurrentStep } from '../../store/invoiceSlice';
+import { setCurrentStep, resetInvoice } from '../../store/invoiceSlice';
 
 // Import all invoice templates
 import InvoiceGeneratorForm from '../invoice-templates/invoice-generator/Invoice';
@@ -32,11 +32,17 @@ interface TemplateConfig {
 const InvoiceApp = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
     const currentStep = useAppSelector((state) => state.invoice.currentStep);
     const { templateType } = useParams<{ templateType: string }>();
 
-    // Scroll to top when component mounts
+    // Reset invoice state on mount for new invoices (no ?id= param).
+    // If ?id= is present we're viewing an existing invoice, so keep state.
     useEffect(() => {
+        const invoiceId = searchParams.get('id');
+        if (!invoiceId) {
+            dispatch(resetInvoice());
+        }
         window.scrollTo(0, 0);
     }, []);
 

@@ -151,7 +151,10 @@ const InvoiceList = ({ type = 'all' }: InvoiceListProps) => {
       </td>
       <td className="px-4 py-3 text-gray-600">{formatDate(inv.invoiceDate)}</td>
       <td className="px-4 py-3 font-medium text-gray-900">
-        {formatCurrency(inv.totals?.grandTotal, inv.currency?.symbol)}
+         {formatCurrency(
+    inv.items?.[0]?.total || 0,
+    inv.currency?.symbol
+  )}
       </td>
       <td className="px-4 py-3">
         <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${statusColor(inv.status)}`}>

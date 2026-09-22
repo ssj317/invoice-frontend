@@ -442,21 +442,21 @@ export default function InvoiceItemsTable() {
         }
 
         return (
-          <div key={column.id} className={`flex-1 ${idx === 0 ? 'flex-[2]' : ''} px-2`} style={{ minWidth: '80px' }}>
+          <div key={column.id} className={`flex-1 min-w-0 overflow-hidden ${idx === 0 ? 'flex-[2]' : ''} px-2`} style={{ minWidth: '60px', maxWidth: idx === 0 ? '200px' : '110px' }}>
             <input
               type={inputType}
               value={inputValue}
               onChange={(e) => updateItem(item.id, fieldName, e.target.value)}
               placeholder={column.name}
-              className="w-full text-sm text-gray-900 outline-none py-1 border-b border-transparent hover:border-gray-300 focus:border-[#178C92]"
+              className={`w-full text-sm text-gray-900 outline-none py-1 border-b border-transparent hover:border-gray-300 focus:border-[#178C92] ${inputType === 'number' ? 'text-right' : ''}`}
             />
           </div>
         );
       } else {
         // Render read-only value for formula columns
         return (
-          <div key={column.id} className={`flex-1 ${idx === 0 ? 'flex-[2]' : ''} px-2`} style={{ minWidth: '80px' }}>
-            <span className="text-sm text-gray-900">{value}</span>
+          <div key={column.id} className={`flex-1 min-w-0 overflow-hidden ${idx === 0 ? 'flex-[2]' : ''} px-2`} style={{ minWidth: '60px', maxWidth: idx === 0 ? '200px' : '110px' }}>
+            <span className="text-sm text-gray-900 block text-right truncate w-full" title={String(value)}>{value}</span>
           </div>
         );
       }
@@ -649,8 +649,8 @@ export default function InvoiceItemsTable() {
             {visibleColumns.map((column, idx) => (
               <div
                 key={column.id}
-                className={`flex-1 ${idx === 0 ? 'flex-[2]' : ''} px-2`}
-                style={{ minWidth: '80px' }}
+                className={`flex-1 min-w-0 ${idx === 0 ? 'flex-[2]' : ''} px-2 ${idx === 0 ? '' : 'text-right'}`}
+                style={{ minWidth: '60px', maxWidth: idx === 0 ? '200px' : '110px' }}
               >
                 {column.name}
               </div>

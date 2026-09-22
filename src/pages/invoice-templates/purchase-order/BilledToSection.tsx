@@ -261,33 +261,33 @@ export default function BilledToSection({
 						const client = clients.find((c) => c.name === selectedClient);
 						return client ? (
 							<div className="space-y-3">
-								<div className="flex text-sm">
-									<span className="text-gray-600 w-32">Client Name</span>
-									<span className="text-gray-900 font-medium">{client.name}</span>
+								<div className="flex text-sm gap-2">
+									<span className="text-gray-600 w-32 shrink-0">Client Name</span>
+									<span className="text-gray-900 font-medium flex-1 min-w-0 break-words">{client.name}</span>
 								</div>
 								{client.company && (
-									<div className="flex text-sm">
-										<span className="text-gray-600 w-32">Company</span>
-										<span className="text-gray-900 font-medium">{client.company}</span>
+									<div className="flex text-sm gap-2">
+										<span className="text-gray-600 w-32 shrink-0">Company</span>
+										<span className="text-gray-900 font-medium flex-1 min-w-0 break-words">{client.company}</span>
 									</div>
 								)}
 								{client.email && (
-									<div className="flex text-sm">
-										<span className="text-gray-600 w-32">Email</span>
-										<span className="text-gray-900 font-medium">{client.email}</span>
+									<div className="flex text-sm gap-2">
+										<span className="text-gray-600 w-32 shrink-0">Email</span>
+										<span className="text-gray-900 font-medium flex-1 min-w-0 break-words">{client.email}</span>
 									</div>
 								)}
 								{client.phone && (
-									<div className="flex text-sm">
-										<span className="text-gray-600 w-32">Phone</span>
-										<span className="text-gray-900 font-medium">
+									<div className="flex text-sm gap-2">
+										<span className="text-gray-600 w-32 shrink-0">Phone</span>
+										<span className="text-gray-900 font-medium flex-1 min-w-0 break-words">
 											{client.phoneCode} {client.phone}
 										</span>
 									</div>
 								)}
-								<div className="flex text-sm">
-									<span className="text-gray-600 w-32">Address</span>
-									<span className="text-gray-900 font-medium">
+								<div className="flex text-sm gap-2">
+									<span className="text-gray-600 w-32 shrink-0">Address</span>
+									<span className="text-gray-900 font-medium flex-1 min-w-0 break-words">
 										{[
 											client.streetAddress,
 											client.addressCity,
@@ -300,15 +300,15 @@ export default function BilledToSection({
 									</span>
 								</div>
 								{client.gstin && (
-									<div className="flex text-sm">
-										<span className="text-gray-600 w-32">GSTIN</span>
-										<span className="text-gray-900 font-medium">{client.gstin}</span>
+									<div className="flex text-sm gap-2">
+										<span className="text-gray-600 w-32 shrink-0">GSTIN</span>
+										<span className="text-gray-900 font-medium flex-1 min-w-0 break-words">{client.gstin}</span>
 									</div>
 								)}
 								{client.pan && (
-									<div className="flex text-sm">
-										<span className="text-gray-600 w-32">PAN</span>
-										<span className="text-gray-900 font-medium">{client.pan}</span>
+									<div className="flex text-sm gap-2">
+										<span className="text-gray-600 w-32 shrink-0">PAN</span>
+										<span className="text-gray-900 font-medium flex-1 min-w-0 break-words">{client.pan}</span>
 									</div>
 								)}
 							</div>

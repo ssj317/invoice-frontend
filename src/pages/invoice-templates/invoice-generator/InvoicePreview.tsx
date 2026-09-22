@@ -673,7 +673,7 @@
 
 // 					{/* Items Table */}
 // 					<div className="mb-8">
-// 						<table className="w-full border-collapse">
+// 						<table className="w-full border-collapse table-fixed">
 // 							<thead>
 // 								<tr className="bg-[#178C92] text-white">
 // 									{invoiceData.columnConfiguration
@@ -1788,7 +1788,7 @@ const InvoicePreview = () => {
 
 					{/* Items Table */}
 					<div className="mb-8">
-						<table className="w-full border-collapse">
+						<table className="w-full border-collapse" style={{ tableLayout: 'fixed' }}>
 							<thead>
 								<tr className="bg-[#178C92] text-white">
 									{invoiceData.columnConfiguration
@@ -1811,9 +1811,20 @@ const InvoicePreview = () => {
 												columnNameLower === 'total' ||
 												columnNameLower.includes('rate');
 
+											const colWidth = (() => {
+												if (columnNameLower === 'item') return '25%';
+												if (columnNameLower === 'hsn/sac' || columnNameLower === 'hsn') return '10%';
+												if (columnNameLower.includes('rate')) return '8%';
+												if (columnNameLower === 'quantity') return '7%';
+												if (columnNameLower === 'rate') return '9%';
+												if (['amount', 'cgst', 'sgst', 'igst', 'vat', 'ppn', 'sst', 'hst', 'tax'].includes(columnNameLower)) return '9%';
+												if (columnNameLower === 'total') return '10%';
+												return '9%';
+											})();
 											return (
 												<th
 													key={column.id}
+													style={{ width: colWidth }}
 													className={`py-4 px-4 font-semibold text-sm ${isFirstColumn ? 'text-left' : isNumericColumn ? 'text-right' : 'text-center'
 														}`}
 												>
@@ -1883,12 +1894,13 @@ const InvoicePreview = () => {
 													return (
 														<td
 															key={column.id}
-															className={`py-4 px-4 border-b border-gray-200 ${isFirstColumn
+															className={`py-4 px-2 border-b border-gray-200 ${isFirstColumn
 																? 'text-gray-900'
 																: isNumericColumn || column.type === 'CURRENCY'
 																	? 'text-right text-gray-700'
 																	: 'text-center text-gray-700'
 																} ${columnNameLower === 'total' ? 'font-semibold' : ''}`}
+															style={{ wordBreak: 'break-all', overflowWrap: 'anywhere' }}
 														>
 															{isFirstColumn ? (
 																<div className="flex items-center gap-2">

@@ -71,56 +71,50 @@ export default function BilledBySection({
 	}, [addShippingDetails, dispatch]);
 
 	const handleSaveBusinessDetails = () => {
-		// Update or add business
+		// A user has a single business profile — always replace the list with
+		// exactly one entry so we never accumulate duplicates.
 		if (businessForm.vendorName.trim()) {
-			const existingBusinessIndex = businesses.findIndex(b => b.name === selectedBusiness);
-
-			if (existingBusinessIndex >= 0) {
-				// Update existing business
-				const updatedBusinesses = [...businesses];
-				updatedBusinesses[existingBusinessIndex] = {
-					...updatedBusinesses[existingBusinessIndex],
-					name: businessForm.vendorName,
-					company: businessForm.vendorName,
-					...businessForm,
-				};
-				setBusinesses(updatedBusinesses);
-				setSelectedBusiness(businessForm.vendorName);
-			} else {
-				// Add new business
-				const newBusiness: Business = {
-					id: Date.now(),
-					name: businessForm.vendorName,
-					company: businessForm.vendorName,
-					...businessForm,
-				};
-				setBusinesses([...businesses, newBusiness]);
-				setSelectedBusiness(businessForm.vendorName);
-			}
+			const updatedBusiness: Business = {
+				id: 1,
+				name: businessForm.vendorName,
+				company: businessForm.vendorName,
+				...businessForm,
+			};
+			setBusinesses([updatedBusiness]);
+			setSelectedBusiness(businessForm.vendorName);
 		}
 		setShowBusinessEditModal(false);
 	};
 
-	const handleEditBusiness = () => {
+	// Opens the modal pre-filled with the current profile (whether via "Add New
+	// Business" or "Edit"). businessForm already holds the DB-loaded profile so
+	// we just ensure the modal always sees the latest values before opening.
+	const handleOpenBusinessModal = () => {
+		// Re-sync form from businesses list if a business is already selected,
+		// otherwise keep whatever is already in businessForm (DB-loaded profile).
 		const business = businesses.find((b) => b.name === selectedBusiness);
 		if (business) {
 			setBusinessForm({
-				vendorName: business.name || '',
-				country: business.country || 'India',
-				city: business.city || '',
-				gstin: business.gstin || '',
-				pan: business.pan || '',
-				addressCountry: business.addressCountry || 'India',
-				state: business.state || '',
-				addressCity: business.addressCity || '',
-				postalCode: business.postalCode || '',
-				streetAddress: business.streetAddress || '',
-				updatePrevious: business.updatePrevious || false,
-				updateFuture: business.updateFuture || true,
+				vendorName: business.name || businessForm.vendorName || '',
+				country: business.country || businessForm.country || 'India',
+				city: business.city || businessForm.city || '',
+				gstin: business.gstin || businessForm.gstin || '',
+				pan: business.pan || businessForm.pan || '',
+				addressCountry: business.addressCountry || businessForm.addressCountry || 'India',
+				state: business.state || businessForm.state || '',
+				addressCity: business.addressCity || businessForm.addressCity || '',
+				postalCode: business.postalCode || businessForm.postalCode || '',
+				streetAddress: business.streetAddress || businessForm.streetAddress || '',
+				updatePrevious: business.updatePrevious ?? businessForm.updatePrevious ?? false,
+				updateFuture: business.updateFuture ?? businessForm.updateFuture ?? true,
 			});
-			setShowBusinessEditModal(true);
 		}
+		// If no business in the list yet, businessForm already has the DB profile
+		// (or is empty for a brand-new user) — open as-is so they can fill it in.
+		setShowBusinessEditModal(true);
 	};
+
+	const handleEditBusiness = handleOpenBusinessModal;
 
 	return (
 		<div className="space-y-4 px-8">
@@ -179,7 +173,7 @@ export default function BilledBySection({
 
 			{/* Add New Business Button */}
 			<button
-				onClick={() => setShowBusinessEditModal(true)}
+				onClick={handleOpenBusinessModal}
 				className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-[#178C92] text-white rounded-lg hover:bg-[#007078] transition-colors font-medium"
 			>
 				<Plus size={16} />
@@ -201,13 +195,13 @@ export default function BilledBySection({
 					</div>
 
 					<div className="space-y-3">
-						<div className="flex text-sm">
-							<span className="text-gray-600 w-32">Business Name</span>
-							<span className="text-gray-900 font-medium">{businessForm.vendorName || selectedBusiness}</span>
+						<div className="flex text-sm gap-2">
+							<span className="text-gray-600 w-32 shrink-0">Business Name</span>
+							<span className="text-gray-900 font-medium flex-1 min-w-0 break-words">{businessForm.vendorName || selectedBusiness}</span>
 						</div>
-						<div className="flex text-sm">
-							<span className="text-gray-600 w-32">Address</span>
-							<span className="text-gray-900 font-medium">
+						<div className="flex text-sm gap-2">
+							<span className="text-gray-600 w-32 shrink-0">Address</span>
+							<span className="text-gray-900 font-medium flex-1 min-w-0 break-words">
 								{[
 									businessForm.streetAddress,
 									businessForm.addressCity,
@@ -220,15 +214,15 @@ export default function BilledBySection({
 							</span>
 						</div>
 						{businessForm.gstin && (
-							<div className="flex text-sm">
-								<span className="text-gray-600 w-32">GSTIN</span>
-								<span className="text-gray-900 font-medium">{businessForm.gstin}</span>
+							<div className="flex text-sm gap-2">
+								<span className="text-gray-600 w-32 shrink-0">GSTIN</span>
+								<span className="text-gray-900 font-medium flex-1 min-w-0 break-words">{businessForm.gstin}</span>
 							</div>
 						)}
 						{businessForm.pan && (
-							<div className="flex text-sm">
-								<span className="text-gray-600 w-32">PAN</span>
-								<span className="text-gray-900 font-medium">{businessForm.pan}</span>
+							<div className="flex text-sm gap-2">
+								<span className="text-gray-600 w-32 shrink-0">PAN</span>
+								<span className="text-gray-900 font-medium flex-1 min-w-0 break-words">{businessForm.pan}</span>
 							</div>
 						)}
 					</div>

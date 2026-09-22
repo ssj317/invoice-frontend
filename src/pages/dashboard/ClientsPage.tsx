@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Plus, Pencil, Trash2, Search, X, User } from 'lucide-react';
+import { Plus, Pencil, Trash2, Search, X, User, ArrowLeft } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { clientService, ClientData } from '@/services/clientService';
 import DashboardLayout from './DashboardLayout';
 
@@ -10,6 +11,7 @@ const emptyForm: ClientData = {
 };
 
 export default function ClientsPage() {
+  const navigate = useNavigate();
   const [clients, setClients] = useState<ClientData[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
@@ -82,9 +84,18 @@ export default function ClientsPage() {
       <div className="p-4 sm:p-6 lg:p-8 max-w-[1400px] mx-auto w-full min-h-screen">
         {/* Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
-          <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Clients</h1>
-            <p className="text-sm text-gray-500 mt-0.5">{clients.length} client{clients.length !== 1 ? 's' : ''} total</p>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => navigate('/dashboard')}
+              className="flex items-center gap-1.5 px-3 py-2 text-sm text-gray-600 hover:text-[#178C92] hover:bg-[#EAF4F1] border border-gray-300 hover:border-[#178C92] rounded-lg transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Back</span>
+            </button>
+            <div>
+              <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Clients</h1>
+              <p className="text-sm text-gray-500 mt-0.5">{clients.length} client{clients.length !== 1 ? 's' : ''} total</p>
+            </div>
           </div>
           <button
             onClick={openCreate}
@@ -189,7 +200,7 @@ export default function ClientsPage() {
       {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40">
-          <div className="bg-white rounded-xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+         <div className="bg-white rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between p-5 border-b border-gray-200">
               <h2 className="text-lg font-semibold text-gray-900">{editing ? 'Edit Client' : 'Add Client'}</h2>
               <button onClick={closeModal} className="p-1 text-gray-400 hover:text-gray-600 rounded">

@@ -604,6 +604,8 @@ import { authService } from '@/services/authService';
 import OtpStep from '@/components/OtpStep';
 import LandingNavbar from '@/components/LandingNavbar';
 
+import bg3 from '../../assets/windmill.jpg';
+
 const Signup = () => {
     const location = useLocation();
     const dispatch = useAppDispatch();
@@ -771,7 +773,7 @@ const Signup = () => {
                         <section className="hidden lg:block relative min-h-[680px] overflow-hidden bg-[#EAF4F1]">
 
                             <img
-                                src="/bg3.png"
+                                src={bg3}
                                 alt="Suzlon"
                                 className="absolute inset-0 w-full h-full object-cover"
                             />

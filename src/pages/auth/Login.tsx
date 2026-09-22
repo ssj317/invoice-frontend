@@ -182,6 +182,7 @@ import { authService } from '@/services/authService';
 
 import OtpStep from '@/components/OtpStep';
 import LandingNavbar from '@/components/LandingNavbar';
+import bg3 from "../../assets/windmill.jpg";
 
 const Login = () => {
     const location = useLocation();
@@ -334,7 +335,7 @@ const Login = () => {
                         ">
 
                             <img
-                                src="/bg3.png"
+                                src={bg3}
                                 alt="Suzlon"
                                 className="
                                     absolute

@@ -59,6 +59,7 @@ const emptyBusinessForm = {
 export default function BillingDetails({ BilledBySection, BilledToSection }: BillingDetailsSectionProps) {
 	const dispatch = useAppDispatch();
 	const invoiceData = useAppSelector((state) => state.invoice);
+	const authUser = useAppSelector((state) => state.auth.user);
 
 	const [selectedClient, setSelectedClient] = useState(invoiceData.selectedClient);
 	const [selectedBusiness, setSelectedBusiness] = useState(invoiceData.businessDetails.vendorName);
@@ -113,6 +114,7 @@ export default function BillingDetails({ BilledBySection, BilledToSection }: Bil
 		businessService.getProfile()
 			.then((profile) => {
 				if (profile && profile.vendorName) {
+					// User has a saved business profile — use it
 					const form = {
 						vendorName: profile.vendorName || '',
 						country: profile.country || 'India',
@@ -130,10 +132,31 @@ export default function BillingDetails({ BilledBySection, BilledToSection }: Bil
 					setBusinessForm(form);
 					setSelectedBusiness(profile.vendorName);
 					setBusinesses([{ id: 1, name: profile.vendorName, company: '' }]);
+				} else {
+					// No saved business profile yet — seed from the auth user's info
+					// so the Billed By section is never blank on first use.
+					const defaultName = authUser?.companyName || authUser?.fullName || '';
+					if (defaultName) {
+						const form = {
+							...emptyBusinessForm,
+							vendorName: defaultName,
+						};
+						setBusinessForm(form);
+						setSelectedBusiness(defaultName);
+						setBusinesses([{ id: 1, name: defaultName, company: '' }]);
+					}
 				}
 				businessProfileLoaded.current = true;
 			})
 			.catch(() => {
+				// On error fall back to auth user info so the field isn't blank
+				const defaultName = authUser?.companyName || authUser?.fullName || '';
+				if (defaultName) {
+					const form = { ...emptyBusinessForm, vendorName: defaultName };
+					setBusinessForm(form);
+					setSelectedBusiness(defaultName);
+					setBusinesses([{ id: 1, name: defaultName, company: '' }]);
+				}
 				businessProfileLoaded.current = true;
 			});
 	}, []);
@@ -174,12 +197,10 @@ export default function BillingDetails({ BilledBySection, BilledToSection }: Bil
 		};
 	}, [businessForm]);
 
-	// ── When business name changes keep businesses list in sync ───────────────
-	useEffect(() => {
-		if (businessForm.vendorName) {
-			setBusinesses([{ id: 1, name: businessForm.vendorName, company: '' }]);
-		}
-	}, [businessForm.vendorName]);
+	// NOTE: businesses list is managed only by the DB load (above) and by
+	// handleSaveBusinessDetails in BilledBySection. No separate effect is
+	// needed here — that effect caused duplicates because it ran concurrently
+	// with setBusinesses([...businesses, newBusiness]) on first save.
 
 	// ── Wrap setClients: persist new/edited client to DB ─────────────────────
 	const handleSetClients = async (updatedClients: any[]) => {

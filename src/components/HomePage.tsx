@@ -2,7 +2,7 @@ import RefrensHomepage from './RefrensHomepage';
 import BusinessPage from './BusinessPage';
 import WorkflowToolsCarousel from './WorkflowToolsCarousel';
 import Footer from './Footer';
-import UsvsOthers from './UsvsOthers';
+// import UsvsOthers from './UsvsOthers';
 import FAQs from './FAQs';
 
 const HomePage = () => {
@@ -13,7 +13,7 @@ const HomePage = () => {
                 <BusinessPage />
             </div>
             <WorkflowToolsCarousel />
-            <UsvsOthers/>
+            {/* <UsvsOthers/> */}
             <FAQs/>
             <Footer/>
         </div>

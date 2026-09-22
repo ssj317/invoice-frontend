@@ -1226,10 +1226,19 @@ const Dashboard = () => {
                     font-semibold
                     text-[#164A41]
                   ">
-                    {formatCurrency(
+                    {/* {formatCurrency(
                       lastInvoice.totals?.grandTotal,
                       lastInvoice.currency?.symbol
-                    )}
+                    )} */}
+                    {/* {formatCurrency(
+    lastInvoice.items?.[0]?.total || 0,
+    lastInvoice.currency?.symbol
+)} */}
+
+{formatCurrency(
+    lastInvoice.items?.[0]?.total || 0,
+    lastInvoice.currency?.symbol
+)}
                   </p>
                 </div>
 
