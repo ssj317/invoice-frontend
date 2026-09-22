@@ -7,6 +7,6 @@ export { default as Footer } from './Footer';
 export { default as FAQs } from './FAQs';
 export { default as BusinessPage } from './BusinessPage';
 export { default as RefrensHomepage } from './RefrensHomepage';
-export { default as UsvsOthers } from './UsvsOthers';
+// export { default as UsvsOthers } from './UsvsOthers';
 export { default as LandingNavbar } from './LandingNavbar';
 export { default as Navbar } from './Navbar';
