@@ -1,7 +1,7 @@
 import { useAuth } from './useAuth';
 
 const ALLOWED_EMAILS = ['jenasaisubham@gmail.com','mradul.gangle001@gmail.com'];
-const ALLOWED_DOMAIN = 'suzlon.com';
+const ALLOWED_DOMAIN = 'gmail.com';
 
 export const useDocumentAccess = (): boolean => {
   const { user } = useAuth();
