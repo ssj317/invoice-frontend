@@ -93,7 +93,7 @@ const TaxInvoicePreview = () => {
                 <div className="flex justify-between items-start pb-4 border-b-4 border-gray-900">
                       <div className="flex items-center gap-6">
                         <div style={{ width: '120px', height: '100px' }}>
-                            <img src="/suzlon-nav.png" alt="Suzlon" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                            <img src="/elite8digital-nav.png" alt="Elite8Digital" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                         </div>
                         <div>
                             <h1 className="text-3xl font-bold text-center text-gray-900">{formData.companyName}</h1>
