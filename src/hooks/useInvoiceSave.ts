@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { saveAsDraft, completeInvoice, updateInvoiceData } from '@/store/invoiceSlice';
 import { invoiceService } from '@/services/invoiceService';
@@ -12,7 +11,6 @@ interface UseInvoiceSaveProps {
 
 export const useInvoiceSave = ({ templateType, title, subtitle }: UseInvoiceSaveProps) => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const invoiceData = useAppSelector((state) => state.invoice);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -69,7 +67,10 @@ export const useInvoiceSave = ({ templateType, title, subtitle }: UseInvoiceSave
       console.log('Payload columnConfiguration:', invoicePayload.columnConfiguration);
 
       // Save to backend
-      const response = await invoiceService.createInvoice(invoicePayload);
+      // Reuse the saved record when the user saves a draft more than once.
+      const response = invoiceData.savedInvoiceId
+        ? await invoiceService.updateInvoice(invoiceData.savedInvoiceId, invoicePayload)
+        : await invoiceService.createInvoice(invoicePayload);
 
       if (response.success) {
         // Update Redux state
@@ -91,16 +92,6 @@ export const useInvoiceSave = ({ templateType, title, subtitle }: UseInvoiceSave
       console.error('Save invoice error:', error);
       const errorMessage = error.response?.data?.message || 'Failed to save invoice';
       setError(errorMessage);
-
-      // Check if it's a subscription limit error
-      if (error.response?.status === 403) {
-        const shouldUpgrade = confirm(
-          'You have reached your invoice limit. Would you like to upgrade your subscription?'
-        );
-        if (shouldUpgrade) {
-          navigate('/subscription/upgrade');
-        }
-      }
 
       return {
         success: false,
