@@ -213,10 +213,10 @@ const Invoice = () => {
 		subtitle
 	});
 
-	const handleSaveAsDraft = async () => {
+const handleSaveAsDraft = async () => {
 		const result = await saveAsDraft();
 		if (result?.success) {
-			alert(`${result.message}\n\nInvoices used: ${result?.data?.subscription?.invoicesCreated}/${result?.data?.subscription?.invoiceLimit}`);
+			alert(result.message);
 		} else if (result?.error) {
 			alert(`Error: ${result.error}`);
 		}
